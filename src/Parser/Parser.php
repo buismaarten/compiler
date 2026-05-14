@@ -64,7 +64,7 @@ final class Parser implements ParserInterface
         $token = $this->current;
 
         if (!$token || $token->type !== $type) {
-            throw new Exception("Expected $type");
+            throw new Exception("Expected {$type->name}");
         }
 
         $this->advance();

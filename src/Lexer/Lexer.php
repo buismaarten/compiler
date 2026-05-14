@@ -31,23 +31,23 @@ final class Lexer implements LexerInterface
             return null;
         }
 
-        $char = $this->input[$this->position];
+        $character = $this->input[$this->position];
 
-        if (ctype_digit($char)) {
+        if (ctype_digit($character)) {
             return $this->tokenizeNumber();
         }
 
-        if ($char === '+') {
+        if ($character === '+') {
             $this->position++;
             return new Token(TokenType::T_PLUS, '+');
         }
 
-        if ($char === '*') {
+        if ($character === '*') {
             $this->position++;
             return new Token(TokenType::T_MULTIPLY, '*');
         }
 
-        throw new Exception("Unexpected character: $char");
+        throw new Exception("Unexpected character: {$character}");
     }
 
     private function tokenizeNumber(): Token

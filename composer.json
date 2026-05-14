@@ -9,10 +9,16 @@
     "require": {
         "php": "^8.5"
     },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1"
+    },
     "autoload": {
         "psr-4": {
             "Buismaarten\\Parser\\": "src/"
         }
+    },
+    "scripts": {
+        "analyze": "./vendor/bin/phpstan analyse -c ./phpstan.neon --no-progress"
     },
     "config": {
         "preferred-install": "dist",
