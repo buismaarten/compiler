@@ -43,11 +43,6 @@ final class Parser implements ParserInterface
 
     public function parse(): int
     {
-        return $this->parseExpression();
-    }
-
-    private function parseExpression(): int
-    {
         $value = $this->parseTerm();
 
         while ($this->current && $this->current->type === TokenType::T_PLUS) {
