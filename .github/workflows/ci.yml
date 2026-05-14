@@ -32,3 +32,6 @@ jobs:
 
       - name: Composer install
         run: composer install --prefer-dist --no-interaction
+
+      - name: Execute static analysis
+        run: composer analyze
