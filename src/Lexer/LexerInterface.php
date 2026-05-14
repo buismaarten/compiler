@@ -13,5 +13,6 @@ interface LexerInterface
 {
     public function next(): ?Token;
 
+    /** @return Token[] */
     public function getTokens(): array;
 }

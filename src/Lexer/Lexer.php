@@ -50,19 +50,6 @@ final class Lexer implements LexerInterface
         throw new Exception("Unexpected character: $char");
     }
 
-    public function getTokens(): array
-    {
-        $tokens = [];
-
-        while ($token = $this->next()) {
-            $tokens[] = $token;
-        }
-
-        $this->position = 0;
-
-        return $tokens;
-    }
-
     private function tokenizeNumber(): Token
     {
         $start = $this->position;
@@ -81,5 +68,19 @@ final class Lexer implements LexerInterface
         while ($this->position < $this->length && ctype_space($this->input[$this->position])) {
             $this->position++;
         }
+    }
+
+    /** @return Token[] */
+    public function getTokens(): array
+    {
+        $tokens = [];
+
+        while ($token = $this->next()) {
+            $tokens[] = $token;
+        }
+
+        $this->position = 0;
+
+        return $tokens;
     }
 }
