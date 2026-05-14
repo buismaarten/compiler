@@ -13,7 +13,7 @@ require_once __DIR__.'/src/Parser/ParserInterface.php';
 require_once __DIR__.'/src/Parser/Parser.php';
 
 
-$lexer = new Lexer("2 + 3 * 4");
+$lexer = new Lexer('2 + 3 * 4');
 $parser = new Parser($lexer);
 
 echo $parser->parse();
