@@ -71,14 +71,10 @@ final class Lexer implements LexerInterface
     }
 
     /** @return Token[] */
-    public function getTokens(): array
+    public function getTokens(): iterable
     {
-        $tokens = [];
-
         while (($token = $this->next()) !== null) {
-            $tokens[] = $token;
+            yield $token;
         }
-
-        return $tokens;
     }
 }
