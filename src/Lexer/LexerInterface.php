@@ -7,5 +7,5 @@ declare(strict_types=1);
 
 interface LexerInterface
 {
-    //
+    public function next(): ?Token;
 }
