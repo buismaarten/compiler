@@ -23,24 +23,6 @@ final class Parser implements ParserInterface
         $this->advance();
     }
 
-    private function advance(): void
-    {
-        $this->current = $this->lexer->next();
-    }
-
-    private function eat(TokenType $type): Token
-    {
-        $token = $this->current;
-
-        if (!$token || $token->type !== $type) {
-            throw new Exception("Expected $type");
-        }
-
-        $this->advance();
-
-        return $token;
-    }
-
     public function parse(): int
     {
         $value = $this->parseTerm();
@@ -70,5 +52,23 @@ final class Parser implements ParserInterface
         $token = $this->eat(TokenType::T_NUMBER);
 
         return intval($token->value);
+    }
+
+    private function advance(): void
+    {
+        $this->current = $this->lexer->next();
+    }
+
+    private function eat(TokenType $type): Token
+    {
+        $token = $this->current;
+
+        if (!$token || $token->type !== $type) {
+            throw new Exception("Expected $type");
+        }
+
+        $this->advance();
+
+        return $token;
     }
 }
