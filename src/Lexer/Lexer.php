@@ -33,12 +33,10 @@ final class Lexer implements LexerInterface
 
         $char = $this->input[$this->pos];
 
-        // number
         if (ctype_digit($char)) {
             return $this->number();
         }
 
-        // operators
         if ($char === '+') {
             $this->pos++;
             return new Token(TokenType::PLUS, '+');

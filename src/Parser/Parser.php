@@ -37,6 +37,7 @@ final class Parser implements ParserInterface
         }
 
         $this->advance();
+
         return $token;
     }
 
@@ -45,7 +46,6 @@ final class Parser implements ParserInterface
         return $this->expr();
     }
 
-    // expr := term (("+" term)*)
     private function expr(): int
     {
         $value = $this->term();
@@ -58,7 +58,6 @@ final class Parser implements ParserInterface
         return $value;
     }
 
-    // term := factor (("*" factor)*)
     private function term(): int
     {
         $value = $this->factor();
@@ -71,10 +70,10 @@ final class Parser implements ParserInterface
         return $value;
     }
 
-    // factor := NUMBER
     private function factor(): int
     {
         $token = $this->eat(TokenType::NUMBER);
-        return (int)$token->value;
+
+        return intval($token->value);
     }
 }
