@@ -1,0 +1,34 @@
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+name: ci
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 3 * * *'
+
+jobs:
+  test:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [8.5]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Composer validate
+        run: composer validate --strict
+
+      - name: Composer install
+        run: composer install --prefer-dist --no-interaction
