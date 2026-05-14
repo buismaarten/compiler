@@ -75,7 +75,7 @@ final class Lexer implements LexerInterface
     {
         $tokens = [];
 
-        while ($token = $this->next()) {
+        while (($token = $this->next()) !== null) {
             $tokens[] = $token;
         }
 
