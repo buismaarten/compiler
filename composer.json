@@ -1,0 +1,23 @@
+{
+    "name": "buismaarten/parser",
+    "description": "",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/buismaarten/parser/issues",
+        "source": "https://github.com/buismaarten/parser"
+    },
+    "require": {
+        "php": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Buismaarten\\Parser\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
