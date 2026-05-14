@@ -28,7 +28,7 @@ final class Parser implements ParserInterface
         $value = $this->parseTerm();
 
         while ($this->current?->type === TokenType::T_PLUS) {
-            $this->eat(TokenType::T_PLUS);
+            $this->expect(TokenType::T_PLUS);
             $value += $this->parseTerm();
         }
 
@@ -40,7 +40,7 @@ final class Parser implements ParserInterface
         $value = $this->parseFactor();
 
         while ($this->current?->type === TokenType::T_MULTIPLY) {
-            $this->eat(TokenType::T_MULTIPLY);
+            $this->expect(TokenType::T_MULTIPLY);
             $value *= $this->parseFactor();
         }
 
@@ -49,7 +49,7 @@ final class Parser implements ParserInterface
 
     private function parseFactor(): int
     {
-        $token = $this->eat(TokenType::T_NUMBER);
+        $token = $this->expect(TokenType::T_NUMBER);
 
         return intval($token->value);
     }
@@ -59,7 +59,7 @@ final class Parser implements ParserInterface
         $this->current = $this->lexer->next();
     }
 
-    private function eat(TokenType $type): Token
+    private function expect(TokenType $type): Token
     {
         $token = $this->current;
 
