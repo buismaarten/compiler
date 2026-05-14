@@ -43,34 +43,34 @@ final class Parser implements ParserInterface
 
     public function parse(): int
     {
-        return $this->expr();
+        return $this->parseExpression();
     }
 
-    private function expr(): int
+    private function parseExpression(): int
     {
-        $value = $this->term();
+        $value = $this->parseTerm();
 
         while ($this->current && $this->current->type === TokenType::T_PLUS) {
             $this->eat(TokenType::T_PLUS);
-            $value += $this->term();
+            $value += $this->parseTerm();
         }
 
         return $value;
     }
 
-    private function term(): int
+    private function parseTerm(): int
     {
-        $value = $this->factor();
+        $value = $this->parseFactor();
 
         while ($this->current && $this->current->type === TokenType::T_MULTIPLY) {
             $this->eat(TokenType::T_MULTIPLY);
-            $value *= $this->factor();
+            $value *= $this->parseFactor();
         }
 
         return $value;
     }
 
-    private function factor(): int
+    private function parseFactor(): int
     {
         $token = $this->eat(TokenType::T_NUMBER);
 

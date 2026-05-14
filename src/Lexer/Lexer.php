@@ -34,7 +34,7 @@ final class Lexer implements LexerInterface
         $char = $this->input[$this->pos];
 
         if (ctype_digit($char)) {
-            return $this->number();
+            return $this->tokenizeNumber();
         }
 
         if ($char === '+') {
@@ -50,7 +50,7 @@ final class Lexer implements LexerInterface
         throw new Exception("Unexpected character: $char");
     }
 
-    private function number(): Token
+    private function tokenizeNumber(): Token
     {
         $start = $this->pos;
 
