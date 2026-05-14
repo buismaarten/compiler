@@ -14,8 +14,8 @@ use Exception;
 final class Lexer implements LexerInterface
 {
     private string $input;
-    private int $pos = 0;
     private int $length;
+    private int $position = 0;
 
     public function __construct(string $input)
     {
@@ -27,46 +27,59 @@ final class Lexer implements LexerInterface
     {
         $this->skipWhitespace();
 
-        if ($this->pos >= $this->length) {
+        if ($this->position >= $this->length) {
             return null;
         }
 
-        $char = $this->input[$this->pos];
+        $char = $this->input[$this->position];
 
         if (ctype_digit($char)) {
             return $this->tokenizeNumber();
         }
 
         if ($char === '+') {
-            $this->pos++;
+            $this->position++;
             return new Token(TokenType::T_PLUS, '+');
         }
 
         if ($char === '*') {
-            $this->pos++;
+            $this->position++;
             return new Token(TokenType::T_MULTIPLY, '*');
         }
 
         throw new Exception("Unexpected character: $char");
     }
 
-    private function tokenizeNumber(): Token
+    public function getTokens(): array
     {
-        $start = $this->pos;
+        $tokens = [];
 
-        while ($this->pos < $this->length && ctype_digit($this->input[$this->pos])) {
-            $this->pos++;
+        while ($token = $this->next()) {
+            $tokens[] = $token;
         }
 
-        $value = substr($this->input, $start, $this->pos - $start);
+        $this->position = 0;
+
+        return $tokens;
+    }
+
+    private function tokenizeNumber(): Token
+    {
+        $start = $this->position;
+
+        while ($this->position < $this->length && ctype_digit($this->input[$this->position])) {
+            $this->position++;
+        }
+
+        $value = substr($this->input, $start, $this->position - $start);
 
         return new Token(TokenType::T_NUMBER, $value);
     }
 
     private function skipWhitespace(): void
     {
-        while ($this->pos < $this->length && ctype_space($this->input[$this->pos])) {
-            $this->pos++;
+        while ($this->position < $this->length && ctype_space($this->input[$this->position])) {
+            $this->position++;
         }
     }
 }

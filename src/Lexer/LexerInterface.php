@@ -12,4 +12,6 @@ use Buismaarten\Parser\Token\Token;
 interface LexerInterface
 {
     public function next(): ?Token;
+
+    public function getTokens(): array;
 }
