@@ -39,12 +39,12 @@ final class Lexer implements LexerInterface
 
         if ($character === '+') {
             $this->position++;
-            return new Token(TokenType::T_PLUS, '+');
+            return new Token(TokenType::T_PLUS);
         }
 
         if ($character === '*') {
             $this->position++;
-            return new Token(TokenType::T_MULTIPLY, '*');
+            return new Token(TokenType::T_MULTIPLY);
         }
 
         throw new Exception("Unexpected character: {$character}");
