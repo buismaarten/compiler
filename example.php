@@ -5,12 +5,10 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-require_once __DIR__.'/src/Token/TokenType.php';
-require_once __DIR__.'/src/Token/Token.php';
-require_once __DIR__.'/src/Lexer/LexerInterface.php';
-require_once __DIR__.'/src/Lexer/Lexer.php';
-require_once __DIR__.'/src/Parser/ParserInterface.php';
-require_once __DIR__.'/src/Parser/Parser.php';
+use Buismaarten\Parser\Lexer\Lexer;
+use Buismaarten\Parser\Parser\Parser;
+
+require_once __DIR__.'/vendor/autoload.php';
 
 
 $lexer = new Lexer('2 + 3 * 4');

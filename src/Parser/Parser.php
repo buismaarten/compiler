@@ -5,6 +5,13 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
+namespace Buismaarten\Parser\Parser;
+
+use Buismaarten\Parser\Lexer\LexerInterface;
+use Buismaarten\Parser\Token\Token;
+use Buismaarten\Parser\Token\TokenType;
+use Exception;
+
 final class Parser implements ParserInterface
 {
     private LexerInterface $lexer;
