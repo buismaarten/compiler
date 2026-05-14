@@ -50,8 +50,8 @@ final class Parser implements ParserInterface
     {
         $value = $this->term();
 
-        while ($this->current && $this->current->type === TokenType::PLUS) {
-            $this->eat(TokenType::PLUS);
+        while ($this->current && $this->current->type === TokenType::T_PLUS) {
+            $this->eat(TokenType::T_PLUS);
             $value += $this->term();
         }
 
@@ -62,8 +62,8 @@ final class Parser implements ParserInterface
     {
         $value = $this->factor();
 
-        while ($this->current && $this->current->type === TokenType::MULTIPLY) {
-            $this->eat(TokenType::MULTIPLY);
+        while ($this->current && $this->current->type === TokenType::T_MULTIPLY) {
+            $this->eat(TokenType::T_MULTIPLY);
             $value *= $this->factor();
         }
 
@@ -72,7 +72,7 @@ final class Parser implements ParserInterface
 
     private function factor(): int
     {
-        $token = $this->eat(TokenType::NUMBER);
+        $token = $this->eat(TokenType::T_NUMBER);
 
         return intval($token->value);
     }

@@ -39,12 +39,12 @@ final class Lexer implements LexerInterface
 
         if ($char === '+') {
             $this->pos++;
-            return new Token(TokenType::PLUS, '+');
+            return new Token(TokenType::T_PLUS, '+');
         }
 
         if ($char === '*') {
             $this->pos++;
-            return new Token(TokenType::MULTIPLY, '*');
+            return new Token(TokenType::T_MULTIPLY, '*');
         }
 
         throw new Exception("Unexpected character: $char");
@@ -60,7 +60,7 @@ final class Lexer implements LexerInterface
 
         $value = substr($this->input, $start, $this->pos - $start);
 
-        return new Token(TokenType::NUMBER, $value);
+        return new Token(TokenType::T_NUMBER, $value);
     }
 
     private function skipWhitespace(): void
