@@ -79,8 +79,6 @@ final class Lexer implements LexerInterface
             $tokens[] = $token;
         }
 
-        $this->position = 0;
-
         return $tokens;
     }
 }
