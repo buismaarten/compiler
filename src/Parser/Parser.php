@@ -62,8 +62,8 @@ final class Parser implements ParserInterface
     {
         $value = $this->factor();
 
-        while ($this->current && $this->current->type === TokenType::MUL) {
-            $this->eat(TokenType::MUL);
+        while ($this->current && $this->current->type === TokenType::MULTIPLY) {
+            $this->eat(TokenType::MULTIPLY);
             $value *= $this->factor();
         }
 

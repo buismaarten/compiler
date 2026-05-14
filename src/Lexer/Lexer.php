@@ -44,7 +44,7 @@ final class Lexer implements LexerInterface
 
         if ($char === '*') {
             $this->pos++;
-            return new Token(TokenType::MUL, '*');
+            return new Token(TokenType::MULTIPLY, '*');
         }
 
         throw new Exception("Unexpected character: $char");

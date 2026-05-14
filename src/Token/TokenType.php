@@ -9,7 +9,7 @@ namespace Buismaarten\Parser\Token;
 
 enum TokenType
 {
+    case MULTIPLY;
     case NUMBER;
     case PLUS;
-    case MUL;
 }
