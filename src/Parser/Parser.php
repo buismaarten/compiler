@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Parser;
 
-use Buismaarten\Parser\Exceptions\ExpectedTokenException;
-use Buismaarten\Parser\Exceptions\UnexpectedEndOfInputException;
+use Buismaarten\Parser\Exceptions\Parser\ExpectedTokenException;
+use Buismaarten\Parser\Exceptions\Parser\UnexpectedEndOfInputException;
 use Buismaarten\Parser\Lexer\LexerInterface;
 use Buismaarten\Parser\Token\Token;
 use Buismaarten\Parser\Token\TokenType;

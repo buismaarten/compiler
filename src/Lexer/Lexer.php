@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Lexer;
 
-use Buismaarten\Parser\Exceptions\UnexpectedCharacterException;
+use Buismaarten\Parser\Exceptions\Lexer\UnexpectedCharacterException;
 use Buismaarten\Parser\Token\Token;
 use Buismaarten\Parser\Token\TokenType;
 use Override;
