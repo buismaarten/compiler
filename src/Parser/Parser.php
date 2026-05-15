@@ -28,6 +28,16 @@ final class Parser implements ParserInterface
     #[Override]
     public function parse(): int
     {
+        if ($this->current !== null) {
+            return $this->parseExpression();
+        }
+
+        // Fallback
+        return 0;
+    }
+
+    private function parseExpression(): int
+    {
         $value = $this->parseTerm();
 
         while ($this->current?->type === TokenType::T_PLUS) {
