@@ -12,6 +12,7 @@ use Buismaarten\Parser\Exceptions\UnexpectedEndOfInputException;
 use Buismaarten\Parser\Lexer\LexerInterface;
 use Buismaarten\Parser\Token\Token;
 use Buismaarten\Parser\Token\TokenType;
+use Override;
 
 final class Parser implements ParserInterface
 {
@@ -24,6 +25,7 @@ final class Parser implements ParserInterface
         $this->advance();
     }
 
+    #[Override]
     public function parse(): int
     {
         $value = $this->parseTerm();

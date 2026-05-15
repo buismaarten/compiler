@@ -10,6 +10,7 @@ namespace Buismaarten\Parser\Lexer;
 use Buismaarten\Parser\Exceptions\UnexpectedCharacterException;
 use Buismaarten\Parser\Token\Token;
 use Buismaarten\Parser\Token\TokenType;
+use Override;
 
 final class Lexer implements LexerInterface
 {
@@ -22,6 +23,7 @@ final class Lexer implements LexerInterface
         $this->input = $input;
     }
 
+    #[Override]
     public function next(): ?Token
     {
         while (($current = $this->current()) !== null && ctype_space($current)) {
@@ -74,7 +76,7 @@ final class Lexer implements LexerInterface
         return $this->input[$this->offset] ?? null;
     }
 
-    /** @return Token[] */
+    #[Override]
     public function getTokens(): iterable
     {
         while (($token = $this->next()) !== null) {
