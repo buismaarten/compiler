@@ -22,7 +22,7 @@ final class Parser implements ParserInterface
     public function __construct(LexerInterface $lexer)
     {
         $this->lexer = $lexer;
-        $this->advance();
+        $this->current = $this->lexer->next();
     }
 
     #[Override]
@@ -57,11 +57,6 @@ final class Parser implements ParserInterface
         return intval($token->value);
     }
 
-    private function advance(): void
-    {
-        $this->current = $this->lexer->next();
-    }
-
     private function expect(TokenType $type): Token
     {
         $token = $this->current;
@@ -74,7 +69,7 @@ final class Parser implements ParserInterface
             throw new ExpectedTokenException($token->line, $type->name, $token->type->name);
         }
 
-        $this->advance();
+        $this->current = $this->lexer->next();
 
         return $token;
     }
