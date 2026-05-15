@@ -24,7 +24,13 @@ final class Lexer implements LexerInterface
 
     public function next(): ?Token
     {
-        $this->skipWhitespace();
+        while (($current = $this->current()) !== null && ctype_space($current)) {
+            $this->offset++;
+
+            if ($current === "\n") {
+                $this->line++;
+            }
+        }
 
         if (($current = $this->current()) === null) {
             return null;
@@ -61,17 +67,6 @@ final class Lexer implements LexerInterface
         $this->offset++;
 
         return new Token($type, $this->line);
-    }
-
-    private function skipWhitespace(): void
-    {
-        while (($current = $this->current()) !== null && ctype_space($current)) {
-            $this->offset++;
-
-            if ($current === "\n") {
-                $this->line++;
-            }
-        }
     }
 
     private function current(): ?string
