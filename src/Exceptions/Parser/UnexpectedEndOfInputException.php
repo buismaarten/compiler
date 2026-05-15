@@ -16,7 +16,7 @@ final class UnexpectedEndOfInputException extends \RuntimeException implements E
         $message = 'Unexpected end of input';
 
         if ($expected !== null) {
-            $message .= ", expected {$expected}";
+            $message .= ", expected token '{$expected}'";
         }
 
         parent::__construct($message);
