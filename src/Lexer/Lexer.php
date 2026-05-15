@@ -7,9 +7,9 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Lexer;
 
+use Buismaarten\Parser\Exceptions\UnexpectedCharacterException;
 use Buismaarten\Parser\Token\Token;
 use Buismaarten\Parser\Token\TokenType;
-use Exception;
 
 final class Lexer implements LexerInterface
 {
@@ -44,7 +44,7 @@ final class Lexer implements LexerInterface
                 ctype_digit($current) => $this->tokenizeNumber(),
 
                 // Fallback
-                default => throw new Exception("Unexpected character: {$current}"),
+                default => throw new UnexpectedCharacterException($this->line, $current),
             },
         };
     }
