@@ -14,7 +14,7 @@ use Exception;
 final class Lexer implements LexerInterface
 {
     private string $input;
-    private int $length;
+    private int $length = 0;
     private int $offset = 0;
 
     public function __construct(string $input)
