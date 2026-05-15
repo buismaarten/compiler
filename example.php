@@ -15,4 +15,4 @@ $lexer = new Lexer('2 + 3 * 4');
 $parser = new Parser($lexer);
 
 echo $parser->parse();
-exit;
+echo "\n";

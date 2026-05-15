@@ -14,70 +14,69 @@ use Exception;
 final class Lexer implements LexerInterface
 {
     private string $input;
-    private int $length = 0;
     private int $offset = 0;
+    private int $line = 1;
 
     public function __construct(string $input)
     {
         $this->input = $input;
-        $this->length = strlen($input);
     }
 
     public function next(): ?Token
     {
         $this->skipWhitespace();
 
-        if (!$this->valid()) {
+        if (($current = $this->current()) === null) {
             return null;
         }
 
-        $current = $this->current();
+        return match ($current) {
+            '+' => $this->tokenizeSingle(TokenType::T_PLUS),
+            '*' => $this->tokenizeSingle(TokenType::T_MULTIPLY),
 
-        if (ctype_digit($current)) {
-            return $this->tokenizeNumber();
-        }
+            default => match (true) {
+                ctype_digit($current) => $this->tokenizeNumber(),
 
-        if ($current === '+') {
-            $this->offset++;
-            return new Token(TokenType::T_PLUS);
-        }
-
-        if ($current === '*') {
-            $this->offset++;
-            return new Token(TokenType::T_MULTIPLY);
-        }
-
-        throw new Exception("Unexpected character: {$current}");
+                // Fallback
+                default => throw new Exception("Unexpected character: {$current}"),
+            },
+        };
     }
 
     private function tokenizeNumber(): Token
     {
         $start = $this->offset;
 
-        while ($this->valid() && ctype_digit($this->current())) {
+        while (($current = $this->current()) !== null && ctype_digit($current)) {
             $this->offset++;
         }
 
         $value = substr($this->input, $start, $this->offset - $start);
 
-        return new Token(TokenType::T_NUMBER, $value);
+        return new Token(TokenType::T_NUMBER, $this->line, $value);
+    }
+
+    private function tokenizeSingle(TokenType $type): Token
+    {
+        $this->offset++;
+
+        return new Token($type, $this->line);
     }
 
     private function skipWhitespace(): void
     {
-        while ($this->valid() && ctype_space($this->current())) {
+        while (($current = $this->current()) !== null && ctype_space($current)) {
             $this->offset++;
+
+            if ($current === "\n") {
+                $this->line++;
+            }
         }
     }
 
-    private function current(): string
+    private function current(): ?string
     {
-        return $this->input[$this->offset];
-    }
-
-    private function valid(): bool
-    {
-        return $this->offset < $this->length;
+        return $this->input[$this->offset] ?? null;
     }
 
     /** @return Token[] */

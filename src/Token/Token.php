@@ -10,11 +10,13 @@ namespace Buismaarten\Parser\Token;
 final class Token
 {
     public TokenType $type;
+    public int $line;
     public string $value;
 
-    public function __construct(TokenType $type, string $value = '')
+    public function __construct(TokenType $type, int $line, string $value = '')
     {
         $this->type = $type;
+        $this->line = $line;
         $this->value = $value;
     }
 }
