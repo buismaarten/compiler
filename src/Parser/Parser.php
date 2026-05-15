@@ -7,10 +7,11 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Parser;
 
+use Buismaarten\Parser\Exceptions\ExpectedTokenException;
+use Buismaarten\Parser\Exceptions\UnexpectedEndOfInputException;
 use Buismaarten\Parser\Lexer\LexerInterface;
 use Buismaarten\Parser\Token\Token;
 use Buismaarten\Parser\Token\TokenType;
-use Exception;
 
 final class Parser implements ParserInterface
 {
@@ -63,8 +64,12 @@ final class Parser implements ParserInterface
     {
         $token = $this->current;
 
-        if (!$token || $token->type !== $type) {
-            throw new Exception("Expected {$type->name}");
+        if ($token === null) {
+            throw new UnexpectedEndOfInputException($type->name);
+        }
+
+        if ($token->type !== $type) {
+            throw new ExpectedTokenException($token->line, $type->name, $token->type->name);
         }
 
         $this->advance();
