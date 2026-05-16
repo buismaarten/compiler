@@ -12,6 +12,9 @@ abstract class AbstractNode implements \JsonSerializable
     /** @return array<mixed> */
     public function jsonSerialize(): array
     {
-        return ['_type' => static::class] + get_object_vars($this);
+        $type = explode('\\', static::class);
+        $type = end($type);
+
+        return ['_type' => $type] + get_object_vars($this);
     }
 }

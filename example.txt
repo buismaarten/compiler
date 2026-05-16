@@ -1,19 +1,19 @@
 {
-    "_type": "Buismaarten\\Parser\\Nodes\\BinaryNode",
+    "_type": "BinaryNode",
     "operator": "T_PLUS",
     "left": {
-        "_type": "Buismaarten\\Parser\\Nodes\\NumberNode",
+        "_type": "NumberNode",
         "value": 2
     },
     "right": {
-        "_type": "Buismaarten\\Parser\\Nodes\\BinaryNode",
+        "_type": "BinaryNode",
         "operator": "T_MULTIPLY",
         "left": {
-            "_type": "Buismaarten\\Parser\\Nodes\\NumberNode",
+            "_type": "NumberNode",
             "value": 3
         },
         "right": {
-            "_type": "Buismaarten\\Parser\\Nodes\\NumberNode",
+            "_type": "NumberNode",
             "value": 4
         }
     }
