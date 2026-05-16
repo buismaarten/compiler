@@ -9,4 +9,5 @@ namespace Buismaarten\Parser\Nodes;
 
 interface NodeInterface
 {
+    //
 }
