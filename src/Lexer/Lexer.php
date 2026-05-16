@@ -24,7 +24,7 @@ final class Lexer implements LexerInterface
     }
 
     #[Override]
-    public function next(): ?Token
+    public function next(): Token
     {
         while (($current = $this->current()) !== null && ctype_space($current)) {
             $this->offset++;
@@ -35,7 +35,7 @@ final class Lexer implements LexerInterface
         }
 
         if (($current = $this->current()) === null) {
-            return null;
+            return new Token(TokenType::T_EOF, $this->line);
         }
 
         return match ($current) {
@@ -79,7 +79,7 @@ final class Lexer implements LexerInterface
     #[Override]
     public function getTokens(): iterable
     {
-        while (($token = $this->next()) !== null) {
+        while (($token = $this->next())->type !== TokenType::T_EOF) {
             yield $token;
         }
     }

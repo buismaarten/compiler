@@ -20,7 +20,7 @@ use Override;
 final class Parser implements ParserInterface
 {
     private LexerInterface $lexer;
-    private ?Token $current = null;
+    private Token $current;
 
     public function __construct(LexerInterface $lexer)
     {
@@ -31,8 +31,8 @@ final class Parser implements ParserInterface
     #[Override]
     public function parse(): NodeInterface
     {
-        if ($this->current === null) {
-            throw new UnexpectedEndOfInputException;
+        if ($this->current->type === TokenType::T_EOF) {
+            throw new UnexpectedEndOfInputException($this->current->line);
         }
 
         return $this->parseExpression();
@@ -42,7 +42,7 @@ final class Parser implements ParserInterface
     {
         $node = $this->parseTerm();
 
-        while ($this->current?->type === TokenType::T_PLUS) {
+        while ($this->current->type === TokenType::T_PLUS) {
             $operator = $this->expect(TokenType::T_PLUS);
             $node = new BinaryNode($operator->type, $node, $this->parseTerm());
         }
@@ -54,7 +54,7 @@ final class Parser implements ParserInterface
     {
         $node = $this->parseFactor();
 
-        while ($this->current?->type === TokenType::T_MULTIPLY) {
+        while ($this->current->type === TokenType::T_MULTIPLY) {
             $operator = $this->expect(TokenType::T_MULTIPLY);
             $node = new BinaryNode($operator->type, $node, $this->parseFactor());
         }
@@ -74,8 +74,8 @@ final class Parser implements ParserInterface
     {
         $token = $this->current;
 
-        if ($token === null) {
-            throw new UnexpectedEndOfInputException($type->name);
+        if ($token->type === TokenType::T_EOF) {
+            throw new UnexpectedEndOfInputException($token->line);
         }
 
         if ($token->type !== $type) {

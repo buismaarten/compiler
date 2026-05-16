@@ -11,14 +11,8 @@ use Buismaarten\Parser\Exceptions\ExceptionInterface;
 
 final class UnexpectedEndOfInputException extends \RuntimeException implements ExceptionInterface
 {
-    public function __construct(?string $expected = null)
+    public function __construct(int $line)
     {
-        $message = 'Unexpected end of input';
-
-        if ($expected !== null) {
-            $message .= ", expected token '{$expected}'";
-        }
-
-        parent::__construct($message);
+        parent::__construct("Unexpected end of input on line {$line}");
     }
 }
