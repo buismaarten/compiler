@@ -31,10 +31,6 @@ final class Parser implements ParserInterface
     #[Override]
     public function parse(): AbstractNode
     {
-        if ($this->current->type === TokenType::T_EOF) {
-            throw new UnexpectedEndOfInputException($this->current->line);
-        }
-
         return $this->parseExpression();
     }
 
