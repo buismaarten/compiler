@@ -1,6 +1,10 @@
 Buismaarten\Parser\Nodes\BinaryNode Object
 (
-    [operator] => T_PLUS
+    [operator] => Buismaarten\Parser\Token\TokenType Enum
+        (
+            [name] => T_PLUS
+        )
+
     [left] => Buismaarten\Parser\Nodes\NumberNode Object
         (
             [value] => 2
@@ -8,7 +12,11 @@ Buismaarten\Parser\Nodes\BinaryNode Object
 
     [right] => Buismaarten\Parser\Nodes\BinaryNode Object
         (
-            [operator] => T_MULTIPLY
+            [operator] => Buismaarten\Parser\Token\TokenType Enum
+                (
+                    [name] => T_MULTIPLY
+                )
+
             [left] => Buismaarten\Parser\Nodes\NumberNode Object
                 (
                     [value] => 3

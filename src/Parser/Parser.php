@@ -44,7 +44,7 @@ final class Parser implements ParserInterface
 
         while ($this->current?->type === TokenType::T_PLUS) {
             $operator = $this->expect(TokenType::T_PLUS);
-            $node = new BinaryNode($operator->type->name, $node, $this->parseTerm());
+            $node = new BinaryNode($operator->type, $node, $this->parseTerm());
         }
 
         return $node;
@@ -56,7 +56,7 @@ final class Parser implements ParserInterface
 
         while ($this->current?->type === TokenType::T_MULTIPLY) {
             $operator = $this->expect(TokenType::T_MULTIPLY);
-            $node = new BinaryNode($operator->type->name, $node, $this->parseFactor());
+            $node = new BinaryNode($operator->type, $node, $this->parseFactor());
         }
 
         return $node;

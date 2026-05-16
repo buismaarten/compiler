@@ -7,10 +7,12 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Nodes;
 
+use Buismaarten\Parser\Token\TokenType;
+
 final class BinaryNode implements NodeInterface
 {
     public function __construct(
-        public readonly string $operator,
+        public readonly TokenType $operator,
         public readonly NodeInterface $left,
         public readonly NodeInterface $right,
     ) {}
