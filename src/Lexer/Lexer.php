@@ -8,38 +8,33 @@ declare(strict_types=1);
 namespace Buismaarten\Parser\Lexer;
 
 use Buismaarten\Parser\Exceptions\Lexer\UnexpectedCharacterException;
-use Buismaarten\Parser\Input\Input;
-use Buismaarten\Parser\Input\InputInterface;
 use Buismaarten\Parser\Token\Token;
 use Buismaarten\Parser\Token\TokenType;
 use Override;
 
 final class Lexer implements LexerInterface
 {
-    private InputInterface $input;
+    private string $input;
+    private int $offset = 0;
     private int $line = 1;
 
-    public function __construct(InputInterface|string $input)
+    public function __construct(string $input)
     {
-        if (!$input instanceof InputInterface) {
-            $input = new Input($input);
-        }
-
         $this->input = $input;
     }
 
     #[Override]
     public function next(): ?Token
     {
-        while (($current = $this->input->current()) !== null && ctype_space($current)) {
-            $this->input->next();
+        while (($current = $this->current()) !== null && ctype_space($current)) {
+            $this->offset++;
 
             if ($current === "\n") {
                 $this->line++;
             }
         }
 
-        if (($current = $this->input->current()) === null) {
+        if (($current = $this->current()) === null) {
             return null;
         }
 
@@ -58,22 +53,27 @@ final class Lexer implements LexerInterface
 
     private function tokenizeNumber(): Token
     {
-        $start = $this->input->position();
+        $start = $this->offset;
 
-        while (($current = $this->input->current()) !== null && ctype_digit($current)) {
-            $this->input->next();
+        while (($current = $this->current()) !== null && ctype_digit($current)) {
+            $this->offset++;
         }
 
-        $value = $this->input->slice($start, $this->input->position());
+        $value = substr($this->input, $start, $this->offset - $start);
 
         return new Token(TokenType::T_NUMBER, $this->line, $value);
     }
 
     private function tokenizeSingle(TokenType $type): Token
     {
-        $this->input->next();
+        $this->offset++;
 
         return new Token($type, $this->line);
+    }
+
+    private function current(): ?string
+    {
+        return $this->input[$this->offset] ?? null;
     }
 
     #[Override]
