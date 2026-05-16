@@ -31,11 +31,6 @@ final class Parser implements ParserInterface
     #[Override]
     public function parse(): AbstractNode
     {
-        return $this->parseExpression();
-    }
-
-    private function parseExpression(): AbstractNode
-    {
         $node = $this->parseTerm();
 
         while ($this->current->type === TokenType::T_PLUS) {
