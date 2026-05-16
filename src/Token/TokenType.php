@@ -7,10 +7,15 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Token;
 
-enum TokenType
+enum TokenType implements \JsonSerializable
 {
     case T_EOF;
     case T_MULTIPLY;
     case T_NUMBER;
     case T_PLUS;
+
+    public function jsonSerialize(): string
+    {
+        return $this->name;
+    }
 }

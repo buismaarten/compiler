@@ -14,5 +14,5 @@ require_once __DIR__.'/vendor/autoload.php';
 $lexer = new Lexer('2 + 3 * 4');
 $parser = new Parser($lexer);
 
-print_r($parser->parse());
+echo json_encode($parser->parse(), JSON_PRETTY_PRINT);
 echo "\n";

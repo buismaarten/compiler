@@ -1,33 +1,20 @@
-Buismaarten\Parser\Nodes\BinaryNode Object
-(
-    [operator] => Buismaarten\Parser\Token\TokenType Enum
-        (
-            [name] => T_PLUS
-        )
-
-    [left] => Buismaarten\Parser\Nodes\NumberNode Object
-        (
-            [value] => 2
-        )
-
-    [right] => Buismaarten\Parser\Nodes\BinaryNode Object
-        (
-            [operator] => Buismaarten\Parser\Token\TokenType Enum
-                (
-                    [name] => T_MULTIPLY
-                )
-
-            [left] => Buismaarten\Parser\Nodes\NumberNode Object
-                (
-                    [value] => 3
-                )
-
-            [right] => Buismaarten\Parser\Nodes\NumberNode Object
-                (
-                    [value] => 4
-                )
-
-        )
-
-)
-
+{
+    "_type": "Buismaarten\\Parser\\Nodes\\BinaryNode",
+    "operator": "T_PLUS",
+    "left": {
+        "_type": "Buismaarten\\Parser\\Nodes\\NumberNode",
+        "value": 2
+    },
+    "right": {
+        "_type": "Buismaarten\\Parser\\Nodes\\BinaryNode",
+        "operator": "T_MULTIPLY",
+        "left": {
+            "_type": "Buismaarten\\Parser\\Nodes\\NumberNode",
+            "value": 3
+        },
+        "right": {
+            "_type": "Buismaarten\\Parser\\Nodes\\NumberNode",
+            "value": 4
+        }
+    }
+}

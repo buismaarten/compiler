@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Nodes;
 
-final class NumberNode implements NodeInterface
+final class NumberNode extends AbstractNode
 {
     public function __construct(
         public readonly int $value,

@@ -10,8 +10,8 @@ namespace Buismaarten\Parser\Parser;
 use Buismaarten\Parser\Exceptions\Parser\ExpectedTokenException;
 use Buismaarten\Parser\Exceptions\Parser\UnexpectedEndOfInputException;
 use Buismaarten\Parser\Lexer\LexerInterface;
+use Buismaarten\Parser\Nodes\AbstractNode;
 use Buismaarten\Parser\Nodes\BinaryNode;
-use Buismaarten\Parser\Nodes\NodeInterface;
 use Buismaarten\Parser\Nodes\NumberNode;
 use Buismaarten\Parser\Token\Token;
 use Buismaarten\Parser\Token\TokenType;
@@ -29,7 +29,7 @@ final class Parser implements ParserInterface
     }
 
     #[Override]
-    public function parse(): NodeInterface
+    public function parse(): AbstractNode
     {
         if ($this->current->type === TokenType::T_EOF) {
             throw new UnexpectedEndOfInputException($this->current->line);
@@ -38,7 +38,7 @@ final class Parser implements ParserInterface
         return $this->parseExpression();
     }
 
-    private function parseExpression(): NodeInterface
+    private function parseExpression(): AbstractNode
     {
         $node = $this->parseTerm();
 
@@ -50,7 +50,7 @@ final class Parser implements ParserInterface
         return $node;
     }
 
-    private function parseTerm(): NodeInterface
+    private function parseTerm(): AbstractNode
     {
         $node = $this->parseFactor();
 
