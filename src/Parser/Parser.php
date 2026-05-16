@@ -10,6 +10,9 @@ namespace Buismaarten\Parser\Parser;
 use Buismaarten\Parser\Exceptions\Parser\ExpectedTokenException;
 use Buismaarten\Parser\Exceptions\Parser\UnexpectedEndOfInputException;
 use Buismaarten\Parser\Lexer\LexerInterface;
+use Buismaarten\Parser\Nodes\BinaryNode;
+use Buismaarten\Parser\Nodes\NodeInterface;
+use Buismaarten\Parser\Nodes\NumberNode;
 use Buismaarten\Parser\Token\Token;
 use Buismaarten\Parser\Token\TokenType;
 use Override;
@@ -26,45 +29,45 @@ final class Parser implements ParserInterface
     }
 
     #[Override]
-    public function parse(): int
+    public function parse(): NodeInterface
     {
-        if ($this->current !== null) {
-            return $this->parseExpression();
+        if ($this->current === null) {
+            throw new UnexpectedEndOfInputException;
         }
 
-        // Fallback
-        return 0;
+        return $this->parseExpression();
     }
 
-    private function parseExpression(): int
+    private function parseExpression(): NodeInterface
     {
-        $value = $this->parseTerm();
+        $node = $this->parseTerm();
 
         while ($this->current?->type === TokenType::T_PLUS) {
-            $this->expect(TokenType::T_PLUS);
-            $value += $this->parseTerm();
+            $operator = $this->expect(TokenType::T_PLUS);
+            $node = new BinaryNode($node, $operator->type->name, $this->parseTerm());
         }
 
-        return $value;
+        return $node;
     }
 
-    private function parseTerm(): int
+    private function parseTerm(): NodeInterface
     {
-        $value = $this->parseFactor();
+        $node = $this->parseFactor();
 
         while ($this->current?->type === TokenType::T_MULTIPLY) {
-            $this->expect(TokenType::T_MULTIPLY);
-            $value *= $this->parseFactor();
+            $operator = $this->expect(TokenType::T_MULTIPLY);
+            $node = new BinaryNode($node, $operator->type->name, $this->parseFactor());
         }
 
-        return $value;
+        return $node;
     }
 
-    private function parseFactor(): int
+    private function parseFactor(): NumberNode
     {
         $token = $this->expect(TokenType::T_NUMBER);
+        $value = intval($token->value);
 
-        return intval($token->value);
+        return new NumberNode($value);
     }
 
     private function expect(TokenType $type): Token

@@ -14,5 +14,5 @@ require_once __DIR__.'/vendor/autoload.php';
 $lexer = new Lexer('2 + 3 * 4');
 $parser = new Parser($lexer);
 
-echo $parser->parse();
+print_r($parser->parse());
 echo "\n";

@@ -1,0 +1,25 @@
+Buismaarten\Parser\Nodes\BinaryNode Object
+(
+    [left] => Buismaarten\Parser\Nodes\NumberNode Object
+        (
+            [value] => 2
+        )
+
+    [operator] => T_PLUS
+    [right] => Buismaarten\Parser\Nodes\BinaryNode Object
+        (
+            [left] => Buismaarten\Parser\Nodes\NumberNode Object
+                (
+                    [value] => 3
+                )
+
+            [operator] => T_MULTIPLY
+            [right] => Buismaarten\Parser\Nodes\NumberNode Object
+                (
+                    [value] => 4
+                )
+
+        )
+
+)
+

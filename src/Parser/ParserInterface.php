@@ -7,7 +7,9 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Parser;
 
+use Buismaarten\Parser\Nodes\NodeInterface;
+
 interface ParserInterface
 {
-    public function parse(): int;
+    public function parse(): NodeInterface;
 }
