@@ -7,12 +7,10 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Nodes;
 
-use Buismaarten\Parser\Token\TokenType;
-
 final class BinaryNode extends AbstractNode
 {
     public function __construct(
-        public readonly TokenType $operator,
+        public readonly string $operator,
         public readonly AbstractNode $left,
         public readonly AbstractNode $right,
     ) {}
