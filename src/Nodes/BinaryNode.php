@@ -10,8 +10,8 @@ namespace Buismaarten\Parser\Nodes;
 final class BinaryNode implements NodeInterface
 {
     public function __construct(
-        public readonly NodeInterface $left,
         public readonly string $operator,
+        public readonly NodeInterface $left,
         public readonly NodeInterface $right,
     ) {}
 }
