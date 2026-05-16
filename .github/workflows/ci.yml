@@ -35,3 +35,6 @@ jobs:
 
       - name: Execute static analysis
         run: composer analyze
+
+      - name: Execute tests
+        run: composer test
