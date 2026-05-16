@@ -14,6 +14,7 @@ enum TokenType implements \JsonSerializable
     case T_NUMBER;
     case T_PLUS;
 
+    // TODO
     public function jsonSerialize(): string
     {
         return $this->name;
