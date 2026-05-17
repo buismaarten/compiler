@@ -44,10 +44,11 @@ final class Lexer implements LexerInterface
         }
 
         return match ($current) {
-            '+' => $this->tokenizeSingle(TokenType::T_PLUS),
             '*' => $this->tokenizeSingle(TokenType::T_MULTIPLY),
+            '+' => $this->tokenizeSingle(TokenType::T_PLUS),
 
             default => match (true) {
+                ctype_alpha($current) => $this->tokenizeIdentifier(),
                 ctype_digit($current) => $this->tokenizeNumber(),
 
                 // Fallback
@@ -56,17 +57,36 @@ final class Lexer implements LexerInterface
         };
     }
 
+    private function tokenizeIdentifier(): Token
+    {
+        return $this->tokenizePredicate(
+            type: TokenType::T_IDENTIFIER,
+            predicate: static fn (string $character) => ctype_alnum($character),
+        );
+    }
+
     private function tokenizeNumber(): Token
+    {
+        return $this->tokenizePredicate(
+            type: TokenType::T_NUMBER,
+            predicate: static fn (string $character) => ctype_digit($character),
+        );
+    }
+
+    /** @param callable(string): bool $predicate */
+    private function tokenizePredicate(TokenType $type, callable $predicate): Token
     {
         $start = $this->input->offset();
 
-        while (($current = $this->input->current()) !== null && ctype_digit($current)) {
+        while (($current = $this->input->current()) !== null && $predicate($current)) {
             $this->input->next();
         }
 
-        $value = $this->input->slice($start, $this->input->offset());
-
-        return new Token(TokenType::T_NUMBER, $this->line, $value);
+        return new Token(
+            type: $type,
+            line: $this->line,
+            value: $this->input->slice($start, $this->input->offset()),
+        );
     }
 
     private function tokenizeSingle(TokenType $type): Token

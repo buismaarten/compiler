@@ -10,6 +10,7 @@ namespace Buismaarten\Parser\Token;
 enum TokenType
 {
     case T_EOF;
+    case T_IDENTIFIER;
     case T_MULTIPLY;
     case T_NUMBER;
     case T_PLUS;
