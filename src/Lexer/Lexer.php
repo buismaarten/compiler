@@ -44,8 +44,9 @@ final class Lexer implements LexerInterface
         }
 
         return match ($current) {
-            '*' => $this->tokenizeSingle(TokenType::T_MULTIPLY),
-            '+' => $this->tokenizeSingle(TokenType::T_PLUS),
+            '*' => $this->tokenizeCharacter(TokenType::T_MULTIPLY),
+            '+' => $this->tokenizeCharacter(TokenType::T_PLUS),
+            '_' => $this->tokenizeIdentifier(),
 
             default => match (true) {
                 ctype_alpha($current) => $this->tokenizeIdentifier(),
@@ -57,11 +58,18 @@ final class Lexer implements LexerInterface
         };
     }
 
+    private function tokenizeCharacter(TokenType $type): Token
+    {
+        $this->input->next();
+
+        return new Token($type, $this->line);
+    }
+
     private function tokenizeIdentifier(): Token
     {
         return $this->tokenizePredicate(
             type: TokenType::T_IDENTIFIER,
-            predicate: static fn (string $character) => ctype_alnum($character),
+            predicate: static fn (string $character) => ctype_alnum($character) || $character === '_',
         );
     }
 
@@ -87,13 +95,6 @@ final class Lexer implements LexerInterface
             line: $this->line,
             value: $this->input->slice($start, $this->input->offset()),
         );
-    }
-
-    private function tokenizeSingle(TokenType $type): Token
-    {
-        $this->input->next();
-
-        return new Token($type, $this->line);
     }
 
     #[Override]
