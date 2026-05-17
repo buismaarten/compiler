@@ -81,7 +81,6 @@ final class Lexer implements LexerInterface
         );
     }
 
-    /** @param callable(string): bool $predicate */
     private function tokenizePredicate(TokenType $type, callable $predicate): Token
     {
         $start = $this->input->offset();
