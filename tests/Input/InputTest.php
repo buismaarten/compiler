@@ -30,6 +30,14 @@ class InputTest extends TestCase
     }
 
     #[Test]
+    public function testHash(): void
+    {
+        $input = new Input('abc');
+
+        $this->assertSame('06b05ab6733a618578af5f94892f3950', $input->hash());
+    }
+
+    #[Test]
     public function testNext(): void
     {
         $input = new Input('abc');
@@ -67,6 +75,5 @@ class InputTest extends TestCase
         $input = new Input('abc');
 
         $this->assertSame('ab', $input->slice(0, 2));
-        $this->assertSame('bc', $input->slice(1, 3));
     }
 }

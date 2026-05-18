@@ -26,6 +26,12 @@ final class Input implements InputInterface
     }
 
     #[Override]
+    public function hash(): string
+    {
+        return hash('xxh128', $this->bytes);
+    }
+
+    #[Override]
     public function next(): void
     {
         $this->offset++;

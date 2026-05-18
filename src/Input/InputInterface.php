@@ -11,6 +11,8 @@ interface InputInterface
 {
     public function current(): ?string;
 
+    public function hash(): string;
+
     public function next(): void;
 
     public function offset(): int;
