@@ -11,24 +11,24 @@ use Override;
 
 final class Input implements InputInterface
 {
-    private string $bytes;
+    private string $string;
     private int $offset = 0;
 
-    public function __construct(string $bytes)
+    public function __construct(string $string)
     {
-        $this->bytes = $bytes;
+        $this->string = $string;
     }
 
     #[Override]
     public function current(): ?string
     {
-        return $this->bytes[$this->offset] ?? null;
+        return $this->string[$this->offset] ?? null;
     }
 
     #[Override]
     public function hash(): string
     {
-        return hash('xxh128', $this->bytes);
+        return hash('xxh128', $this->string);
     }
 
     #[Override]
@@ -48,6 +48,6 @@ final class Input implements InputInterface
     {
         $length = $end - $start;
 
-        return substr($this->bytes, $start, $length);
+        return substr($this->string, $start, $length);
     }
 }
