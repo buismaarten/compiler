@@ -7,13 +7,10 @@ declare(strict_types=1);
 
 namespace Package\Lexer;
 
-use Package\Input\InputInterface;
 use Package\Token\Token;
 
 interface LexerInterface
 {
-    public function getInput(): InputInterface;
-
     /** @return Token[] */
     public function getTokens(): iterable;
 

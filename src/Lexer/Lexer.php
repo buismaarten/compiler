@@ -29,12 +29,6 @@ final class Lexer implements LexerInterface
     }
 
     #[Override]
-    public function getInput(): InputInterface
-    {
-        return $this->input;
-    }
-
-    #[Override]
     public function getTokens(): iterable
     {
         while (($token = $this->next())->type !== TokenType::T_EOF) {

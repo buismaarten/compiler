@@ -29,12 +29,6 @@ final class Parser implements ParserInterface
     }
 
     #[Override]
-    public function getLexer(): LexerInterface
-    {
-        return $this->lexer;
-    }
-
-    #[Override]
     public function parse(): AbstractNode
     {
         $node = $this->parseTerm();
