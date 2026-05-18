@@ -5,17 +5,17 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-namespace Buismaarten\Parser\Parser;
+namespace Package\Parser;
 
-use Buismaarten\Parser\Exceptions\Parser\ExpectedTokenException;
-use Buismaarten\Parser\Exceptions\Parser\UnexpectedEndOfInputException;
-use Buismaarten\Parser\Lexer\LexerInterface;
-use Buismaarten\Parser\Nodes\AbstractNode;
-use Buismaarten\Parser\Nodes\BinaryNode;
-use Buismaarten\Parser\Nodes\NumberNode;
-use Buismaarten\Parser\Token\Token;
-use Buismaarten\Parser\Token\TokenType;
 use Override;
+use Package\Exceptions\Parser\ExpectedTokenException;
+use Package\Exceptions\Parser\UnexpectedEndOfInputException;
+use Package\Lexer\LexerInterface;
+use Package\Nodes\AbstractNode;
+use Package\Nodes\BinaryNode;
+use Package\Nodes\NumberNode;
+use Package\Token\Token;
+use Package\Token\TokenType;
 
 final class Parser implements ParserInterface
 {

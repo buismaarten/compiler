@@ -5,9 +5,9 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-namespace Buismaarten\Parser\Exceptions\Parser;
+namespace Package\Exceptions\Parser;
 
-use Buismaarten\Parser\Exceptions\ExceptionInterface;
+use Package\Exceptions\ExceptionInterface;
 
 final class ExpectedTokenException extends \RuntimeException implements ExceptionInterface
 {

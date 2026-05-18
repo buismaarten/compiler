@@ -15,12 +15,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Buismaarten\\Parser\\": "src/"
+            "Package\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Buismaarten\\Parser\\Tests\\": "tests/"
+            "Package\\Tests\\": "tests/"
         }
     },
     "scripts": {

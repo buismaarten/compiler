@@ -5,14 +5,14 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-namespace Buismaarten\Parser\Lexer;
+namespace Package\Lexer;
 
-use Buismaarten\Parser\Exceptions\Lexer\UnexpectedCharacterException;
-use Buismaarten\Parser\Input\Input;
-use Buismaarten\Parser\Input\InputInterface;
-use Buismaarten\Parser\Token\Token;
-use Buismaarten\Parser\Token\TokenType;
 use Override;
+use Package\Exceptions\Lexer\UnexpectedCharacterException;
+use Package\Input\Input;
+use Package\Input\InputInterface;
+use Package\Token\Token;
+use Package\Token\TokenType;
 
 final class Lexer implements LexerInterface
 {
