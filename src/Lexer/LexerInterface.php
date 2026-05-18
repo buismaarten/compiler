@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Lexer;
 
+use Package\Input\InputInterface;
 use Package\Token\Token;
 
 interface LexerInterface
@@ -15,4 +16,6 @@ interface LexerInterface
 
     /** @return Token[] */
     public function getTokens(): iterable;
+
+    public function getInput(): InputInterface;
 }

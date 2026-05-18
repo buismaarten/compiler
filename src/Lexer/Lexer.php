@@ -103,4 +103,10 @@ final class Lexer implements LexerInterface
             yield $token;
         }
     }
+
+    #[Override]
+    public function getInput(): InputInterface
+    {
+        return $this->input;
+    }
 }
