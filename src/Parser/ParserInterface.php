@@ -7,9 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Parser;
 
+use Package\Lexer\LexerInterface;
 use Package\Nodes\AbstractNode;
 
 interface ParserInterface
 {
+    public function getLexer(): LexerInterface;
+
     public function parse(): AbstractNode;
 }

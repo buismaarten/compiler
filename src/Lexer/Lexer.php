@@ -29,6 +29,20 @@ final class Lexer implements LexerInterface
     }
 
     #[Override]
+    public function getInput(): InputInterface
+    {
+        return $this->input;
+    }
+
+    #[Override]
+    public function getTokens(): iterable
+    {
+        while (($token = $this->next())->type !== TokenType::T_EOF) {
+            yield $token;
+        }
+    }
+
+    #[Override]
     public function next(): Token
     {
         while (($current = $this->input->current()) !== null && ctype_space($current)) {
@@ -94,19 +108,5 @@ final class Lexer implements LexerInterface
             line: $this->line,
             value: $this->input->slice($start, $this->input->offset()),
         );
-    }
-
-    #[Override]
-    public function getTokens(): iterable
-    {
-        while (($token = $this->next())->type !== TokenType::T_EOF) {
-            yield $token;
-        }
-    }
-
-    #[Override]
-    public function getInput(): InputInterface
-    {
-        return $this->input;
     }
 }

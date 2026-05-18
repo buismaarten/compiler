@@ -12,10 +12,10 @@ use Package\Token\Token;
 
 interface LexerInterface
 {
-    public function next(): Token;
+    public function getInput(): InputInterface;
 
     /** @return Token[] */
     public function getTokens(): iterable;
 
-    public function getInput(): InputInterface;
+    public function next(): Token;
 }
