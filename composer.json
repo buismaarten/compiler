@@ -7,7 +7,7 @@
         "source": "https://github.com/buismaarten/parser"
     },
     "require": {
-        "php": "^8.5"
+        "php": "^8.6"
     },
     "require-dev": {
         "phpstan/phpstan": "^2.1",
