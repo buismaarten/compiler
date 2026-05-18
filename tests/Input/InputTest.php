@@ -7,14 +7,66 @@ declare(strict_types=1);
 
 namespace Buismaarten\Parser\Tests\Lexer;
 
+use Buismaarten\Parser\Input\Input;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class InputTest extends TestCase
 {
     #[Test]
-    public function test(): void
+    public function testCurrent(): void
     {
-        $this->assertTrue(true);
+        $input = new Input('abc');
+        $this->assertSame('a', $input->current());
+
+        $input->next();
+        $this->assertSame('b', $input->current());
+
+        $input->next();
+        $this->assertSame('c', $input->current());
+
+        $input->next();
+        $this->assertNull($input->current());
+    }
+
+    #[Test]
+    public function testNext(): void
+    {
+        $input = new Input('abc');
+        $this->assertSame('a', $input->current());
+
+        $input->next();
+        $this->assertSame('b', $input->current());
+
+        $input->next();
+        $this->assertSame('c', $input->current());
+
+        $input->next();
+        $this->assertNull($input->current());
+    }
+
+    #[Test]
+    public function testOffset(): void
+    {
+        $input = new Input('abc');
+        $this->assertSame(0, $input->offset());
+
+        $input->next();
+        $this->assertSame(1, $input->offset());
+
+        $input->next();
+        $this->assertSame(2, $input->offset());
+
+        $input->next();
+        $this->assertSame(3, $input->offset());
+    }
+
+    #[Test]
+    public function testSlice(): void
+    {
+        $input = new Input('abc');
+
+        $this->assertSame('ab', $input->slice(0, 2));
+        $this->assertSame('bc', $input->slice(1, 3));
     }
 }
