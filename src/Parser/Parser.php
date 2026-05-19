@@ -10,9 +10,11 @@ namespace Package\Parser;
 use Override;
 use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedEndOfInputException;
+use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Lexer\LexerInterface;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\BinaryNode;
+use Package\Nodes\IdentifierNode;
 use Package\Nodes\NumberNode;
 use Package\Token\Token;
 use Package\Token\TokenType;
@@ -53,12 +55,30 @@ final class Parser implements ParserInterface
         return $node;
     }
 
-    private function parseFactor(): NumberNode
+    private function parseFactor(): AbstractNode
+    {
+        return match ($this->current->type) {
+            TokenType::T_NUMBER     => $this->parseNumber(),
+            TokenType::T_IDENTIFIER => $this->parseIdentifier(),
+
+            // Fallback
+            default => throw new UnexpectedTokenException($this->current->line, $this->current->value),
+        };
+    }
+
+    private function parseNumber(): NumberNode
     {
         $token = $this->expect(TokenType::T_NUMBER);
         $value = intval($token->value);
 
         return new NumberNode($value);
+    }
+
+    private function parseIdentifier(): IdentifierNode
+    {
+        $token = $this->expect(TokenType::T_IDENTIFIER);
+
+        return new IdentifierNode($token->value);
     }
 
     private function expect(TokenType $type): Token
