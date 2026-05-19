@@ -2,8 +2,8 @@
     "_type": "BinaryNode",
     "operator": "T_PLUS",
     "left": {
-        "_type": "NumberNode",
-        "value": 2
+        "_type": "IdentifierNode",
+        "value": "a"
     },
     "right": {
         "_type": "BinaryNode",

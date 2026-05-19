@@ -11,7 +11,7 @@ use Package\Parser\Parser;
 require_once __DIR__.'/vendor/autoload.php';
 
 
-$lexer = new Lexer('2 + 3 * 4');
+$lexer = new Lexer('a + 3 * 4');
 $parser = new Parser($lexer);
 
 echo json_encode($parser->parse(), JSON_PRETTY_PRINT);
