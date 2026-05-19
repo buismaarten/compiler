@@ -66,6 +66,6 @@ class InputTest extends TestCase
     {
         $input = new Input('abc');
 
-        $this->assertSame('ab', $input->slice(0, 2));
+        $this->assertSame('bc', $input->slice(1, 3));
     }
 }
