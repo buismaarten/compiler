@@ -1,10 +1,10 @@
 {
-    "name": "buismaarten/parser",
+    "name": "buismaarten/compiler",
     "description": "",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/buismaarten/parser/issues",
-        "source": "https://github.com/buismaarten/parser"
+        "issues": "https://github.com/buismaarten/compiler/issues",
+        "source": "https://github.com/buismaarten/compiler"
     },
     "require": {
         "php": "^8.6"
