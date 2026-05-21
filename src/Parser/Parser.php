@@ -12,6 +12,7 @@ use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Lexer\LexerInterface;
+use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Expressions\BinaryNode;
 use Package\Nodes\Expressions\IdentifierNode;
@@ -43,7 +44,7 @@ final class Parser implements ParserInterface
         return $node;
     }
 
-    private function parseTerm(): AbstractNode
+    private function parseTerm(): AbstractExpression
     {
         $node = $this->parseFactor();
 
@@ -55,7 +56,7 @@ final class Parser implements ParserInterface
         return $node;
     }
 
-    private function parseFactor(): AbstractNode
+    private function parseFactor(): AbstractExpression
     {
         return match ($this->current->type) {
             TokenType::T_NUMBER     => $this->parseNumber(),

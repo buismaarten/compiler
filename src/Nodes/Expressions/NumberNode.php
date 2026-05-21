@@ -7,9 +7,9 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Expressions;
 
-use Package\Nodes\AbstractNode;
+use Package\Nodes\AbstractExpression;
 
-final class NumberNode extends AbstractNode
+final class NumberNode extends AbstractExpression
 {
     public function __construct(
         public readonly int $value,

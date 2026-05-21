@@ -7,9 +7,9 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Expressions;
 
-use Package\Nodes\AbstractNode;
+use Package\Nodes\AbstractExpression;
 
-final class IdentifierNode extends AbstractNode
+final class IdentifierNode extends AbstractExpression
 {
     public function __construct(
         public readonly string $value,

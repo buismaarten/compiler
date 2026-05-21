@@ -7,13 +7,13 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Expressions;
 
-use Package\Nodes\AbstractNode;
+use Package\Nodes\AbstractExpression;
 
-final class BinaryNode extends AbstractNode
+final class BinaryNode extends AbstractExpression
 {
     public function __construct(
         public readonly string $operator,
-        public readonly AbstractNode $left,
-        public readonly AbstractNode $right,
+        public readonly AbstractExpression $left,
+        public readonly AbstractExpression $right,
     ) {}
 }
