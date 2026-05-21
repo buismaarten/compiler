@@ -16,6 +16,12 @@ use Package\Token\TokenType;
 
 final class Lexer implements LexerInterface
 {
+    private const KEYWORDS = [
+        'false' => TokenType::T_KEYWORD_FALSE,
+        'null'  => TokenType::T_KEYWORD_NULL,
+        'true'  => TokenType::T_KEYWORD_TRUE,
+    ];
+
     private InputInterface $input;
     private int $line = 1;
 
@@ -75,10 +81,20 @@ final class Lexer implements LexerInterface
 
     private function tokenizeIdentifier(): Token
     {
-        return $this->tokenizePredicate(
-            type: TokenType::T_IDENTIFIER,
-            predicate: static fn (string $character) => ctype_alnum($character) || $character === '_',
-        );
+        $start = $this->input->offset();
+
+        while (($current = $this->input->current()) !== null && ($current === '_' || ctype_alnum($current))) {
+            $this->input->next();
+        }
+
+        $value = $this->input->slice($start, $this->input->offset());
+        $type = self::KEYWORDS[$value] ?? TokenType::T_IDENTIFIER;
+
+        if ($type !== TokenType::T_IDENTIFIER) {
+            $value = '';
+        }
+
+        return new Token($type, $this->line, $value);
     }
 
     private function tokenizeNumber(): Token

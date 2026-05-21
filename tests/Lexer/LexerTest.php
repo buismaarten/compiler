@@ -43,6 +43,33 @@ class LexerTest extends TestCase
     }
 
     #[Test]
+    public function testKeywordFalse(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('false')->next(),
+            expected: new Token(TokenType::T_KEYWORD_FALSE, 1),
+        );
+    }
+
+    #[Test]
+    public function testKeywordNull(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('null')->next(),
+            expected: new Token(TokenType::T_KEYWORD_NULL, 1),
+        );
+    }
+
+    #[Test]
+    public function testKeywordTrue(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('true')->next(),
+            expected: new Token(TokenType::T_KEYWORD_TRUE, 1),
+        );
+    }
+
+    #[Test]
     public function testMultiply(): void
     {
         $this->assertEquals(
