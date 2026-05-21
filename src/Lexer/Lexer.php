@@ -16,12 +16,6 @@ use Package\Token\TokenType;
 
 final class Lexer implements LexerInterface
 {
-    private const KEYWORDS = [
-        'false' => TokenType::T_KEYWORD_FALSE,
-        'null'  => TokenType::T_KEYWORD_NULL,
-        'true'  => TokenType::T_KEYWORD_TRUE,
-    ];
-
     private InputInterface $input;
     private int $line = 1;
 
@@ -89,7 +83,7 @@ final class Lexer implements LexerInterface
         }
 
         $value = $this->input->slice($start, $this->input->offset());
-        $type = self::KEYWORDS[$value] ?? TokenType::T_IDENTIFIER;
+        $type = $this->resolveKeyword($value);
 
         if ($type !== TokenType::T_IDENTIFIER) {
             $value = '';
@@ -111,5 +105,17 @@ final class Lexer implements LexerInterface
             line: $this->line,
             value: $this->input->slice($start, $this->input->offset()),
         );
+    }
+
+    private function resolveKeyword(string $value): TokenType
+    {
+        return match ($value) {
+            'false' => TokenType::T_KEYWORD_FALSE,
+            'null'  => TokenType::T_KEYWORD_NULL,
+            'true'  => TokenType::T_KEYWORD_TRUE,
+
+            // Fallback
+            default => TokenType::T_IDENTIFIER,
+        };
     }
 }
