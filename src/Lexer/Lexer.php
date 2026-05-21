@@ -99,22 +99,14 @@ final class Lexer implements LexerInterface
 
     private function tokenizeNumber(): Token
     {
-        return $this->tokenizePredicate(
-            type: TokenType::T_NUMBER,
-            predicate: static fn (string $character) => ctype_digit($character),
-        );
-    }
-
-    private function tokenizePredicate(TokenType $type, callable $predicate): Token
-    {
         $start = $this->input->offset();
 
-        while (($current = $this->input->current()) !== null && $predicate($current)) {
+        while (($current = $this->input->current()) !== null && ctype_digit($current)) {
             $this->input->next();
         }
 
         return new Token(
-            type: $type,
+            type: TokenType::T_NUMBER,
             line: $this->line,
             value: $this->input->slice($start, $this->input->offset()),
         );
