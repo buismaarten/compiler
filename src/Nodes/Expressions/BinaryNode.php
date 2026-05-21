@@ -8,11 +8,12 @@ declare(strict_types=1);
 namespace Package\Nodes\Expressions;
 
 use Package\Nodes\AbstractExpression;
+use Package\Nodes\Enums\Operator;
 
 final class BinaryNode extends AbstractExpression
 {
     public function __construct(
-        public readonly string $operator,
+        public readonly Operator $operator,
         public readonly AbstractExpression $left,
         public readonly AbstractExpression $right,
     ) {}

@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Tests\Parser;
 
 use Package\Lexer\Lexer;
+use Package\Nodes\Enums\Operator;
 use Package\Nodes\Expressions\BinaryNode;
 use Package\Nodes\Expressions\IdentifierNode;
 use Package\Nodes\Expressions\NumberNode;
@@ -24,10 +25,10 @@ class ParserTest extends TestCase
         $this->assertEquals(
             actual: self::createParser('foo + 123 * bar')->parse(),
             expected: new BinaryNode(
-                operator: 'T_PLUS',
+                operator: Operator::PLUS,
                 left: new IdentifierNode('foo'),
                 right: new BinaryNode(
-                    operator: 'T_MULTIPLY',
+                    operator: Operator::MULTIPLY,
                     left: new NumberNode(123),
                     right: new IdentifierNode('bar'),
                 ),

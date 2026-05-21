@@ -14,6 +14,7 @@ use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Lexer\LexerInterface;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractNode;
+use Package\Nodes\Enums\Operator;
 use Package\Nodes\Expressions\BinaryNode;
 use Package\Nodes\Expressions\IdentifierNode;
 use Package\Nodes\Expressions\NumberNode;
@@ -38,7 +39,7 @@ final class Parser implements ParserInterface
 
         while ($this->current->type === TokenType::T_PLUS) {
             $operator = $this->expect(TokenType::T_PLUS);
-            $node = new BinaryNode($operator->type->name, $node, $this->parseTerm());
+            $node = new BinaryNode(self::resolveOperator($operator->type), $node, $this->parseTerm());
         }
 
         return $node;
@@ -50,7 +51,7 @@ final class Parser implements ParserInterface
 
         while ($this->current->type === TokenType::T_MULTIPLY) {
             $operator = $this->expect(TokenType::T_MULTIPLY);
-            $node = new BinaryNode($operator->type->name, $node, $this->parseFactor());
+            $node = new BinaryNode(self::resolveOperator($operator->type), $node, $this->parseFactor());
         }
 
         return $node;
@@ -97,5 +98,14 @@ final class Parser implements ParserInterface
         $this->current = $this->lexer->next();
 
         return $token;
+    }
+
+    private static function resolveOperator(TokenType $type): Operator
+    {
+        // @phpstan-ignore-next-line
+        return match ($type) {
+            TokenType::T_PLUS     => Operator::PLUS,
+            TokenType::T_MULTIPLY => Operator::MULTIPLY,
+        };
     }
 }
