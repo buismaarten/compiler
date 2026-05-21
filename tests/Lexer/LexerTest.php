@@ -97,6 +97,15 @@ class LexerTest extends TestCase
     }
 
     #[Test]
+    public function testSemicolon(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer(';')->next(),
+            expected: new Token(TokenType::T_SEMICOLON, 1),
+        );
+    }
+
+    #[Test]
     public function testWhitespace(): void
     {
         $this->assertEquals(

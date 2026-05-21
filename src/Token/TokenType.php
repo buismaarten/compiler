@@ -17,4 +17,5 @@ enum TokenType
     case T_MULTIPLY;
     case T_NUMBER;
     case T_PLUS;
+    case T_SEMICOLON;
 }
