@@ -5,11 +5,13 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-namespace Package\Nodes;
+namespace Package\Nodes\Expressions;
 
-final class NumberNode extends AbstractNode
+use Package\Nodes\AbstractNode;
+
+final class IdentifierNode extends AbstractNode
 {
     public function __construct(
-        public readonly int $value,
+        public readonly string $value,
     ) {}
 }

@@ -8,9 +8,9 @@ declare(strict_types=1);
 namespace Package\Tests\Parser;
 
 use Package\Lexer\Lexer;
-use Package\Nodes\BinaryNode;
-use Package\Nodes\IdentifierNode;
-use Package\Nodes\NumberNode;
+use Package\Nodes\Expressions\BinaryNode;
+use Package\Nodes\Expressions\IdentifierNode;
+use Package\Nodes\Expressions\NumberNode;
 use Package\Parser\Parser;
 use Package\Parser\ParserInterface;
 use PHPUnit\Framework\Attributes\Test;

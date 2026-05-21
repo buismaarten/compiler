@@ -13,9 +13,9 @@ use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Lexer\LexerInterface;
 use Package\Nodes\AbstractNode;
-use Package\Nodes\BinaryNode;
-use Package\Nodes\IdentifierNode;
-use Package\Nodes\NumberNode;
+use Package\Nodes\Expressions\BinaryNode;
+use Package\Nodes\Expressions\IdentifierNode;
+use Package\Nodes\Expressions\NumberNode;
 use Package\Token\Token;
 use Package\Token\TokenType;
 
