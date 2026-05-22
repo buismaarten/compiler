@@ -100,9 +100,12 @@ final class Lexer implements LexerInterface
     private static function resolveKeyword(string $value): TokenType
     {
         return match ($value) {
-            'false' => TokenType::T_KEYWORD_FALSE,
-            'null'  => TokenType::T_KEYWORD_NULL,
-            'true'  => TokenType::T_KEYWORD_TRUE,
+            'break'    => TokenType::T_KEYWORD_BREAK,
+            'continue' => TokenType::T_KEYWORD_CONTINUE,
+            'false'    => TokenType::T_KEYWORD_FALSE,
+            'null'     => TokenType::T_KEYWORD_NULL,
+            'true'     => TokenType::T_KEYWORD_TRUE,
+            'while'    => TokenType::T_KEYWORD_WHILE,
 
             // Fallback
             default => TokenType::T_IDENTIFIER,

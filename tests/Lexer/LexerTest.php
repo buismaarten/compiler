@@ -43,6 +43,16 @@ class LexerTest extends TestCase
     public function testKeyword(): void
     {
         $this->assertEquals(
+            actual: self::createLexer('break')->next(),
+            expected: new Token(TokenType::T_KEYWORD_BREAK, 1),
+        );
+
+        $this->assertEquals(
+            actual: self::createLexer('continue')->next(),
+            expected: new Token(TokenType::T_KEYWORD_CONTINUE, 1),
+        );
+
+        $this->assertEquals(
             actual: self::createLexer('false')->next(),
             expected: new Token(TokenType::T_KEYWORD_FALSE, 1),
         );
@@ -55,6 +65,11 @@ class LexerTest extends TestCase
         $this->assertEquals(
             actual: self::createLexer('true')->next(),
             expected: new Token(TokenType::T_KEYWORD_TRUE, 1),
+        );
+
+        $this->assertEquals(
+            actual: self::createLexer('while')->next(),
+            expected: new Token(TokenType::T_KEYWORD_WHILE, 1),
         );
     }
 
