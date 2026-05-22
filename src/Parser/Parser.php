@@ -65,7 +65,6 @@ final class Parser implements ParserInterface
     private function parseBreakStatement(): Statements\BreakStatement
     {
         $this->expect(TokenType::T_KEYWORD_BREAK);
-        $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\BreakStatement;
     }
@@ -73,7 +72,6 @@ final class Parser implements ParserInterface
     private function parseContinueStatement(): Statements\ContinueStatement
     {
         $this->expect(TokenType::T_KEYWORD_CONTINUE);
-        $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\ContinueStatement;
     }
@@ -95,7 +93,6 @@ final class Parser implements ParserInterface
     private function parseExpressionStatement(): Statements\ExpressionStatement
     {
         $expression = $this->parseExpression();
-        $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\ExpressionStatement($expression);
     }
@@ -124,13 +121,17 @@ final class Parser implements ParserInterface
 
     private function parseStatement(): AbstractStatement
     {
-        return match ($this->current->type) {
+        $statement = match ($this->current->type) {
             TokenType::T_KEYWORD_BREAK    => $this->parseBreakStatement(),
             TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
 
             // Fallback
             default => $this->parseExpressionStatement(),
         };
+
+        $this->expect(TokenType::T_SEMICOLON);
+
+        return $statement;
     }
 
     private function expect(TokenType $type): Token
