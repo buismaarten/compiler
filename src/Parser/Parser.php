@@ -69,6 +69,17 @@ final class Parser implements ParserInterface
         return new Statements\BreakStatement;
     }
 
+    private function parseConstStatement(): Statements\ConstStatement
+    {
+        $this->expect(TokenType::T_KEYWORD_CONST);
+        $identifier = $this->expect(TokenType::T_IDENTIFIER);
+
+        $this->expect(TokenType::T_EQUALS);
+        $value = $this->parseExpression();
+
+        return new Statements\ConstStatement($identifier->value, $value);
+    }
+
     private function parseContinueStatement(): Statements\ContinueStatement
     {
         $this->expect(TokenType::T_KEYWORD_CONTINUE);
@@ -123,6 +134,7 @@ final class Parser implements ParserInterface
     {
         $statement = match ($this->current->type) {
             TokenType::T_KEYWORD_BREAK    => $this->parseBreakStatement(),
+            TokenType::T_KEYWORD_CONST    => $this->parseConstStatement(),
             TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
 
             // Fallback
