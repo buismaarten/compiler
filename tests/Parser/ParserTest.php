@@ -101,6 +101,13 @@ class ParserTest extends TestCase
         );
     }
 
+    #[Test]
+    public function testWhileStatement(): void
+    {
+        // TODO
+        $this->assertTrue(true);
+    }
+
     private static function createParser(string $input): ParserInterface
     {
         $lexer = new Lexer($input);
