@@ -19,13 +19,13 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     #[Test]
-    public function testIdentifier(): void
+    public function testIdentifierExpression(): void
     {
         $this->assertEquals(
             actual: self::createParser('foo;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Expressions\IdentifierNode('foo'),
+                    expression: new Expressions\IdentifierExpression('foo'),
                 ),
             ],
         );

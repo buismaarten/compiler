@@ -9,7 +9,7 @@ namespace Package\Nodes\Expressions;
 
 use Package\Nodes\AbstractExpression;
 
-final class IdentifierNode extends AbstractExpression
+final class IdentifierExpression extends AbstractExpression
 {
     public function __construct(
         public readonly string $value,

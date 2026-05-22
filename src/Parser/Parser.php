@@ -65,11 +65,11 @@ final class Parser implements ParserInterface
         return new Statements\ExpressionStatement($expression);
     }
 
-    private function parseIdentifierExpression(): Expressions\IdentifierNode
+    private function parseIdentifierExpression(): Expressions\IdentifierExpression
     {
         $token = $this->expect(TokenType::T_IDENTIFIER);
 
-        return new Expressions\IdentifierNode($token->value);
+        return new Expressions\IdentifierExpression($token->value);
     }
 
     private function parseNumberExpression(): Expressions\NumberNode
