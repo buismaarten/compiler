@@ -105,7 +105,6 @@ final class Lexer implements LexerInterface
             'false'    => TokenType::T_KEYWORD_FALSE,
             'null'     => TokenType::T_KEYWORD_NULL,
             'true'     => TokenType::T_KEYWORD_TRUE,
-            'while'    => TokenType::T_KEYWORD_WHILE,
 
             // Fallback
             default => TokenType::T_IDENTIFIER,

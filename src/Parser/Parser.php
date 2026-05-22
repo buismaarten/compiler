@@ -125,9 +125,6 @@ final class Parser implements ParserInterface
             TokenType::T_KEYWORD_BREAK    => $this->parseBreakStatement(),
             TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
 
-            // TODO
-            // TokenType::T_KEYWORD_WHILE    => $this->parseWhileStatement(),
-
             // Fallback
             default => $this->parseExpressionStatement(),
         };

@@ -66,11 +66,6 @@ class LexerTest extends TestCase
             actual: self::createLexer('true')->next(),
             expected: new Token(TokenType::T_KEYWORD_TRUE, 1),
         );
-
-        $this->assertEquals(
-            actual: self::createLexer('while')->next(),
-            expected: new Token(TokenType::T_KEYWORD_WHILE, 1),
-        );
     }
 
     #[Test]
