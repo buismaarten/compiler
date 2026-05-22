@@ -5,11 +5,11 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-namespace Package\Nodes\Expressions;
+namespace Package\Nodes\Literals;
 
-use Package\Nodes\AbstractExpression;
+use Package\Nodes\AbstractLiteral;
 
-final class NumberNode extends AbstractExpression
+final class IntegerLiteral extends AbstractLiteral
 {
     public function __construct(
         public readonly int $value,

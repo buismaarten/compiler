@@ -9,6 +9,7 @@ namespace Package\Tests\Parser;
 
 use Package\Lexer\Lexer;
 use Package\Nodes\Expressions;
+use Package\Nodes\Literals;
 use Package\Nodes\Statements;
 use Package\Parser\Parser;
 use Package\Parser\ParserInterface;

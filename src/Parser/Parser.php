@@ -15,6 +15,7 @@ use Package\Lexer\LexerInterface;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\Expressions;
+use Package\Nodes\Literals;
 use Package\Nodes\Statements;
 use Package\Token\Token;
 use Package\Token\TokenType;
