@@ -90,11 +90,11 @@ final class Parser implements ParserInterface
     private function parseExpression(): AbstractExpression
     {
         return match ($this->current->type) {
-            TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(),
-            TokenType::T_KEYWORD_TRUE  => $this->parseBooleanLiteral(),
             TokenType::T_IDENTIFIER    => $this->parseIdentifierExpression(),
             TokenType::T_INTEGER       => $this->parseIntegerLiteral(),
+            TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(),
             TokenType::T_KEYWORD_NULL  => $this->parseNullLiteral(),
+            TokenType::T_KEYWORD_TRUE  => $this->parseBooleanLiteral(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
@@ -130,12 +130,26 @@ final class Parser implements ParserInterface
         return new Literals\NullLiteral;
     }
 
+    private function parseReturnStatement(): Statements\ReturnStatement
+    {
+        $this->expect(TokenType::T_KEYWORD_RETURN);
+
+        if ($this->current->type !== TokenType::T_SEMICOLON) {
+            $value = $this->parseExpression();
+        } else {
+            $value = null;
+        }
+
+        return new Statements\ReturnStatement($value);
+    }
+
     private function parseStatement(): AbstractStatement
     {
         $statement = match ($this->current->type) {
             TokenType::T_KEYWORD_BREAK    => $this->parseBreakStatement(),
             TokenType::T_KEYWORD_CONST    => $this->parseConstStatement(),
             TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
+            TokenType::T_KEYWORD_RETURN   => $this->parseReturnStatement(),
 
             // Fallback
             default => $this->parseExpressionStatement(),

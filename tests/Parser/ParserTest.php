@@ -115,6 +115,26 @@ class ParserTest extends TestCase
         );
     }
 
+    #[Test]
+    public function testReturnStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('return;')->parse(),
+            expected: [
+                new Statements\ReturnStatement,
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('return 123;')->parse(),
+            expected: [
+                new Statements\ReturnStatement(
+                    expression: new Literals\IntegerLiteral(123),
+                ),
+            ],
+        );
+    }
+
     private static function createParser(string $input): ParserInterface
     {
         $lexer = new Lexer($input);
