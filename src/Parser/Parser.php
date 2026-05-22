@@ -64,7 +64,7 @@ final class Parser implements ParserInterface
             TokenType::T_IDENTIFIER => $this->parseIdentifier(),
 
             // Fallback
-            default => throw new UnexpectedTokenException($this->current->line, $this->current->value),
+            default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
         };
     }
 
