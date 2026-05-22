@@ -17,18 +17,6 @@ use PHPUnit\Framework\TestCase;
 class LexerTest extends TestCase
 {
     #[Test]
-    public function testGetTokens(): void
-    {
-        $this->assertEquals(
-            actual: iterator_to_array(self::createLexer('foo 123')->getTokens()),
-            expected: [
-                new Token(TokenType::T_IDENTIFIER, 1, 'foo'),
-                new Token(TokenType::T_INTEGER, 1, '123'),
-            ],
-        );
-    }
-
-    #[Test]
     public function testIdentifier(): void
     {
         $this->assertEquals(

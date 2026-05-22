@@ -11,8 +11,5 @@ use Package\Token\Token;
 
 interface LexerInterface
 {
-    /** @return Token[] */
-    public function getTokens(): iterable;
-
     public function next(): Token;
 }

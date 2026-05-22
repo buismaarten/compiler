@@ -29,14 +29,6 @@ final class Lexer implements LexerInterface
     }
 
     #[Override]
-    public function getTokens(): iterable
-    {
-        while (($token = $this->next())->type !== TokenType::T_EOF) {
-            yield $token;
-        }
-    }
-
-    #[Override]
     public function next(): Token
     {
         while (($current = $this->input->current()) !== null && ctype_space($current)) {
