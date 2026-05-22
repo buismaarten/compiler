@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Enums;
 
-enum Operator: string
+enum Operator
 {
-    case PLUS = '+';
-    case MULTIPLY = '*';
+    case PLUS;
+    case MULTIPLY;
 }
