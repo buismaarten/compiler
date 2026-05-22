@@ -23,7 +23,7 @@ class LexerTest extends TestCase
             actual: iterator_to_array(self::createLexer('foo 123')->getTokens()),
             expected: [
                 new Token(TokenType::T_IDENTIFIER, 1, 'foo'),
-                new Token(TokenType::T_NUMBER, 1, '123'),
+                new Token(TokenType::T_INTEGER, 1, '123'),
             ],
         );
     }
@@ -74,7 +74,7 @@ class LexerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createLexer('123')->next(),
-            expected: new Token(TokenType::T_NUMBER, 1, '123'),
+            expected: new Token(TokenType::T_INTEGER, 1, '123'),
         );
     }
 

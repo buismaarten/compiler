@@ -99,7 +99,7 @@ final class Lexer implements LexerInterface
         }
 
         return new Token(
-            type: TokenType::T_NUMBER,
+            type: TokenType::T_INTEGER,
             line: $this->line,
             value: $this->input->slice($start, $this->input->offset()),
         );
