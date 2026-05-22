@@ -43,14 +43,33 @@ final class Parser implements ParserInterface
         return $statements;
     }
 
+    private function parseBooleanLiteral(): Literals\BooleanLiteral
+    {
+        $token = $this->current;
+
+        if ($token->type === TokenType::T_KEYWORD_TRUE) {
+            $this->expect(TokenType::T_KEYWORD_TRUE);
+
+            return new Literals\BooleanLiteral(true);
+        }
+
+        if ($token->type === TokenType::T_KEYWORD_FALSE) {
+            $this->expect(TokenType::T_KEYWORD_FALSE);
+
+            return new Literals\BooleanLiteral(false);
+        }
+
+        throw new UnexpectedTokenException($token->line, $token->type->name);
+    }
+
     private function parseExpression(): AbstractExpression
     {
         return match ($this->current->type) {
+            TokenType::T_IDENTIFIER    => $this->parseIdentifierExpression(),
             TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(),
             TokenType::T_KEYWORD_TRUE  => $this->parseBooleanLiteral(),
-            TokenType::T_IDENTIFIER    => $this->parseIdentifierExpression(),
             TokenType::T_KEYWORD_NULL  => $this->parseNullLiteral(),
-            TokenType::T_NUMBER        => $this->parseNumberExpression(),
+            TokenType::T_INTEGER       => $this->parseIntegerLiteral(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
@@ -72,12 +91,19 @@ final class Parser implements ParserInterface
         return new Expressions\IdentifierExpression($token->value);
     }
 
-    private function parseNumberExpression(): Expressions\NumberNode
+    private function parseIntegerLiteral(): Literals\IntegerLiteral
     {
-        $token = $this->expect(TokenType::T_NUMBER);
+        $token = $this->expect(TokenType::T_INTEGER);
         $value = intval($token->value);
 
-        return new Expressions\NumberNode($value);
+        return new Literals\IntegerLiteral($value);
+    }
+
+    private function parseNullLiteral(): Literals\NullLiteral
+    {
+        $this->expect(TokenType::T_KEYWORD_NULL);
+
+        return new Literals\NullLiteral;
     }
 
     private function parseStatement(): AbstractStatement

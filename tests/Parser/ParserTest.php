@@ -19,6 +19,28 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     #[Test]
+    public function testBooleanLiteral(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('false;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    expression: new Literals\BooleanLiteral(false),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('true;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    expression: new Literals\BooleanLiteral(true),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testIdentifierExpression(): void
     {
         $this->assertEquals(
@@ -32,13 +54,26 @@ class ParserTest extends TestCase
     }
 
     #[Test]
-    public function testNumber(): void
+    public function testIntegerLiteral(): void
     {
         $this->assertEquals(
             actual: self::createParser('123;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Expressions\NumberNode(123),
+                    expression: new Literals\IntegerLiteral(123),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
+    public function testNullLiteral(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('null;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    expression: new Literals\NullLiteral(),
                 ),
             ],
         );
