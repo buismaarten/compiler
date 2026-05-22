@@ -52,8 +52,6 @@ final class Lexer implements LexerInterface
         }
 
         return match ($current) {
-            '*' => $this->tokenizeCharacter(TokenType::T_MULTIPLY),
-            '+' => $this->tokenizeCharacter(TokenType::T_PLUS),
             ';' => $this->tokenizeCharacter(TokenType::T_SEMICOLON),
             '_' => $this->tokenizeIdentifier(),
 

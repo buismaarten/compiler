@@ -7,9 +7,10 @@ declare(strict_types=1);
 
 namespace Package\Parser;
 
-use Package\Nodes\AbstractNode;
+use Package\Nodes\AbstractStatement;
 
 interface ParserInterface
 {
-    public function parse(): AbstractNode;
+    /** @return AbstractStatement[] */
+    public function parse(): array;
 }

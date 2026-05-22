@@ -13,11 +13,9 @@ use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Lexer\LexerInterface;
 use Package\Nodes\AbstractExpression;
-use Package\Nodes\AbstractNode;
-use Package\Nodes\Enums\Operator;
-use Package\Nodes\Expressions\BinaryNode;
-use Package\Nodes\Expressions\IdentifierNode;
-use Package\Nodes\Expressions\NumberNode;
+use Package\Nodes\AbstractStatement;
+use Package\Nodes\Expressions;
+use Package\Nodes\Statements;
 use Package\Token\Token;
 use Package\Token\TokenType;
 
@@ -33,54 +31,61 @@ final class Parser implements ParserInterface
     }
 
     #[Override]
-    public function parse(): AbstractNode
+    public function parse(): array
     {
-        $node = $this->parseTerm();
+        $statements = [];
 
-        while ($this->current->type === TokenType::T_PLUS) {
-            $operator = $this->expect(TokenType::T_PLUS);
-            $node = new BinaryNode(self::resolveOperator($operator->type), $node, $this->parseTerm());
+        while ($this->current->type !== TokenType::T_EOF) {
+            $statements[] = $this->parseStatement();
         }
 
-        return $node;
+        return $statements;
     }
 
-    private function parseTerm(): AbstractExpression
-    {
-        $node = $this->parseFactor();
-
-        while ($this->current->type === TokenType::T_MULTIPLY) {
-            $operator = $this->expect(TokenType::T_MULTIPLY);
-            $node = new BinaryNode(self::resolveOperator($operator->type), $node, $this->parseFactor());
-        }
-
-        return $node;
-    }
-
-    private function parseFactor(): AbstractExpression
+    private function parseExpression(): AbstractExpression
     {
         return match ($this->current->type) {
-            TokenType::T_NUMBER     => $this->parseNumber(),
-            TokenType::T_IDENTIFIER => $this->parseIdentifier(),
+            TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(),
+            TokenType::T_KEYWORD_TRUE  => $this->parseBooleanLiteral(),
+            TokenType::T_IDENTIFIER    => $this->parseIdentifierExpression(),
+            TokenType::T_KEYWORD_NULL  => $this->parseNullLiteral(),
+            TokenType::T_NUMBER        => $this->parseNumberExpression(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
         };
     }
 
-    private function parseNumber(): NumberNode
+    private function parseExpressionStatement(): Statements\ExpressionStatement
+    {
+        $expression = $this->parseExpression();
+        $this->expect(TokenType::T_SEMICOLON);
+
+        return new Statements\ExpressionStatement($expression);
+    }
+
+    private function parseIdentifierExpression(): Expressions\IdentifierNode
+    {
+        $token = $this->expect(TokenType::T_IDENTIFIER);
+
+        return new Expressions\IdentifierNode($token->value);
+    }
+
+    private function parseNumberExpression(): Expressions\NumberNode
     {
         $token = $this->expect(TokenType::T_NUMBER);
         $value = intval($token->value);
 
-        return new NumberNode($value);
+        return new Expressions\NumberNode($value);
     }
 
-    private function parseIdentifier(): IdentifierNode
+    private function parseStatement(): AbstractStatement
     {
-        $token = $this->expect(TokenType::T_IDENTIFIER);
+        return match ($this->current->type) {
+            // TODO
 
-        return new IdentifierNode($token->value);
+            default => $this->parseExpressionStatement(),
+        };
     }
 
     private function expect(TokenType $type): Token
@@ -98,14 +103,5 @@ final class Parser implements ParserInterface
         $this->current = $this->lexer->next();
 
         return $token;
-    }
-
-    private static function resolveOperator(TokenType $type): Operator
-    {
-        // @phpstan-ignore-next-line
-        return match ($type) {
-            TokenType::T_PLUS     => Operator::PLUS,
-            TokenType::T_MULTIPLY => Operator::MULTIPLY,
-        };
     }
 }

@@ -70,29 +70,11 @@ class LexerTest extends TestCase
     }
 
     #[Test]
-    public function testMultiply(): void
-    {
-        $this->assertEquals(
-            actual: self::createLexer('*')->next(),
-            expected: new Token(TokenType::T_MULTIPLY, 1),
-        );
-    }
-
-    #[Test]
     public function testNumber(): void
     {
         $this->assertEquals(
             actual: self::createLexer('123')->next(),
             expected: new Token(TokenType::T_NUMBER, 1, '123'),
-        );
-    }
-
-    #[Test]
-    public function testPlus(): void
-    {
-        $this->assertEquals(
-            actual: self::createLexer('+')->next(),
-            expected: new Token(TokenType::T_PLUS, 1),
         );
     }
 

@@ -14,8 +14,6 @@ enum TokenType
     case T_KEYWORD_FALSE;
     case T_KEYWORD_NULL;
     case T_KEYWORD_TRUE;
-    case T_MULTIPLY;
     case T_NUMBER;
-    case T_PLUS;
     case T_SEMICOLON;
 }
