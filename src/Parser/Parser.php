@@ -43,23 +43,15 @@ final class Parser implements ParserInterface
         return $statements;
     }
 
-    private function parseBooleanLiteral(): Literals\BooleanLiteral
+    private function parseBooleanLiteral(bool $value): Literals\BooleanLiteral
     {
-        $token = $this->current;
-
-        if ($token->type === TokenType::T_KEYWORD_FALSE) {
-            $this->expect(TokenType::T_KEYWORD_FALSE);
-
-            return new Literals\BooleanLiteral(false);
-        }
-
-        if ($token->type === TokenType::T_KEYWORD_TRUE) {
+        if ($value) {
             $this->expect(TokenType::T_KEYWORD_TRUE);
-
-            return new Literals\BooleanLiteral(true);
+        } else {
+            $this->expect(TokenType::T_KEYWORD_FALSE);
         }
 
-        throw new UnexpectedTokenException($token->line, $token->type->name);
+        return new Literals\BooleanLiteral($value);
     }
 
     private function parseBreakStatement(): Statements\BreakStatement
@@ -92,9 +84,9 @@ final class Parser implements ParserInterface
         return match ($this->current->type) {
             TokenType::T_IDENTIFIER    => $this->parseIdentifierExpression(),
             TokenType::T_INTEGER       => $this->parseIntegerLiteral(),
-            TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(),
+            TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(false),
             TokenType::T_KEYWORD_NULL  => $this->parseNullLiteral(),
-            TokenType::T_KEYWORD_TRUE  => $this->parseBooleanLiteral(),
+            TokenType::T_KEYWORD_TRUE  => $this->parseBooleanLiteral(true),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
