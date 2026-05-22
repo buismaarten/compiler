@@ -43,6 +43,15 @@ class LexerTest extends TestCase
     }
 
     #[Test]
+    public function testInteger(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('123')->next(),
+            expected: new Token(TokenType::T_INTEGER, 1, '123'),
+        );
+    }
+
+    #[Test]
     public function testKeywordFalse(): void
     {
         $this->assertEquals(
@@ -66,15 +75,6 @@ class LexerTest extends TestCase
         $this->assertEquals(
             actual: self::createLexer('true')->next(),
             expected: new Token(TokenType::T_KEYWORD_TRUE, 1),
-        );
-    }
-
-    #[Test]
-    public function testNumber(): void
-    {
-        $this->assertEquals(
-            actual: self::createLexer('123')->next(),
-            expected: new Token(TokenType::T_INTEGER, 1, '123'),
         );
     }
 
