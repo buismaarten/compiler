@@ -40,7 +40,7 @@ class LexerTest extends TestCase
     }
 
     #[Test]
-    public function testKeywords(): void
+    public function testKeyword(): void
     {
         $this->assertEquals(
             actual: self::createLexer('false')->next(),
