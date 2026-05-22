@@ -44,6 +44,7 @@ final class Lexer implements LexerInterface
         }
 
         return match ($current) {
+            '=' => $this->tokenizeCharacter(TokenType::T_EQUALS),
             ';' => $this->tokenizeCharacter(TokenType::T_SEMICOLON),
             '_' => $this->tokenizeIdentifier(),
 
@@ -101,6 +102,7 @@ final class Lexer implements LexerInterface
     {
         return match ($value) {
             'break'    => TokenType::T_KEYWORD_BREAK,
+            'const'    => TokenType::T_KEYWORD_CONST,
             'continue' => TokenType::T_KEYWORD_CONTINUE,
             'false'    => TokenType::T_KEYWORD_FALSE,
             'null'     => TokenType::T_KEYWORD_NULL,

@@ -17,6 +17,15 @@ use PHPUnit\Framework\TestCase;
 class LexerTest extends TestCase
 {
     #[Test]
+    public function testEquals(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('=')->next(),
+            expected: new Token(TokenType::T_EQUALS, 1),
+        );
+    }
+
+    #[Test]
     public function testIdentifier(): void
     {
         $this->assertEquals(
@@ -45,6 +54,11 @@ class LexerTest extends TestCase
         $this->assertEquals(
             actual: self::createLexer('break')->next(),
             expected: new Token(TokenType::T_KEYWORD_BREAK, 1),
+        );
+
+        $this->assertEquals(
+            actual: self::createLexer('const')->next(),
+            expected: new Token(TokenType::T_KEYWORD_CONST, 1),
         );
 
         $this->assertEquals(
