@@ -33,10 +33,10 @@ class ParserTest extends TestCase
     public function testConstStatement(): void
     {
         $this->assertEquals(
-            actual: self::createParser('const FOO = 123;')->parse(),
+            actual: self::createParser('const foo = 123;')->parse(),
             expected: [
                 new Statements\ConstStatement(
-                    name: 'FOO',
+                    name: 'foo',
                     value: new Literals\IntegerLiteral(123),
                 ),
             ],
