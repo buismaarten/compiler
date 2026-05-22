@@ -77,6 +77,11 @@ class LexerTest extends TestCase
         );
 
         $this->assertEquals(
+            actual: self::createLexer('return')->next(),
+            expected: new Token(TokenType::T_KEYWORD_RETURN, 1),
+        );
+
+        $this->assertEquals(
             actual: self::createLexer('true')->next(),
             expected: new Token(TokenType::T_KEYWORD_TRUE, 1),
         );
