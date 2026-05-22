@@ -62,14 +62,30 @@ final class Parser implements ParserInterface
         throw new UnexpectedTokenException($token->line, $token->type->name);
     }
 
+    private function parseBreakStatement(): Statements\BreakStatement
+    {
+        $this->expect(TokenType::T_KEYWORD_BREAK);
+        $this->expect(TokenType::T_SEMICOLON);
+
+        return new Statements\BreakStatement;
+    }
+
+    private function parseContinueStatement(): Statements\ContinueStatement
+    {
+        $this->expect(TokenType::T_KEYWORD_CONTINUE);
+        $this->expect(TokenType::T_SEMICOLON);
+
+        return new Statements\ContinueStatement;
+    }
+
     private function parseExpression(): AbstractExpression
     {
         return match ($this->current->type) {
-            TokenType::T_IDENTIFIER    => $this->parseIdentifierExpression(),
             TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(),
             TokenType::T_KEYWORD_TRUE  => $this->parseBooleanLiteral(),
-            TokenType::T_KEYWORD_NULL  => $this->parseNullLiteral(),
+            TokenType::T_IDENTIFIER    => $this->parseIdentifierExpression(),
             TokenType::T_INTEGER       => $this->parseIntegerLiteral(),
+            TokenType::T_KEYWORD_NULL  => $this->parseNullLiteral(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
@@ -109,8 +125,10 @@ final class Parser implements ParserInterface
     private function parseStatement(): AbstractStatement
     {
         return match ($this->current->type) {
-            // TODO
+            TokenType::T_KEYWORD_BREAK    => $this->parseBreakStatement(),
+            TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
 
+            // Fallback
             default => $this->parseExpressionStatement(),
         };
     }

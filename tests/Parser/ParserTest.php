@@ -19,6 +19,28 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     #[Test]
+    public function testBreakStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('break;')->parse(),
+            expected: [
+                new Statements\BreakStatement,
+            ],
+        );
+    }
+
+    #[Test]
+    public function testContinueStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('continue;')->parse(),
+            expected: [
+                new Statements\ContinueStatement,
+            ],
+        );
+    }
+
+    #[Test]
     public function testBooleanLiteral(): void
     {
         $this->assertEquals(
