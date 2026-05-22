@@ -47,16 +47,16 @@ final class Parser implements ParserInterface
     {
         $token = $this->current;
 
-        if ($token->type === TokenType::T_KEYWORD_TRUE) {
-            $this->expect(TokenType::T_KEYWORD_TRUE);
-
-            return new Literals\BooleanLiteral(true);
-        }
-
         if ($token->type === TokenType::T_KEYWORD_FALSE) {
             $this->expect(TokenType::T_KEYWORD_FALSE);
 
             return new Literals\BooleanLiteral(false);
+        }
+
+        if ($token->type === TokenType::T_KEYWORD_TRUE) {
+            $this->expect(TokenType::T_KEYWORD_TRUE);
+
+            return new Literals\BooleanLiteral(true);
         }
 
         throw new UnexpectedTokenException($token->line, $token->type->name);
