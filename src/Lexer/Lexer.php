@@ -78,7 +78,7 @@ final class Lexer implements LexerInterface
     {
         $start = $this->input->offset();
 
-        while (($current = $this->input->current()) !== null && ($current === '_' || ctype_alnum($current))) {
+        while (($current = $this->input->current()) !== null && (ctype_alnum($current) || $current === '_')) {
             $this->input->next();
         }
 
