@@ -81,7 +81,7 @@ final class Lexer implements LexerInterface
         }
 
         $value = $this->input->slice($start, $this->input->offset());
-        $type = $this->resolveKeyword($value);
+        $type = self::resolveKeyword($value);
 
         if ($type !== TokenType::T_IDENTIFIER) {
             $value = '';
@@ -105,7 +105,7 @@ final class Lexer implements LexerInterface
         );
     }
 
-    private function resolveKeyword(string $value): TokenType
+    private static function resolveKeyword(string $value): TokenType
     {
         return match ($value) {
             'false' => TokenType::T_KEYWORD_FALSE,
