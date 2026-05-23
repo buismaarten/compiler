@@ -149,6 +149,22 @@ class ParserTest extends TestCase
         );
     }
 
+    #[Test]
+    public function testWhileStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('while (foo) { break; }')->parse(),
+            expected: [
+                new Statements\WhileStatement(
+                    condition: new Expressions\IdentifierExpression('foo'),
+                    statements: [
+                        new Statements\BreakStatement,
+                    ],
+                ),
+            ],
+        );
+    }
+
     private static function createParser(string $input): ParserInterface
     {
         $lexer = new Lexer($input);

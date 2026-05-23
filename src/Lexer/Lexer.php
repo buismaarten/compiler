@@ -45,6 +45,10 @@ final class Lexer implements LexerInterface
 
         return match ($current) {
             '=' => $this->tokenizeCharacter(TokenType::T_EQUALS),
+            '{' => $this->tokenizeCharacter(TokenType::T_LEFT_BRACE),
+            '(' => $this->tokenizeCharacter(TokenType::T_LEFT_PARENTHESIS),
+            '}' => $this->tokenizeCharacter(TokenType::T_RIGHT_BRACE),
+            ')' => $this->tokenizeCharacter(TokenType::T_RIGHT_PARENTHESIS),
             ';' => $this->tokenizeCharacter(TokenType::T_SEMICOLON),
             '_' => $this->tokenizeIdentifier(),
 
@@ -109,6 +113,7 @@ final class Lexer implements LexerInterface
             'return'   => TokenType::T_KEYWORD_RETURN,
             'true'     => TokenType::T_KEYWORD_TRUE,
             'var'      => TokenType::T_KEYWORD_VAR,
+            'while'    => TokenType::T_KEYWORD_WHILE,
 
             // Fallback
             default => TokenType::T_IDENTIFIER,

@@ -93,6 +93,42 @@ class LexerTest extends TestCase
     }
 
     #[Test]
+    public function testLeftBrace(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('{')->next(),
+            expected: new Token(TokenType::T_LEFT_BRACE, 1),
+        );
+    }
+
+    #[Test]
+    public function testLeftParenthesis(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('(')->next(),
+            expected: new Token(TokenType::T_LEFT_PARENTHESIS, 1),
+        );
+    }
+
+    #[Test]
+    public function testRightBrace(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('}')->next(),
+            expected: new Token(TokenType::T_RIGHT_BRACE, 1),
+        );
+    }
+
+    #[Test]
+    public function testRightParenthesis(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer(')')->next(),
+            expected: new Token(TokenType::T_RIGHT_PARENTHESIS, 1),
+        );
+    }
+
+    #[Test]
     public function testSemicolon(): void
     {
         $this->assertEquals(

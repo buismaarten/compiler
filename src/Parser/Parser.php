@@ -143,6 +143,7 @@ final class Parser implements ParserInterface
             TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
             TokenType::T_KEYWORD_RETURN   => $this->parseReturnStatement(),
             TokenType::T_KEYWORD_VAR      => $this->parseVarStatement(),
+            TokenType::T_KEYWORD_WHILE    => $this->parseWhileStatement(),
 
             // Fallback
             default => $this->parseExpressionStatement(),
@@ -162,6 +163,26 @@ final class Parser implements ParserInterface
         $value = $this->parseExpression();
 
         return new Statements\VarStatement($identifier->value, $value);
+    }
+
+    private function parseWhileStatement(): Statements\WhileStatement
+    {
+        $this->expect(TokenType::T_KEYWORD_WHILE);
+        $this->expect(TokenType::T_LEFT_PARENTHESIS);
+
+        $condition = $this->parseExpression();
+        $statements = [];
+
+        $this->expect(TokenType::T_RIGHT_PARENTHESIS);
+        $this->expect(TokenType::T_LEFT_BRACE);
+
+        while ($this->current->type !== TokenType::T_RIGHT_BRACE) {
+            $statements[] = $this->parseStatement();
+        }
+
+        $this->expect(TokenType::T_RIGHT_BRACE);
+
+        return new Statements\WhileStatement($condition, $statements);
     }
 
     private function expect(TokenType $type): Token
