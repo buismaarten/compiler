@@ -67,7 +67,7 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::T_KEYWORD_CONST);
 
         $identifier = $this->expect(TokenType::T_IDENTIFIER);
-        $this->expect(TokenType::T_EQUALS);
+        $this->expect(TokenType::T_ASSIGN);
 
         $value = $this->parseExpression();
         $this->expect(TokenType::T_SEMICOLON);
@@ -173,7 +173,7 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::T_KEYWORD_VAR);
 
         $identifier = $this->expect(TokenType::T_IDENTIFIER);
-        $this->expect(TokenType::T_EQUALS);
+        $this->expect(TokenType::T_ASSIGN);
 
         $value = $this->parseExpression();
         $this->expect(TokenType::T_SEMICOLON);

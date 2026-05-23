@@ -17,11 +17,11 @@ use PHPUnit\Framework\TestCase;
 class LexerTest extends TestCase
 {
     #[Test]
-    public function testEquals(): void
+    public function testAssign(): void
     {
         $this->assertEquals(
             actual: self::createLexer('=')->next(),
-            expected: new Token(TokenType::T_EQUALS, 1),
+            expected: new Token(TokenType::T_ASSIGN, 1),
         );
     }
 

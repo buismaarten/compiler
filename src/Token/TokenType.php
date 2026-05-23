@@ -9,8 +9,8 @@ namespace Package\Token;
 
 enum TokenType
 {
+    case T_ASSIGN;
     case T_EOF;
-    case T_EQUALS;
     case T_IDENTIFIER;
     case T_INTEGER;
     case T_KEYWORD_BREAK;
