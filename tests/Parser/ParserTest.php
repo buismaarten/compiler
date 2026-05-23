@@ -116,6 +116,19 @@ class ParserTest extends TestCase
     }
 
     #[Test]
+    public function testPrintStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('print 123;')->parse(),
+            expected: [
+                new Statements\PrintStatement(
+                    expression: new Literals\IntegerLiteral(123),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testReturnStatement(): void
     {
         $this->assertEquals(

@@ -127,6 +127,16 @@ final class Parser implements ParserInterface
         return new Literals\NullLiteral;
     }
 
+    private function parsePrintStatement(): Statements\PrintStatement
+    {
+        $this->expect(TokenType::T_KEYWORD_PRINT);
+        $expression = $this->parseExpression();
+
+        $this->expect(TokenType::T_SEMICOLON);
+
+        return new Statements\PrintStatement($expression);
+    }
+
     private function parseReturnStatement(): Statements\ReturnStatement
     {
         $this->expect(TokenType::T_KEYWORD_RETURN);
@@ -148,6 +158,7 @@ final class Parser implements ParserInterface
             TokenType::T_KEYWORD_BREAK    => $this->parseBreakStatement(),
             TokenType::T_KEYWORD_CONST    => $this->parseConstStatement(),
             TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
+            TokenType::T_KEYWORD_PRINT    => $this->parsePrintStatement(),
             TokenType::T_KEYWORD_RETURN   => $this->parseReturnStatement(),
             TokenType::T_KEYWORD_VAR      => $this->parseVarStatement(),
             TokenType::T_KEYWORD_WHILE    => $this->parseWhileStatement(),
