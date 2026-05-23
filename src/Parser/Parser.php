@@ -65,11 +65,11 @@ final class Parser implements ParserInterface
     private function parseConstStatement(): Statements\ConstStatement
     {
         $this->expect(TokenType::T_KEYWORD_CONST);
+
         $identifier = $this->expect(TokenType::T_IDENTIFIER);
-
         $this->expect(TokenType::T_EQUALS);
-        $value = $this->parseExpression();
 
+        $value = $this->parseExpression();
         $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\ConstStatement($identifier->value, $value);
@@ -130,8 +130,8 @@ final class Parser implements ParserInterface
     private function parsePrintStatement(): Statements\PrintStatement
     {
         $this->expect(TokenType::T_KEYWORD_PRINT);
-        $expression = $this->parseExpression();
 
+        $expression = $this->parseExpression();
         $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\PrintStatement($expression);
@@ -171,11 +171,11 @@ final class Parser implements ParserInterface
     private function parseVarStatement(): Statements\VarStatement
     {
         $this->expect(TokenType::T_KEYWORD_VAR);
+
         $identifier = $this->expect(TokenType::T_IDENTIFIER);
-
         $this->expect(TokenType::T_EQUALS);
-        $value = $this->parseExpression();
 
+        $value = $this->parseExpression();
         $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\VarStatement($identifier->value, $value);
