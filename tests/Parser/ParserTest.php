@@ -135,6 +135,20 @@ class ParserTest extends TestCase
         );
     }
 
+    #[Test]
+    public function testVarStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('var foo = 123;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    name: 'foo',
+                    value: new Literals\IntegerLiteral(123),
+                ),
+            ],
+        );
+    }
+
     private static function createParser(string $input): ParserInterface
     {
         $lexer = new Lexer($input);

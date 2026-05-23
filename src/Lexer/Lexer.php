@@ -108,6 +108,7 @@ final class Lexer implements LexerInterface
             'null'     => TokenType::T_KEYWORD_NULL,
             'return'   => TokenType::T_KEYWORD_RETURN,
             'true'     => TokenType::T_KEYWORD_TRUE,
+            'var'      => TokenType::T_KEYWORD_VAR,
 
             // Fallback
             default => TokenType::T_IDENTIFIER,

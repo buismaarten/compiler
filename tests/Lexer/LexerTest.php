@@ -85,6 +85,11 @@ class LexerTest extends TestCase
             actual: self::createLexer('true')->next(),
             expected: new Token(TokenType::T_KEYWORD_TRUE, 1),
         );
+
+        $this->assertEquals(
+            actual: self::createLexer('var')->next(),
+            expected: new Token(TokenType::T_KEYWORD_VAR, 1),
+        );
     }
 
     #[Test]
