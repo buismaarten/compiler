@@ -10,6 +10,7 @@ namespace Package\Token;
 enum TokenType
 {
     case T_ASSIGN;
+    case T_COMMA;
     case T_EOF;
     case T_IDENTIFIER;
     case T_INTEGER;

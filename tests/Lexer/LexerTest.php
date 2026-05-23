@@ -26,6 +26,15 @@ class LexerTest extends TestCase
     }
 
     #[Test]
+    public function testComma(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer(',')->next(),
+            expected: new Token(TokenType::T_COMMA, 1),
+        );
+    }
+
+    #[Test]
     public function testIdentifier(): void
     {
         $this->assertEquals(
