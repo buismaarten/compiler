@@ -24,8 +24,10 @@ enum TokenType
     case T_KEYWORD_VAR;
     case T_KEYWORD_WHILE;
     case T_LEFT_BRACE;
+    case T_LEFT_BRACKET;
     case T_LEFT_PARENTHESIS;
     case T_RIGHT_BRACE;
+    case T_RIGHT_BRACKET;
     case T_RIGHT_PARENTHESIS;
     case T_SEMICOLON;
 }

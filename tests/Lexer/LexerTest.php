@@ -107,6 +107,15 @@ class LexerTest extends TestCase
     }
 
     #[Test]
+    public function testLeftBracket(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('[')->next(),
+            expected: new Token(TokenType::T_LEFT_BRACKET, 1),
+        );
+    }
+
+    #[Test]
     public function testLeftParenthesis(): void
     {
         $this->assertEquals(
@@ -121,6 +130,15 @@ class LexerTest extends TestCase
         $this->assertEquals(
             actual: self::createLexer('}')->next(),
             expected: new Token(TokenType::T_RIGHT_BRACE, 1),
+        );
+    }
+
+    #[Test]
+    public function testRightBracket(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer(']')->next(),
+            expected: new Token(TokenType::T_RIGHT_BRACKET, 1),
         );
     }
 
