@@ -45,14 +45,18 @@ final class Lexer implements LexerInterface
 
         return match ($current) {
             '=' => $this->tokenizeCharacter(TokenType::T_ASSIGN),
+            '*' => $this->tokenizeCharacter(TokenType::T_ASTERISK),
             ',' => $this->tokenizeCharacter(TokenType::T_COMMA),
             '{' => $this->tokenizeCharacter(TokenType::T_LEFT_BRACE),
             '[' => $this->tokenizeCharacter(TokenType::T_LEFT_BRACKET),
             '(' => $this->tokenizeCharacter(TokenType::T_LEFT_PARENTHESIS),
+            '-' => $this->tokenizeCharacter(TokenType::T_MINUS),
+            '+' => $this->tokenizeCharacter(TokenType::T_PLUS),
             '}' => $this->tokenizeCharacter(TokenType::T_RIGHT_BRACE),
             ']' => $this->tokenizeCharacter(TokenType::T_RIGHT_BRACKET),
             ')' => $this->tokenizeCharacter(TokenType::T_RIGHT_PARENTHESIS),
             ';' => $this->tokenizeCharacter(TokenType::T_SEMICOLON),
+            '/' => $this->tokenizeCharacter(TokenType::T_SLASH),
             '_' => $this->tokenizeIdentifier(),
 
             default => match (true) {

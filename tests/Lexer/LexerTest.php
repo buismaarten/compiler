@@ -26,6 +26,15 @@ class LexerTest extends TestCase
     }
 
     #[Test]
+    public function testAsterisk(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('*')->next(),
+            expected: new Token(TokenType::T_ASTERISK, 1),
+        );
+    }
+
+    #[Test]
     public function testComma(): void
     {
         $this->assertEquals(
@@ -134,6 +143,24 @@ class LexerTest extends TestCase
     }
 
     #[Test]
+    public function testMinus(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('-')->next(),
+            expected: new Token(TokenType::T_MINUS, 1),
+        );
+    }
+
+    #[Test]
+    public function testPlus(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('+')->next(),
+            expected: new Token(TokenType::T_PLUS, 1),
+        );
+    }
+
+    #[Test]
     public function testRightBrace(): void
     {
         $this->assertEquals(
@@ -166,6 +193,15 @@ class LexerTest extends TestCase
         $this->assertEquals(
             actual: self::createLexer(';')->next(),
             expected: new Token(TokenType::T_SEMICOLON, 1),
+        );
+    }
+
+    #[Test]
+    public function testSlash(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('/')->next(),
+            expected: new Token(TokenType::T_SLASH, 1),
         );
     }
 
