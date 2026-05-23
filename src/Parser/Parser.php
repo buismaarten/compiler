@@ -57,6 +57,7 @@ final class Parser implements ParserInterface
     private function parseBreakStatement(): Statements\BreakStatement
     {
         $this->expect(TokenType::T_KEYWORD_BREAK);
+        $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\BreakStatement;
     }
@@ -69,12 +70,15 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::T_EQUALS);
         $value = $this->parseExpression();
 
+        $this->expect(TokenType::T_SEMICOLON);
+
         return new Statements\ConstStatement($identifier->value, $value);
     }
 
     private function parseContinueStatement(): Statements\ContinueStatement
     {
         $this->expect(TokenType::T_KEYWORD_CONTINUE);
+        $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\ContinueStatement;
     }
@@ -96,6 +100,7 @@ final class Parser implements ParserInterface
     private function parseExpressionStatement(): Statements\ExpressionStatement
     {
         $expression = $this->parseExpression();
+        $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\ExpressionStatement($expression);
     }
@@ -132,12 +137,14 @@ final class Parser implements ParserInterface
             $value = null;
         }
 
+        $this->expect(TokenType::T_SEMICOLON);
+
         return new Statements\ReturnStatement($value);
     }
 
     private function parseStatement(): AbstractStatement
     {
-        $statement = match ($this->current->type) {
+        return match ($this->current->type) {
             TokenType::T_KEYWORD_BREAK    => $this->parseBreakStatement(),
             TokenType::T_KEYWORD_CONST    => $this->parseConstStatement(),
             TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
@@ -148,10 +155,6 @@ final class Parser implements ParserInterface
             // Fallback
             default => $this->parseExpressionStatement(),
         };
-
-        $this->expect(TokenType::T_SEMICOLON);
-
-        return $statement;
     }
 
     private function parseVarStatement(): Statements\VarStatement
@@ -161,6 +164,8 @@ final class Parser implements ParserInterface
 
         $this->expect(TokenType::T_EQUALS);
         $value = $this->parseExpression();
+
+        $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\VarStatement($identifier->value, $value);
     }
