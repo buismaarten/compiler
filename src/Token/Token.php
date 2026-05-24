@@ -9,9 +9,9 @@ namespace Package\Token;
 
 final class Token
 {
-    public TokenType $type;
-    public int $line;
-    public string $value;
+    public readonly TokenType $type;
+    public readonly int $line;
+    public readonly string $value;
 
     public function __construct(TokenType $type, int $line, string $value = '')
     {
