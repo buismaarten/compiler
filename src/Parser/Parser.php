@@ -234,6 +234,7 @@ final class Parser implements ParserInterface
         return new Statements\WhileStatement($condition, $statements);
     }
 
+    /** @phpstan-impure */
     private function expect(TokenType $type): Token
     {
         $token = $this->current;
