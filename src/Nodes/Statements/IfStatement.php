@@ -19,6 +19,6 @@ final class IfStatement extends AbstractStatement
         public readonly array $thenStatements,
 
         /** @var AbstractStatement[] */
-        public readonly array $elseStatements,
+        public readonly array $elseStatements = [],
     ) {}
 }

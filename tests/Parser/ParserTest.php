@@ -90,6 +90,37 @@ class ParserTest extends TestCase
     }
 
     #[Test]
+    public function testIfStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('if (foo) { break; }')->parse(),
+            expected: [
+                new Statements\IfStatement(
+                    condition: new Expressions\IdentifierExpression('foo'),
+                    thenStatements: [
+                        new Statements\BreakStatement,
+                    ],
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('if (foo) { break; } else { continue; }')->parse(),
+            expected: [
+                new Statements\IfStatement(
+                    condition: new Expressions\IdentifierExpression('foo'),
+                    thenStatements: [
+                        new Statements\BreakStatement,
+                    ],
+                    elseStatements: [
+                        new Statements\ContinueStatement,
+                    ],
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testIntegerLiteral(): void
     {
         $this->assertEquals(
