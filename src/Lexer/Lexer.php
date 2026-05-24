@@ -115,6 +115,7 @@ final class Lexer implements LexerInterface
             'break'    => TokenType::T_KEYWORD_BREAK,
             'const'    => TokenType::T_KEYWORD_CONST,
             'continue' => TokenType::T_KEYWORD_CONTINUE,
+            'else'     => TokenType::T_KEYWORD_ELSE,
             'false'    => TokenType::T_KEYWORD_FALSE,
             'if'       => TokenType::T_KEYWORD_IF,
             'null'     => TokenType::T_KEYWORD_NULL,
