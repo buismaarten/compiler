@@ -56,8 +56,8 @@ final class Lexer implements LexerInterface
             ']' => $this->tokenizeCharacter(TokenType::T_RIGHT_BRACKET),
             ')' => $this->tokenizeCharacter(TokenType::T_RIGHT_PARENTHESIS),
             ';' => $this->tokenizeCharacter(TokenType::T_SEMICOLON),
-            '/' => $this->tokenizeCharacter(TokenType::T_SLASH),
             '_' => $this->tokenizeIdentifier(),
+            '/' => $this->tokenizeSlash(),
 
             default => match (true) {
                 ctype_alpha($current) => $this->tokenizeIdentifier(),
@@ -107,6 +107,26 @@ final class Lexer implements LexerInterface
             line: $this->line,
             value: $this->input->slice($start, $this->input->offset()),
         );
+    }
+
+    private function tokenizeSlash(): Token
+    {
+        $start = $this->input->offset();
+        $this->input->next();
+
+        if ($this->input->current() === '/') {
+            while (($current = $this->input->current()) !== null && $current !== "\n") {
+                $this->input->next();
+            }
+
+            return new Token(
+                type: TokenType::T_COMMENT,
+                line: $this->line,
+                value: $this->input->slice($start, $this->input->offset()),
+            );
+        }
+
+        return new Token(TokenType::T_SLASH, $this->line);
     }
 
     private static function resolveKeyword(string $value): TokenType
