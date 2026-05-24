@@ -11,6 +11,11 @@ abstract class AbstractNode implements \JsonSerializable
 {
     public readonly int $line;
 
+    public function __construct(int $line)
+    {
+        $this->line = $line;
+    }
+
     /** @return array<mixed> */
     public function jsonSerialize(): array
     {

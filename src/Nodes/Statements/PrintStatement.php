@@ -12,8 +12,12 @@ use Package\Nodes\AbstractStatement;
 
 final class PrintStatement extends AbstractStatement
 {
-    public function __construct(
-        public readonly int $line,
-        public readonly AbstractExpression $expression,
-    ) {}
+    public readonly AbstractExpression $expression;
+
+    public function __construct(int $line, AbstractExpression $expression)
+    {
+        parent::__construct($line);
+
+        $this->expression = $expression;
+    }
 }

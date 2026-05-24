@@ -11,8 +11,12 @@ use Package\Nodes\AbstractLiteral;
 
 final class NullLiteral extends AbstractLiteral
 {
-    public function __construct(
-        public readonly int $line,
-        public readonly null $value = null,
-    ) {}
+    public readonly null $value;
+
+    public function __construct(int $line, null $value = null)
+    {
+        parent::__construct($line);
+
+        $this->value = $value;
+    }
 }

@@ -12,14 +12,24 @@ use Package\Nodes\AbstractStatement;
 
 final class IfStatement extends AbstractStatement
 {
-    public function __construct(
-        public readonly int $line,
-        public readonly AbstractExpression $condition,
+    public readonly AbstractExpression $condition;
 
-        /** @var AbstractStatement[] */
-        public readonly array $thenStatements,
+    /** @var AbstractStatement[] */
+    public readonly array $thenStatements;
 
-        /** @var AbstractStatement[] */
-        public readonly array $elseStatements = [],
-    ) {}
+    /** @var AbstractStatement[] */
+    public readonly array $elseStatements;
+
+    /**
+     * @param AbstractStatement[] $thenStatements
+     * @param AbstractStatement[] $elseStatements
+     */
+    public function __construct(int $line, AbstractExpression $condition, array $thenStatements, array $elseStatements = [])
+    {
+        parent::__construct($line);
+
+        $this->condition = $condition;
+        $this->thenStatements = $thenStatements;
+        $this->elseStatements = $elseStatements;
+    }
 }

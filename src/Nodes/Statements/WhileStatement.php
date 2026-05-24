@@ -12,11 +12,17 @@ use Package\Nodes\AbstractStatement;
 
 final class WhileStatement extends AbstractStatement
 {
-    public function __construct(
-        public readonly int $line,
-        public readonly AbstractExpression $condition,
+    public readonly AbstractExpression $condition;
 
-        /** @var AbstractStatement[] */
-        public readonly array $statements,
-    ) {}
+    /** @var AbstractStatement[] */
+    public readonly array $statements;
+
+    /** @param AbstractStatement[] $statements */
+    public function __construct(int $line, AbstractExpression $condition, array $statements)
+    {
+        parent::__construct($line);
+
+        $this->condition = $condition;
+        $this->statements = $statements;
+    }
 }

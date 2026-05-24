@@ -11,8 +11,12 @@ use Package\Nodes\AbstractLiteral;
 
 final class BooleanLiteral extends AbstractLiteral
 {
-    public function __construct(
-        public readonly int $line,
-        public readonly bool $value,
-    ) {}
+    public readonly bool $value;
+
+    public function __construct(int $line, bool $value)
+    {
+        parent::__construct($line);
+
+        $this->value = $value;
+    }
 }

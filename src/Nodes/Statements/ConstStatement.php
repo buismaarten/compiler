@@ -12,9 +12,14 @@ use Package\Nodes\AbstractStatement;
 
 final class ConstStatement extends AbstractStatement
 {
-    public function __construct(
-        public readonly int $line,
-        public readonly string $name,
-        public readonly AbstractExpression $expression,
-    ) {}
+    public readonly string $name;
+    public readonly AbstractExpression $expression;
+
+    public function __construct(int $line, string $name, AbstractExpression $expression)
+    {
+        parent::__construct($line);
+
+        $this->name = $name;
+        $this->expression = $expression;
+    }
 }

@@ -11,8 +11,12 @@ use Package\Nodes\AbstractLiteral;
 
 final class IntegerLiteral extends AbstractLiteral
 {
-    public function __construct(
-        public readonly int $line,
-        public readonly int $value,
-    ) {}
+    public readonly int $value;
+
+    public function __construct(int $line, int $value)
+    {
+        parent::__construct($line);
+
+        $this->value = $value;
+    }
 }
