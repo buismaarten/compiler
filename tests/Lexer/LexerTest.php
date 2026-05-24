@@ -90,6 +90,11 @@ class LexerTest extends TestCase
         );
 
         $this->assertEquals(
+            actual: self::createLexer('if')->next(),
+            expected: new Token(TokenType::T_KEYWORD_IF, 1),
+        );
+
+        $this->assertEquals(
             actual: self::createLexer('null')->next(),
             expected: new Token(TokenType::T_KEYWORD_NULL, 1),
         );
