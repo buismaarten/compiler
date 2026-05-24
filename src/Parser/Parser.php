@@ -112,6 +112,38 @@ final class Parser implements ParserInterface
         return new Expressions\IdentifierExpression($token->value);
     }
 
+    private function parseIfStatement(): Statements\IfStatement
+    {
+        $this->expect(TokenType::T_KEYWORD_IF);
+        $this->expect(TokenType::T_LEFT_PARENTHESIS);
+
+        $condition = $this->parseExpression();
+        $thenStatements = [];
+        $elseStatements = [];
+
+        $this->expect(TokenType::T_RIGHT_PARENTHESIS);
+        $this->expect(TokenType::T_LEFT_BRACE);
+
+        while ($this->current->type !== TokenType::T_RIGHT_BRACE) {
+            $thenStatements[] = $this->parseStatement();
+        }
+
+        $this->expect(TokenType::T_RIGHT_BRACE);
+
+        if ($this->current->type === TokenType::T_KEYWORD_ELSE) {
+            $this->expect(TokenType::T_KEYWORD_ELSE);
+            $this->expect(TokenType::T_LEFT_BRACE);
+
+            while ($this->current->type !== TokenType::T_RIGHT_BRACE) {
+                $elseStatements[] = $this->parseStatement();
+            }
+
+            $this->expect(TokenType::T_RIGHT_BRACE);
+        }
+
+        return new Statements\IfStatement($condition, $thenStatements, $elseStatements);
+    }
+
     private function parseIntegerLiteral(): Literals\IntegerLiteral
     {
         $token = $this->expect(TokenType::T_INTEGER);
@@ -158,6 +190,7 @@ final class Parser implements ParserInterface
             TokenType::T_KEYWORD_BREAK    => $this->parseBreakStatement(),
             TokenType::T_KEYWORD_CONST    => $this->parseConstStatement(),
             TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
+            TokenType::T_KEYWORD_IF       => $this->parseIfStatement(),
             TokenType::T_KEYWORD_PRINT    => $this->parsePrintStatement(),
             TokenType::T_KEYWORD_RETURN   => $this->parseReturnStatement(),
             TokenType::T_KEYWORD_VAR      => $this->parseVarStatement(),
