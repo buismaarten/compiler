@@ -24,7 +24,9 @@ class ParserTest extends TestCase
         $this->assertEquals(
             actual: self::createParser('break;')->parse(),
             expected: [
-                new Statements\BreakStatement,
+                new Statements\BreakStatement(
+                    line: 1,
+                ),
             ],
         );
     }
@@ -36,8 +38,12 @@ class ParserTest extends TestCase
             actual: self::createParser('const foo = 123;')->parse(),
             expected: [
                 new Statements\ConstStatement(
+                    line: 1,
                     name: 'foo',
-                    value: new Literals\IntegerLiteral(123),
+                    expression: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 123,
+                    ),
                 ),
             ],
         );
@@ -49,7 +55,9 @@ class ParserTest extends TestCase
         $this->assertEquals(
             actual: self::createParser('continue;')->parse(),
             expected: [
-                new Statements\ContinueStatement,
+                new Statements\ContinueStatement(
+                    line: 1,
+                ),
             ],
         );
     }
@@ -61,7 +69,11 @@ class ParserTest extends TestCase
             actual: self::createParser('false;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\BooleanLiteral(false),
+                    line: 1,
+                    expression: new Literals\BooleanLiteral(
+                        line: 1,
+                        value: false,
+                    ),
                 ),
             ],
         );
@@ -70,7 +82,11 @@ class ParserTest extends TestCase
             actual: self::createParser('true;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\BooleanLiteral(true),
+                    line: 1,
+                    expression: new Literals\BooleanLiteral(
+                        line: 1,
+                        value: true,
+                    ),
                 ),
             ],
         );
@@ -83,7 +99,11 @@ class ParserTest extends TestCase
             actual: self::createParser('foo;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Expressions\IdentifierExpression('foo'),
+                    line: 1,
+                    expression: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'foo',
+                    ),
                 ),
             ],
         );
@@ -96,9 +116,15 @@ class ParserTest extends TestCase
             actual: self::createParser('if (foo) { break; }')->parse(),
             expected: [
                 new Statements\IfStatement(
-                    condition: new Expressions\IdentifierExpression('foo'),
+                    line: 1,
+                    condition: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'foo',
+                    ),
                     thenStatements: [
-                        new Statements\BreakStatement,
+                        new Statements\BreakStatement(
+                            line: 1,
+                        ),
                     ],
                 ),
             ],
@@ -108,12 +134,20 @@ class ParserTest extends TestCase
             actual: self::createParser('if (foo) { break; } else { continue; }')->parse(),
             expected: [
                 new Statements\IfStatement(
-                    condition: new Expressions\IdentifierExpression('foo'),
+                    line: 1,
+                    condition: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'foo',
+                    ),
                     thenStatements: [
-                        new Statements\BreakStatement,
+                        new Statements\BreakStatement(
+                            line: 1,
+                        ),
                     ],
                     elseStatements: [
-                        new Statements\ContinueStatement,
+                        new Statements\ContinueStatement(
+                            line: 1,
+                        ),
                     ],
                 ),
             ],
@@ -127,7 +161,11 @@ class ParserTest extends TestCase
             actual: self::createParser('123;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\IntegerLiteral(123),
+                    line: 1,
+                    expression: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 123,
+                    ),
                 ),
             ],
         );
@@ -140,7 +178,10 @@ class ParserTest extends TestCase
             actual: self::createParser('null;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\NullLiteral(),
+                    line: 1,
+                    expression: new Literals\NullLiteral(
+                        line: 1,
+                    ),
                 ),
             ],
         );
@@ -153,7 +194,11 @@ class ParserTest extends TestCase
             actual: self::createParser('print 123;')->parse(),
             expected: [
                 new Statements\PrintStatement(
-                    expression: new Literals\IntegerLiteral(123),
+                    line: 1,
+                    expression: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 123,
+                    ),
                 ),
             ],
         );
@@ -165,7 +210,10 @@ class ParserTest extends TestCase
         $this->assertEquals(
             actual: self::createParser('return;')->parse(),
             expected: [
-                new Statements\ReturnStatement,
+                new Statements\ReturnStatement(
+                    line: 1,
+                    expression: null,
+                ),
             ],
         );
 
@@ -173,7 +221,11 @@ class ParserTest extends TestCase
             actual: self::createParser('return 123;')->parse(),
             expected: [
                 new Statements\ReturnStatement(
-                    expression: new Literals\IntegerLiteral(123),
+                    line: 1,
+                    expression: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 123,
+                    ),
                 ),
             ],
         );
@@ -186,8 +238,12 @@ class ParserTest extends TestCase
             actual: self::createParser('var foo = 123;')->parse(),
             expected: [
                 new Statements\VarStatement(
+                    line: 1,
                     name: 'foo',
-                    value: new Literals\IntegerLiteral(123),
+                    expression: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 123,
+                    ),
                 ),
             ],
         );
@@ -200,9 +256,15 @@ class ParserTest extends TestCase
             actual: self::createParser('while (foo) { break; }')->parse(),
             expected: [
                 new Statements\WhileStatement(
-                    condition: new Expressions\IdentifierExpression('foo'),
+                    line: 1,
+                    condition: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'foo',
+                    ),
                     statements: [
-                        new Statements\BreakStatement,
+                        new Statements\BreakStatement(
+                            line: 1,
+                        ),
                     ],
                 ),
             ],

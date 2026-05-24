@@ -12,6 +12,7 @@ use Package\Nodes\AbstractExpression;
 final class IdentifierExpression extends AbstractExpression
 {
     public function __construct(
-        public readonly string $value,
+        public readonly int $line,
+        public readonly string $name,
     ) {}
 }

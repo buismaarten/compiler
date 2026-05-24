@@ -12,6 +12,7 @@ use Package\Nodes\AbstractLiteral;
 final class NullLiteral extends AbstractLiteral
 {
     public function __construct(
+        public readonly int $line,
         public readonly null $value = null,
     ) {}
 }

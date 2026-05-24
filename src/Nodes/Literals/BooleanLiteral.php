@@ -12,6 +12,7 @@ use Package\Nodes\AbstractLiteral;
 final class BooleanLiteral extends AbstractLiteral
 {
     public function __construct(
+        public readonly int $line,
         public readonly bool $value,
     ) {}
 }

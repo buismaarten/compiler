@@ -12,6 +12,7 @@ use Package\Nodes\AbstractLiteral;
 final class IntegerLiteral extends AbstractLiteral
 {
     public function __construct(
+        public readonly int $line,
         public readonly int $value,
     ) {}
 }

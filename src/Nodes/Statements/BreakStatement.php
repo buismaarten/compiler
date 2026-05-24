@@ -11,5 +11,7 @@ use Package\Nodes\AbstractStatement;
 
 final class BreakStatement extends AbstractStatement
 {
-    //
+    public function __construct(
+        public readonly int $line,
+    ) {}
 }

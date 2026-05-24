@@ -13,6 +13,7 @@ use Package\Nodes\AbstractStatement;
 final class IfStatement extends AbstractStatement
 {
     public function __construct(
+        public readonly int $line,
         public readonly AbstractExpression $condition,
 
         /** @var AbstractStatement[] */

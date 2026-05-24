@@ -46,41 +46,52 @@ final class Parser implements ParserInterface
     private function parseBooleanLiteral(bool $value): Literals\BooleanLiteral
     {
         if ($value) {
-            $this->expect(TokenType::T_KEYWORD_TRUE);
+            $token = $this->expect(TokenType::T_KEYWORD_TRUE);
         } else {
-            $this->expect(TokenType::T_KEYWORD_FALSE);
+            $token = $this->expect(TokenType::T_KEYWORD_FALSE);
         }
 
-        return new Literals\BooleanLiteral($value);
+        return new Literals\BooleanLiteral(
+            line: $token->line,
+            value: $value,
+        );
     }
 
     private function parseBreakStatement(): Statements\BreakStatement
     {
-        $this->expect(TokenType::T_KEYWORD_BREAK);
+        $token = $this->expect(TokenType::T_KEYWORD_BREAK);
         $this->expect(TokenType::T_SEMICOLON);
 
-        return new Statements\BreakStatement;
+        return new Statements\BreakStatement(
+            line: $token->line,
+        );
     }
 
     private function parseConstStatement(): Statements\ConstStatement
     {
-        $this->expect(TokenType::T_KEYWORD_CONST);
+        $token = $this->expect(TokenType::T_KEYWORD_CONST);
 
-        $identifier = $this->expect(TokenType::T_IDENTIFIER);
+        $name = $this->expect(TokenType::T_IDENTIFIER);
         $this->expect(TokenType::T_ASSIGN);
 
-        $value = $this->parseExpression();
+        $expression = $this->parseExpression();
         $this->expect(TokenType::T_SEMICOLON);
 
-        return new Statements\ConstStatement($identifier->value, $value);
+        return new Statements\ConstStatement(
+            line: $token->line,
+            name: $name->value,
+            expression: $expression,
+        );
     }
 
     private function parseContinueStatement(): Statements\ContinueStatement
     {
-        $this->expect(TokenType::T_KEYWORD_CONTINUE);
+        $token = $this->expect(TokenType::T_KEYWORD_CONTINUE);
         $this->expect(TokenType::T_SEMICOLON);
 
-        return new Statements\ContinueStatement;
+        return new Statements\ContinueStatement(
+            line: $token->line,
+        );
     }
 
     private function parseExpression(): AbstractExpression
@@ -99,22 +110,30 @@ final class Parser implements ParserInterface
 
     private function parseExpressionStatement(): Statements\ExpressionStatement
     {
+        $token = $this->current;
         $expression = $this->parseExpression();
+
         $this->expect(TokenType::T_SEMICOLON);
 
-        return new Statements\ExpressionStatement($expression);
+        return new Statements\ExpressionStatement(
+            line: $token->line,
+            expression: $expression,
+        );
     }
 
     private function parseIdentifierExpression(): Expressions\IdentifierExpression
     {
         $token = $this->expect(TokenType::T_IDENTIFIER);
 
-        return new Expressions\IdentifierExpression($token->value);
+        return new Expressions\IdentifierExpression(
+            line: $token->line,
+            name: $token->value,
+        );
     }
 
     private function parseIfStatement(): Statements\IfStatement
     {
-        $this->expect(TokenType::T_KEYWORD_IF);
+        $token = $this->expect(TokenType::T_KEYWORD_IF);
         $this->expect(TokenType::T_LEFT_PARENTHESIS);
 
         $condition = $this->parseExpression();
@@ -141,7 +160,12 @@ final class Parser implements ParserInterface
             $this->expect(TokenType::T_RIGHT_BRACE);
         }
 
-        return new Statements\IfStatement($condition, $thenStatements, $elseStatements);
+        return new Statements\IfStatement(
+            line: $token->line,
+            condition: $condition,
+            thenStatements: $thenStatements,
+            elseStatements: $elseStatements,
+        );
     }
 
     private function parseIntegerLiteral(): Literals\IntegerLiteral
@@ -149,39 +173,50 @@ final class Parser implements ParserInterface
         $token = $this->expect(TokenType::T_INTEGER);
         $value = intval($token->value);
 
-        return new Literals\IntegerLiteral($value);
+        return new Literals\IntegerLiteral(
+            line: $token->line,
+            value: $value,
+        );
     }
 
     private function parseNullLiteral(): Literals\NullLiteral
     {
-        $this->expect(TokenType::T_KEYWORD_NULL);
+        $token = $this->expect(TokenType::T_KEYWORD_NULL);
 
-        return new Literals\NullLiteral;
+        return new Literals\NullLiteral(
+            line: $token->line,
+        );
     }
 
     private function parsePrintStatement(): Statements\PrintStatement
     {
-        $this->expect(TokenType::T_KEYWORD_PRINT);
+        $token = $this->expect(TokenType::T_KEYWORD_PRINT);
 
         $expression = $this->parseExpression();
         $this->expect(TokenType::T_SEMICOLON);
 
-        return new Statements\PrintStatement($expression);
+        return new Statements\PrintStatement(
+            line: $token->line,
+            expression: $expression,
+        );
     }
 
     private function parseReturnStatement(): Statements\ReturnStatement
     {
-        $this->expect(TokenType::T_KEYWORD_RETURN);
+        $token = $this->expect(TokenType::T_KEYWORD_RETURN);
 
         if ($this->current->type !== TokenType::T_SEMICOLON) {
-            $value = $this->parseExpression();
+            $expression = $this->parseExpression();
         } else {
-            $value = null;
+            $expression = null;
         }
 
         $this->expect(TokenType::T_SEMICOLON);
 
-        return new Statements\ReturnStatement($value);
+        return new Statements\ReturnStatement(
+            line: $token->line,
+            expression: $expression,
+        );
     }
 
     private function parseStatement(): AbstractStatement
@@ -203,20 +238,24 @@ final class Parser implements ParserInterface
 
     private function parseVarStatement(): Statements\VarStatement
     {
-        $this->expect(TokenType::T_KEYWORD_VAR);
+        $token = $this->expect(TokenType::T_KEYWORD_VAR);
 
-        $identifier = $this->expect(TokenType::T_IDENTIFIER);
+        $name = $this->expect(TokenType::T_IDENTIFIER);
         $this->expect(TokenType::T_ASSIGN);
 
-        $value = $this->parseExpression();
+        $expression = $this->parseExpression();
         $this->expect(TokenType::T_SEMICOLON);
 
-        return new Statements\VarStatement($identifier->value, $value);
+        return new Statements\VarStatement(
+            line: $token->line,
+            name: $name->value,
+            expression: $expression,
+        );
     }
 
     private function parseWhileStatement(): Statements\WhileStatement
     {
-        $this->expect(TokenType::T_KEYWORD_WHILE);
+        $token = $this->expect(TokenType::T_KEYWORD_WHILE);
         $this->expect(TokenType::T_LEFT_PARENTHESIS);
 
         $condition = $this->parseExpression();
@@ -231,7 +270,11 @@ final class Parser implements ParserInterface
 
         $this->expect(TokenType::T_RIGHT_BRACE);
 
-        return new Statements\WhileStatement($condition, $statements);
+        return new Statements\WhileStatement(
+            line: $token->line,
+            condition: $condition,
+            statements: $statements,
+        );
     }
 
     /** @phpstan-impure */

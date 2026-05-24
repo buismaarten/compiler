@@ -13,7 +13,8 @@ use Package\Nodes\AbstractStatement;
 final class VarStatement extends AbstractStatement
 {
     public function __construct(
+        public readonly int $line,
         public readonly string $name,
-        public readonly AbstractExpression $value,
+        public readonly AbstractExpression $expression,
     ) {}
 }

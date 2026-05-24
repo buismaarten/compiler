@@ -9,6 +9,8 @@ namespace Package\Nodes;
 
 abstract class AbstractNode implements \JsonSerializable
 {
+    public readonly int $line;
+
     /** @return array<mixed> */
     public function jsonSerialize(): array
     {
