@@ -7,12 +7,17 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Statements;
 
+use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 
 final class BreakStatement extends AbstractStatement
 {
-    public function __construct(int $line)
+    public readonly ?AbstractExpression $level;
+
+    public function __construct(int $line, ?AbstractExpression $level = null)
     {
         parent::__construct($line);
+
+        $this->level = $level;
     }
 }

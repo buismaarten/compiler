@@ -60,10 +60,18 @@ final class Parser implements ParserInterface
     private function parseBreakStatement(): Statements\BreakStatement
     {
         $token = $this->expect(TokenType::T_KEYWORD_BREAK);
+
+        if ($this->current->type === TokenType::T_INTEGER) {
+            $level = $this->parseExpression();
+        } else {
+            $level = null;
+        }
+
         $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\BreakStatement(
             line: $token->line,
+            level: $level,
         );
     }
 
@@ -87,10 +95,18 @@ final class Parser implements ParserInterface
     private function parseContinueStatement(): Statements\ContinueStatement
     {
         $token = $this->expect(TokenType::T_KEYWORD_CONTINUE);
+
+        if ($this->current->type === TokenType::T_INTEGER) {
+            $level = $this->parseExpression();
+        } else {
+            $level = null;
+        }
+
         $this->expect(TokenType::T_SEMICOLON);
 
         return new Statements\ContinueStatement(
             line: $token->line,
+            level: $level,
         );
     }
 

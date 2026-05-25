@@ -29,6 +29,19 @@ class ParserTest extends TestCase
                 ),
             ],
         );
+
+        $this->assertEquals(
+            actual: self::createParser('break 2;')->parse(),
+            expected: [
+                new Statements\BreakStatement(
+                    line: 1,
+                    level: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 2,
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]
@@ -57,6 +70,19 @@ class ParserTest extends TestCase
             expected: [
                 new Statements\ContinueStatement(
                     line: 1,
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('continue 2;')->parse(),
+            expected: [
+                new Statements\ContinueStatement(
+                    line: 1,
+                    level: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 2,
+                    ),
                 ),
             ],
         );
