@@ -120,6 +120,8 @@ final class Lexer implements LexerInterface
         $this->input->next();
 
         if ($this->input->current() === '/') {
+            $this->input->next();
+
             while (($current = $this->input->current()) !== null && $current !== "\n") {
                 $this->input->next();
             }
