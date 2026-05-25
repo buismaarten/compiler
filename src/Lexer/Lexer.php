@@ -43,7 +43,7 @@ final class Lexer implements LexerInterface
             return new Token(TokenType::T_EOF, $this->line);
         }
 
-        return match ($current) {
+        $token = match ($current) {
             '=' => $this->tokenizeCharacter(TokenType::T_ASSIGN),
             '*' => $this->tokenizeCharacter(TokenType::T_ASTERISK),
             ',' => $this->tokenizeCharacter(TokenType::T_COMMA),
@@ -67,6 +67,12 @@ final class Lexer implements LexerInterface
                 default => throw new UnexpectedCharacterException($this->line, $current),
             },
         };
+
+        if ($token === null) {
+            return $this->next();
+        }
+
+        return $token;
     }
 
     private function tokenizeCharacter(TokenType $type): Token
@@ -109,9 +115,8 @@ final class Lexer implements LexerInterface
         );
     }
 
-    private function tokenizeSlash(): Token
+    private function tokenizeSlash(): ?Token
     {
-        $start = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '/') {
@@ -119,11 +124,7 @@ final class Lexer implements LexerInterface
                 $this->input->next();
             }
 
-            return new Token(
-                type: TokenType::T_COMMENT,
-                line: $this->line,
-                value: $this->input->slice($start, $this->input->offset()),
-            );
+            return null;
         }
 
         return new Token(TokenType::T_SLASH, $this->line);

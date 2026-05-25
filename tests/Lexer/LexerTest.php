@@ -48,12 +48,7 @@ class LexerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createLexer('// This is a comment')->next(),
-            expected: new Token(TokenType::T_COMMENT, 1, '// This is a comment'),
-        );
-
-        $this->assertEquals(
-            actual: self::createLexer("// This is a comment\n")->next(),
-            expected: new Token(TokenType::T_COMMENT, 1, '// This is a comment'),
+            expected: new Token(TokenType::T_EOF, 1),
         );
     }
 
