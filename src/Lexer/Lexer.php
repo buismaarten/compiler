@@ -39,7 +39,7 @@ final class Lexer implements LexerInterface
             }
         }
 
-        if (($current = $this->input->current()) === null) {
+        if ($current === null) {
             return new Token(TokenType::T_EOF, $this->line);
         }
 
