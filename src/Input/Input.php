@@ -40,8 +40,6 @@ final class Input implements InputInterface
     #[Override]
     public function slice(int $start, int $end): string
     {
-        $length = $end - $start;
-
-        return substr($this->string, $start, $length);
+        return substr($this->string, $start, $end - $start);
     }
 }
