@@ -13,6 +13,7 @@ enum TokenType
     case T_ASTERISK;
     case T_COMMA;
     case T_EOF;
+    case T_FLOAT;
     case T_IDENTIFIER;
     case T_INTEGER;
     case T_KEYWORD_BREAK;

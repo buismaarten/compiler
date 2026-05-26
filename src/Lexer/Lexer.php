@@ -9,6 +9,7 @@ namespace Package\Lexer;
 
 use Override;
 use Package\Exceptions\Lexer\UnexpectedCharacterException;
+use Package\Exceptions\UnexpectedEndOfInputException;
 use Package\Input\Input;
 use Package\Input\InputInterface;
 use Package\Token\Token;
@@ -103,13 +104,27 @@ final class Lexer implements LexerInterface
     private function tokenizeNumber(): Token
     {
         $start = $this->input->offset();
+        $token = TokenType::T_INTEGER;
 
         while (($current = $this->input->current()) !== null && ctype_digit($current)) {
             $this->input->next();
         }
 
+        if ($this->input->current() === '.') {
+            $token = TokenType::T_FLOAT;
+            $this->input->next();
+
+            if (($current = $this->input->current()) === null || !ctype_digit($current)) {
+                throw new UnexpectedEndOfInputException($this->line);
+            }
+
+            while (($current = $this->input->current()) !== null && ctype_digit($current)) {
+                $this->input->next();
+            }
+        }
+
         return new Token(
-            type: TokenType::T_INTEGER,
+            type: $token,
             line: $this->line,
             value: $this->input->slice($start, $this->input->offset()),
         );

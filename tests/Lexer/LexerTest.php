@@ -53,6 +53,15 @@ class LexerTest extends TestCase
     }
 
     #[Test]
+    public function testFloat(): void
+    {
+        $this->assertEquals(
+            actual: self::createLexer('3.14')->next(),
+            expected: new Token(TokenType::T_FLOAT, 1, '3.14'),
+        );
+    }
+
+    #[Test]
     public function testIdentifier(): void
     {
         $this->assertEquals(

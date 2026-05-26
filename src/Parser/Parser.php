@@ -9,8 +9,8 @@ namespace Package\Parser;
 
 use Override;
 use Package\Exceptions\Parser\ExpectedTokenException;
-use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
+use Package\Exceptions\UnexpectedEndOfInputException;
 use Package\Lexer\LexerInterface;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
@@ -113,6 +113,7 @@ final class Parser implements ParserInterface
     private function parseExpression(): AbstractExpression
     {
         return match ($this->current->type) {
+            TokenType::T_FLOAT         => $this->parseFloatLiteral(),
             TokenType::T_IDENTIFIER    => $this->parseIdentifierExpression(),
             TokenType::T_INTEGER       => $this->parseIntegerLiteral(),
             TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(false),
@@ -134,6 +135,17 @@ final class Parser implements ParserInterface
         return new Statements\ExpressionStatement(
             line: $token->line,
             expression: $expression,
+        );
+    }
+
+    private function parseFloatLiteral(): Literals\FloatLiteral
+    {
+        $token = $this->expect(TokenType::T_FLOAT);
+        $value = floatval($token->value);
+
+        return new Literals\FloatLiteral(
+            line: $token->line,
+            value: $value,
         );
     }
 

@@ -119,6 +119,23 @@ class ParserTest extends TestCase
     }
 
     #[Test]
+    public function testFloatLiteral(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('3.14;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Literals\FloatLiteral(
+                        line: 1,
+                        value: 3.14,
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testIdentifierExpression(): void
     {
         $this->assertEquals(
