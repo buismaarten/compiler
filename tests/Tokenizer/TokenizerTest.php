@@ -5,22 +5,22 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-namespace Package\Tests\Lexer;
+namespace Package\Tests\Tokenizer;
 
-use Package\Lexer\Lexer;
-use Package\Lexer\LexerInterface;
-use Package\Token\Token;
-use Package\Token\TokenType;
+use Package\Tokenizer\Token;
+use Package\Tokenizer\Tokenizer;
+use Package\Tokenizer\TokenizerInterface;
+use Package\Tokenizer\TokenType;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class LexerTest extends TestCase
+class TokenizerTest extends TestCase
 {
     #[Test]
     public function testAssign(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('=')->next(),
+            actual: self::createTokenizer('=')->next(),
             expected: new Token(TokenType::T_ASSIGN, 1),
         );
     }
@@ -29,7 +29,7 @@ class LexerTest extends TestCase
     public function testAsterisk(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('*')->next(),
+            actual: self::createTokenizer('*')->next(),
             expected: new Token(TokenType::T_ASTERISK, 1),
         );
     }
@@ -38,7 +38,7 @@ class LexerTest extends TestCase
     public function testComma(): void
     {
         $this->assertEquals(
-            actual: self::createLexer(',')->next(),
+            actual: self::createTokenizer(',')->next(),
             expected: new Token(TokenType::T_COMMA, 1),
         );
     }
@@ -47,7 +47,7 @@ class LexerTest extends TestCase
     public function testComment(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('// This is a comment')->next(),
+            actual: self::createTokenizer('// This is a comment')->next(),
             expected: new Token(TokenType::T_EOF, 1),
         );
     }
@@ -56,7 +56,7 @@ class LexerTest extends TestCase
     public function testFloat(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('3.14')->next(),
+            actual: self::createTokenizer('3.14')->next(),
             expected: new Token(TokenType::T_FLOAT, 1, '3.14'),
         );
     }
@@ -65,12 +65,12 @@ class LexerTest extends TestCase
     public function testIdentifier(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('foo_123')->next(),
+            actual: self::createTokenizer('foo_123')->next(),
             expected: new Token(TokenType::T_IDENTIFIER, 1, 'foo_123'),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('_foo123')->next(),
+            actual: self::createTokenizer('_foo123')->next(),
             expected: new Token(TokenType::T_IDENTIFIER, 1, '_foo123'),
         );
     }
@@ -79,7 +79,7 @@ class LexerTest extends TestCase
     public function testInteger(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('123')->next(),
+            actual: self::createTokenizer('123')->next(),
             expected: new Token(TokenType::T_INTEGER, 1, '123'),
         );
     }
@@ -88,57 +88,57 @@ class LexerTest extends TestCase
     public function testKeyword(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('break')->next(),
+            actual: self::createTokenizer('break')->next(),
             expected: new Token(TokenType::T_KEYWORD_BREAK, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('const')->next(),
+            actual: self::createTokenizer('const')->next(),
             expected: new Token(TokenType::T_KEYWORD_CONST, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('continue')->next(),
+            actual: self::createTokenizer('continue')->next(),
             expected: new Token(TokenType::T_KEYWORD_CONTINUE, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('else')->next(),
+            actual: self::createTokenizer('else')->next(),
             expected: new Token(TokenType::T_KEYWORD_ELSE, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('false')->next(),
+            actual: self::createTokenizer('false')->next(),
             expected: new Token(TokenType::T_KEYWORD_FALSE, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('if')->next(),
+            actual: self::createTokenizer('if')->next(),
             expected: new Token(TokenType::T_KEYWORD_IF, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('null')->next(),
+            actual: self::createTokenizer('null')->next(),
             expected: new Token(TokenType::T_KEYWORD_NULL, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('print')->next(),
+            actual: self::createTokenizer('print')->next(),
             expected: new Token(TokenType::T_KEYWORD_PRINT, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('return')->next(),
+            actual: self::createTokenizer('return')->next(),
             expected: new Token(TokenType::T_KEYWORD_RETURN, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('true')->next(),
+            actual: self::createTokenizer('true')->next(),
             expected: new Token(TokenType::T_KEYWORD_TRUE, 1),
         );
 
         $this->assertEquals(
-            actual: self::createLexer('var')->next(),
+            actual: self::createTokenizer('var')->next(),
             expected: new Token(TokenType::T_KEYWORD_VAR, 1),
         );
     }
@@ -147,7 +147,7 @@ class LexerTest extends TestCase
     public function testLeftBrace(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('{')->next(),
+            actual: self::createTokenizer('{')->next(),
             expected: new Token(TokenType::T_LEFT_BRACE, 1),
         );
     }
@@ -156,7 +156,7 @@ class LexerTest extends TestCase
     public function testLeftBracket(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('[')->next(),
+            actual: self::createTokenizer('[')->next(),
             expected: new Token(TokenType::T_LEFT_BRACKET, 1),
         );
     }
@@ -165,7 +165,7 @@ class LexerTest extends TestCase
     public function testLeftParenthesis(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('(')->next(),
+            actual: self::createTokenizer('(')->next(),
             expected: new Token(TokenType::T_LEFT_PARENTHESIS, 1),
         );
     }
@@ -174,7 +174,7 @@ class LexerTest extends TestCase
     public function testMinus(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('-')->next(),
+            actual: self::createTokenizer('-')->next(),
             expected: new Token(TokenType::T_MINUS, 1),
         );
     }
@@ -183,7 +183,7 @@ class LexerTest extends TestCase
     public function testPlus(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('+')->next(),
+            actual: self::createTokenizer('+')->next(),
             expected: new Token(TokenType::T_PLUS, 1),
         );
     }
@@ -192,7 +192,7 @@ class LexerTest extends TestCase
     public function testRightBrace(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('}')->next(),
+            actual: self::createTokenizer('}')->next(),
             expected: new Token(TokenType::T_RIGHT_BRACE, 1),
         );
     }
@@ -201,7 +201,7 @@ class LexerTest extends TestCase
     public function testRightBracket(): void
     {
         $this->assertEquals(
-            actual: self::createLexer(']')->next(),
+            actual: self::createTokenizer(']')->next(),
             expected: new Token(TokenType::T_RIGHT_BRACKET, 1),
         );
     }
@@ -210,7 +210,7 @@ class LexerTest extends TestCase
     public function testRightParenthesis(): void
     {
         $this->assertEquals(
-            actual: self::createLexer(')')->next(),
+            actual: self::createTokenizer(')')->next(),
             expected: new Token(TokenType::T_RIGHT_PARENTHESIS, 1),
         );
     }
@@ -219,7 +219,7 @@ class LexerTest extends TestCase
     public function testSemicolon(): void
     {
         $this->assertEquals(
-            actual: self::createLexer(';')->next(),
+            actual: self::createTokenizer(';')->next(),
             expected: new Token(TokenType::T_SEMICOLON, 1),
         );
     }
@@ -228,7 +228,7 @@ class LexerTest extends TestCase
     public function testSlash(): void
     {
         $this->assertEquals(
-            actual: self::createLexer('/')->next(),
+            actual: self::createTokenizer('/')->next(),
             expected: new Token(TokenType::T_SLASH, 1),
         );
     }
@@ -237,13 +237,13 @@ class LexerTest extends TestCase
     public function testWhitespace(): void
     {
         $this->assertEquals(
-            actual: self::createLexer(" \t\nfoo")->next(),
+            actual: self::createTokenizer(" \t\nfoo")->next(),
             expected: new Token(TokenType::T_IDENTIFIER, 2, 'foo'),
         );
     }
 
-    private static function createLexer(string $input): LexerInterface
+    private static function createTokenizer(string $input): TokenizerInterface
     {
-        return new Lexer($input);
+        return new Tokenizer($input);
     }
 }

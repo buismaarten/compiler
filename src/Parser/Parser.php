@@ -11,24 +11,24 @@ use Override;
 use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Exceptions\UnexpectedEndOfInputException;
-use Package\Lexer\LexerInterface;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Statements;
-use Package\Token\Token;
-use Package\Token\TokenType;
+use Package\Tokenizer\Token;
+use Package\Tokenizer\TokenizerInterface;
+use Package\Tokenizer\TokenType;
 
 final class Parser implements ParserInterface
 {
-    private LexerInterface $lexer;
+    private TokenizerInterface $tokenizer;
     private Token $current;
 
-    public function __construct(LexerInterface $lexer)
+    public function __construct(TokenizerInterface $tokenizer)
     {
-        $this->lexer = $lexer;
-        $this->current = $this->lexer->next();
+        $this->tokenizer = $tokenizer;
+        $this->current = $this->tokenizer->next();
     }
 
     #[Override]
@@ -318,7 +318,7 @@ final class Parser implements ParserInterface
             throw new ExpectedTokenException($token->line, $type->name, $token->type->name);
         }
 
-        $this->current = $this->lexer->next();
+        $this->current = $this->tokenizer->next();
 
         return $token;
     }

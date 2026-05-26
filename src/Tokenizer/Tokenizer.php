@@ -5,17 +5,15 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-namespace Package\Lexer;
+namespace Package\Tokenizer;
 
 use Override;
-use Package\Exceptions\Lexer\UnexpectedCharacterException;
+use Package\Exceptions\Tokenizer\UnexpectedCharacterException;
 use Package\Exceptions\UnexpectedEndOfInputException;
 use Package\Input\Input;
 use Package\Input\InputInterface;
-use Package\Token\Token;
-use Package\Token\TokenType;
 
-final class Lexer implements LexerInterface
+final class Tokenizer implements TokenizerInterface
 {
     private InputInterface $input;
     private int $line = 1;

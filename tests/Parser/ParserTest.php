@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Tests\Parser;
 
-use Package\Lexer\Lexer;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Statements;
 use Package\Parser\Parser;
 use Package\Parser\ParserInterface;
+use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -316,8 +316,8 @@ class ParserTest extends TestCase
 
     private static function createParser(string $input): ParserInterface
     {
-        $lexer = new Lexer($input);
-        $parser = new Parser($lexer);
+        $Tokenizer = new Tokenizer($input);
+        $parser = new Parser($Tokenizer);
 
         return $parser;
     }
