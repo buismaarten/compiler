@@ -19,6 +19,36 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     #[Test]
+    public function testBooleanLiteral(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('false;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Literals\BooleanLiteral(
+                        line: 1,
+                        value: false,
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('true;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Literals\BooleanLiteral(
+                        line: 1,
+                        value: true,
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testBreakStatement(): void
     {
         $this->assertEquals(
@@ -82,36 +112,6 @@ class ParserTest extends TestCase
                     level: new Literals\IntegerLiteral(
                         line: 1,
                         value: 2,
-                    ),
-                ),
-            ],
-        );
-    }
-
-    #[Test]
-    public function testBooleanLiteral(): void
-    {
-        $this->assertEquals(
-            actual: self::createParser('false;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Literals\BooleanLiteral(
-                        line: 1,
-                        value: false,
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('true;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Literals\BooleanLiteral(
-                        line: 1,
-                        value: true,
                     ),
                 ),
             ],
