@@ -164,6 +164,7 @@ final class Tokenizer implements TokenizerInterface
             }
         }
 
+        // @phpstan-ignore-next-line
         if ($this->input->current() === '"') {
             $this->input->next();
         }
