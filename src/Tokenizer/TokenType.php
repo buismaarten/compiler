@@ -38,4 +38,5 @@ enum TokenType
     case T_RIGHT_PARENTHESIS;
     case T_SEMICOLON;
     case T_SLASH;
+    case T_STRING;
 }

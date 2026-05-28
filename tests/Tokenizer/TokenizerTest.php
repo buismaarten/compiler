@@ -234,6 +234,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testString(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('"Hello, World!"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, 'Hello, World!'),
+        );
+    }
+
+    #[Test]
     public function testWhitespace(): void
     {
         $this->assertEquals(
