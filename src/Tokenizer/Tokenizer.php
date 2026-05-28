@@ -148,21 +148,21 @@ final class Tokenizer implements TokenizerInterface
 
     private function tokenizeString(): Token
     {
+        $value = '';
+
         if ($this->input->current() === '"') {
             $this->input->next();
         }
 
-        $start = $this->input->offset();
-
-        while (($current = $this->input->current()) !== null && $current !== '"') {
+        // TODO
+        while (($current = $this->input->current()) !== '"') {
+            $value .= $current;
             $this->input->next();
-        }
 
-        if ($this->input->current() === null) {
-            throw new UnexpectedEndOfInputException($this->line);
+            if ($this->input->current() === null) {
+                throw new UnexpectedEndOfInputException($this->line);
+            }
         }
-
-        $value = $this->input->slice($start, $this->input->offset());
 
         if ($this->input->current() === '"') {
             $this->input->next();
