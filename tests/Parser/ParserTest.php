@@ -275,6 +275,23 @@ class ParserTest extends TestCase
     }
 
     #[Test]
+    public function testStringLiteral(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('"Hello, World!";')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Literals\StringLiteral(
+                        line: 1,
+                        value: 'Hello, World!',
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testVarStatement(): void
     {
         $this->assertEquals(

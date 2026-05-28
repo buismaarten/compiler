@@ -119,6 +119,7 @@ final class Parser implements ParserInterface
             TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(false),
             TokenType::T_KEYWORD_NULL  => $this->parseNullLiteral(),
             TokenType::T_KEYWORD_TRUE  => $this->parseBooleanLiteral(true),
+            TokenType::T_STRING        => $this->parseStringLiteral(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
@@ -262,6 +263,16 @@ final class Parser implements ParserInterface
             // Fallback
             default => $this->parseExpressionStatement(),
         };
+    }
+
+    private function parseStringLiteral(): Literals\StringLiteral
+    {
+        $token = $this->expect(TokenType::T_STRING);
+
+        return new Literals\StringLiteral(
+            line: $token->line,
+            value: $token->value,
+        );
     }
 
     private function parseVarStatement(): Statements\VarStatement
