@@ -155,7 +155,7 @@ final class Tokenizer implements TokenizerInterface
         }
 
         // TODO
-        while (($current = $this->input->current()) !== '"') {
+        while (($current = $this->input->current()) !== null && $current !== '"') {
             $value .= $current;
             $this->input->next();
 
@@ -164,7 +164,6 @@ final class Tokenizer implements TokenizerInterface
             }
         }
 
-        // @phpstan-ignore-next-line
         if ($this->input->current() === '"') {
             $this->input->next();
         }
