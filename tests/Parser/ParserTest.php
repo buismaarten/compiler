@@ -119,6 +119,23 @@ class ParserTest extends TestCase
     }
 
     #[Test]
+    public function testDecrementExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo--;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\DecrementExpression(
+                        line: 1,
+                        name: 'foo',
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testFloatLiteral(): void
     {
         $this->assertEquals(
@@ -192,6 +209,23 @@ class ParserTest extends TestCase
                             line: 1,
                         ),
                     ],
+                ),
+            ],
+        );
+    }
+
+    #[Test]
+    public function testIncrementExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo++;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\IncrementExpression(
+                        line: 1,
+                        name: 'foo',
+                    ),
                 ),
             ],
         );

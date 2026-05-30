@@ -150,9 +150,27 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseIdentifierExpression(): Expressions\IdentifierExpression
+    private function parseIdentifierExpression(): AbstractExpression
     {
         $token = $this->expect(TokenType::T_IDENTIFIER);
+
+        if ($this->current->type === TokenType::T_DECREMENT) {
+            $this->expect(TokenType::T_DECREMENT);
+
+            return new Expressions\DecrementExpression(
+                line: $token->line,
+                name: $token->value,
+            );
+        }
+
+        if ($this->current->type === TokenType::T_INCREMENT) {
+            $this->expect(TokenType::T_INCREMENT);
+
+            return new Expressions\IncrementExpression(
+                line: $token->line,
+                name: $token->value,
+            );
+        }
 
         return new Expressions\IdentifierExpression(
             line: $token->line,

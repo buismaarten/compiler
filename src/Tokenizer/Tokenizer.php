@@ -64,13 +64,13 @@ final class Tokenizer implements TokenizerInterface
             '{' => $this->tokenizeCharacter(TokenType::T_LEFT_BRACE),
             '[' => $this->tokenizeCharacter(TokenType::T_LEFT_BRACKET),
             '(' => $this->tokenizeCharacter(TokenType::T_LEFT_PARENTHESIS),
-            '-' => $this->tokenizeCharacter(TokenType::T_MINUS),
-            '+' => $this->tokenizeCharacter(TokenType::T_PLUS),
             '}' => $this->tokenizeCharacter(TokenType::T_RIGHT_BRACE),
             ']' => $this->tokenizeCharacter(TokenType::T_RIGHT_BRACKET),
             ')' => $this->tokenizeCharacter(TokenType::T_RIGHT_PARENTHESIS),
             ';' => $this->tokenizeCharacter(TokenType::T_SEMICOLON),
             '_' => $this->tokenizeIdentifier(),
+            '+' => $this->tokenizePlus(),
+            '-' => $this->tokenizeMinus(),
             '/' => $this->tokenizeSlash(),
             '"' => $this->tokenizeString(),
 
@@ -115,6 +115,19 @@ final class Tokenizer implements TokenizerInterface
         return new Token($type, $this->line, $value);
     }
 
+    private function tokenizeMinus(): Token
+    {
+        $this->input->next();
+
+        if ($this->input->current() === '-') {
+            $this->input->next();
+
+            return new Token(TokenType::T_DECREMENT, $this->line);
+        }
+
+        return new Token(TokenType::T_MINUS, $this->line);
+    }
+
     private function tokenizeNumber(): Token
     {
         $start = $this->input->offset();
@@ -142,6 +155,19 @@ final class Tokenizer implements TokenizerInterface
             line: $this->line,
             value: $this->input->slice($start, $this->input->offset()),
         );
+    }
+
+    private function tokenizePlus(): Token
+    {
+        $this->input->next();
+
+        if ($this->input->current() === '+') {
+            $this->input->next();
+
+            return new Token(TokenType::T_INCREMENT, $this->line);
+        }
+
+        return new Token(TokenType::T_PLUS, $this->line);
     }
 
     private function tokenizeSlash(): ?Token

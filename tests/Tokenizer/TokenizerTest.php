@@ -53,6 +53,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testDecrement(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('--')->next(),
+            expected: new Token(TokenType::T_DECREMENT, 1),
+        );
+    }
+
+    #[Test]
     public function testFloat(): void
     {
         $this->assertEquals(
@@ -72,6 +81,15 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('_foo123')->next(),
             expected: new Token(TokenType::T_IDENTIFIER, 1, '_foo123'),
+        );
+    }
+
+    #[Test]
+    public function testIncrement(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('++')->next(),
+            expected: new Token(TokenType::T_INCREMENT, 1),
         );
     }
 
