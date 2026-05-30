@@ -109,7 +109,7 @@ final class Tokenizer implements TokenizerInterface
             $this->input->next();
         }
 
-        if ($this->input->current() === '.') {
+        if ($current === '.') {
             $token = TokenType::T_FLOAT;
             $this->input->next();
 
