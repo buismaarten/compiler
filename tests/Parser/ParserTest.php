@@ -189,6 +189,54 @@ class ParserTest extends TestCase
                 ),
             ],
         );
+
+        $this->assertEquals(
+            actual: self::createParser('foo(123, );')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\FunctionCallExpression(
+                        line: 1,
+                        name: 'foo',
+                        arguments: [
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 123,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('foo(123, foo("bar"));')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\FunctionCallExpression(
+                        line: 1,
+                        name: 'foo',
+                        arguments: [
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 123,
+                            ),
+                            new Expressions\FunctionCallExpression(
+                                line: 1,
+                                name: 'foo',
+                                arguments: [
+                                    new Literals\StringLiteral(
+                                        line: 1,
+                                        value: 'bar',
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]

@@ -182,15 +182,27 @@ final class Parser implements ParserInterface
             );
         }
 
-        // TODO
         if ($this->current->type === TokenType::T_LEFT_PARENTHESIS) {
+            $arguments = [];
+
             $this->expect(TokenType::T_LEFT_PARENTHESIS);
+
+            while ($this->current->type !== TokenType::T_RIGHT_PARENTHESIS) {
+                $arguments[] = $this->parseExpression();
+
+                if ($this->current->type === TokenType::T_COMMA) {
+                    $this->expect(TokenType::T_COMMA);
+                } else {
+                    break;
+                }
+            }
+
             $this->expect(TokenType::T_RIGHT_PARENTHESIS);
 
             return new Expressions\FunctionCallExpression(
                 line: $token->line,
                 name: $token->value,
-                arguments: [],
+                arguments: $arguments,
             );
         }
 
