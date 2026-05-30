@@ -15,6 +15,21 @@ use Package\Input\InputInterface;
 
 final class Tokenizer implements TokenizerInterface
 {
+    private const KEYWORDS = [
+        'break'    => TokenType::T_KEYWORD_BREAK,
+        'const'    => TokenType::T_KEYWORD_CONST,
+        'continue' => TokenType::T_KEYWORD_CONTINUE,
+        'else'     => TokenType::T_KEYWORD_ELSE,
+        'false'    => TokenType::T_KEYWORD_FALSE,
+        'if'       => TokenType::T_KEYWORD_IF,
+        'null'     => TokenType::T_KEYWORD_NULL,
+        'print'    => TokenType::T_KEYWORD_PRINT,
+        'return'   => TokenType::T_KEYWORD_RETURN,
+        'true'     => TokenType::T_KEYWORD_TRUE,
+        'var'      => TokenType::T_KEYWORD_VAR,
+        'while'    => TokenType::T_KEYWORD_WHILE,
+    ];
+
     private InputInterface $input;
     private int $line = 1;
 
@@ -91,7 +106,7 @@ final class Tokenizer implements TokenizerInterface
         }
 
         $value = $this->input->slice($start, $this->input->offset());
-        $type = self::resolveKeyword($value);
+        $type = self::KEYWORDS[$value] ?? TokenType::T_IDENTIFIER;
 
         if ($type !== TokenType::T_IDENTIFIER) {
             $value = '';
@@ -207,26 +222,5 @@ final class Tokenizer implements TokenizerInterface
         }
 
         return new Token(TokenType::T_STRING, $this->line, $value);
-    }
-
-    private static function resolveKeyword(string $value): TokenType
-    {
-        return match ($value) {
-            'break'    => TokenType::T_KEYWORD_BREAK,
-            'const'    => TokenType::T_KEYWORD_CONST,
-            'continue' => TokenType::T_KEYWORD_CONTINUE,
-            'else'     => TokenType::T_KEYWORD_ELSE,
-            'false'    => TokenType::T_KEYWORD_FALSE,
-            'if'       => TokenType::T_KEYWORD_IF,
-            'null'     => TokenType::T_KEYWORD_NULL,
-            'print'    => TokenType::T_KEYWORD_PRINT,
-            'return'   => TokenType::T_KEYWORD_RETURN,
-            'true'     => TokenType::T_KEYWORD_TRUE,
-            'var'      => TokenType::T_KEYWORD_VAR,
-            'while'    => TokenType::T_KEYWORD_WHILE,
-
-            // Fallback
-            default => TokenType::T_IDENTIFIER,
-        };
     }
 }
