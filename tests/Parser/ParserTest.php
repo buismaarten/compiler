@@ -19,6 +19,27 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     #[Test]
+    public function testAssignmentExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo = 123;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\AssignmentExpression(
+                        line: 1,
+                        name: 'foo',
+                        expression: new Literals\IntegerLiteral(
+                            line: 1,
+                            value: 123,
+                        ),
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testBooleanLiteral(): void
     {
         $this->assertEquals(

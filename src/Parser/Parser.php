@@ -154,6 +154,16 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::T_IDENTIFIER);
 
+        if ($this->current->type === TokenType::T_ASSIGN) {
+            $this->expect(TokenType::T_ASSIGN);
+
+            return new Expressions\AssignmentExpression(
+                line: $token->line,
+                name: $token->value,
+                expression: $this->parseExpression(),
+            );
+        }
+
         if ($this->current->type === TokenType::T_DECREMENT) {
             $this->expect(TokenType::T_DECREMENT);
 
