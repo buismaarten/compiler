@@ -240,6 +240,61 @@ class TokenizerTest extends TestCase
             actual: self::createTokenizer('"Hello, World!"')->next(),
             expected: new Token(TokenType::T_STRING, 1, 'Hello, World!'),
         );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\'"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, "'"),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\""')->next(),
+            expected: new Token(TokenType::T_STRING, 1, '"'),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\\\\"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, '\\'),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\0"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, "\0"),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\f"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, "\f"),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\n"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, "\n"),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\r"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, "\r"),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\t"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, "\t"),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\u1F600"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, '😀'),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\v"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, "\v"),
+        );
+
+        $this->assertEquals(
+            actual: self::createTokenizer('"\p"')->next(),
+            expected: new Token(TokenType::T_STRING, 1, '\p'),
+        );
     }
 
     #[Test]

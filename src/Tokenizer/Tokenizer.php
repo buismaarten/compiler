@@ -154,12 +154,50 @@ final class Tokenizer implements TokenizerInterface
             $this->input->next();
         }
 
-        // TODO
         while (($current = $this->input->current()) !== null && $current !== '"') {
-            $value .= $current;
-            $this->input->next();
+            if ($current === '\\') {
+                $this->input->next();
 
-            if ($this->input->current() === null) {
+                if (($current = $this->input->current()) !== null) {
+                    switch ($current) {
+                        case 'u':
+                            $hex = '';
+                            $this->input->next();
+
+                            while (($current = $this->input->current()) !== null && ctype_xdigit($current)) {
+                                $hex .= $current;
+                                $this->input->next();
+                            }
+
+                            $value .= mb_chr(intval($hex, 16), 'UTF-8');
+                        break;
+
+                        default:
+                            $value .= match ($current) {
+                                "'"  => "'",
+                                '"'  => '"',
+                                '\\' => '\\',
+                                '0'  => "\0",
+                                'f'  => "\f",
+                                'n'  => "\n",
+                                'r'  => "\r",
+                                't'  => "\t",
+                                'v'  => "\v",
+
+                                // Fallback
+                                default => '\\'.$current,
+                            };
+
+                            $this->input->next();
+                        break;
+                    }
+                }
+            } else {
+                $value .= $current;
+                $this->input->next();
+            }
+
+            if ($current === null) {
                 throw new UnexpectedEndOfInputException($this->line);
             }
         }
