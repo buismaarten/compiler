@@ -172,6 +172,18 @@ final class Parser implements ParserInterface
             );
         }
 
+        // TODO
+        if ($this->current->type === TokenType::T_LEFT_PARENTHESIS) {
+            $this->expect(TokenType::T_LEFT_PARENTHESIS);
+            $this->expect(TokenType::T_RIGHT_PARENTHESIS);
+
+            return new Expressions\FunctionCallExpression(
+                line: $token->line,
+                name: $token->value,
+                arguments: [],
+            );
+        }
+
         return new Expressions\IdentifierExpression(
             line: $token->line,
             name: $token->value,

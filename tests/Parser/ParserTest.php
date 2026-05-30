@@ -153,6 +153,24 @@ class ParserTest extends TestCase
     }
 
     #[Test]
+    public function testFunctionCallExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo();')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\FunctionCallExpression(
+                        line: 1,
+                        name: 'foo',
+                        arguments: [],
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testIdentifierExpression(): void
     {
         $this->assertEquals(
