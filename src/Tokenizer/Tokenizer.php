@@ -15,7 +15,8 @@ use Package\Input\InputInterface;
 
 final class Tokenizer implements TokenizerInterface
 {
-    private const KEYWORDS = [
+    private const MAPPING = [
+        // Keywords
         'break'    => TokenType::T_KEYWORD_BREAK,
         'const'    => TokenType::T_KEYWORD_CONST,
         'continue' => TokenType::T_KEYWORD_CONTINUE,
@@ -29,6 +30,13 @@ final class Tokenizer implements TokenizerInterface
         'true'     => TokenType::T_KEYWORD_TRUE,
         'var'      => TokenType::T_KEYWORD_VAR,
         'while'    => TokenType::T_KEYWORD_WHILE,
+
+        // Types
+        'bool'   => TokenType::T_TYPE,
+        'float'  => TokenType::T_TYPE,
+        'int'    => TokenType::T_TYPE,
+        'string' => TokenType::T_TYPE,
+        'void'   => TokenType::T_TYPE,
     ];
 
     private InputInterface $input;
@@ -108,9 +116,9 @@ final class Tokenizer implements TokenizerInterface
         }
 
         $value = $this->input->slice($start, $this->input->offset());
-        $type = self::KEYWORDS[$value] ?? TokenType::T_IDENTIFIER;
+        $type = self::MAPPING[$value] ?? TokenType::T_IDENTIFIER;
 
-        if ($type !== TokenType::T_IDENTIFIER) {
+        if ($type !== TokenType::T_IDENTIFIER && $type !== TokenType::T_TYPE) {
             $value = '';
         }
 
