@@ -23,6 +23,7 @@ enum TokenType
     case T_KEYWORD_CONTINUE;
     case T_KEYWORD_ELSE;
     case T_KEYWORD_FALSE;
+    case T_KEYWORD_FN;
     case T_KEYWORD_IF;
     case T_KEYWORD_NULL;
     case T_KEYWORD_PRINT;

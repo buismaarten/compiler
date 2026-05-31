@@ -131,6 +131,11 @@ class TokenizerTest extends TestCase
         );
 
         $this->assertEquals(
+            actual: self::createTokenizer('fn')->next(),
+            expected: new Token(TokenType::T_KEYWORD_FN, 1),
+        );
+
+        $this->assertEquals(
             actual: self::createTokenizer('if')->next(),
             expected: new Token(TokenType::T_KEYWORD_IF, 1),
         );

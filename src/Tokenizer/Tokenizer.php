@@ -21,6 +21,7 @@ final class Tokenizer implements TokenizerInterface
         'continue' => TokenType::T_KEYWORD_CONTINUE,
         'else'     => TokenType::T_KEYWORD_ELSE,
         'false'    => TokenType::T_KEYWORD_FALSE,
+        'fn'       => TokenType::T_KEYWORD_FN,
         'if'       => TokenType::T_KEYWORD_IF,
         'null'     => TokenType::T_KEYWORD_NULL,
         'print'    => TokenType::T_KEYWORD_PRINT,
