@@ -150,6 +150,29 @@ final class Parser implements ParserInterface
         );
     }
 
+    private function parseFunctionStatement(): Statements\FunctionStatement
+    {
+        $token = $this->expect(TokenType::T_KEYWORD_FN);
+        $name = $this->expect(TokenType::T_IDENTIFIER);
+        $statements = [];
+
+        $this->expect(TokenType::T_LEFT_PARENTHESIS);
+        $this->expect(TokenType::T_RIGHT_PARENTHESIS);
+        $this->expect(TokenType::T_LEFT_BRACE);
+
+        while ($this->current->type !== TokenType::T_RIGHT_BRACE) {
+            $statements[] = $this->parseStatement();
+        }
+
+        $this->expect(TokenType::T_RIGHT_BRACE);
+
+        return new Statements\FunctionStatement(
+            line: $token->line,
+            name: $name->value,
+            statements: $statements,
+        );
+    }
+
     private function parseIdentifierExpression(): AbstractExpression
     {
         $token = $this->expect(TokenType::T_IDENTIFIER);
@@ -306,6 +329,7 @@ final class Parser implements ParserInterface
             TokenType::T_KEYWORD_BREAK    => $this->parseBreakStatement(),
             TokenType::T_KEYWORD_CONST    => $this->parseConstStatement(),
             TokenType::T_KEYWORD_CONTINUE => $this->parseContinueStatement(),
+            TokenType::T_KEYWORD_FN       => $this->parseFunctionStatement(),
             TokenType::T_KEYWORD_IF       => $this->parseIfStatement(),
             TokenType::T_KEYWORD_PRINT    => $this->parsePrintStatement(),
             TokenType::T_KEYWORD_RETURN   => $this->parseReturnStatement(),
