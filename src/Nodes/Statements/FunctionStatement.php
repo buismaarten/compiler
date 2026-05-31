@@ -8,11 +8,13 @@ declare(strict_types=1);
 namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Enums\Type;
 use Package\Nodes\Parameter;
 
 final class FunctionStatement extends AbstractStatement
 {
     public readonly string $name;
+    public readonly Type $type;
 
     /** @var Parameter[] */
     public readonly array $parameters;
@@ -24,11 +26,12 @@ final class FunctionStatement extends AbstractStatement
      * @param Parameter[] $parameters
      * @param AbstractStatement[] $statements
      */
-    public function __construct(int $line, string $name, array $parameters, array $statements)
+    public function __construct(int $line, string $name, Type $type, array $parameters, array $statements)
     {
         parent::__construct($line);
 
         $this->name = $name;
+        $this->type = $type;
         $this->parameters = $parameters;
         $this->statements = $statements;
     }

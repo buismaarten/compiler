@@ -155,6 +155,7 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::T_KEYWORD_FN);
         $name = $this->expect(TokenType::T_IDENTIFIER);
+        $type = Type::Void;
         $parameters = [];
         $statements = [];
 
@@ -171,6 +172,14 @@ final class Parser implements ParserInterface
         }
 
         $this->expect(TokenType::T_RIGHT_PARENTHESIS);
+
+        if ($this->current->type === TokenType::T_COLON) {
+            $this->expect(TokenType::T_COLON);
+
+            $type = $this->expect(TokenType::T_TYPE);
+            $type = Type::from($type->value);
+        }
+
         $this->expect(TokenType::T_LEFT_BRACE);
 
         while ($this->current->type !== TokenType::T_RIGHT_BRACE) {
@@ -182,6 +191,7 @@ final class Parser implements ParserInterface
         return new Statements\FunctionStatement(
             line: $token->line,
             name: $name->value,
+            type: $type,
             parameters: $parameters,
             statements: $statements,
         );

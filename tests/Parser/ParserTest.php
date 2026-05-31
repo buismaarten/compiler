@@ -184,6 +184,7 @@ class ParserTest extends TestCase
                 new Statements\FunctionStatement(
                     line: 1,
                     name: 'foo',
+                    type: Type::Void,
                     parameters: [],
                     statements: [
                         new Statements\PrintStatement(
@@ -199,11 +200,12 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('fn foo(bar: int, baz: string) { print "Hello, World!"; }')->parse(),
+            actual: self::createParser('fn foo(bar: int, baz: string): string { return "Hello, World!"; }')->parse(),
             expected: [
                 new Statements\FunctionStatement(
                     line: 1,
                     name: 'foo',
+                    type: Type::String,
                     parameters: [
                         new Parameter(
                             line: 1,
@@ -217,7 +219,7 @@ class ParserTest extends TestCase
                         ),
                     ],
                     statements: [
-                        new Statements\PrintStatement(
+                        new Statements\ReturnStatement(
                             line: 1,
                             expression: new Literals\StringLiteral(
                                 line: 1,
