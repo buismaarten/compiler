@@ -61,6 +61,7 @@ final class Tokenizer implements TokenizerInterface
         $token = match ($current) {
             '=' => $this->tokenizeCharacter(TokenType::T_ASSIGN),
             '*' => $this->tokenizeCharacter(TokenType::T_ASTERISK),
+            ':' => $this->tokenizeCharacter(TokenType::T_COLON),
             ',' => $this->tokenizeCharacter(TokenType::T_COMMA),
             '{' => $this->tokenizeCharacter(TokenType::T_LEFT_BRACE),
             '[' => $this->tokenizeCharacter(TokenType::T_LEFT_BRACKET),

@@ -11,6 +11,7 @@ enum TokenType
 {
     case T_ASSIGN;
     case T_ASTERISK;
+    case T_COLON;
     case T_COMMA;
     case T_DECREMENT;
     case T_EOF;

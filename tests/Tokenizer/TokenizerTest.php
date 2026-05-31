@@ -35,6 +35,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testColon(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer(':')->next(),
+            expected: new Token(TokenType::T_COLON, 1),
+        );
+    }
+
+    #[Test]
     public function testComma(): void
     {
         $this->assertEquals(
