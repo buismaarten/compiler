@@ -154,6 +154,7 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::T_KEYWORD_FN);
         $name = $this->expect(TokenType::T_IDENTIFIER);
+        $parameters = [];
         $statements = [];
 
         $this->expect(TokenType::T_LEFT_PARENTHESIS);
@@ -169,6 +170,7 @@ final class Parser implements ParserInterface
         return new Statements\FunctionStatement(
             line: $token->line,
             name: $name->value,
+            parameters: $parameters,
             statements: $statements,
         );
     }

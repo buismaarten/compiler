@@ -182,6 +182,7 @@ class ParserTest extends TestCase
                 new Statements\FunctionStatement(
                     line: 1,
                     name: 'foo',
+                    parameters: [],
                     statements: [
                         new Statements\PrintStatement(
                             line: 1,

@@ -14,14 +14,21 @@ final class FunctionStatement extends AbstractStatement
     public readonly string $name;
 
     /** @var AbstractStatement[] */
+    public readonly array $parameters;
+
+    /** @var AbstractStatement[] */
     public readonly array $statements;
 
-    /** @param AbstractStatement[] $statements */
-    public function __construct(int $line, string $name, array $statements)
+    /**
+     * @param AbstractStatement[] $parameters
+     * @param AbstractStatement[] $statements
+     */
+    public function __construct(int $line, string $name, array $parameters, array $statements)
     {
         parent::__construct($line);
 
         $this->name = $name;
+        $this->parameters = $parameters;
         $this->statements = $statements;
     }
 }
