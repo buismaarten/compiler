@@ -198,7 +198,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('fn foo(bar, ) { print "Hello, World!"; }')->parse(),
+            actual: self::createParser('fn foo(bar) { print "Hello, World!"; }')->parse(),
             expected: [
                 new Statements\FunctionStatement(
                     line: 1,
@@ -270,7 +270,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('foo(123, );')->parse(),
+            actual: self::createParser('foo(123);')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
                     line: 1,
