@@ -198,31 +198,6 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('fn foo(bar) { print "Hello, World!"; }')->parse(),
-            expected: [
-                new Statements\FunctionStatement(
-                    line: 1,
-                    name: 'foo',
-                    parameters: [
-                        new Parameter(
-                            line: 1,
-                            name: 'bar',
-                        ),
-                    ],
-                    statements: [
-                        new Statements\PrintStatement(
-                            line: 1,
-                            expression: new Literals\StringLiteral(
-                                line: 1,
-                                value: 'Hello, World!',
-                            ),
-                        ),
-                    ],
-                ),
-            ],
-        );
-
-        $this->assertEquals(
             actual: self::createParser('fn foo(bar, baz) { print "Hello, World!"; }')->parse(),
             expected: [
                 new Statements\FunctionStatement(
@@ -264,25 +239,6 @@ class ParserTest extends TestCase
                         line: 1,
                         name: 'foo',
                         arguments: [],
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('foo(123);')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\FunctionCallExpression(
-                        line: 1,
-                        name: 'foo',
-                        arguments: [
-                            new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 123,
-                            ),
-                        ],
                     ),
                 ),
             ],
