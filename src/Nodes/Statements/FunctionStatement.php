@@ -8,19 +8,20 @@ declare(strict_types=1);
 namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Parameter;
 
 final class FunctionStatement extends AbstractStatement
 {
     public readonly string $name;
 
-    /** @var AbstractStatement[] */
+    /** @var Parameter[] */
     public readonly array $parameters;
 
     /** @var AbstractStatement[] */
     public readonly array $statements;
 
     /**
-     * @param AbstractStatement[] $parameters
+     * @param Parameter[] $parameters
      * @param AbstractStatement[] $statements
      */
     public function __construct(int $line, string $name, array $parameters, array $statements)

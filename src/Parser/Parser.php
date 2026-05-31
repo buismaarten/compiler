@@ -15,6 +15,7 @@ use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
+use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Tokenizer\Token;
 use Package\Tokenizer\TokenizerInterface;
@@ -149,7 +150,6 @@ final class Parser implements ParserInterface
         );
     }
 
-    // TODO
     private function parseFunctionStatement(): Statements\FunctionStatement
     {
         $token = $this->expect(TokenType::T_KEYWORD_FN);
@@ -158,6 +158,17 @@ final class Parser implements ParserInterface
         $statements = [];
 
         $this->expect(TokenType::T_LEFT_PARENTHESIS);
+
+        while ($this->current->type !== TokenType::T_RIGHT_PARENTHESIS) {
+            $parameters[] = $this->parseParameter();
+
+            if ($this->current->type === TokenType::T_COMMA) {
+                $this->expect(TokenType::T_COMMA);
+            } else {
+                break;
+            }
+        }
+
         $this->expect(TokenType::T_RIGHT_PARENTHESIS);
         $this->expect(TokenType::T_LEFT_BRACE);
 
@@ -291,6 +302,17 @@ final class Parser implements ParserInterface
 
         return new Literals\NullLiteral(
             line: $token->line,
+        );
+    }
+
+    // TODO
+    private function parseParameter(): Parameter
+    {
+        $token = $this->expect(TokenType::T_IDENTIFIER);
+
+        return new Parameter(
+            line: $token->line,
+            name: $token->value,
         );
     }
 

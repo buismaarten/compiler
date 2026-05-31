@@ -9,6 +9,7 @@ namespace Package\Tests\Parser;
 
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
+use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Parser\Parser;
 use Package\Parser\ParserInterface;
@@ -183,6 +184,35 @@ class ParserTest extends TestCase
                     line: 1,
                     name: 'foo',
                     parameters: [],
+                    statements: [
+                        new Statements\PrintStatement(
+                            line: 1,
+                            expression: new Literals\StringLiteral(
+                                line: 1,
+                                value: 'Hello, World!',
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('fn foo(bar, baz) { print "Hello, World!"; }')->parse(),
+            expected: [
+                new Statements\FunctionStatement(
+                    line: 1,
+                    name: 'foo',
+                    parameters: [
+                        new Parameter(
+                            line: 1,
+                            name: 'bar',
+                        ),
+                        new Parameter(
+                            line: 1,
+                            name: 'baz',
+                        ),
+                    ],
                     statements: [
                         new Statements\PrintStatement(
                             line: 1,
