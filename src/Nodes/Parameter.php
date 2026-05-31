@@ -7,14 +7,18 @@ declare(strict_types=1);
 
 namespace Package\Nodes;
 
+use Package\Nodes\Enums\Type;
+
 final class Parameter extends AbstractNode
 {
     public readonly string $name;
+    public readonly Type $type;
 
-    public function __construct(int $line, string $name)
+    public function __construct(int $line, string $name, Type $type)
     {
         parent::__construct($line);
 
         $this->name = $name;
+        $this->type = $type;
     }
 }

@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tests\Parser;
 
+use Package\Nodes\Enums\Type;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Parameter;
@@ -198,7 +199,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('fn foo(bar, baz) { print "Hello, World!"; }')->parse(),
+            actual: self::createParser('fn foo(bar: int, baz: string) { print "Hello, World!"; }')->parse(),
             expected: [
                 new Statements\FunctionStatement(
                     line: 1,
@@ -207,10 +208,12 @@ class ParserTest extends TestCase
                         new Parameter(
                             line: 1,
                             name: 'bar',
+                            type: Type::Integer,
                         ),
                         new Parameter(
                             line: 1,
                             name: 'baz',
+                            type: Type::String,
                         ),
                     ],
                     statements: [

@@ -13,6 +13,7 @@ use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Exceptions\UnexpectedEndOfInputException;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Enums\Type;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Parameter;
@@ -305,14 +306,18 @@ final class Parser implements ParserInterface
         );
     }
 
-    // TODO
     private function parseParameter(): Parameter
     {
         $token = $this->expect(TokenType::T_IDENTIFIER);
+        $this->expect(TokenType::T_COLON);
+
+        $type = $this->expect(TokenType::T_TYPE);
+        $type = Type::from($type->value);
 
         return new Parameter(
             line: $token->line,
             name: $token->value,
+            type: $type,
         );
     }
 
