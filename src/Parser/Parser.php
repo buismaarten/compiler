@@ -78,7 +78,6 @@ final class Parser implements ParserInterface
     private function parseConstStatement(): Statements\ConstStatement
     {
         $token = $this->expect(TokenType::T_KEYWORD_CONST);
-
         $name = $this->expect(TokenType::T_IDENTIFIER);
         $this->expect(TokenType::T_ASSIGN);
 
@@ -354,7 +353,6 @@ final class Parser implements ParserInterface
     private function parseVarStatement(): Statements\VarStatement
     {
         $token = $this->expect(TokenType::T_KEYWORD_VAR);
-
         $name = $this->expect(TokenType::T_IDENTIFIER);
         $this->expect(TokenType::T_ASSIGN);
 
