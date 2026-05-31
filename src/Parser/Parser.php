@@ -149,6 +149,7 @@ final class Parser implements ParserInterface
         );
     }
 
+    // TODO
     private function parseFunctionStatement(): Statements\FunctionStatement
     {
         $token = $this->expect(TokenType::T_KEYWORD_FN);
