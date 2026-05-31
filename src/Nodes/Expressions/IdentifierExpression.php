@@ -11,8 +11,12 @@ use Package\Nodes\AbstractExpression;
 
 final class IdentifierExpression extends AbstractExpression
 {
-    public function __construct(
-        public readonly int $line,
-        public readonly string $name,
-    ) {}
+    public readonly string $name;
+
+    public function __construct(int $line, string $name)
+    {
+        parent::__construct($line);
+
+        $this->name = $name;
+    }
 }

@@ -11,11 +11,17 @@ use Package\Nodes\AbstractExpression;
 
 final class FunctionCallExpression extends AbstractExpression
 {
-    public function __construct(
-        public readonly int $line,
-        public readonly string $name,
+    public readonly string $name;
 
-        /** @var AbstractExpression[] */
-        public readonly array $arguments,
-    ) {}
+    /** @var AbstractExpression[] */
+    public readonly array $arguments;
+
+    /** @param AbstractExpression[] $arguments */
+    public function __construct(int $line, string $name, array $arguments)
+    {
+        parent::__construct($line);
+
+        $this->name = $name;
+        $this->arguments = $arguments;
+    }
 }
