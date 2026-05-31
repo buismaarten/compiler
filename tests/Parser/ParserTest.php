@@ -208,7 +208,7 @@ class ParserTest extends TestCase
                         new Parameter(
                             line: 1,
                             name: 'bar',
-                            type: Type::Integer,
+                            type: Type::Int,
                         ),
                         new Parameter(
                             line: 1,

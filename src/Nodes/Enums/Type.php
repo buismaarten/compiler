@@ -11,7 +11,7 @@ enum Type: string
 {
     case Bool = 'bool';
     case Float = 'float';
-    case Integer = 'int';
+    case Int = 'int';
     case String = 'string';
     case Void = 'void';
 }
