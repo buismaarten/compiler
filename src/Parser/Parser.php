@@ -178,10 +178,7 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::T_RIGHT_PARENTHESIS);
 
         if ($this->current->type === TokenType::T_COLON) {
-            $this->expect(TokenType::T_COLON);
-
-            $type = $this->expect(TokenType::T_TYPE);
-            $type = Type::from($type->value);
+            $type = $this->parseType();
         }
 
         $this->expect(TokenType::T_LEFT_BRACE);
