@@ -9,17 +9,20 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Enums\Type;
 
 final class VarStatement extends AbstractStatement
 {
     public readonly string $name;
+    public readonly Type $type;
     public readonly AbstractExpression $expression;
 
-    public function __construct(int $line, string $name, AbstractExpression $expression)
+    public function __construct(int $line, string $name, Type $type, AbstractExpression $expression)
     {
         parent::__construct($line);
 
         $this->name = $name;
+        $this->type = $type;
         $this->expression = $expression;
     }
 }

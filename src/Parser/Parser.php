@@ -81,6 +81,12 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::T_KEYWORD_CONST);
         $name = $this->expect(TokenType::T_IDENTIFIER);
+
+        $this->expect(TokenType::T_COLON);
+
+        $type = $this->expect(TokenType::T_TYPE);
+        $type = Type::from($type->value);
+
         $this->expect(TokenType::T_ASSIGN);
 
         $expression = $this->parseExpression();
@@ -89,6 +95,7 @@ final class Parser implements ParserInterface
         return new Statements\ConstStatement(
             line: $token->line,
             name: $name->value,
+            type: $type,
             expression: $expression,
         );
     }
@@ -394,6 +401,12 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::T_KEYWORD_VAR);
         $name = $this->expect(TokenType::T_IDENTIFIER);
+
+        $this->expect(TokenType::T_COLON);
+
+        $type = $this->expect(TokenType::T_TYPE);
+        $type = Type::from($type->value);
+
         $this->expect(TokenType::T_ASSIGN);
 
         $expression = $this->parseExpression();
@@ -402,6 +415,7 @@ final class Parser implements ParserInterface
         return new Statements\VarStatement(
             line: $token->line,
             name: $name->value,
+            type: $type,
             expression: $expression,
         );
     }

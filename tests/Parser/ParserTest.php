@@ -101,11 +101,12 @@ class ParserTest extends TestCase
     public function testConstStatement(): void
     {
         $this->assertEquals(
-            actual: self::createParser('const foo = 123;')->parse(),
+            actual: self::createParser('const foo: int = 123;')->parse(),
             expected: [
                 new Statements\ConstStatement(
                     line: 1,
                     name: 'foo',
+                    type: Type::Int,
                     expression: new Literals\IntegerLiteral(
                         line: 1,
                         value: 123,
@@ -456,11 +457,12 @@ class ParserTest extends TestCase
     public function testVarStatement(): void
     {
         $this->assertEquals(
-            actual: self::createParser('var foo = 123;')->parse(),
+            actual: self::createParser('var foo: int = 123;')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
                     name: 'foo',
+                    type: Type::Int,
                     expression: new Literals\IntegerLiteral(
                         line: 1,
                         value: 123,
