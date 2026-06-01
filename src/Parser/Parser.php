@@ -81,11 +81,7 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::T_KEYWORD_CONST);
         $name = $this->expect(TokenType::T_IDENTIFIER);
-
-        $this->expect(TokenType::T_COLON);
-
-        $type = $this->expect(TokenType::T_TYPE);
-        $type = Type::from($type->value);
+        $type = $this->parseType();
 
         $this->expect(TokenType::T_ASSIGN);
 
@@ -327,10 +323,7 @@ final class Parser implements ParserInterface
     private function parseParameter(): Parameter
     {
         $token = $this->expect(TokenType::T_IDENTIFIER);
-        $this->expect(TokenType::T_COLON);
-
-        $type = $this->expect(TokenType::T_TYPE);
-        $type = Type::from($type->value);
+        $type = $this->parseType();
 
         return new Parameter(
             line: $token->line,
@@ -398,15 +391,21 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseVarStatement(): Statements\VarStatement
+    private function parseType(): Type
     {
-        $token = $this->expect(TokenType::T_KEYWORD_VAR);
-        $name = $this->expect(TokenType::T_IDENTIFIER);
-
         $this->expect(TokenType::T_COLON);
 
         $type = $this->expect(TokenType::T_TYPE);
         $type = Type::from($type->value);
+
+        return $type;
+    }
+
+    private function parseVarStatement(): Statements\VarStatement
+    {
+        $token = $this->expect(TokenType::T_KEYWORD_VAR);
+        $name = $this->expect(TokenType::T_IDENTIFIER);
+        $type = $this->parseType();
 
         $this->expect(TokenType::T_ASSIGN);
 
