@@ -7,8 +7,6 @@ declare(strict_types=1);
 
 namespace Package\Exceptions;
 
-use Package\Exceptions\ExceptionInterface;
-
 final class UnexpectedEndOfInputException extends \RuntimeException implements ExceptionInterface
 {
     public function __construct(int $line)
