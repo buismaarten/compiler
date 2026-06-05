@@ -7,14 +7,14 @@ declare(strict_types=1);
 
 namespace Package\Nodes;
 
-use Package\Nodes\Enums\Type;
+use Package\Nodes\Expressions\IdentifierExpression;
 
 final class Parameter extends AbstractNode
 {
     public readonly string $name;
-    public readonly Type $type;
+    public readonly IdentifierExpression $type;
 
-    public function __construct(int $line, string $name, Type $type)
+    public function __construct(int $line, string $name, IdentifierExpression $type)
     {
         parent::__construct($line);
 

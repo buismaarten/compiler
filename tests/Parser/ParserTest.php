@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Package\Tests\Parser;
 
-use Package\Nodes\Enums\Type;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Parameter;
@@ -106,7 +105,10 @@ class ParserTest extends TestCase
                 new Statements\ConstStatement(
                     line: 1,
                     name: 'foo',
-                    type: Type::Int,
+                    type: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'int',
+                    ),
                     expression: new Literals\IntegerLiteral(
                         line: 1,
                         value: 123,
@@ -115,22 +117,24 @@ class ParserTest extends TestCase
             ],
         );
 
-        // TODO
-        // $this->assertEquals(
-        //     actual: self::createParser('const foo: xyz = bar();')->parse(),
-        //     expected: [
-        //         new Statements\ConstStatement(
-        //             line: 1,
-        //             name: 'foo',
-        //             type: Type::Int,
-        //             expression: new Expressions\FunctionCallExpression(
-        //                 line: 1,
-        //                 name: 'bar',
-        //                 arguments: [],
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('const foo: xyz = bar();')->parse(),
+            expected: [
+                new Statements\ConstStatement(
+                    line: 1,
+                    name: 'foo',
+                    type: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'xyz',
+                    ),
+                    expression: new Expressions\FunctionCallExpression(
+                        line: 1,
+                        name: 'bar',
+                        arguments: [],
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]
@@ -197,12 +201,15 @@ class ParserTest extends TestCase
     public function testFunctionStatement(): void
     {
         $this->assertEquals(
-            actual: self::createParser('fn foo() { print "Hello, World!"; }')->parse(),
+            actual: self::createParser('fn foo(): void { print "Hello, World!"; }')->parse(),
             expected: [
                 new Statements\FunctionStatement(
                     line: 1,
                     name: 'foo',
-                    type: Type::Void,
+                    type: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'void',
+                    ),
                     parameters: [],
                     statements: [
                         new Statements\PrintStatement(
@@ -217,38 +224,46 @@ class ParserTest extends TestCase
             ],
         );
 
-        // TODO
-        // $this->assertEquals(
-        //     actual: self::createParser('fn foo(bar: int, baz: xyz): xyz { return baz; }')->parse(),
-        //     expected: [
-        //         new Statements\FunctionStatement(
-        //             line: 1,
-        //             name: 'foo',
-        //             type: Type::String,
-        //             parameters: [
-        //                 new Parameter(
-        //                     line: 1,
-        //                     name: 'bar',
-        //                     type: Type::Int,
-        //                 ),
-        //                 new Parameter(
-        //                     line: 1,
-        //                     name: 'baz',
-        //                     type: Type::String,
-        //                 ),
-        //             ],
-        //             statements: [
-        //                 new Statements\ReturnStatement(
-        //                     line: 1,
-        //                     expression: new Expressions\IdentifierExpression(
-        //                         line: 1,
-        //                         name: 'baz',
-        //                     ),
-        //                 ),
-        //             ],
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('fn foo(bar: int, baz: xyz): xyz { return baz; }')->parse(),
+            expected: [
+                new Statements\FunctionStatement(
+                    line: 1,
+                    name: 'foo',
+                    type: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'xyz',
+                    ),
+                    parameters: [
+                        new Parameter(
+                            line: 1,
+                            name: 'bar',
+                            type: new Expressions\IdentifierExpression(
+                                line: 1,
+                                name: 'int',
+                            ),
+                        ),
+                        new Parameter(
+                            line: 1,
+                            name: 'baz',
+                            type: new Expressions\IdentifierExpression(
+                                line: 1,
+                                name: 'xyz',
+                            ),
+                        ),
+                    ],
+                    statements: [
+                        new Statements\ReturnStatement(
+                            line: 1,
+                            expression: new Expressions\IdentifierExpression(
+                                line: 1,
+                                name: 'baz',
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
     }
 
     #[Test]
@@ -480,7 +495,10 @@ class ParserTest extends TestCase
                 new Statements\VarStatement(
                     line: 1,
                     name: 'foo',
-                    type: Type::Int,
+                    type: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'int',
+                    ),
                     expression: new Literals\IntegerLiteral(
                         line: 1,
                         value: 123,
@@ -489,22 +507,24 @@ class ParserTest extends TestCase
             ],
         );
 
-        // TODO
-        // $this->assertEquals(
-        //     actual: self::createParser('var foo: xyz = bar();')->parse(),
-        //     expected: [
-        //         new Statements\VarStatement(
-        //             line: 1,
-        //             name: 'foo',
-        //             type: Type::Int,
-        //             expression: new Expressions\FunctionCallExpression(
-        //                 line: 1,
-        //                 name: 'bar',
-        //                 arguments: [],
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('var foo: xyz = bar();')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    line: 1,
+                    name: 'foo',
+                    type: new Expressions\IdentifierExpression(
+                        line: 1,
+                        name: 'xyz',
+                    ),
+                    expression: new Expressions\FunctionCallExpression(
+                        line: 1,
+                        name: 'bar',
+                        arguments: [],
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]

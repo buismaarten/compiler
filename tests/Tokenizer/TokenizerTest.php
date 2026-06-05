@@ -330,35 +330,6 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testType(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('bool')->next(),
-            expected: new Token(TokenType::T_TYPE, 1, 'bool'),
-        );
-
-        $this->assertEquals(
-            actual: self::createTokenizer('float')->next(),
-            expected: new Token(TokenType::T_TYPE, 1, 'float'),
-        );
-
-        $this->assertEquals(
-            actual: self::createTokenizer('int')->next(),
-            expected: new Token(TokenType::T_TYPE, 1, 'int'),
-        );
-
-        $this->assertEquals(
-            actual: self::createTokenizer('string')->next(),
-            expected: new Token(TokenType::T_TYPE, 1, 'string'),
-        );
-
-        $this->assertEquals(
-            actual: self::createTokenizer('void')->next(),
-            expected: new Token(TokenType::T_TYPE, 1, 'void'),
-        );
-    }
-
-    #[Test]
     public function testWhitespace(): void
     {
         $this->assertEquals(

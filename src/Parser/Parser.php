@@ -13,7 +13,6 @@ use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Exceptions\UnexpectedEndOfInputException;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
-use Package\Nodes\Enums\Type;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Parameter;
@@ -159,7 +158,6 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::T_KEYWORD_FN);
         $name = $this->expect(TokenType::T_IDENTIFIER);
-        $type = Type::Void;
         $parameters = [];
         $statements = [];
 
@@ -177,9 +175,7 @@ final class Parser implements ParserInterface
 
         $this->expect(TokenType::T_RIGHT_PARENTHESIS);
 
-        if ($this->current->type === TokenType::T_COLON) {
-            $type = $this->parseType();
-        }
+        $type = $this->parseType();
 
         $this->expect(TokenType::T_LEFT_BRACE);
 
@@ -388,14 +384,15 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseType(): Type
+    private function parseType(): Expressions\IdentifierExpression
     {
         $this->expect(TokenType::T_COLON);
+        $token = $this->expect(TokenType::T_IDENTIFIER);
 
-        $type = $this->expect(TokenType::T_TYPE);
-        $type = Type::from($type->value);
-
-        return $type;
+        return new Expressions\IdentifierExpression(
+            line: $token->line,
+            name: $token->value,
+        );
     }
 
     private function parseVarStatement(): Statements\VarStatement
