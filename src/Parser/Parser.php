@@ -384,6 +384,7 @@ final class Parser implements ParserInterface
         );
     }
 
+    // TODO: support for nullable types
     private function parseType(): Expressions\IdentifierExpression
     {
         $this->expect(TokenType::T_COLON);
