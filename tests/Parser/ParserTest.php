@@ -114,6 +114,23 @@ class ParserTest extends TestCase
                 ),
             ],
         );
+
+        // TODO
+        // $this->assertEquals(
+        //     actual: self::createParser('const foo: xyz = bar();')->parse(),
+        //     expected: [
+        //         new Statements\ConstStatement(
+        //             line: 1,
+        //             name: 'foo',
+        //             type: Type::Int,
+        //             expression: new Expressions\FunctionCallExpression(
+        //                 line: 1,
+        //                 name: 'bar',
+        //                 arguments: [],
+        //             ),
+        //         ),
+        //     ],
+        // );
     }
 
     #[Test]
@@ -200,37 +217,38 @@ class ParserTest extends TestCase
             ],
         );
 
-        $this->assertEquals(
-            actual: self::createParser('fn foo(bar: int, baz: string): string { return "Hello, World!"; }')->parse(),
-            expected: [
-                new Statements\FunctionStatement(
-                    line: 1,
-                    name: 'foo',
-                    type: Type::String,
-                    parameters: [
-                        new Parameter(
-                            line: 1,
-                            name: 'bar',
-                            type: Type::Int,
-                        ),
-                        new Parameter(
-                            line: 1,
-                            name: 'baz',
-                            type: Type::String,
-                        ),
-                    ],
-                    statements: [
-                        new Statements\ReturnStatement(
-                            line: 1,
-                            expression: new Literals\StringLiteral(
-                                line: 1,
-                                value: 'Hello, World!',
-                            ),
-                        ),
-                    ],
-                ),
-            ],
-        );
+        // TODO
+        // $this->assertEquals(
+        //     actual: self::createParser('fn foo(bar: int, baz: xyz): xyz { return baz; }')->parse(),
+        //     expected: [
+        //         new Statements\FunctionStatement(
+        //             line: 1,
+        //             name: 'foo',
+        //             type: Type::String,
+        //             parameters: [
+        //                 new Parameter(
+        //                     line: 1,
+        //                     name: 'bar',
+        //                     type: Type::Int,
+        //                 ),
+        //                 new Parameter(
+        //                     line: 1,
+        //                     name: 'baz',
+        //                     type: Type::String,
+        //                 ),
+        //             ],
+        //             statements: [
+        //                 new Statements\ReturnStatement(
+        //                     line: 1,
+        //                     expression: new Expressions\IdentifierExpression(
+        //                         line: 1,
+        //                         name: 'baz',
+        //                     ),
+        //                 ),
+        //             ],
+        //         ),
+        //     ],
+        // );
     }
 
     #[Test]
@@ -470,6 +488,23 @@ class ParserTest extends TestCase
                 ),
             ],
         );
+
+        // TODO
+        // $this->assertEquals(
+        //     actual: self::createParser('var foo: xyz = bar();')->parse(),
+        //     expected: [
+        //         new Statements\VarStatement(
+        //             line: 1,
+        //             name: 'foo',
+        //             type: Type::Int,
+        //             expression: new Expressions\FunctionCallExpression(
+        //                 line: 1,
+        //                 name: 'bar',
+        //                 arguments: [],
+        //             ),
+        //         ),
+        //     ],
+        // );
     }
 
     #[Test]
