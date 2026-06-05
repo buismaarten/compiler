@@ -118,7 +118,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('const foo: xyz = bar();')->parse(),
+            actual: self::createParser('const foo: xyz = 123;')->parse(),
             expected: [
                 new Statements\ConstStatement(
                     line: 1,
@@ -127,10 +127,9 @@ class ParserTest extends TestCase
                         line: 1,
                         name: 'xyz',
                     ),
-                    expression: new Expressions\FunctionCallExpression(
+                    expression: new Literals\IntegerLiteral(
                         line: 1,
-                        name: 'bar',
-                        arguments: [],
+                        value: 123,
                     ),
                 ),
             ],
@@ -508,7 +507,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: xyz = bar();')->parse(),
+            actual: self::createParser('var foo: xyz = 123;')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -517,10 +516,9 @@ class ParserTest extends TestCase
                         line: 1,
                         name: 'xyz',
                     ),
-                    expression: new Expressions\FunctionCallExpression(
+                    expression: new Literals\IntegerLiteral(
                         line: 1,
-                        name: 'bar',
-                        arguments: [],
+                        value: 123,
                     ),
                 ),
             ],
