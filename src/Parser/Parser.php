@@ -306,6 +306,16 @@ final class Parser implements ParserInterface
         );
     }
 
+    private function parseNamedType(): Types\NamedType
+    {
+        $token = $this->expect(TokenType::T_IDENTIFIER);
+
+        return new Types\NamedType(
+            line: $token->line,
+            name: $token->value,
+        );
+    }
+
     private function parseNullLiteral(): Literals\NullLiteral
     {
         $token = $this->expect(TokenType::T_KEYWORD_NULL);
@@ -386,16 +396,20 @@ final class Parser implements ParserInterface
         );
     }
 
-    // TODO: support for nullable types
     private function parseType(): AbstractType
     {
         $this->expect(TokenType::T_COLON);
-        $token = $this->expect(TokenType::T_IDENTIFIER);
 
-        return new Types\NamedType(
-            line: $token->line,
-            name: $token->value,
-        );
+        if ($this->current->type === TokenType::T_QUESTION_MARK) {
+            $token = $this->expect(TokenType::T_QUESTION_MARK);
+
+            return new Types\NullableType(
+                line: $token->line,
+                type: $this->parseNamedType(),
+            );
+        }
+
+        return $this->parseNamedType();
     }
 
     private function parseVarStatement(): Statements\VarStatement
