@@ -37,6 +37,7 @@ enum TokenType
     case T_LEFT_PARENTHESIS;
     case T_MINUS;
     case T_PLUS;
+    case T_QUESTION_MARK;
     case T_RIGHT_BRACE;
     case T_RIGHT_BRACKET;
     case T_RIGHT_PARENTHESIS;
