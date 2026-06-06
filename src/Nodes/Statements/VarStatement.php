@@ -9,15 +9,15 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
-use Package\Nodes\Expressions\IdentifierExpression;
+use Package\Nodes\AbstractType;
 
 final class VarStatement extends AbstractStatement
 {
     public readonly string $name;
-    public readonly IdentifierExpression $type;
+    public readonly AbstractType $type;
     public readonly AbstractExpression $expression;
 
-    public function __construct(int $line, string $name, IdentifierExpression $type, AbstractExpression $expression)
+    public function __construct(int $line, string $name, AbstractType $type, AbstractExpression $expression)
     {
         parent::__construct($line);
 

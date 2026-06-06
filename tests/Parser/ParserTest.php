@@ -11,6 +11,7 @@ use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
+use Package\Nodes\Types;
 use Package\Parser\Parser;
 use Package\Parser\ParserInterface;
 use Package\Tokenizer\Tokenizer;
@@ -105,7 +106,7 @@ class ParserTest extends TestCase
                 new Statements\ConstStatement(
                     line: 1,
                     name: 'foo',
-                    type: new Expressions\IdentifierExpression(
+                    type: new Types\NamedType(
                         line: 1,
                         name: 'int',
                     ),
@@ -123,7 +124,7 @@ class ParserTest extends TestCase
                 new Statements\ConstStatement(
                     line: 1,
                     name: 'foo',
-                    type: new Expressions\IdentifierExpression(
+                    type: new Types\NamedType(
                         line: 1,
                         name: 'xyz',
                     ),
@@ -205,7 +206,7 @@ class ParserTest extends TestCase
                 new Statements\FunctionStatement(
                     line: 1,
                     name: 'foo',
-                    type: new Expressions\IdentifierExpression(
+                    type: new Types\NamedType(
                         line: 1,
                         name: 'void',
                     ),
@@ -229,7 +230,7 @@ class ParserTest extends TestCase
                 new Statements\FunctionStatement(
                     line: 1,
                     name: 'foo',
-                    type: new Expressions\IdentifierExpression(
+                    type: new Types\NamedType(
                         line: 1,
                         name: 'xyz',
                     ),
@@ -237,7 +238,7 @@ class ParserTest extends TestCase
                         new Parameter(
                             line: 1,
                             name: 'bar',
-                            type: new Expressions\IdentifierExpression(
+                            type: new Types\NamedType(
                                 line: 1,
                                 name: 'int',
                             ),
@@ -245,7 +246,7 @@ class ParserTest extends TestCase
                         new Parameter(
                             line: 1,
                             name: 'baz',
-                            type: new Expressions\IdentifierExpression(
+                            type: new Types\NamedType(
                                 line: 1,
                                 name: 'xyz',
                             ),
@@ -494,7 +495,7 @@ class ParserTest extends TestCase
                 new Statements\VarStatement(
                     line: 1,
                     name: 'foo',
-                    type: new Expressions\IdentifierExpression(
+                    type: new Types\NamedType(
                         line: 1,
                         name: 'int',
                     ),
@@ -512,7 +513,7 @@ class ParserTest extends TestCase
                 new Statements\VarStatement(
                     line: 1,
                     name: 'foo',
-                    type: new Expressions\IdentifierExpression(
+                    type: new Types\NamedType(
                         line: 1,
                         name: 'xyz',
                     ),

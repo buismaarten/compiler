@@ -13,10 +13,12 @@ use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Exceptions\UnexpectedEndOfInputException;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\AbstractType;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
+use Package\Nodes\Types;
 use Package\Tokenizer\Token;
 use Package\Tokenizer\TokenizerInterface;
 use Package\Tokenizer\TokenType;
@@ -385,12 +387,12 @@ final class Parser implements ParserInterface
     }
 
     // TODO: support for nullable types
-    private function parseType(): Expressions\IdentifierExpression
+    private function parseType(): AbstractType
     {
         $this->expect(TokenType::T_COLON);
         $token = $this->expect(TokenType::T_IDENTIFIER);
 
-        return new Expressions\IdentifierExpression(
+        return new Types\NamedType(
             line: $token->line,
             name: $token->value,
         );

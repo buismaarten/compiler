@@ -8,13 +8,13 @@ declare(strict_types=1);
 namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractStatement;
-use Package\Nodes\Expressions\IdentifierExpression;
+use Package\Nodes\AbstractType;
 use Package\Nodes\Parameter;
 
 final class FunctionStatement extends AbstractStatement
 {
     public readonly string $name;
-    public readonly IdentifierExpression $type;
+    public readonly AbstractType $type;
 
     /** @var Parameter[] */
     public readonly array $parameters;
@@ -26,7 +26,7 @@ final class FunctionStatement extends AbstractStatement
      * @param Parameter[] $parameters
      * @param AbstractStatement[] $statements
      */
-    public function __construct(int $line, string $name, IdentifierExpression $type, array $parameters, array $statements)
+    public function __construct(int $line, string $name, AbstractType $type, array $parameters, array $statements)
     {
         parent::__construct($line);
 
