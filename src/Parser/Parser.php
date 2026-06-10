@@ -119,13 +119,14 @@ final class Parser implements ParserInterface
     private function parseExpression(): AbstractExpression
     {
         return match ($this->current->type) {
-            TokenType::T_FLOAT         => $this->parseFloatLiteral(),
-            TokenType::T_IDENTIFIER    => $this->parseIdentifierExpression(),
-            TokenType::T_INTEGER       => $this->parseIntegerLiteral(),
-            TokenType::T_KEYWORD_FALSE => $this->parseBooleanLiteral(false),
-            TokenType::T_KEYWORD_NULL  => $this->parseNullLiteral(),
-            TokenType::T_KEYWORD_TRUE  => $this->parseBooleanLiteral(true),
-            TokenType::T_STRING        => $this->parseStringLiteral(),
+            TokenType::T_EXCLAMATION_MARK => $this->parseUnaryExpression(),
+            TokenType::T_FLOAT            => $this->parseFloatLiteral(),
+            TokenType::T_IDENTIFIER       => $this->parseIdentifierExpression(),
+            TokenType::T_INTEGER          => $this->parseIntegerLiteral(),
+            TokenType::T_KEYWORD_FALSE    => $this->parseBooleanLiteral(false),
+            TokenType::T_KEYWORD_NULL     => $this->parseNullLiteral(),
+            TokenType::T_KEYWORD_TRUE     => $this->parseBooleanLiteral(true),
+            TokenType::T_STRING           => $this->parseStringLiteral(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
@@ -412,6 +413,26 @@ final class Parser implements ParserInterface
         return $this->parseNamedType();
     }
 
+    private function parseUnaryExpression(): Expressions\UnaryExpression
+    {
+        $token = $this->current;
+        $this->next();
+
+        // TODO
+        $operator = match ($token->type) {
+            TokenType::T_EXCLAMATION_MARK => Expressions\UnaryOperator::BOOLEAN_NOT,
+
+            // Fallback
+            default => throw new UnexpectedTokenException($token->line, $token->type->name),
+        };
+
+        return new Expressions\UnaryExpression(
+            line: $token->line,
+            operator: $operator,
+            expression: $this->parseExpression(),
+        );
+    }
+
     private function parseVarStatement(): Statements\VarStatement
     {
         $token = $this->expect(TokenType::T_KEYWORD_VAR);
@@ -469,8 +490,14 @@ final class Parser implements ParserInterface
             throw new ExpectedTokenException($token->line, $type->name, $token->type->name);
         }
 
-        $this->current = $this->tokenizer->next();
+        $this->next();
 
         return $token;
+    }
+
+    /** @phpstan-impure */
+    private function next(): void
+    {
+        $this->current = $this->tokenizer->next();
     }
 }
