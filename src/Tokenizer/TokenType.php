@@ -15,6 +15,7 @@ enum TokenType
     case T_COMMA;
     case T_DECREMENT;
     case T_EOF;
+    case T_EXCLAMATION_MARK;
     case T_FLOAT;
     case T_IDENTIFIER;
     case T_INCREMENT;

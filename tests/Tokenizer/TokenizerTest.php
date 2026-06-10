@@ -71,6 +71,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testExclamationMark(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('!')->next(),
+            expected: new Token(TokenType::T_EXCLAMATION_MARK, 1),
+        );
+    }
+
+    #[Test]
     public function testFloat(): void
     {
         $this->assertEquals(
