@@ -45,4 +45,5 @@ enum TokenType
     case T_SEMICOLON;
     case T_SLASH;
     case T_STRING;
+    case T_TILDE;
 }

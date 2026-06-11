@@ -536,6 +536,23 @@ class ParserTest extends TestCase
     public function testUnaryExpression(): void
     {
         $this->assertEquals(
+            actual: self::createParser('~foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        operator: Expressions\UnaryOperator::BITWISE_NOT,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
             actual: self::createParser('!foo;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(

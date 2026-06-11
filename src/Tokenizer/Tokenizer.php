@@ -72,6 +72,7 @@ final class Tokenizer implements TokenizerInterface
             ']' => $this->tokenizeCharacter(TokenType::T_RIGHT_BRACKET),
             ')' => $this->tokenizeCharacter(TokenType::T_RIGHT_PARENTHESIS),
             ';' => $this->tokenizeCharacter(TokenType::T_SEMICOLON),
+            '~' => $this->tokenizeCharacter(TokenType::T_TILDE),
             '_' => $this->tokenizeIdentifier(),
             '+' => $this->tokenizePlus(),
             '-' => $this->tokenizeMinus(),

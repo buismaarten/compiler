@@ -127,6 +127,7 @@ final class Parser implements ParserInterface
             TokenType::T_KEYWORD_NULL     => $this->parseNullLiteral(),
             TokenType::T_KEYWORD_TRUE     => $this->parseBooleanLiteral(true),
             TokenType::T_STRING           => $this->parseStringLiteral(),
+            TokenType::T_TILDE            => $this->parseUnaryExpression(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),

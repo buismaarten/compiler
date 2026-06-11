@@ -348,6 +348,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testTilde(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('~')->next(),
+            expected: new Token(TokenType::T_TILDE, 1),
+        );
+    }
+
+    #[Test]
     public function testWhitespace(): void
     {
         $this->assertEquals(

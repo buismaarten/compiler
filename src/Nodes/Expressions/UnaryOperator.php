@@ -11,6 +11,7 @@ use Package\Tokenizer\TokenType;
 
 enum UnaryOperator
 {
+    case BITWISE_NOT;
     case BOOLEAN_NOT;
 
     public static function fromTokenType(TokenType $tokenType): self
@@ -18,6 +19,7 @@ enum UnaryOperator
         // @phpstan-ignore-next-line
         return match ($tokenType) {
             TokenType::T_EXCLAMATION_MARK => self::BOOLEAN_NOT,
+            TokenType::T_TILDE            => self::BITWISE_NOT,
         };
     }
 }
