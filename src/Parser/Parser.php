@@ -418,17 +418,9 @@ final class Parser implements ParserInterface
         $token = $this->current;
         $this->next();
 
-        // TODO
-        $operator = match ($token->type) {
-            TokenType::T_EXCLAMATION_MARK => Expressions\UnaryOperator::BOOLEAN_NOT,
-
-            // Fallback
-            default => throw new UnexpectedTokenException($token->line, $token->type->name),
-        };
-
         return new Expressions\UnaryExpression(
             line: $token->line,
-            operator: $operator,
+            operator: Expressions\UnaryOperator::fromTokenType($token->type),
             expression: $this->parseExpression(),
         );
     }
