@@ -241,13 +241,13 @@ final class Parser implements ParserInterface
         }
 
         if ($this->current->type === TokenType::T_DECREMENT || $this->current->type === TokenType::T_INCREMENT) {
-            $operatorToken = $this->current;
+            $operator = $this->current;
             $this->next();
 
             return new Expressions\UnaryExpression(
                 line: $token->line,
                 prefix: false,
-                operator: Expressions\UnaryOperator::fromTokenType($operatorToken->type),
+                operator: Expressions\UnaryOperator::fromTokenType($operator->type),
                 expression: new Expressions\IdentifierExpression(
                     line: $token->line,
                     name: $token->value,
