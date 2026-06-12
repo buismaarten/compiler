@@ -77,6 +77,7 @@ class StreamInputTest extends TestCase
         $this->assertSame('bc', $input->slice(1, 3));
     }
 
+    /** @return resource */
     private static function createStream(string $string)
     {
         $stream = fopen('php://memory', 'r+');
