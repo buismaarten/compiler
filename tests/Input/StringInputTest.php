@@ -16,7 +16,9 @@ class StringInputTest extends TestCase
     #[Test]
     public function testCurrent(): void
     {
-        $input = new StringInput('abc');
+        $string = 'abc';
+        $input = new StringInput($string);
+
         $this->assertSame('a', $input->current());
 
         $input->next();
@@ -32,7 +34,9 @@ class StringInputTest extends TestCase
     #[Test]
     public function testNext(): void
     {
-        $input = new StringInput('abc');
+        $string = 'abc';
+        $input = new StringInput($string);
+
         $this->assertSame('a', $input->current());
 
         $input->next();
@@ -48,7 +52,9 @@ class StringInputTest extends TestCase
     #[Test]
     public function testOffset(): void
     {
-        $input = new StringInput('abc');
+        $string = 'abc';
+        $input = new StringInput($string);
+
         $this->assertSame(0, $input->offset());
 
         $input->next();
@@ -64,7 +70,8 @@ class StringInputTest extends TestCase
     #[Test]
     public function testSlice(): void
     {
-        $input = new StringInput('abc');
+        $string = 'abc';
+        $input = new StringInput($string);
 
         $this->assertSame('bc', $input->slice(1, 3));
     }
