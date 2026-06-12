@@ -173,7 +173,7 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        postfix: true,
+                        prefix: false,
                         operator: Expressions\UnaryOperator::DECREMENT,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
@@ -390,7 +390,7 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        postfix: true,
+                        prefix: false,
                         operator: Expressions\UnaryOperator::INCREMENT,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
@@ -552,7 +552,7 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        postfix: false,
+                        prefix: true,
                         operator: Expressions\UnaryOperator::BITWISE_NOT,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
@@ -570,7 +570,7 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        postfix: false,
+                        prefix: true,
                         operator: Expressions\UnaryOperator::BOOLEAN_NOT,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
@@ -588,7 +588,7 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        postfix: false,
+                        prefix: true,
                         operator: Expressions\UnaryOperator::DECREMENT,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
@@ -606,7 +606,7 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        postfix: false,
+                        prefix: true,
                         operator: Expressions\UnaryOperator::INCREMENT,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,

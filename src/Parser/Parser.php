@@ -244,7 +244,7 @@ final class Parser implements ParserInterface
 
             return new Expressions\UnaryExpression(
                 line: $token->line,
-                postfix: true,
+                prefix: false,
                 operator: Expressions\UnaryOperator::fromTokenType($operatorToken->type),
                 expression: new Expressions\IdentifierExpression(
                     line: $token->line,
@@ -420,7 +420,7 @@ final class Parser implements ParserInterface
 
         return new Expressions\UnaryExpression(
             line: $token->line,
-            postfix: false,
+            prefix: true,
             operator: Expressions\UnaryOperator::fromTokenType($token->type),
             expression: $this->parseExpression(),
         );
