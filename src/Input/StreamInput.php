@@ -54,6 +54,11 @@ final class StreamInput implements InputInterface
     {
         fseek($this->stream, $start);
 
-        return fread($this->stream, $end - $start);
+        // @phpstan-ignore-next-line
+        if (($data = fread($this->stream, $end - $start)) !== false) {
+            return $data;
+        }
+
+        return '';
     }
 }
