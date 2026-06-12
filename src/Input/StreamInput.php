@@ -30,8 +30,8 @@ final class StreamInput implements InputInterface
     #[Override]
     public function current(): ?string
     {
-        if (($character = fgetc($this->stream)) !== false) {
-            return $character;
+        if (($current = fgetc($this->stream)) !== false) {
+            return $current;
         }
 
         return null;
