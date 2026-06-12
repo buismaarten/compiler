@@ -119,9 +119,11 @@ final class Parser implements ParserInterface
     private function parseExpression(): AbstractExpression
     {
         return match ($this->current->type) {
+            TokenType::T_DECREMENT        => $this->parseUnaryExpression(),
             TokenType::T_EXCLAMATION_MARK => $this->parseUnaryExpression(),
             TokenType::T_FLOAT            => $this->parseFloatLiteral(),
             TokenType::T_IDENTIFIER       => $this->parseIdentifierExpression(),
+            TokenType::T_INCREMENT        => $this->parseUnaryExpression(),
             TokenType::T_INTEGER          => $this->parseIntegerLiteral(),
             TokenType::T_KEYWORD_FALSE    => $this->parseBooleanLiteral(false),
             TokenType::T_KEYWORD_NULL     => $this->parseNullLiteral(),
