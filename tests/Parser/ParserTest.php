@@ -616,6 +616,42 @@ class ParserTest extends TestCase
                 ),
             ],
         );
+
+        $this->assertEquals(
+            actual: self::createParser('-foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        prefix: true,
+                        operator: Expressions\UnaryOperator::MINUS,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('+foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        prefix: true,
+                        operator: Expressions\UnaryOperator::PLUS,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]

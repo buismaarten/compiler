@@ -15,6 +15,8 @@ enum UnaryOperator
     case BOOLEAN_NOT;
     case DECREMENT;
     case INCREMENT;
+    case MINUS;
+    case PLUS;
 
     public static function fromTokenType(TokenType $tokenType): self
     {
@@ -23,6 +25,8 @@ enum UnaryOperator
             TokenType::T_DECREMENT        => self::DECREMENT,
             TokenType::T_EXCLAMATION_MARK => self::BOOLEAN_NOT,
             TokenType::T_INCREMENT        => self::INCREMENT,
+            TokenType::T_MINUS            => self::MINUS,
+            TokenType::T_PLUS             => self::PLUS,
             TokenType::T_TILDE            => self::BITWISE_NOT,
         };
     }

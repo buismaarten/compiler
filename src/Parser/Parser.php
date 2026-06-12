@@ -128,6 +128,8 @@ final class Parser implements ParserInterface
             TokenType::T_KEYWORD_FALSE    => $this->parseBooleanLiteral(false),
             TokenType::T_KEYWORD_NULL     => $this->parseNullLiteral(),
             TokenType::T_KEYWORD_TRUE     => $this->parseBooleanLiteral(true),
+            TokenType::T_MINUS            => $this->parseUnaryExpression(),
+            TokenType::T_PLUS             => $this->parseUnaryExpression(),
             TokenType::T_STRING           => $this->parseStringLiteral(),
             TokenType::T_TILDE            => $this->parseUnaryExpression(),
 
