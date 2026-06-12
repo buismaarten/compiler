@@ -11,23 +11,23 @@ use Package\Tokenizer\TokenType;
 
 enum UnaryOperator
 {
-    case BITWISE_NOT;
-    case BOOLEAN_NOT;
-    case DECREMENT;
-    case INCREMENT;
-    case MINUS;
-    case PLUS;
+    case BitwiseNot;
+    case BooleanNot;
+    case Decrement;
+    case Increment;
+    case Minus;
+    case Plus;
 
     public static function fromTokenType(TokenType $tokenType): self
     {
         // @phpstan-ignore-next-line
         return match ($tokenType) {
-            TokenType::Decrement       => self::DECREMENT,
-            TokenType::ExclamationMark => self::BOOLEAN_NOT,
-            TokenType::Increment       => self::INCREMENT,
-            TokenType::Minus           => self::MINUS,
-            TokenType::Plus            => self::PLUS,
-            TokenType::Tilde           => self::BITWISE_NOT,
+            TokenType::Decrement       => self::Decrement,
+            TokenType::ExclamationMark => self::BooleanNot,
+            TokenType::Increment       => self::Increment,
+            TokenType::Minus           => self::Minus,
+            TokenType::Plus            => self::Plus,
+            TokenType::Tilde           => self::BitwiseNot,
         };
     }
 }
