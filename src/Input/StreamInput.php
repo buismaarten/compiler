@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Input;
 
-use Exception;
+use InvalidArgumentException;
 use Override;
 
 final class StreamInput implements InputInterface
 {
-    private int $offset = 0;
+    use InputTrait;
 
     /** @var resource */
     private $stream;
@@ -21,7 +21,7 @@ final class StreamInput implements InputInterface
     public function __construct($stream)
     {
         if (!is_resource($stream) || get_resource_type($stream) !== 'stream') {
-            throw new Exception('Stream must be a valid resource of type stream.');
+            throw new InvalidArgumentException('Stream must be a valid resource of type stream.');
         }
 
         $this->stream = $stream;
@@ -35,18 +35,6 @@ final class StreamInput implements InputInterface
         }
 
         return null;
-    }
-
-    #[Override]
-    public function next(): void
-    {
-        $this->offset++;
-    }
-
-    #[Override]
-    public function offset(): int
-    {
-        return $this->offset;
     }
 
     #[Override]

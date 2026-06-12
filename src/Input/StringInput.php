@@ -11,8 +11,9 @@ use Override;
 
 final class StringInput implements InputInterface
 {
+    use InputTrait;
+
     private string $string;
-    private int $offset = 0;
 
     public function __construct(string $string)
     {
@@ -23,18 +24,6 @@ final class StringInput implements InputInterface
     public function current(): ?string
     {
         return $this->string[$this->offset] ?? null;
-    }
-
-    #[Override]
-    public function next(): void
-    {
-        $this->offset++;
-    }
-
-    #[Override]
-    public function offset(): int
-    {
-        return $this->offset;
     }
 
     #[Override]
