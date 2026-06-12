@@ -13,12 +13,16 @@ enum UnaryOperator
 {
     case BITWISE_NOT;
     case BOOLEAN_NOT;
+    case DECREMENT;
+    case INCREMENT;
 
     public static function fromTokenType(TokenType $tokenType): self
     {
         // @phpstan-ignore-next-line
         return match ($tokenType) {
+            TokenType::T_DECREMENT        => self::DECREMENT,
             TokenType::T_EXCLAMATION_MARK => self::BOOLEAN_NOT,
+            TokenType::T_INCREMENT        => self::INCREMENT,
             TokenType::T_TILDE            => self::BITWISE_NOT,
         };
     }

@@ -212,24 +212,6 @@ final class Parser implements ParserInterface
             );
         }
 
-        if ($this->current->type === TokenType::T_DECREMENT) {
-            $this->expect(TokenType::T_DECREMENT);
-
-            return new Expressions\DecrementExpression(
-                line: $token->line,
-                name: $token->value,
-            );
-        }
-
-        if ($this->current->type === TokenType::T_INCREMENT) {
-            $this->expect(TokenType::T_INCREMENT);
-
-            return new Expressions\IncrementExpression(
-                line: $token->line,
-                name: $token->value,
-            );
-        }
-
         if ($this->current->type === TokenType::T_LEFT_PARENTHESIS) {
             $arguments = [];
 
@@ -251,6 +233,21 @@ final class Parser implements ParserInterface
                 line: $token->line,
                 name: $token->value,
                 arguments: $arguments,
+            );
+        }
+
+        if ($this->current->type === TokenType::T_DECREMENT || $this->current->type === TokenType::T_INCREMENT) {
+            $operatorToken = $this->current;
+            $this->next();
+
+            return new Expressions\UnaryExpression(
+                line: $token->line,
+                postfix: true,
+                operator: Expressions\UnaryOperator::fromTokenType($operatorToken->type),
+                expression: new Expressions\IdentifierExpression(
+                    line: $token->line,
+                    name: $token->value,
+                ),
             );
         }
 
@@ -421,6 +418,7 @@ final class Parser implements ParserInterface
 
         return new Expressions\UnaryExpression(
             line: $token->line,
+            postfix: false,
             operator: Expressions\UnaryOperator::fromTokenType($token->type),
             expression: $this->parseExpression(),
         );

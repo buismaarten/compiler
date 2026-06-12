@@ -171,9 +171,14 @@ class ParserTest extends TestCase
             expected: [
                 new Statements\ExpressionStatement(
                     line: 1,
-                    expression: new Expressions\DecrementExpression(
+                    expression: new Expressions\UnaryExpression(
                         line: 1,
-                        name: 'foo',
+                        postfix: true,
+                        operator: Expressions\UnaryOperator::DECREMENT,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
                     ),
                 ),
             ],
@@ -383,9 +388,14 @@ class ParserTest extends TestCase
             expected: [
                 new Statements\ExpressionStatement(
                     line: 1,
-                    expression: new Expressions\IncrementExpression(
+                    expression: new Expressions\UnaryExpression(
                         line: 1,
-                        name: 'foo',
+                        postfix: true,
+                        operator: Expressions\UnaryOperator::INCREMENT,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
                     ),
                 ),
             ],
@@ -542,6 +552,7 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
+                        postfix: false,
                         operator: Expressions\UnaryOperator::BITWISE_NOT,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
@@ -559,6 +570,7 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
+                        postfix: false,
                         operator: Expressions\UnaryOperator::BOOLEAN_NOT,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
