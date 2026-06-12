@@ -16,19 +16,19 @@ use Package\Input\InputInterface;
 final class Tokenizer implements TokenizerInterface
 {
     private const KEYWORDS = [
-        'break'    => TokenType::KEYWORD_BREAK,
-        'const'    => TokenType::KEYWORD_CONST,
-        'continue' => TokenType::KEYWORD_CONTINUE,
-        'else'     => TokenType::KEYWORD_ELSE,
-        'false'    => TokenType::KEYWORD_FALSE,
-        'fn'       => TokenType::KEYWORD_FN,
-        'if'       => TokenType::KEYWORD_IF,
-        'null'     => TokenType::KEYWORD_NULL,
-        'print'    => TokenType::KEYWORD_PRINT,
-        'return'   => TokenType::KEYWORD_RETURN,
-        'true'     => TokenType::KEYWORD_TRUE,
-        'var'      => TokenType::KEYWORD_VAR,
-        'while'    => TokenType::KEYWORD_WHILE,
+        'break'    => TokenType::KeywordBreak,
+        'const'    => TokenType::KeywordConst,
+        'continue' => TokenType::KeywordContinue,
+        'else'     => TokenType::KeywordElse,
+        'false'    => TokenType::KeywordFalse,
+        'fn'       => TokenType::KeywordFn,
+        'if'       => TokenType::KeywordIf,
+        'null'     => TokenType::KeywordNull,
+        'print'    => TokenType::KeywordPrint,
+        'return'   => TokenType::KeywordReturn,
+        'true'     => TokenType::KeywordTrue,
+        'var'      => TokenType::KeywordVar,
+        'while'    => TokenType::KeywordWhile,
     ];
 
     private InputInterface $input;
@@ -55,24 +55,24 @@ final class Tokenizer implements TokenizerInterface
         }
 
         if ($current === null) {
-            return new Token(TokenType::EOF, $this->line);
+            return new Token(TokenType::Eof, $this->line);
         }
 
         $token = match ($current) {
-            '=' => $this->tokenizeCharacter(TokenType::ASSIGN),
-            '*' => $this->tokenizeCharacter(TokenType::ASTERISK),
-            ':' => $this->tokenizeCharacter(TokenType::COLON),
-            ',' => $this->tokenizeCharacter(TokenType::COMMA),
-            '!' => $this->tokenizeCharacter(TokenType::EXCLAMATION_MARK),
-            '{' => $this->tokenizeCharacter(TokenType::LEFT_BRACE),
-            '[' => $this->tokenizeCharacter(TokenType::LEFT_BRACKET),
-            '(' => $this->tokenizeCharacter(TokenType::LEFT_PARENTHESIS),
-            '?' => $this->tokenizeCharacter(TokenType::QUESTION_MARK),
-            '}' => $this->tokenizeCharacter(TokenType::RIGHT_BRACE),
-            ']' => $this->tokenizeCharacter(TokenType::RIGHT_BRACKET),
-            ')' => $this->tokenizeCharacter(TokenType::RIGHT_PARENTHESIS),
-            ';' => $this->tokenizeCharacter(TokenType::SEMICOLON),
-            '~' => $this->tokenizeCharacter(TokenType::TILDE),
+            '=' => $this->tokenizeCharacter(TokenType::Assign),
+            '*' => $this->tokenizeCharacter(TokenType::Asterisk),
+            ':' => $this->tokenizeCharacter(TokenType::Colon),
+            ',' => $this->tokenizeCharacter(TokenType::Comma),
+            '!' => $this->tokenizeCharacter(TokenType::ExclamationMark),
+            '{' => $this->tokenizeCharacter(TokenType::LeftBrace),
+            '[' => $this->tokenizeCharacter(TokenType::LeftBracket),
+            '(' => $this->tokenizeCharacter(TokenType::LeftParenthesis),
+            '?' => $this->tokenizeCharacter(TokenType::QuestionMark),
+            '}' => $this->tokenizeCharacter(TokenType::RightBrace),
+            ']' => $this->tokenizeCharacter(TokenType::RightBracket),
+            ')' => $this->tokenizeCharacter(TokenType::RightParenthesis),
+            ';' => $this->tokenizeCharacter(TokenType::Semicolon),
+            '~' => $this->tokenizeCharacter(TokenType::Tilde),
             '_' => $this->tokenizeIdentifier(),
             '+' => $this->tokenizePlus(),
             '-' => $this->tokenizeMinus(),
@@ -111,9 +111,9 @@ final class Tokenizer implements TokenizerInterface
         }
 
         $value = $this->input->slice($start, $this->input->offset());
-        $type = self::KEYWORDS[$value] ?? TokenType::IDENTIFIER;
+        $type = self::KEYWORDS[$value] ?? TokenType::Identifier;
 
-        if ($type !== TokenType::IDENTIFIER) {
+        if ($type !== TokenType::Identifier) {
             $value = '';
         }
 
@@ -127,23 +127,23 @@ final class Tokenizer implements TokenizerInterface
         if ($this->input->current() === '-') {
             $this->input->next();
 
-            return new Token(TokenType::DECREMENT, $this->line);
+            return new Token(TokenType::Decrement, $this->line);
         }
 
-        return new Token(TokenType::MINUS, $this->line);
+        return new Token(TokenType::Minus, $this->line);
     }
 
     private function tokenizeNumber(): Token
     {
         $start = $this->input->offset();
-        $token = TokenType::INTEGER;
+        $token = TokenType::Integer;
 
         while (($current = $this->input->current()) !== null && ctype_digit($current)) {
             $this->input->next();
         }
 
         if ($current === '.') {
-            $token = TokenType::FLOAT;
+            $token = TokenType::Float;
             $this->input->next();
 
             if (($current = $this->input->current()) === null || !ctype_digit($current)) {
@@ -169,10 +169,10 @@ final class Tokenizer implements TokenizerInterface
         if ($this->input->current() === '+') {
             $this->input->next();
 
-            return new Token(TokenType::INCREMENT, $this->line);
+            return new Token(TokenType::Increment, $this->line);
         }
 
-        return new Token(TokenType::PLUS, $this->line);
+        return new Token(TokenType::Plus, $this->line);
     }
 
     private function tokenizeSlash(): ?Token
@@ -189,7 +189,7 @@ final class Tokenizer implements TokenizerInterface
             return null;
         }
 
-        return new Token(TokenType::SLASH, $this->line);
+        return new Token(TokenType::Slash, $this->line);
     }
 
     private function tokenizeString(): Token
@@ -252,6 +252,6 @@ final class Tokenizer implements TokenizerInterface
             $this->input->next();
         }
 
-        return new Token(TokenType::STRING, $this->line, $value);
+        return new Token(TokenType::String, $this->line, $value);
     }
 }

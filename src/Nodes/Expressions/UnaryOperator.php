@@ -22,12 +22,12 @@ enum UnaryOperator
     {
         // @phpstan-ignore-next-line
         return match ($tokenType) {
-            TokenType::DECREMENT        => self::DECREMENT,
-            TokenType::EXCLAMATION_MARK => self::BOOLEAN_NOT,
-            TokenType::INCREMENT        => self::INCREMENT,
-            TokenType::MINUS            => self::MINUS,
-            TokenType::PLUS             => self::PLUS,
-            TokenType::TILDE            => self::BITWISE_NOT,
+            TokenType::Decrement       => self::DECREMENT,
+            TokenType::ExclamationMark => self::BOOLEAN_NOT,
+            TokenType::Increment       => self::INCREMENT,
+            TokenType::Minus           => self::MINUS,
+            TokenType::Plus            => self::PLUS,
+            TokenType::Tilde           => self::BITWISE_NOT,
         };
     }
 }

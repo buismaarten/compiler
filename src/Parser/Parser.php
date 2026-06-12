@@ -39,7 +39,7 @@ final class Parser implements ParserInterface
     {
         $statements = [];
 
-        while ($this->current->type !== TokenType::EOF) {
+        while ($this->current->type !== TokenType::Eof) {
             $statements[] = $this->parseStatement();
         }
 
@@ -49,9 +49,9 @@ final class Parser implements ParserInterface
     private function parseBooleanLiteral(bool $value): Literals\BooleanLiteral
     {
         if ($value) {
-            $token = $this->expect(TokenType::KEYWORD_TRUE);
+            $token = $this->expect(TokenType::KeywordTrue);
         } else {
-            $token = $this->expect(TokenType::KEYWORD_FALSE);
+            $token = $this->expect(TokenType::KeywordFalse);
         }
 
         return new Literals\BooleanLiteral(
@@ -62,15 +62,15 @@ final class Parser implements ParserInterface
 
     private function parseBreakStatement(): Statements\BreakStatement
     {
-        $token = $this->expect(TokenType::KEYWORD_BREAK);
+        $token = $this->expect(TokenType::KeywordBreak);
 
-        if ($this->current->type === TokenType::INTEGER) {
+        if ($this->current->type === TokenType::Integer) {
             $level = $this->parseExpression();
         } else {
             $level = null;
         }
 
-        $this->expect(TokenType::SEMICOLON);
+        $this->expect(TokenType::Semicolon);
 
         return new Statements\BreakStatement(
             line: $token->line,
@@ -80,15 +80,15 @@ final class Parser implements ParserInterface
 
     private function parseConstStatement(): Statements\ConstStatement
     {
-        $token = $this->expect(TokenType::KEYWORD_CONST);
-        $name = $this->expect(TokenType::IDENTIFIER);
+        $token = $this->expect(TokenType::KeywordConst);
+        $name = $this->expect(TokenType::Identifier);
         $type = $this->parseType();
 
-        $this->expect(TokenType::ASSIGN);
+        $this->expect(TokenType::Assign);
 
         $expression = $this->parseExpression();
 
-        $this->expect(TokenType::SEMICOLON);
+        $this->expect(TokenType::Semicolon);
 
         return new Statements\ConstStatement(
             line: $token->line,
@@ -100,15 +100,15 @@ final class Parser implements ParserInterface
 
     private function parseContinueStatement(): Statements\ContinueStatement
     {
-        $token = $this->expect(TokenType::KEYWORD_CONTINUE);
+        $token = $this->expect(TokenType::KeywordContinue);
 
-        if ($this->current->type === TokenType::INTEGER) {
+        if ($this->current->type === TokenType::Integer) {
             $level = $this->parseExpression();
         } else {
             $level = null;
         }
 
-        $this->expect(TokenType::SEMICOLON);
+        $this->expect(TokenType::Semicolon);
 
         return new Statements\ContinueStatement(
             line: $token->line,
@@ -119,19 +119,19 @@ final class Parser implements ParserInterface
     private function parseExpression(): AbstractExpression
     {
         return match ($this->current->type) {
-            TokenType::DECREMENT        => $this->parseUnaryExpression(),
-            TokenType::EXCLAMATION_MARK => $this->parseUnaryExpression(),
-            TokenType::FLOAT            => $this->parseFloatLiteral(),
-            TokenType::IDENTIFIER       => $this->parseIdentifierExpression(),
-            TokenType::INCREMENT        => $this->parseUnaryExpression(),
-            TokenType::INTEGER          => $this->parseIntegerLiteral(),
-            TokenType::KEYWORD_FALSE    => $this->parseBooleanLiteral(false),
-            TokenType::KEYWORD_NULL     => $this->parseNullLiteral(),
-            TokenType::KEYWORD_TRUE     => $this->parseBooleanLiteral(true),
-            TokenType::MINUS            => $this->parseUnaryExpression(),
-            TokenType::PLUS             => $this->parseUnaryExpression(),
-            TokenType::STRING           => $this->parseStringLiteral(),
-            TokenType::TILDE            => $this->parseUnaryExpression(),
+            TokenType::Decrement       => $this->parseUnaryExpression(),
+            TokenType::ExclamationMark => $this->parseUnaryExpression(),
+            TokenType::Float           => $this->parseFloatLiteral(),
+            TokenType::Identifier      => $this->parseIdentifierExpression(),
+            TokenType::Increment       => $this->parseUnaryExpression(),
+            TokenType::Integer         => $this->parseIntegerLiteral(),
+            TokenType::KeywordFalse    => $this->parseBooleanLiteral(false),
+            TokenType::KeywordNull     => $this->parseNullLiteral(),
+            TokenType::KeywordTrue     => $this->parseBooleanLiteral(true),
+            TokenType::Minus           => $this->parseUnaryExpression(),
+            TokenType::Plus            => $this->parseUnaryExpression(),
+            TokenType::String          => $this->parseStringLiteral(),
+            TokenType::Tilde           => $this->parseUnaryExpression(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
@@ -143,7 +143,7 @@ final class Parser implements ParserInterface
         $token = $this->current;
         $expression = $this->parseExpression();
 
-        $this->expect(TokenType::SEMICOLON);
+        $this->expect(TokenType::Semicolon);
 
         return new Statements\ExpressionStatement(
             line: $token->line,
@@ -153,7 +153,7 @@ final class Parser implements ParserInterface
 
     private function parseFloatLiteral(): Literals\FloatLiteral
     {
-        $token = $this->expect(TokenType::FLOAT);
+        $token = $this->expect(TokenType::Float);
         $value = floatval($token->value);
 
         return new Literals\FloatLiteral(
@@ -164,34 +164,34 @@ final class Parser implements ParserInterface
 
     private function parseFunctionStatement(): Statements\FunctionStatement
     {
-        $token = $this->expect(TokenType::KEYWORD_FN);
-        $name = $this->expect(TokenType::IDENTIFIER);
+        $token = $this->expect(TokenType::KeywordFn);
+        $name = $this->expect(TokenType::Identifier);
         $parameters = [];
         $statements = [];
 
-        $this->expect(TokenType::LEFT_PARENTHESIS);
+        $this->expect(TokenType::LeftParenthesis);
 
-        while ($this->current->type !== TokenType::RIGHT_PARENTHESIS) {
+        while ($this->current->type !== TokenType::RightParenthesis) {
             $parameters[] = $this->parseParameter();
 
-            if ($this->current->type === TokenType::COMMA) {
-                $this->expect(TokenType::COMMA);
+            if ($this->current->type === TokenType::Comma) {
+                $this->expect(TokenType::Comma);
             } else {
                 break;
             }
         }
 
-        $this->expect(TokenType::RIGHT_PARENTHESIS);
+        $this->expect(TokenType::RightParenthesis);
 
         $type = $this->parseType();
 
-        $this->expect(TokenType::LEFT_BRACE);
+        $this->expect(TokenType::LeftBrace);
 
-        while ($this->current->type !== TokenType::RIGHT_BRACE) {
+        while ($this->current->type !== TokenType::RightBrace) {
             $statements[] = $this->parseStatement();
         }
 
-        $this->expect(TokenType::RIGHT_BRACE);
+        $this->expect(TokenType::RightBrace);
 
         return new Statements\FunctionStatement(
             line: $token->line,
@@ -204,10 +204,10 @@ final class Parser implements ParserInterface
 
     private function parseIdentifierExpression(): AbstractExpression
     {
-        $token = $this->expect(TokenType::IDENTIFIER);
+        $token = $this->expect(TokenType::Identifier);
 
-        if ($this->current->type === TokenType::ASSIGN) {
-            $this->expect(TokenType::ASSIGN);
+        if ($this->current->type === TokenType::Assign) {
+            $this->expect(TokenType::Assign);
 
             return new Expressions\AssignmentExpression(
                 line: $token->line,
@@ -216,22 +216,22 @@ final class Parser implements ParserInterface
             );
         }
 
-        if ($this->current->type === TokenType::LEFT_PARENTHESIS) {
+        if ($this->current->type === TokenType::LeftParenthesis) {
             $arguments = [];
 
-            $this->expect(TokenType::LEFT_PARENTHESIS);
+            $this->expect(TokenType::LeftParenthesis);
 
-            while ($this->current->type !== TokenType::RIGHT_PARENTHESIS) {
+            while ($this->current->type !== TokenType::RightParenthesis) {
                 $arguments[] = $this->parseExpression();
 
-                if ($this->current->type === TokenType::COMMA) {
-                    $this->expect(TokenType::COMMA);
+                if ($this->current->type === TokenType::Comma) {
+                    $this->expect(TokenType::Comma);
                 } else {
                     break;
                 }
             }
 
-            $this->expect(TokenType::RIGHT_PARENTHESIS);
+            $this->expect(TokenType::RightParenthesis);
 
             return new Expressions\FunctionCallExpression(
                 line: $token->line,
@@ -240,7 +240,7 @@ final class Parser implements ParserInterface
             );
         }
 
-        if ($this->current->type === TokenType::DECREMENT || $this->current->type === TokenType::INCREMENT) {
+        if ($this->current->type === TokenType::Decrement || $this->current->type === TokenType::Increment) {
             $operator = $this->current;
             $this->next();
 
@@ -263,31 +263,31 @@ final class Parser implements ParserInterface
 
     private function parseIfStatement(): Statements\IfStatement
     {
-        $token = $this->expect(TokenType::KEYWORD_IF);
-        $this->expect(TokenType::LEFT_PARENTHESIS);
+        $token = $this->expect(TokenType::KeywordIf);
+        $this->expect(TokenType::LeftParenthesis);
 
         $condition = $this->parseExpression();
         $thenStatements = [];
         $elseStatements = [];
 
-        $this->expect(TokenType::RIGHT_PARENTHESIS);
-        $this->expect(TokenType::LEFT_BRACE);
+        $this->expect(TokenType::RightParenthesis);
+        $this->expect(TokenType::LeftBrace);
 
-        while ($this->current->type !== TokenType::RIGHT_BRACE) {
+        while ($this->current->type !== TokenType::RightBrace) {
             $thenStatements[] = $this->parseStatement();
         }
 
-        $this->expect(TokenType::RIGHT_BRACE);
+        $this->expect(TokenType::RightBrace);
 
-        if ($this->current->type === TokenType::KEYWORD_ELSE) {
-            $this->expect(TokenType::KEYWORD_ELSE);
-            $this->expect(TokenType::LEFT_BRACE);
+        if ($this->current->type === TokenType::KeywordElse) {
+            $this->expect(TokenType::KeywordElse);
+            $this->expect(TokenType::LeftBrace);
 
-            while ($this->current->type !== TokenType::RIGHT_BRACE) {
+            while ($this->current->type !== TokenType::RightBrace) {
                 $elseStatements[] = $this->parseStatement();
             }
 
-            $this->expect(TokenType::RIGHT_BRACE);
+            $this->expect(TokenType::RightBrace);
         }
 
         return new Statements\IfStatement(
@@ -300,7 +300,7 @@ final class Parser implements ParserInterface
 
     private function parseIntegerLiteral(): Literals\IntegerLiteral
     {
-        $token = $this->expect(TokenType::INTEGER);
+        $token = $this->expect(TokenType::Integer);
         $value = intval($token->value);
 
         return new Literals\IntegerLiteral(
@@ -311,7 +311,7 @@ final class Parser implements ParserInterface
 
     private function parseNamedType(): Types\NamedType
     {
-        $token = $this->expect(TokenType::IDENTIFIER);
+        $token = $this->expect(TokenType::Identifier);
 
         return new Types\NamedType(
             line: $token->line,
@@ -321,7 +321,7 @@ final class Parser implements ParserInterface
 
     private function parseNullLiteral(): Literals\NullLiteral
     {
-        $token = $this->expect(TokenType::KEYWORD_NULL);
+        $token = $this->expect(TokenType::KeywordNull);
 
         return new Literals\NullLiteral(
             line: $token->line,
@@ -330,7 +330,7 @@ final class Parser implements ParserInterface
 
     private function parseParameter(): Parameter
     {
-        $token = $this->expect(TokenType::IDENTIFIER);
+        $token = $this->expect(TokenType::Identifier);
         $type = $this->parseType();
 
         return new Parameter(
@@ -342,10 +342,10 @@ final class Parser implements ParserInterface
 
     private function parsePrintStatement(): Statements\PrintStatement
     {
-        $token = $this->expect(TokenType::KEYWORD_PRINT);
+        $token = $this->expect(TokenType::KeywordPrint);
         $expression = $this->parseExpression();
 
-        $this->expect(TokenType::SEMICOLON);
+        $this->expect(TokenType::Semicolon);
 
         return new Statements\PrintStatement(
             line: $token->line,
@@ -355,15 +355,15 @@ final class Parser implements ParserInterface
 
     private function parseReturnStatement(): Statements\ReturnStatement
     {
-        $token = $this->expect(TokenType::KEYWORD_RETURN);
+        $token = $this->expect(TokenType::KeywordReturn);
 
-        if ($this->current->type !== TokenType::SEMICOLON) {
+        if ($this->current->type !== TokenType::Semicolon) {
             $expression = $this->parseExpression();
         } else {
             $expression = null;
         }
 
-        $this->expect(TokenType::SEMICOLON);
+        $this->expect(TokenType::Semicolon);
 
         return new Statements\ReturnStatement(
             line: $token->line,
@@ -374,15 +374,15 @@ final class Parser implements ParserInterface
     private function parseStatement(): AbstractStatement
     {
         return match ($this->current->type) {
-            TokenType::KEYWORD_BREAK    => $this->parseBreakStatement(),
-            TokenType::KEYWORD_CONST    => $this->parseConstStatement(),
-            TokenType::KEYWORD_CONTINUE => $this->parseContinueStatement(),
-            TokenType::KEYWORD_FN       => $this->parseFunctionStatement(),
-            TokenType::KEYWORD_IF       => $this->parseIfStatement(),
-            TokenType::KEYWORD_PRINT    => $this->parsePrintStatement(),
-            TokenType::KEYWORD_RETURN   => $this->parseReturnStatement(),
-            TokenType::KEYWORD_VAR      => $this->parseVarStatement(),
-            TokenType::KEYWORD_WHILE    => $this->parseWhileStatement(),
+            TokenType::KeywordBreak    => $this->parseBreakStatement(),
+            TokenType::KeywordConst    => $this->parseConstStatement(),
+            TokenType::KeywordContinue => $this->parseContinueStatement(),
+            TokenType::KeywordFn       => $this->parseFunctionStatement(),
+            TokenType::KeywordIf       => $this->parseIfStatement(),
+            TokenType::KeywordPrint    => $this->parsePrintStatement(),
+            TokenType::KeywordReturn   => $this->parseReturnStatement(),
+            TokenType::KeywordVar      => $this->parseVarStatement(),
+            TokenType::KeywordWhile    => $this->parseWhileStatement(),
 
             // Fallback
             default => $this->parseExpressionStatement(),
@@ -391,7 +391,7 @@ final class Parser implements ParserInterface
 
     private function parseStringLiteral(): Literals\StringLiteral
     {
-        $token = $this->expect(TokenType::STRING);
+        $token = $this->expect(TokenType::String);
 
         return new Literals\StringLiteral(
             line: $token->line,
@@ -401,10 +401,10 @@ final class Parser implements ParserInterface
 
     private function parseType(): AbstractType
     {
-        $this->expect(TokenType::COLON);
+        $this->expect(TokenType::Colon);
 
-        if ($this->current->type === TokenType::QUESTION_MARK) {
-            $token = $this->expect(TokenType::QUESTION_MARK);
+        if ($this->current->type === TokenType::QuestionMark) {
+            $token = $this->expect(TokenType::QuestionMark);
 
             return new Types\NullableType(
                 line: $token->line,
@@ -430,15 +430,15 @@ final class Parser implements ParserInterface
 
     private function parseVarStatement(): Statements\VarStatement
     {
-        $token = $this->expect(TokenType::KEYWORD_VAR);
-        $name = $this->expect(TokenType::IDENTIFIER);
+        $token = $this->expect(TokenType::KeywordVar);
+        $name = $this->expect(TokenType::Identifier);
         $type = $this->parseType();
 
-        $this->expect(TokenType::ASSIGN);
+        $this->expect(TokenType::Assign);
 
         $expression = $this->parseExpression();
 
-        $this->expect(TokenType::SEMICOLON);
+        $this->expect(TokenType::Semicolon);
 
         return new Statements\VarStatement(
             line: $token->line,
@@ -450,20 +450,20 @@ final class Parser implements ParserInterface
 
     private function parseWhileStatement(): Statements\WhileStatement
     {
-        $token = $this->expect(TokenType::KEYWORD_WHILE);
-        $this->expect(TokenType::LEFT_PARENTHESIS);
+        $token = $this->expect(TokenType::KeywordWhile);
+        $this->expect(TokenType::LeftParenthesis);
 
         $condition = $this->parseExpression();
         $statements = [];
 
-        $this->expect(TokenType::RIGHT_PARENTHESIS);
-        $this->expect(TokenType::LEFT_BRACE);
+        $this->expect(TokenType::RightParenthesis);
+        $this->expect(TokenType::LeftBrace);
 
-        while ($this->current->type !== TokenType::RIGHT_BRACE) {
+        while ($this->current->type !== TokenType::RightBrace) {
             $statements[] = $this->parseStatement();
         }
 
-        $this->expect(TokenType::RIGHT_BRACE);
+        $this->expect(TokenType::RightBrace);
 
         return new Statements\WhileStatement(
             line: $token->line,
@@ -477,7 +477,7 @@ final class Parser implements ParserInterface
     {
         $token = $this->current;
 
-        if ($token->type === TokenType::EOF) {
+        if ($token->type === TokenType::Eof) {
             throw new UnexpectedEndOfInputException($token->line);
         }
 
