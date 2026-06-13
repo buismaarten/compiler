@@ -7,7 +7,9 @@ declare(strict_types=1);
 
 namespace Package\Nodes;
 
-abstract class AbstractNode implements \JsonSerializable
+use JsonSerializable;
+
+abstract class AbstractNode implements JsonSerializable
 {
     private readonly int $line;
 

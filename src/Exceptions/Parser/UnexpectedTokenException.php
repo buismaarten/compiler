@@ -8,8 +8,9 @@ declare(strict_types=1);
 namespace Package\Exceptions\Parser;
 
 use Package\Exceptions\ExceptionInterface;
+use RuntimeException;
 
-final class UnexpectedTokenException extends \RuntimeException implements ExceptionInterface
+final class UnexpectedTokenException extends RuntimeException implements ExceptionInterface
 {
     public function __construct(int $line, string $token)
     {

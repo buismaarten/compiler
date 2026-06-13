@@ -8,8 +8,9 @@ declare(strict_types=1);
 namespace Package\Exceptions\Tokenizer;
 
 use Package\Exceptions\ExceptionInterface;
+use RuntimeException;
 
-final class UnexpectedCharacterException extends \RuntimeException implements ExceptionInterface
+final class UnexpectedCharacterException extends RuntimeException implements ExceptionInterface
 {
     public function __construct(int $line, string $character)
     {
