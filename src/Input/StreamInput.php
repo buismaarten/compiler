@@ -9,6 +9,7 @@ namespace Package\Input;
 
 use InvalidArgumentException;
 use Override;
+use RuntimeException;
 
 final class StreamInput implements InputInterface
 {
@@ -33,7 +34,10 @@ final class StreamInput implements InputInterface
         }
 
         $current = fgetc($this->stream);
-        fseek($this->stream, $offset);
+
+        if (fseek($this->stream, $offset) !== 0) {
+            throw new RuntimeException('Stream is not seekable.');
+        }
 
         if ($current !== false) {
             return $current;
@@ -46,31 +50,38 @@ final class StreamInput implements InputInterface
     #[Override]
     public function next(): void
     {
-        fseek($this->stream, 1, SEEK_CUR);
+        if (fseek($this->stream, 1, SEEK_CUR) !== 0) {
+            throw new RuntimeException('Stream is not seekable.');
+        }
     }
 
     #[Override]
     public function offset(): int
     {
-        if (($offset = ftell($this->stream)) !== false) {
-            return $offset;
+        if (($offset = ftell($this->stream)) === false) {
+            throw new RuntimeException('Stream is not seekable.');
         }
 
-        // Fallback
-        return 0;
+        return $offset;
     }
 
     #[Override]
     public function slice(int $start, int $end): string
     {
-        fseek($this->stream, $start);
+        $offset = $end - $start;
 
-        // @phpstan-ignore-next-line
-        if (($string = fread($this->stream, $end - $start)) !== false) {
-            return $string;
+        if ($offset < 1) {
+            throw new InvalidArgumentException('End offset must be greater than start offset.');
         }
 
-        // Fallback
-        return '';
+        if (fseek($this->stream, $start) !== 0) {
+            throw new RuntimeException('Stream is not seekable.');
+        }
+
+        if (($string = fread($this->stream, $offset)) === false) {
+            throw new RuntimeException('Failed to read from stream.');
+        }
+
+        return $string;
     }
 }
