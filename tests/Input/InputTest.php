@@ -7,17 +7,17 @@ declare(strict_types=1);
 
 namespace Package\Tests\Input;
 
-use Package\Input\StringInput;
+use Package\Input\Input;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class StringInputTest extends TestCase
+class InputTest extends TestCase
 {
     #[Test]
     public function testCurrent(): void
     {
         $string = 'abc';
-        $input = new StringInput($string);
+        $input = new Input($string);
 
         $this->assertSame('a', $input->current());
 
@@ -35,7 +35,7 @@ class StringInputTest extends TestCase
     public function testNext(): void
     {
         $string = 'abc';
-        $input = new StringInput($string);
+        $input = new Input($string);
 
         $this->assertSame('a', $input->current());
 
@@ -53,7 +53,7 @@ class StringInputTest extends TestCase
     public function testOffset(): void
     {
         $string = 'abc';
-        $input = new StringInput($string);
+        $input = new Input($string);
 
         $this->assertSame(0, $input->offset());
 
@@ -71,7 +71,7 @@ class StringInputTest extends TestCase
     public function testSlice(): void
     {
         $string = 'abc';
-        $input = new StringInput($string);
+        $input = new Input($string);
 
         $this->assertSame('bc', $input->slice(1, 3));
     }

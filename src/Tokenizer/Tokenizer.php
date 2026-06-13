@@ -11,7 +11,7 @@ use Override;
 use Package\Exceptions\Tokenizer\UnexpectedCharacterException;
 use Package\Exceptions\UnexpectedEndOfInputException;
 use Package\Input\InputInterface;
-use Package\Input\StringInput;
+use Package\Input\Input;
 
 final class Tokenizer implements TokenizerInterface
 {
@@ -37,7 +37,7 @@ final class Tokenizer implements TokenizerInterface
     public function __construct(InputInterface|string $input)
     {
         if (is_string($input)) {
-            $input = new StringInput($input);
+            $input = new Input($input);
         }
 
         $this->input = $input;

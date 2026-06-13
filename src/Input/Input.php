@@ -9,7 +9,7 @@ namespace Package\Input;
 
 use Override;
 
-final class StringInput implements InputInterface
+final class Input implements InputInterface
 {
     private string $string;
     private int $offset = 0;
