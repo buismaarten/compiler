@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Package\Tests\Input;
 
-use Package\Input\Input;
 use Package\Input\StreamInput;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
