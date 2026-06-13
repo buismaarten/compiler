@@ -11,8 +11,8 @@ use Override;
 
 final class StringInput implements InputInterface
 {
-    private int $offset = 0;
     private string $string;
+    private int $offset = 0;
 
     public function __construct(string $string)
     {

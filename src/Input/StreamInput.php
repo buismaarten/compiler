@@ -12,8 +12,6 @@ use Override;
 
 final class StreamInput implements InputInterface
 {
-    use InputTrait;
-
     /** @var resource */
     private $stream;
 
@@ -30,11 +28,36 @@ final class StreamInput implements InputInterface
     #[Override]
     public function current(): ?string
     {
-        if (($current = fgetc($this->stream)) !== false) {
+        if (($offset = ftell($this->stream)) === false) {
+            return null;
+        }
+
+        $current = fgetc($this->stream);
+        fseek($this->stream, $offset);
+
+        if ($current !== false) {
             return $current;
         }
 
+        // Fallback
         return null;
+    }
+
+    #[Override]
+    public function next(): void
+    {
+        fseek($this->stream, 1, SEEK_CUR);
+    }
+
+    #[Override]
+    public function offset(): int
+    {
+        if (($offset = ftell($this->stream)) !== false) {
+            return $offset;
+        }
+
+        // Fallback
+        return 0;
     }
 
     #[Override]
@@ -47,6 +70,7 @@ final class StreamInput implements InputInterface
             return $string;
         }
 
+        // Fallback
         return '';
     }
 }
