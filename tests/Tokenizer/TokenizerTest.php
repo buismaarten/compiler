@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tests\Tokenizer;
 
+use Package\Input\StreamInput;
 use Package\Tokenizer\Token;
 use Package\Tokenizer\Tokenizer;
 use Package\Tokenizer\TokenizerInterface;
@@ -367,6 +368,18 @@ class TokenizerTest extends TestCase
 
     private static function createTokenizer(string $input): TokenizerInterface
     {
+        $input = new StreamInput(self::createStream($input));
+
         return new Tokenizer($input);
+    }
+
+    /** @return resource */
+    private static function createStream(string $string)
+    {
+        $stream = fopen('php://memory', 'r+');
+        fwrite($stream, $string);
+        rewind($stream);
+
+        return $stream;
     }
 }
