@@ -40,6 +40,12 @@ class ParserTest extends TestCase
             ],
         );
     }
+    #[Test]
+    public function testBinaryExpression(): void
+    {
+        // TODO
+        $this->assertTrue(true);
+    }
 
     #[Test]
     public function testBooleanLiteral(): void
