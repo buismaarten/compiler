@@ -59,8 +59,8 @@ final class Tokenizer implements TokenizerInterface
         }
 
         $token = match ($current) {
+            '*' => $this->tokenizeAsterisk(),
             '=' => $this->tokenizeCharacter(TokenType::Assign),
-            '*' => $this->tokenizeCharacter(TokenType::Asterisk),
             ':' => $this->tokenizeCharacter(TokenType::Colon),
             ',' => $this->tokenizeCharacter(TokenType::Comma),
             '!' => $this->tokenizeCharacter(TokenType::ExclamationMark),
@@ -93,6 +93,19 @@ final class Tokenizer implements TokenizerInterface
         }
 
         return $token;
+    }
+
+    private function tokenizeAsterisk(): Token
+    {
+        $this->input->next();
+
+        if ($this->input->current() === '*') {
+            $this->input->next();
+
+            return new Token(TokenType::Exponent, $this->line);
+        }
+
+        return new Token(TokenType::Asterisk, $this->line);
     }
 
     private function tokenizeCharacter(TokenType $type): Token

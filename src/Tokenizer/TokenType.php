@@ -16,6 +16,7 @@ enum TokenType
     case Decrement;
     case Eof;
     case ExclamationMark;
+    case Exponent;
     case Float;
     case Identifier;
     case Increment;
