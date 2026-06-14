@@ -19,7 +19,7 @@ enum BinaryOperator
         // @phpstan-ignore-next-line
         return match ($tokenType) {
             TokenType::Minus => self::Subtraction,
-            TokenType::Plus => self::Addition,
+            TokenType::Plus  => self::Addition,
         };
     }
 }
