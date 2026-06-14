@@ -46,17 +46,14 @@ final class Parser implements ParserInterface
         return $statements;
     }
 
-    private function parseBooleanLiteral(bool $value): Literals\BooleanLiteral
+    private function parseBooleanLiteral(): Literals\BooleanLiteral
     {
-        if ($value) {
-            $token = $this->expect(TokenType::KeywordTrue);
-        } else {
-            $token = $this->expect(TokenType::KeywordFalse);
-        }
+        $token = $this->current;
+        $this->next();
 
         return new Literals\BooleanLiteral(
             line: $token->line,
-            value: $value,
+            value: $token->type === TokenType::KeywordTrue,
         );
     }
 
@@ -125,9 +122,9 @@ final class Parser implements ParserInterface
             TokenType::Identifier      => $this->parseIdentifierExpression(),
             TokenType::Increment       => $this->parseUnaryExpression(),
             TokenType::Integer         => $this->parseIntegerLiteral(),
-            TokenType::KeywordFalse    => $this->parseBooleanLiteral(false),
+            TokenType::KeywordFalse    => $this->parseBooleanLiteral(),
             TokenType::KeywordNull     => $this->parseNullLiteral(),
-            TokenType::KeywordTrue     => $this->parseBooleanLiteral(true),
+            TokenType::KeywordTrue     => $this->parseBooleanLiteral(),
             TokenType::Minus           => $this->parseUnaryExpression(),
             TokenType::Plus            => $this->parseUnaryExpression(),
             TokenType::String          => $this->parseStringLiteral(),
