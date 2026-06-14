@@ -40,6 +40,7 @@ class ParserTest extends TestCase
             ],
         );
     }
+
     #[Test]
     public function testBinaryExpression(): void
     {
