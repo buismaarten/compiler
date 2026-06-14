@@ -718,8 +718,8 @@ class ParserTest extends TestCase
 
     private static function createParser(string $input): ParserInterface
     {
-        $Tokenizer = new Tokenizer($input);
-        $parser = new Parser($Tokenizer);
+        $tokenizer = new Tokenizer($input);
+        $parser = new Parser($tokenizer);
 
         return $parser;
     }
