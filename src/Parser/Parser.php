@@ -113,10 +113,30 @@ final class Parser implements ParserInterface
         );
     }
 
-    // TODO
-    private function parseExpression(): AbstractExpression
+    private function parseExpression(int $minimumPrecedence = 0): AbstractExpression
     {
-        return $this->parsePrimaryExpression();
+        $expression = $this->parsePrimaryExpression();
+
+        while (
+            ($operator = Expressions\BinaryOperator::fromTokenType($this->current->type)) !== null &&
+            ($precedence = $operator->precedence()) >= $minimumPrecedence
+        ) {
+            $token = $this->current;
+            $this->next();
+
+            if (!$operator->isRightAssociative()) {
+                $precedence++;
+            }
+
+            $expression = new Expressions\BinaryExpression(
+                line: $token->line,
+                left: $expression,
+                operator: $operator,
+                right: $this->parseExpression($precedence),
+            );
+        }
+
+        return $expression;
     }
 
     private function parseExpressionStatement(): Statements\ExpressionStatement

@@ -44,8 +44,63 @@ class ParserTest extends TestCase
     #[Test]
     public function testBinaryExpression(): void
     {
-        // TODO
-        $this->assertTrue(true);
+        $this->assertEquals(
+            actual: self::createParser('1 + 2 * 3;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\BinaryExpression(
+                        line: 1,
+                        left: new Literals\IntegerLiteral(
+                            line: 1,
+                            value: 1,
+                        ),
+                        operator: Expressions\BinaryOperator::Addition,
+                        right: new Expressions\BinaryExpression(
+                            line: 1,
+                            left: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 2,
+                            ),
+                            operator: Expressions\BinaryOperator::Multiplication,
+                            right: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 3,
+                            ),
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('2 ** 3 ** 4;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\BinaryExpression(
+                        line: 1,
+                        left: new Literals\IntegerLiteral(
+                            line: 1,
+                            value: 2,
+                        ),
+                        operator: Expressions\BinaryOperator::Exponentiation,
+                        right: new Expressions\BinaryExpression(
+                            line: 1,
+                            left: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 3,
+                            ),
+                            operator: Expressions\BinaryOperator::Exponentiation,
+                            right: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 4,
+                            ),
+                        ),
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]
