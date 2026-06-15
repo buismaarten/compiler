@@ -12,6 +12,7 @@ use Package\Tokenizer\TokenType;
 enum BinaryOperator
 {
     case Divide;
+    case Modulo;
     case Exponent;
     case Minus;
     case Multiply;
@@ -25,6 +26,7 @@ enum BinaryOperator
             TokenType::Minus    => self::Minus,
             TokenType::Plus     => self::Plus,
             TokenType::Slash    => self::Divide,
+            TokenType::Percent  => self::Modulo,
 
             // Fallback
             default => null,
@@ -45,8 +47,9 @@ enum BinaryOperator
     {
         return match ($this) {
             self::Exponent => 3,
-            self::Divide   => 3,
             self::Multiply => 2,
+            self::Divide   => 2,
+            self::Modulo   => 2,
             self::Plus     => 1,
             self::Minus    => 1,
         };
