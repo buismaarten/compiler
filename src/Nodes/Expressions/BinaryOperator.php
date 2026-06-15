@@ -11,10 +11,11 @@ use Package\Tokenizer\TokenType;
 
 enum BinaryOperator
 {
-    case Plus;
+    case Divide;
+    case Exponentiation;
     case Minus;
     case Multiply;
-    case Exponentiation;
+    case Plus;
 
     public static function fromTokenType(TokenType $tokenType): ?self
     {
@@ -23,6 +24,7 @@ enum BinaryOperator
             TokenType::Exponent => self::Exponentiation,
             TokenType::Minus    => self::Minus,
             TokenType::Plus     => self::Plus,
+            TokenType::Slash    => self::Divide,
 
             // Fallback
             default => null,
@@ -43,6 +45,7 @@ enum BinaryOperator
     {
         return match ($this) {
             self::Exponentiation => 3,
+            self::Divide         => 3,
             self::Multiply       => 2,
             self::Plus           => 1,
             self::Minus          => 1,
