@@ -84,14 +84,14 @@ class ParserTest extends TestCase
                             line: 1,
                             value: 2,
                         ),
-                        operator: Expressions\BinaryOperator::Exponentiation,
+                        operator: Expressions\BinaryOperator::Exponent,
                         right: new Expressions\BinaryExpression(
                             line: 1,
                             left: new Literals\IntegerLiteral(
                                 line: 1,
                                 value: 3,
                             ),
-                            operator: Expressions\BinaryOperator::Exponentiation,
+                            operator: Expressions\BinaryOperator::Exponent,
                             right: new Literals\IntegerLiteral(
                                 line: 1,
                                 value: 4,

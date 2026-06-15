@@ -12,7 +12,7 @@ use Package\Tokenizer\TokenType;
 enum BinaryOperator
 {
     case Divide;
-    case Exponentiation;
+    case Exponent;
     case Minus;
     case Multiply;
     case Plus;
@@ -21,7 +21,7 @@ enum BinaryOperator
     {
         return match ($tokenType) {
             TokenType::Asterisk => self::Multiply,
-            TokenType::Exponent => self::Exponentiation,
+            TokenType::Exponent => self::Exponent,
             TokenType::Minus    => self::Minus,
             TokenType::Plus     => self::Plus,
             TokenType::Slash    => self::Divide,
@@ -34,7 +34,7 @@ enum BinaryOperator
     public function isRightAssociative(): bool
     {
         return match ($this) {
-            self::Exponentiation => true,
+            self::Exponent => true,
 
             // Fallback
             default => false,
@@ -44,11 +44,11 @@ enum BinaryOperator
     public function precedence(): int
     {
         return match ($this) {
-            self::Exponentiation => 3,
-            self::Divide         => 3,
-            self::Multiply       => 2,
-            self::Plus           => 1,
-            self::Minus          => 1,
+            self::Exponent => 3,
+            self::Divide   => 3,
+            self::Multiply => 2,
+            self::Plus     => 1,
+            self::Minus    => 1,
         };
     }
 }
