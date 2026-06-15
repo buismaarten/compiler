@@ -230,6 +230,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testPercent(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('%')->next(),
+            expected: new Token(TokenType::Percent, 1),
+        );
+    }
+
+    #[Test]
     public function testPlus(): void
     {
         $this->assertEquals(

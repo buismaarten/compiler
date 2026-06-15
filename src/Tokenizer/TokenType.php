@@ -38,6 +38,7 @@ enum TokenType
     case LeftBracket;
     case LeftParenthesis;
     case Minus;
+    case Percent;
     case Plus;
     case QuestionMark;
     case RightBrace;

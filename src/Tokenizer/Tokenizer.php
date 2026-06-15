@@ -67,6 +67,7 @@ final class Tokenizer implements TokenizerInterface
             '{' => $this->tokenizeCharacter(TokenType::LeftBrace),
             '[' => $this->tokenizeCharacter(TokenType::LeftBracket),
             '(' => $this->tokenizeCharacter(TokenType::LeftParenthesis),
+            '%' => $this->tokenizeCharacter(TokenType::Percent),
             '?' => $this->tokenizeCharacter(TokenType::QuestionMark),
             '}' => $this->tokenizeCharacter(TokenType::RightBrace),
             ']' => $this->tokenizeCharacter(TokenType::RightBracket),
