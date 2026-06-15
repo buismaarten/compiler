@@ -118,7 +118,7 @@ final class Parser implements ParserInterface
         $expression = $this->parsePrimaryExpression();
 
         while (
-            ($operator = Expressions\BinaryOperator::fromTokenType($this->current->type)) !== null &&
+            ($operator = Expressions\BinaryOperator::fromTokenType($this->current->type)) &&
             ($precedence = $operator->precedence()) >= $minimumPrecedence
         ) {
             $token = $this->current;
