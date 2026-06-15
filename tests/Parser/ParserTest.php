@@ -55,14 +55,14 @@ class ParserTest extends TestCase
                             line: 1,
                             value: 1,
                         ),
-                        operator: Expressions\BinaryOperator::Addition,
+                        operator: Expressions\BinaryOperator::Plus,
                         right: new Expressions\BinaryExpression(
                             line: 1,
                             left: new Literals\IntegerLiteral(
                                 line: 1,
                                 value: 2,
                             ),
-                            operator: Expressions\BinaryOperator::Multiplication,
+                            operator: Expressions\BinaryOperator::Multiply,
                             right: new Literals\IntegerLiteral(
                                 line: 1,
                                 value: 3,

@@ -11,18 +11,18 @@ use Package\Tokenizer\TokenType;
 
 enum BinaryOperator
 {
-    case Addition;
+    case Plus;
+    case Minus;
+    case Multiply;
     case Exponentiation;
-    case Multiplication;
-    case Subtraction;
 
     public static function fromTokenType(TokenType $tokenType): ?self
     {
         return match ($tokenType) {
-            TokenType::Asterisk => self::Multiplication,
+            TokenType::Asterisk => self::Multiply,
             TokenType::Exponent => self::Exponentiation,
-            TokenType::Minus    => self::Subtraction,
-            TokenType::Plus     => self::Addition,
+            TokenType::Minus    => self::Minus,
+            TokenType::Plus     => self::Plus,
 
             // Fallback
             default => null,
@@ -43,9 +43,9 @@ enum BinaryOperator
     {
         return match ($this) {
             self::Exponentiation => 3,
-            self::Multiplication => 2,
-            self::Addition       => 1,
-            self::Subtraction    => 1,
+            self::Multiply       => 2,
+            self::Plus           => 1,
+            self::Minus          => 1,
         };
     }
 }
