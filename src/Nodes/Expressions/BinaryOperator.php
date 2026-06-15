@@ -12,9 +12,9 @@ use Package\Tokenizer\TokenType;
 enum BinaryOperator
 {
     case Divide;
-    case Modulo;
     case Exponent;
     case Minus;
+    case Modulo;
     case Multiply;
     case Plus;
 
@@ -24,9 +24,9 @@ enum BinaryOperator
             TokenType::Asterisk => self::Multiply,
             TokenType::Exponent => self::Exponent,
             TokenType::Minus    => self::Minus,
+            TokenType::Percent  => self::Modulo,
             TokenType::Plus     => self::Plus,
             TokenType::Slash    => self::Divide,
-            TokenType::Percent  => self::Modulo,
 
             // Fallback
             default => null,
