@@ -54,4 +54,11 @@ enum TokenType
     case Slash;
     case String;
     case Tilde;
+
+    // TODO
+    case Equal;
+    case Identical;
+    case NotEqual;
+    case NotIdentical;
+    case Spaceship;
 }

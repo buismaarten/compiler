@@ -24,6 +24,13 @@ enum BinaryOperator
     case ShiftLeft;
     case ShiftRight;
 
+    // TODO
+    case Equal;
+    case Identical;
+    case NotEqual;
+    case NotIdentical;
+    case Spaceship;
+
     public static function fromTokenType(TokenType $tokenType): ?self
     {
         return match ($tokenType) {
@@ -58,18 +65,25 @@ enum BinaryOperator
     public function precedence(): int
     {
         return match ($this) {
-            self::Exponent         => 5,
-            self::Divide           => 4,
-            self::Modulo           => 4,
-            self::Multiply         => 4,
-            self::Minus            => 3,
-            self::Plus             => 3,
-            self::ShiftLeft        => 2,
-            self::ShiftRight       => 2,
-            self::GreaterThan      => 1,
-            self::GreaterThanEqual => 1,
-            self::LessThan         => 1,
-            self::LessThanEqual    => 1,
+            self::Exponent         => 6,
+            self::Divide           => 5,
+            self::Modulo           => 5,
+            self::Multiply         => 5,
+            self::Minus            => 4,
+            self::Plus             => 4,
+            self::ShiftLeft        => 3,
+            self::ShiftRight       => 3,
+            self::GreaterThan      => 2,
+            self::GreaterThanEqual => 2,
+            self::LessThan         => 2,
+            self::LessThanEqual    => 2,
+
+            // TODO
+            self::Equal            => 1,
+            self::Identical        => 1,
+            self::NotEqual         => 1,
+            self::NotIdentical     => 1,
+            self::Spaceship        => 1,
         };
     }
 }
