@@ -19,6 +19,7 @@ enum TokenType
     case Exponent;
     case Float;
     case GreaterThan;
+    case GreaterThanEqual;
     case Identifier;
     case Increment;
     case Integer;
@@ -39,6 +40,7 @@ enum TokenType
     case LeftBracket;
     case LeftParenthesis;
     case LessThan;
+    case LessThanEqual;
     case Minus;
     case Percent;
     case Plus;

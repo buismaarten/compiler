@@ -146,6 +146,12 @@ final class Tokenizer implements TokenizerInterface
             return new Token(TokenType::ShiftLeft, $this->line);
         }
 
+        if ($this->input->current() === '=') {
+            $this->input->next();
+
+            return new Token(TokenType::LessThanEqual, $this->line);
+        }
+
         return new Token(TokenType::LessThan, $this->line);
     }
 
@@ -212,6 +218,12 @@ final class Tokenizer implements TokenizerInterface
             $this->input->next();
 
             return new Token(TokenType::ShiftRight, $this->line);
+        }
+
+        if ($this->input->current() === '=') {
+            $this->input->next();
+
+            return new Token(TokenType::GreaterThanEqual, $this->line);
         }
 
         return new Token(TokenType::GreaterThan, $this->line);

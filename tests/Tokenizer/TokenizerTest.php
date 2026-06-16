@@ -107,6 +107,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testGreaterThanEqual(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('>=')->next(),
+            expected: new Token(TokenType::GreaterThanEqual, 1),
+        );
+    }
+
+    #[Test]
     public function testIdentifier(): void
     {
         $this->assertEquals(
@@ -235,6 +244,15 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('<')->next(),
             expected: new Token(TokenType::LessThan, 1),
+        );
+    }
+
+    #[Test]
+    public function testLessThanEqual(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('<=')->next(),
+            expected: new Token(TokenType::LessThanEqual, 1),
         );
     }
 
