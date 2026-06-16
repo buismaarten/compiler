@@ -46,6 +46,32 @@ final class Parser implements ParserInterface
         return $statements;
     }
 
+    private function parseBinaryExpression(int $minimumPrecedence = 0): AbstractExpression
+    {
+        $expression = $this->parsePrimaryExpression();
+
+        while (
+            ($operator = Expressions\BinaryOperator::fromTokenType($this->current->type)) &&
+            ($precedence = $operator->precedence()) >= $minimumPrecedence
+        ) {
+            $token = $this->current;
+            $this->next();
+
+            if (!$operator->isRightAssociative()) {
+                $precedence++;
+            }
+
+            $expression = new Expressions\BinaryExpression(
+                line: $token->line,
+                left: $expression,
+                operator: $operator,
+                right: $this->parseBinaryExpression($precedence),
+            );
+        }
+
+        return $expression;
+    }
+
     private function parseBooleanLiteral(): Literals\BooleanLiteral
     {
         $token = $this->current;
@@ -113,30 +139,9 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseExpression(int $minimumPrecedence = 0): AbstractExpression
+    private function parseExpression(): AbstractExpression
     {
-        $expression = $this->parsePrimaryExpression();
-
-        while (
-            ($operator = Expressions\BinaryOperator::fromTokenType($this->current->type)) &&
-            ($precedence = $operator->precedence()) >= $minimumPrecedence
-        ) {
-            $token = $this->current;
-            $this->next();
-
-            if (!$operator->isRightAssociative()) {
-                $precedence++;
-            }
-
-            $expression = new Expressions\BinaryExpression(
-                line: $token->line,
-                left: $expression,
-                operator: $operator,
-                right: $this->parseExpression($precedence),
-            );
-        }
-
-        return $expression;
+        return $this->parseBinaryExpression();
     }
 
     private function parseExpressionStatement(): Statements\ExpressionStatement
