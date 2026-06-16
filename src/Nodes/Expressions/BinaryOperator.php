@@ -12,23 +12,21 @@ use Package\Tokenizer\TokenType;
 enum BinaryOperator
 {
     case Divide;
+    case Equal;
     case Exponent;
     case GreaterThan;
     case GreaterThanEqual;
+    case Identical;
     case LessThan;
     case LessThanEqual;
     case Minus;
     case Modulo;
     case Multiply;
+    case NotEqual;
+    case NotIdentical;
     case Plus;
     case ShiftLeft;
     case ShiftRight;
-
-    // TODO
-    case Equal;
-    case Identical;
-    case NotEqual;
-    case NotIdentical;
     case Spaceship;
 
     public static function fromTokenType(TokenType $tokenType): ?self
@@ -77,8 +75,6 @@ enum BinaryOperator
             self::GreaterThanEqual => 2,
             self::LessThan         => 2,
             self::LessThanEqual    => 2,
-
-            // TODO
             self::Equal            => 1,
             self::Identical        => 1,
             self::NotEqual         => 1,
