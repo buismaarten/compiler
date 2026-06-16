@@ -75,8 +75,10 @@ final class Tokenizer implements TokenizerInterface
             ';' => $this->tokenizeCharacter(TokenType::Semicolon),
             '~' => $this->tokenizeCharacter(TokenType::Tilde),
             '_' => $this->tokenizeIdentifier(),
-            '+' => $this->tokenizePlus(),
+            '<' => $this->tokenizeLeftAngle(),
             '-' => $this->tokenizeMinus(),
+            '+' => $this->tokenizePlus(),
+            '>' => $this->tokenizeRightAngle(),
             '/' => $this->tokenizeSlash(),
             '"' => $this->tokenizeString(),
 
@@ -134,6 +136,19 @@ final class Tokenizer implements TokenizerInterface
         return new Token($type, $this->line, $value);
     }
 
+    private function tokenizeLeftAngle(): Token
+    {
+        $this->input->next();
+
+        if ($this->input->current() === '<') {
+            $this->input->next();
+
+            return new Token(TokenType::ShiftLeft, $this->line);
+        }
+
+        return new Token(TokenType::LessThan, $this->line);
+    }
+
     private function tokenizeMinus(): Token
     {
         $this->input->next();
@@ -187,6 +202,19 @@ final class Tokenizer implements TokenizerInterface
         }
 
         return new Token(TokenType::Plus, $this->line);
+    }
+
+    private function tokenizeRightAngle(): Token
+    {
+        $this->input->next();
+
+        if ($this->input->current() === '>') {
+            $this->input->next();
+
+            return new Token(TokenType::ShiftRight, $this->line);
+        }
+
+        return new Token(TokenType::GreaterThan, $this->line);
     }
 
     private function tokenizeSlash(): ?Token

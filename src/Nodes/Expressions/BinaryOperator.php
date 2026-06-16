@@ -13,20 +13,28 @@ enum BinaryOperator
 {
     case Divide;
     case Exponent;
+    case GreaterThan;
+    case LessThan;
     case Minus;
     case Modulo;
     case Multiply;
     case Plus;
+    case ShiftLeft;
+    case ShiftRight;
 
     public static function fromTokenType(TokenType $tokenType): ?self
     {
         return match ($tokenType) {
-            TokenType::Asterisk => self::Multiply,
-            TokenType::Exponent => self::Exponent,
-            TokenType::Minus    => self::Minus,
-            TokenType::Percent  => self::Modulo,
-            TokenType::Plus     => self::Plus,
-            TokenType::Slash    => self::Divide,
+            TokenType::Asterisk    => self::Multiply,
+            TokenType::Exponent    => self::Exponent,
+            TokenType::GreaterThan => self::GreaterThan,
+            TokenType::LessThan    => self::LessThan,
+            TokenType::Minus       => self::Minus,
+            TokenType::Percent     => self::Modulo,
+            TokenType::Plus        => self::Plus,
+            TokenType::ShiftLeft   => self::ShiftLeft,
+            TokenType::ShiftRight  => self::ShiftRight,
+            TokenType::Slash       => self::Divide,
 
             // Fallback
             default => null,
@@ -46,12 +54,16 @@ enum BinaryOperator
     public function precedence(): int
     {
         return match ($this) {
-            self::Exponent => 3,
-            self::Multiply => 2,
-            self::Divide   => 2,
-            self::Modulo   => 2,
-            self::Plus     => 1,
-            self::Minus    => 1,
+            self::Exponent    => 5,
+            self::Divide      => 4,
+            self::Modulo      => 4,
+            self::Multiply    => 4,
+            self::Minus       => 3,
+            self::Plus        => 3,
+            self::ShiftLeft   => 2,
+            self::ShiftRight  => 2,
+            self::GreaterThan => 1,
+            self::LessThan    => 1,
         };
     }
 }

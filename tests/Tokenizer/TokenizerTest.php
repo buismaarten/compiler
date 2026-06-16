@@ -98,6 +98,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testGreaterThan(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('>')->next(),
+            expected: new Token(TokenType::GreaterThan, 1),
+        );
+    }
+
+    #[Test]
     public function testIdentifier(): void
     {
         $this->assertEquals(
@@ -221,6 +230,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testLessThan(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('<')->next(),
+            expected: new Token(TokenType::LessThan, 1),
+        );
+    }
+
+    #[Test]
     public function testMinus(): void
     {
         $this->assertEquals(
@@ -289,6 +307,24 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer(';')->next(),
             expected: new Token(TokenType::Semicolon, 1),
+        );
+    }
+
+    #[Test]
+    public function testShiftLeft(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('<<')->next(),
+            expected: new Token(TokenType::ShiftLeft, 1),
+        );
+    }
+
+    #[Test]
+    public function testShiftRight(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('>>')->next(),
+            expected: new Token(TokenType::ShiftRight, 1),
         );
     }
 

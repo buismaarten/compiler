@@ -18,6 +18,7 @@ enum TokenType
     case ExclamationMark;
     case Exponent;
     case Float;
+    case GreaterThan;
     case Identifier;
     case Increment;
     case Integer;
@@ -37,6 +38,7 @@ enum TokenType
     case LeftBrace;
     case LeftBracket;
     case LeftParenthesis;
+    case LessThan;
     case Minus;
     case Percent;
     case Plus;
@@ -45,6 +47,8 @@ enum TokenType
     case RightBracket;
     case RightParenthesis;
     case Semicolon;
+    case ShiftLeft;
+    case ShiftRight;
     case Slash;
     case String;
     case Tilde;
