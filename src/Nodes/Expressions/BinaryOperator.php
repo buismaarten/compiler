@@ -74,28 +74,26 @@ enum BinaryOperator
     public function precedence(): int
     {
         return match ($this) {
-            self::Exponent         => 6,
-            self::Divide           => 5,
-            self::Modulo           => 5,
-            self::Multiply         => 5,
-            self::Minus            => 4,
-            self::Plus             => 4,
-            self::ShiftLeft        => 3,
-            self::ShiftRight       => 3,
-            self::GreaterThan      => 2,
-            self::GreaterThanEqual => 2,
-            self::LessThan         => 2,
-            self::LessThanEqual    => 2,
-            self::Equal            => 1,
-            self::Identical        => 1,
-            self::NotEqual         => 1,
-            self::NotIdentical     => 1,
-            self::Spaceship        => 1,
-
-            // TODO
-            self::BitwiseAnd       => 0,
-            self::BitwiseOr        => 0,
-            self::BitwiseXor       => 0,
+            self::Exponent         => 9,
+            self::Divide           => 8,
+            self::Modulo           => 8,
+            self::Multiply         => 8,
+            self::Minus            => 7,
+            self::Plus             => 7,
+            self::ShiftLeft        => 6,
+            self::ShiftRight       => 6,
+            self::GreaterThan      => 5,
+            self::GreaterThanEqual => 5,
+            self::LessThan         => 5,
+            self::LessThanEqual    => 5,
+            self::Equal            => 4,
+            self::Identical        => 4,
+            self::NotEqual         => 4,
+            self::NotIdentical     => 4,
+            self::Spaceship        => 4,
+            self::BitwiseAnd       => 3,
+            self::BitwiseXor       => 2,
+            self::BitwiseOr        => 1,
         };
     }
 }
