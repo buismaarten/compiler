@@ -71,6 +71,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testEqual(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('==')->next(),
+            expected: new Token(TokenType::Equal, 1),
+        );
+    }
+
+    #[Test]
     public function testExclamationMark(): void
     {
         $this->assertEquals(
@@ -112,6 +121,15 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('>=')->next(),
             expected: new Token(TokenType::GreaterThanEqual, 1),
+        );
+    }
+
+    #[Test]
+    public function testIdentical(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('===')->next(),
+            expected: new Token(TokenType::Identical, 1),
         );
     }
 

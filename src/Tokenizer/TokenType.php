@@ -15,11 +15,13 @@ enum TokenType
     case Comma;
     case Decrement;
     case Eof;
+    case Equal;
     case ExclamationMark;
     case Exponent;
     case Float;
     case GreaterThan;
     case GreaterThanEqual;
+    case Identical;
     case Identifier;
     case Increment;
     case Integer;
@@ -57,8 +59,6 @@ enum TokenType
     case Tilde;
 
     // TODO
-    case Equal;
-    case Identical;
     case NotEqual;
     case NotIdentical;
 }
