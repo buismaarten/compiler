@@ -149,6 +149,12 @@ final class Tokenizer implements TokenizerInterface
         if ($this->input->current() === '=') {
             $this->input->next();
 
+            if ($this->input->current() === '>') {
+                $this->input->next();
+
+                return new Token(TokenType::Spaceship, $this->line);
+            }
+
             return new Token(TokenType::LessThanEqual, $this->line);
         }
 

@@ -52,6 +52,7 @@ enum TokenType
     case ShiftLeft;
     case ShiftRight;
     case Slash;
+    case Spaceship;
     case String;
     case Tilde;
 
@@ -60,5 +61,4 @@ enum TokenType
     case Identical;
     case NotEqual;
     case NotIdentical;
-    case Spaceship;
 }

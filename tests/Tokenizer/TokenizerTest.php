@@ -356,6 +356,15 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testSpaceship(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('<=>')->next(),
+            expected: new Token(TokenType::Spaceship, 1),
+        );
+    }
+
+    #[Test]
     public function testString(): void
     {
         $this->assertEquals(
