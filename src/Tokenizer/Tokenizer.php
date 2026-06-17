@@ -10,8 +10,8 @@ namespace Package\Tokenizer;
 use Override;
 use Package\Exceptions\Tokenizer\UnexpectedCharacterException;
 use Package\Exceptions\UnexpectedEndOfInputException;
-use Package\Input\InputInterface;
 use Package\Input\Input;
+use Package\Input\InputInterface;
 
 final class Tokenizer implements TokenizerInterface
 {
