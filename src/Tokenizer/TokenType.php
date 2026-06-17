@@ -44,6 +44,8 @@ enum TokenType
     case LessThan;
     case LessThanEqual;
     case Minus;
+    case NotEqual;
+    case NotIdentical;
     case Percent;
     case Plus;
     case QuestionMark;
@@ -57,8 +59,4 @@ enum TokenType
     case Spaceship;
     case String;
     case Tilde;
-
-    // TODO
-    case NotEqual;
-    case NotIdentical;
 }

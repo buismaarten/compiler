@@ -284,6 +284,24 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testNotEqual(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('!=')->next(),
+            expected: new Token(TokenType::NotEqual, 1),
+        );
+    }
+
+    #[Test]
+    public function testNotIdentical(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('!==')->next(),
+            expected: new Token(TokenType::NotIdentical, 1),
+        );
+    }
+
+    #[Test]
     public function testPercent(): void
     {
         $this->assertEquals(

@@ -63,7 +63,6 @@ final class Tokenizer implements TokenizerInterface
             '*' => $this->tokenizeAsterisk(),
             ':' => $this->tokenizeCharacter(TokenType::Colon),
             ',' => $this->tokenizeCharacter(TokenType::Comma),
-            '!' => $this->tokenizeCharacter(TokenType::ExclamationMark),
             '{' => $this->tokenizeCharacter(TokenType::LeftBrace),
             '[' => $this->tokenizeCharacter(TokenType::LeftBracket),
             '(' => $this->tokenizeCharacter(TokenType::LeftParenthesis),
@@ -74,6 +73,7 @@ final class Tokenizer implements TokenizerInterface
             ')' => $this->tokenizeCharacter(TokenType::RightParenthesis),
             ';' => $this->tokenizeCharacter(TokenType::Semicolon),
             '~' => $this->tokenizeCharacter(TokenType::Tilde),
+            '!' => $this->tokenizeExclamationMark(),
             '_' => $this->tokenizeIdentifier(),
             '<' => $this->tokenizeLeftAngle(),
             '-' => $this->tokenizeMinus(),
@@ -135,6 +135,25 @@ final class Tokenizer implements TokenizerInterface
         $this->input->next();
 
         return new Token($type, $this->line);
+    }
+
+    private function tokenizeExclamationMark(): Token
+    {
+        $this->input->next();
+
+        if ($this->input->current() === '=') {
+            $this->input->next();
+
+            if ($this->input->current() === '=') {
+                $this->input->next();
+
+                return new Token(TokenType::NotIdentical, $this->line);
+            }
+
+            return new Token(TokenType::NotEqual, $this->line);
+        }
+
+        return new Token(TokenType::ExclamationMark, $this->line);
     }
 
     private function tokenizeIdentifier(): Token
