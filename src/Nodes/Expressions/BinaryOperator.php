@@ -11,6 +11,9 @@ use Package\Tokenizer\TokenType;
 
 enum BinaryOperator
 {
+    case BitwiseAnd;
+    case BitwiseOr;
+    case BitwiseXor;
     case Divide;
     case Equal;
     case Exponent;
@@ -32,7 +35,9 @@ enum BinaryOperator
     public static function fromTokenType(TokenType $tokenType): ?self
     {
         return match ($tokenType) {
+            TokenType::Ampersand        => self::BitwiseAnd,
             TokenType::Asterisk         => self::Multiply,
+            TokenType::Caret            => self::BitwiseXor,
             TokenType::Exponent         => self::Exponent,
             TokenType::GreaterThan      => self::GreaterThan,
             TokenType::GreaterThanEqual => self::GreaterThanEqual,
@@ -40,6 +45,7 @@ enum BinaryOperator
             TokenType::LessThanEqual    => self::LessThanEqual,
             TokenType::Minus            => self::Minus,
             TokenType::Percent          => self::Modulo,
+            TokenType::Pipe             => self::BitwiseOr,
             TokenType::Plus             => self::Plus,
             TokenType::ShiftLeft        => self::ShiftLeft,
             TokenType::ShiftRight       => self::ShiftRight,
@@ -80,6 +86,11 @@ enum BinaryOperator
             self::NotEqual         => 1,
             self::NotIdentical     => 1,
             self::Spaceship        => 1,
+
+            // TODO
+            self::BitwiseAnd       => 0,
+            self::BitwiseOr        => 0,
+            self::BitwiseXor       => 0,
         };
     }
 }

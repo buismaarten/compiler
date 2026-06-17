@@ -59,4 +59,9 @@ enum TokenType
     case Spaceship;
     case String;
     case Tilde;
+
+    // TODO
+    case Ampersand;
+    case Caret;
+    case Pipe;
 }
