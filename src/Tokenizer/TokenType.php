@@ -9,16 +9,18 @@ namespace Package\Tokenizer;
 
 enum TokenType
 {
-    case Ampersand;
     case Assign;
-    case Asterisk;
-    case Caret;
+    case BitwiseAnd;
+    case BitwiseNot;
+    case BitwiseOr;
+    case BitwiseXor;
+    case BooleanNot;
     case Colon;
     case Comma;
     case Decrement;
+    case Divide;
     case Eof;
     case Equal;
-    case ExclamationMark;
     case Exponent;
     case Float;
     case GreaterThan;
@@ -46,10 +48,10 @@ enum TokenType
     case LessThan;
     case LessThanEqual;
     case Minus;
+    case Modulo;
+    case Multiply;
     case NotEqual;
     case NotIdentical;
-    case Percent;
-    case Pipe;
     case Plus;
     case QuestionMark;
     case RightBrace;
@@ -58,8 +60,6 @@ enum TokenType
     case Semicolon;
     case ShiftLeft;
     case ShiftRight;
-    case Slash;
     case Spaceship;
     case String;
-    case Tilde;
 }

@@ -17,15 +17,6 @@ use PHPUnit\Framework\TestCase;
 class TokenizerTest extends TestCase
 {
     #[Test]
-    public function testAmpersand(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('&')->next(),
-            expected: new Token(TokenType::Ampersand, 1),
-        );
-    }
-
-    #[Test]
     public function testAssign(): void
     {
         $this->assertEquals(
@@ -35,20 +26,47 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testAsterisk(): void
+    public function testBitwiseAnd(): void
     {
         $this->assertEquals(
-            actual: self::createTokenizer('*')->next(),
-            expected: new Token(TokenType::Asterisk, 1),
+            actual: self::createTokenizer('&')->next(),
+            expected: new Token(TokenType::BitwiseAnd, 1),
         );
     }
 
     #[Test]
-    public function testCaret(): void
+    public function testBitwiseNot(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('~')->next(),
+            expected: new Token(TokenType::BitwiseNot, 1),
+        );
+    }
+
+    #[Test]
+    public function testBitwiseOr(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('|')->next(),
+            expected: new Token(TokenType::BitwiseOr, 1),
+        );
+    }
+
+    #[Test]
+    public function testBitwiseXor(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('^')->next(),
-            expected: new Token(TokenType::Caret, 1),
+            expected: new Token(TokenType::BitwiseXor, 1),
+        );
+    }
+
+    #[Test]
+    public function testBooleanNot(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('!')->next(),
+            expected: new Token(TokenType::BooleanNot, 1),
         );
     }
 
@@ -89,20 +107,20 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testDivide(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('/')->next(),
+            expected: new Token(TokenType::Divide, 1),
+        );
+    }
+
+    #[Test]
     public function testEqual(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('==')->next(),
             expected: new Token(TokenType::Equal, 1),
-        );
-    }
-
-    #[Test]
-    public function testExclamationMark(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('!')->next(),
-            expected: new Token(TokenType::ExclamationMark, 1),
         );
     }
 
@@ -302,6 +320,24 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testModulo(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('%')->next(),
+            expected: new Token(TokenType::Modulo, 1),
+        );
+    }
+
+    #[Test]
+    public function testMultiply(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('*')->next(),
+            expected: new Token(TokenType::Multiply, 1),
+        );
+    }
+
+    #[Test]
     public function testNotEqual(): void
     {
         $this->assertEquals(
@@ -316,24 +352,6 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('!==')->next(),
             expected: new Token(TokenType::NotIdentical, 1),
-        );
-    }
-
-    #[Test]
-    public function testPercent(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('%')->next(),
-            expected: new Token(TokenType::Percent, 1),
-        );
-    }
-
-    #[Test]
-    public function testPipe(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('|')->next(),
-            expected: new Token(TokenType::Pipe, 1),
         );
     }
 
@@ -410,15 +428,6 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testSlash(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('/')->next(),
-            expected: new Token(TokenType::Slash, 1),
-        );
-    }
-
-    #[Test]
     public function testSpaceship(): void
     {
         $this->assertEquals(
@@ -488,15 +497,6 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\p"')->next(),
             expected: new Token(TokenType::String, 1, '\p'),
-        );
-    }
-
-    #[Test]
-    public function testTilde(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('~')->next(),
-            expected: new Token(TokenType::Tilde, 1),
         );
     }
 

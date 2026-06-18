@@ -349,19 +349,19 @@ final class Parser implements ParserInterface
     private function parsePrimaryExpression(): AbstractExpression
     {
         return match ($this->current->type) {
-            TokenType::Decrement       => $this->parseUnaryExpression(),
-            TokenType::ExclamationMark => $this->parseUnaryExpression(),
-            TokenType::Float           => $this->parseFloatLiteral(),
-            TokenType::Identifier      => $this->parseIdentifierExpression(),
-            TokenType::Increment       => $this->parseUnaryExpression(),
-            TokenType::Integer         => $this->parseIntegerLiteral(),
-            TokenType::KeywordFalse    => $this->parseBooleanLiteral(),
-            TokenType::KeywordNull     => $this->parseNullLiteral(),
-            TokenType::KeywordTrue     => $this->parseBooleanLiteral(),
-            TokenType::Minus           => $this->parseUnaryExpression(),
-            TokenType::Plus            => $this->parseUnaryExpression(),
-            TokenType::String          => $this->parseStringLiteral(),
-            TokenType::Tilde           => $this->parseUnaryExpression(),
+            TokenType::BitwiseNot   => $this->parseUnaryExpression(),
+            TokenType::BooleanNot   => $this->parseUnaryExpression(),
+            TokenType::Decrement    => $this->parseUnaryExpression(),
+            TokenType::Float        => $this->parseFloatLiteral(),
+            TokenType::Identifier   => $this->parseIdentifierExpression(),
+            TokenType::Increment    => $this->parseUnaryExpression(),
+            TokenType::Integer      => $this->parseIntegerLiteral(),
+            TokenType::KeywordFalse => $this->parseBooleanLiteral(),
+            TokenType::KeywordNull  => $this->parseNullLiteral(),
+            TokenType::KeywordTrue  => $this->parseBooleanLiteral(),
+            TokenType::Minus        => $this->parseUnaryExpression(),
+            TokenType::Plus         => $this->parseUnaryExpression(),
+            TokenType::String       => $this->parseStringLiteral(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),

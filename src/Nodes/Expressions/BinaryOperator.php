@@ -35,9 +35,10 @@ enum BinaryOperator
     public static function fromTokenType(TokenType $tokenType): ?self
     {
         return match ($tokenType) {
-            TokenType::Ampersand        => self::BitwiseAnd,
-            TokenType::Asterisk         => self::Multiply,
-            TokenType::Caret            => self::BitwiseXor,
+            TokenType::BitwiseAnd       => self::BitwiseAnd,
+            TokenType::BitwiseOr        => self::BitwiseOr,
+            TokenType::BitwiseXor       => self::BitwiseXor,
+            TokenType::Divide           => self::Divide,
             TokenType::Equal            => self::Equal,
             TokenType::Exponent         => self::Exponent,
             TokenType::GreaterThan      => self::GreaterThan,
@@ -46,14 +47,13 @@ enum BinaryOperator
             TokenType::LessThan         => self::LessThan,
             TokenType::LessThanEqual    => self::LessThanEqual,
             TokenType::Minus            => self::Minus,
+            TokenType::Modulo           => self::Modulo,
+            TokenType::Multiply         => self::Multiply,
             TokenType::NotEqual         => self::NotEqual,
             TokenType::NotIdentical     => self::NotIdentical,
-            TokenType::Percent          => self::Modulo,
-            TokenType::Pipe             => self::BitwiseOr,
             TokenType::Plus             => self::Plus,
             TokenType::ShiftLeft        => self::ShiftLeft,
             TokenType::ShiftRight       => self::ShiftRight,
-            TokenType::Slash            => self::Divide,
             TokenType::Spaceship        => self::Spaceship,
 
             // Fallback

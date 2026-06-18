@@ -62,19 +62,19 @@ final class Tokenizer implements TokenizerInterface
             '&' => $this->tokenizeAmpersand(),
             '=' => $this->tokenizeAssign(),
             '*' => $this->tokenizeAsterisk(),
-            '^' => $this->tokenizeCharacter(TokenType::Caret),
+            '~' => $this->tokenizeCharacter(TokenType::BitwiseNot),
+            '^' => $this->tokenizeCharacter(TokenType::BitwiseXor),
             ':' => $this->tokenizeCharacter(TokenType::Colon),
             ',' => $this->tokenizeCharacter(TokenType::Comma),
             '{' => $this->tokenizeCharacter(TokenType::LeftBrace),
             '[' => $this->tokenizeCharacter(TokenType::LeftBracket),
             '(' => $this->tokenizeCharacter(TokenType::LeftParenthesis),
-            '%' => $this->tokenizeCharacter(TokenType::Percent),
+            '%' => $this->tokenizeCharacter(TokenType::Modulo),
             '?' => $this->tokenizeCharacter(TokenType::QuestionMark),
             '}' => $this->tokenizeCharacter(TokenType::RightBrace),
             ']' => $this->tokenizeCharacter(TokenType::RightBracket),
             ')' => $this->tokenizeCharacter(TokenType::RightParenthesis),
             ';' => $this->tokenizeCharacter(TokenType::Semicolon),
-            '~' => $this->tokenizeCharacter(TokenType::Tilde),
             '!' => $this->tokenizeExclamationMark(),
             '_' => $this->tokenizeIdentifier(),
             '<' => $this->tokenizeLeftAngle(),
@@ -106,7 +106,7 @@ final class Tokenizer implements TokenizerInterface
     {
         $this->input->next();
 
-        return new Token(TokenType::Ampersand, $this->line);
+        return new Token(TokenType::BitwiseAnd, $this->line);
     }
 
     private function tokenizeAssign(): Token
@@ -138,7 +138,7 @@ final class Tokenizer implements TokenizerInterface
             return new Token(TokenType::Exponent, $this->line);
         }
 
-        return new Token(TokenType::Asterisk, $this->line);
+        return new Token(TokenType::Multiply, $this->line);
     }
 
     private function tokenizeCharacter(TokenType $type): Token
@@ -164,7 +164,7 @@ final class Tokenizer implements TokenizerInterface
             return new Token(TokenType::NotEqual, $this->line);
         }
 
-        return new Token(TokenType::ExclamationMark, $this->line);
+        return new Token(TokenType::BooleanNot, $this->line);
     }
 
     private function tokenizeIdentifier(): Token
@@ -257,7 +257,7 @@ final class Tokenizer implements TokenizerInterface
     {
         $this->input->next();
 
-        return new Token(TokenType::Pipe, $this->line);
+        return new Token(TokenType::BitwiseOr, $this->line);
     }
 
     private function tokenizePlus(): Token
@@ -306,7 +306,7 @@ final class Tokenizer implements TokenizerInterface
             return null;
         }
 
-        return new Token(TokenType::Slash, $this->line);
+        return new Token(TokenType::Divide, $this->line);
     }
 
     private function tokenizeString(): Token
