@@ -1,4 +1,4 @@
-<?php // ABC
+<?php
 
 declare(strict_types=1);
 
