@@ -11,6 +11,19 @@ use Package\Tokenizer\TokenType;
 
 enum BinaryOperator
 {
+    private const PRECEDENCE = [
+        [self::Divide, self::Modulo, self::Multiply],
+        [self::Minus, self::Plus],
+        [self::ShiftLeft, self::ShiftRight],
+        [self::GreaterThan, self::GreaterThanEqual, self::LessThan, self::LessThanEqual],
+        [self::Equal, self::Identical, self::NotEqual, self::NotIdentical, self::Spaceship],
+        [self::BitwiseAnd],
+        [self::BitwiseXor],
+        [self::BitwiseOr],
+        [self::BooleanAnd],
+        [self::BooleanOr],
+    ];
+
     case BitwiseAnd;
     case BitwiseOr;
     case BitwiseXor;
@@ -65,28 +78,13 @@ enum BinaryOperator
 
     public function precedence(): int
     {
-        return match ($this) {
-            self::Divide           => 10,
-            self::Modulo           => 10,
-            self::Multiply         => 10,
-            self::Minus            => 9,
-            self::Plus             => 9,
-            self::ShiftLeft        => 8,
-            self::ShiftRight       => 8,
-            self::GreaterThan      => 7,
-            self::GreaterThanEqual => 7,
-            self::LessThan         => 7,
-            self::LessThanEqual    => 7,
-            self::Equal            => 6,
-            self::Identical        => 6,
-            self::NotEqual         => 6,
-            self::NotIdentical     => 6,
-            self::Spaceship        => 6,
-            self::BitwiseAnd       => 5,
-            self::BitwiseXor       => 4,
-            self::BitwiseOr        => 3,
-            self::BooleanAnd       => 2,
-            self::BooleanOr        => 1,
-        };
+        foreach (self::PRECEDENCE as $index => $operators) {
+            if (in_array($this, $operators, true)) {
+                return count(self::PRECEDENCE) - $index;
+            }
+        }
+
+        // Fallback
+        return 0;
     }
 }
