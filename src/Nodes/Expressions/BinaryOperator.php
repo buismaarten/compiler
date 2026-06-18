@@ -14,6 +14,8 @@ enum BinaryOperator
     case BitwiseAnd;
     case BitwiseOr;
     case BitwiseXor;
+    case BooleanAnd;
+    case BooleanOr;
     case Divide;
     case Equal;
     case Exponent;
@@ -38,6 +40,8 @@ enum BinaryOperator
             TokenType::BitwiseAnd       => self::BitwiseAnd,
             TokenType::BitwiseOr        => self::BitwiseOr,
             TokenType::BitwiseXor       => self::BitwiseXor,
+            TokenType::BooleanAnd       => self::BooleanAnd,
+            TokenType::BooleanOr        => self::BooleanOr,
             TokenType::Divide           => self::Divide,
             TokenType::Equal            => self::Equal,
             TokenType::Exponent         => self::Exponent,
@@ -74,26 +78,28 @@ enum BinaryOperator
     public function precedence(): int
     {
         return match ($this) {
-            self::Exponent         => 9,
-            self::Divide           => 8,
-            self::Modulo           => 8,
-            self::Multiply         => 8,
-            self::Minus            => 7,
-            self::Plus             => 7,
-            self::ShiftLeft        => 6,
-            self::ShiftRight       => 6,
-            self::GreaterThan      => 5,
-            self::GreaterThanEqual => 5,
-            self::LessThan         => 5,
-            self::LessThanEqual    => 5,
-            self::Equal            => 4,
-            self::Identical        => 4,
-            self::NotEqual         => 4,
-            self::NotIdentical     => 4,
-            self::Spaceship        => 4,
-            self::BitwiseAnd       => 3,
-            self::BitwiseXor       => 2,
-            self::BitwiseOr        => 1,
+            self::Exponent         => 11,
+            self::Divide           => 10,
+            self::Modulo           => 10,
+            self::Multiply         => 10,
+            self::Minus            => 9,
+            self::Plus             => 9,
+            self::ShiftLeft        => 8,
+            self::ShiftRight       => 8,
+            self::GreaterThan      => 7,
+            self::GreaterThanEqual => 7,
+            self::LessThan         => 7,
+            self::LessThanEqual    => 7,
+            self::Equal            => 6,
+            self::Identical        => 6,
+            self::NotEqual         => 6,
+            self::NotIdentical     => 6,
+            self::Spaceship        => 6,
+            self::BitwiseAnd       => 5,
+            self::BitwiseXor       => 4,
+            self::BitwiseOr        => 3,
+            self::BooleanAnd       => 2,
+            self::BooleanOr        => 1,
         };
     }
 }

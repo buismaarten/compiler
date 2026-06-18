@@ -14,7 +14,9 @@ enum TokenType
     case BitwiseNot;
     case BitwiseOr;
     case BitwiseXor;
+    case BooleanAnd;
     case BooleanNot;
+    case BooleanOr;
     case Colon;
     case Comma;
     case Decrement;

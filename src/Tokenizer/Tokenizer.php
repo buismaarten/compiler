@@ -101,10 +101,15 @@ final class Tokenizer implements TokenizerInterface
         return $token;
     }
 
-    // TODO
     private function tokenizeAmpersand(): Token
     {
         $this->input->next();
+
+        if ($this->input->current() === '&') {
+            $this->input->next();
+
+            return new Token(TokenType::BooleanAnd, $this->line);
+        }
 
         return new Token(TokenType::BitwiseAnd, $this->line);
     }
@@ -252,10 +257,15 @@ final class Tokenizer implements TokenizerInterface
         );
     }
 
-    // TODO
     private function tokenizePipe(): Token
     {
         $this->input->next();
+
+        if ($this->input->current() === '|') {
+            $this->input->next();
+
+            return new Token(TokenType::BooleanOr, $this->line);
+        }
 
         return new Token(TokenType::BitwiseOr, $this->line);
     }

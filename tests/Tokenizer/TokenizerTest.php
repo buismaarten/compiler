@@ -62,11 +62,29 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
+    public function testBooleanAnd(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('&&')->next(),
+            expected: new Token(TokenType::BooleanAnd, 1),
+        );
+    }
+
+    #[Test]
     public function testBooleanNot(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('!')->next(),
             expected: new Token(TokenType::BooleanNot, 1),
+        );
+    }
+
+    #[Test]
+    public function testBooleanOr(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('||')->next(),
+            expected: new Token(TokenType::BooleanOr, 1),
         );
     }
 
