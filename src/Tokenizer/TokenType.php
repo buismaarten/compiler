@@ -9,8 +9,10 @@ namespace Package\Tokenizer;
 
 enum TokenType
 {
+    case Ampersand;
     case Assign;
     case Asterisk;
+    case Caret;
     case Colon;
     case Comma;
     case Decrement;
@@ -47,6 +49,7 @@ enum TokenType
     case NotEqual;
     case NotIdentical;
     case Percent;
+    case Pipe;
     case Plus;
     case QuestionMark;
     case RightBrace;
@@ -59,9 +62,4 @@ enum TokenType
     case Spaceship;
     case String;
     case Tilde;
-
-    // TODO
-    case Ampersand;
-    case Caret;
-    case Pipe;
 }

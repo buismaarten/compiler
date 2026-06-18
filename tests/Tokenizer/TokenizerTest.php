@@ -17,6 +17,15 @@ use PHPUnit\Framework\TestCase;
 class TokenizerTest extends TestCase
 {
     #[Test]
+    public function testAmpersand(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('&')->next(),
+            expected: new Token(TokenType::Ampersand, 1),
+        );
+    }
+
+    #[Test]
     public function testAssign(): void
     {
         $this->assertEquals(
@@ -31,6 +40,15 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('*')->next(),
             expected: new Token(TokenType::Asterisk, 1),
+        );
+    }
+
+    #[Test]
+    public function testCaret(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('^')->next(),
+            expected: new Token(TokenType::Caret, 1),
         );
     }
 
@@ -307,6 +325,15 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('%')->next(),
             expected: new Token(TokenType::Percent, 1),
+        );
+    }
+
+    #[Test]
+    public function testPipe(): void
+    {
+        $this->assertEquals(
+            actual: self::createTokenizer('|')->next(),
+            expected: new Token(TokenType::Pipe, 1),
         );
     }
 

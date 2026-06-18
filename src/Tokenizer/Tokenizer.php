@@ -59,8 +59,10 @@ final class Tokenizer implements TokenizerInterface
         }
 
         $token = match ($current) {
+            '&' => $this->tokenizeAmpersand(),
             '=' => $this->tokenizeAssign(),
             '*' => $this->tokenizeAsterisk(),
+            '^' => $this->tokenizeCharacter(TokenType::Caret),
             ':' => $this->tokenizeCharacter(TokenType::Colon),
             ',' => $this->tokenizeCharacter(TokenType::Comma),
             '{' => $this->tokenizeCharacter(TokenType::LeftBrace),
@@ -77,6 +79,7 @@ final class Tokenizer implements TokenizerInterface
             '_' => $this->tokenizeIdentifier(),
             '<' => $this->tokenizeLeftAngle(),
             '-' => $this->tokenizeMinus(),
+            '|' => $this->tokenizePipe(),
             '+' => $this->tokenizePlus(),
             '>' => $this->tokenizeRightAngle(),
             '/' => $this->tokenizeSlash(),
@@ -96,6 +99,14 @@ final class Tokenizer implements TokenizerInterface
         }
 
         return $token;
+    }
+
+    // TODO
+    private function tokenizeAmpersand(): Token
+    {
+        $this->input->next();
+
+        return new Token(TokenType::Ampersand, $this->line);
     }
 
     private function tokenizeAssign(): Token
@@ -239,6 +250,14 @@ final class Tokenizer implements TokenizerInterface
             line: $this->line,
             value: $this->input->slice($start, $this->input->offset()),
         );
+    }
+
+    // TODO
+    private function tokenizePipe(): Token
+    {
+        $this->input->next();
+
+        return new Token(TokenType::Pipe, $this->line);
     }
 
     private function tokenizePlus(): Token
