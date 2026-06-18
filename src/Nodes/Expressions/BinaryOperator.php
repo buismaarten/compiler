@@ -18,7 +18,6 @@ enum BinaryOperator
     case BooleanOr;
     case Divide;
     case Equal;
-    case Exponent;
     case GreaterThan;
     case GreaterThanEqual;
     case Identical;
@@ -44,7 +43,6 @@ enum BinaryOperator
             TokenType::BooleanOr        => self::BooleanOr,
             TokenType::Divide           => self::Divide,
             TokenType::Equal            => self::Equal,
-            TokenType::Exponent         => self::Exponent,
             TokenType::GreaterThan      => self::GreaterThan,
             TokenType::GreaterThanEqual => self::GreaterThanEqual,
             TokenType::Identical        => self::Identical,
@@ -65,20 +63,9 @@ enum BinaryOperator
         };
     }
 
-    public function isRightAssociative(): bool
-    {
-        return match ($this) {
-            self::Exponent => true,
-
-            // Fallback
-            default => false,
-        };
-    }
-
     public function precedence(): int
     {
         return match ($this) {
-            self::Exponent         => 11,
             self::Divide           => 10,
             self::Modulo           => 10,
             self::Multiply         => 10,

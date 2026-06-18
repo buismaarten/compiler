@@ -23,7 +23,6 @@ enum TokenType
     case Divide;
     case Eof;
     case Equal;
-    case Exponent;
     case Float;
     case GreaterThan;
     case GreaterThanEqual;

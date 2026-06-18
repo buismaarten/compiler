@@ -143,15 +143,6 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testExponent(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('**')->next(),
-            expected: new Token(TokenType::Exponent, 1),
-        );
-    }
-
-    #[Test]
     public function testFloat(): void
     {
         $this->assertEquals(

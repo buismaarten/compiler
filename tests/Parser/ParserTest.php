@@ -72,35 +72,6 @@ class ParserTest extends TestCase
                 ),
             ],
         );
-
-        $this->assertEquals(
-            actual: self::createParser('2 ** 3 ** 4;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\BinaryExpression(
-                        line: 1,
-                        left: new Literals\IntegerLiteral(
-                            line: 1,
-                            value: 2,
-                        ),
-                        operator: Expressions\BinaryOperator::Exponent,
-                        right: new Expressions\BinaryExpression(
-                            line: 1,
-                            left: new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 3,
-                            ),
-                            operator: Expressions\BinaryOperator::Exponent,
-                            right: new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 4,
-                            ),
-                        ),
-                    ),
-                ),
-            ],
-        );
     }
 
     #[Test]

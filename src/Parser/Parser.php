@@ -57,10 +57,6 @@ final class Parser implements ParserInterface
             $token = $this->current;
             $this->next();
 
-            if (!$operator->isRightAssociative()) {
-                $precedence++;
-            }
-
             $expression = new Expressions\BinaryExpression(
                 line: $token->line,
                 left: $expression,

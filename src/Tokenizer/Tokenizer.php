@@ -137,12 +137,6 @@ final class Tokenizer implements TokenizerInterface
     {
         $this->input->next();
 
-        if ($this->input->current() === '*') {
-            $this->input->next();
-
-            return new Token(TokenType::Exponent, $this->line);
-        }
-
         return new Token(TokenType::Multiply, $this->line);
     }
 
