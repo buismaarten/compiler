@@ -78,13 +78,21 @@ enum BinaryOperator
 
     public function precedence(): int
     {
-        foreach (self::PRECEDENCE as $index => $operators) {
-            if (in_array($this, $operators, true)) {
-                return count(self::PRECEDENCE) - $index;
+        static $mapping = [];
+
+        if ($mapping === []) {
+            $count = count(self::PRECEDENCE);
+
+            foreach (self::PRECEDENCE as $index => $operators) {
+                $precedence = $count - $index;
+
+                foreach ($operators as $operator) {
+                    $mapping[$operator->name] = $precedence;
+                }
             }
         }
 
-        // Fallback
-        return 0;
+        // @phpstan-ignore-next-line
+        return $mapping[$this->name] ?? 0;
     }
 }
