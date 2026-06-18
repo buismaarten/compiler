@@ -96,4 +96,3 @@ enum BinaryOperator
         return $mapping[$this->name] ?? 0;
     }
 }
-
