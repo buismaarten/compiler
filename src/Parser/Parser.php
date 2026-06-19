@@ -368,7 +368,7 @@ final class Parser implements ParserInterface
     private function parsePrimaryType(): AbstractType
     {
         $type = match ($this->current->type) {
-            TokenType::LeftBracket => $this->parseTupleType(),
+            TokenType::LeftParenthesis => $this->parseTupleType(),
 
             // Fallback
             default => $this->parseNamedType(),
@@ -486,10 +486,10 @@ final class Parser implements ParserInterface
 
     private function parseTupleType(): Types\TupleType
     {
-        $token = $this->expect(TokenType::LeftBracket);
+        $token = $this->expect(TokenType::LeftParenthesis);
         $types = [];
 
-        while ($this->current->type !== TokenType::RightBracket) {
+        while ($this->current->type !== TokenType::RightParenthesis) {
             $types[] = $this->parsePrimaryType();
 
             if ($this->current->type === TokenType::Comma) {
@@ -499,7 +499,7 @@ final class Parser implements ParserInterface
             }
         }
 
-        $this->expect(TokenType::RightBracket);
+        $this->expect(TokenType::RightParenthesis);
 
         return new Types\TupleType(
             line: $token->line,

@@ -680,7 +680,7 @@ class ParserTest extends TestCase
     public function testTupleType(): void
     {
         $this->assertEquals(
-            actual: self::createParser('var foo: [int, string, string] = (1, "foo", "bar");')->parse(),
+            actual: self::createParser('var foo: (int, string, string) = (1, "foo", "bar");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -724,7 +724,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: [int, string, string]? = (1, "foo", "bar");')->parse(),
+            actual: self::createParser('var foo: (int, string, string)? = (1, "foo", "bar");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -840,7 +840,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: [int, string][] = (1, "foo");')->parse(),
+            actual: self::createParser('var foo: (int, string)[] = (1, "foo");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -879,7 +879,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: [int?, string[]] = (1, "foo");')->parse(),
+            actual: self::createParser('var foo: (int?, string[]) = (1, "foo");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
