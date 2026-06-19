@@ -321,6 +321,16 @@ final class Parser implements ParserInterface
         );
     }
 
+    private function parseNullableType(): Types\NullableType
+    {
+        $token = $this->expect(TokenType::QuestionMark);
+
+        return new Types\NullableType(
+            line: $token->line,
+            type: $this->parsePrimaryType(),
+        );
+    }
+
     private function parseNullLiteral(): Literals\NullLiteral
     {
         $token = $this->expect(TokenType::KeywordNull);
@@ -368,12 +378,7 @@ final class Parser implements ParserInterface
     private function parsePrimaryType(): AbstractType
     {
         if ($this->current->type === TokenType::QuestionMark) {
-            $token = $this->expect(TokenType::QuestionMark);
-
-            return new Types\NullableType(
-                line: $token->line,
-                type: $this->parsePrimaryType(),
-            );
+            return $this->parseNullableType();
         }
 
         if ($this->current->type === TokenType::LeftBracket) {
