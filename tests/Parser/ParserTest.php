@@ -579,7 +579,7 @@ class ParserTest extends TestCase
     public function testTupleType(): void
     {
         $this->assertEquals(
-            actual: self::createParser('var foo: [int, string] = (1, "bar");')->parse(),
+            actual: self::createParser('var foo: [int, string, string] = (1, "foo", "bar");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -590,6 +590,10 @@ class ParserTest extends TestCase
                             new Types\NamedType(
                                 line: 1,
                                 name: 'int',
+                            ),
+                            new Types\NamedType(
+                                line: 1,
+                                name: 'string',
                             ),
                             new Types\NamedType(
                                 line: 1,
@@ -606,6 +610,10 @@ class ParserTest extends TestCase
                             ),
                             new Literals\StringLiteral(
                                 line: 1,
+                                value: 'foo',
+                            ),
+                            new Literals\StringLiteral(
+                                line: 1,
                                 value: 'bar',
                             ),
                         ],
@@ -615,7 +623,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: ?[int, string] = (1, "bar");')->parse(),
+            actual: self::createParser('var foo: ?[int, string, string] = (1, "foo", "bar");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -633,6 +641,10 @@ class ParserTest extends TestCase
                                     line: 1,
                                     name: 'string',
                                 ),
+                                new Types\NamedType(
+                                    line: 1,
+                                    name: 'string',
+                                ),
                             ],
                         ),
                     ),
@@ -642,6 +654,10 @@ class ParserTest extends TestCase
                             new Literals\IntegerLiteral(
                                 line: 1,
                                 value: 1,
+                            ),
+                            new Literals\StringLiteral(
+                                line: 1,
+                                value: 'foo',
                             ),
                             new Literals\StringLiteral(
                                 line: 1,
