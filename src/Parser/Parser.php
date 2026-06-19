@@ -364,6 +364,24 @@ final class Parser implements ParserInterface
         };
     }
 
+    private function parsePrimaryType(): AbstractType
+    {
+        if ($this->current->type === TokenType::QuestionMark) {
+            $token = $this->expect(TokenType::QuestionMark);
+
+            return new Types\NullableType(
+                line: $token->line,
+                type: $this->parsePrimaryType(),
+            );
+        }
+
+        if ($this->current->type === TokenType::LeftBracket) {
+            return $this->parseTupleType();
+        }
+
+        return $this->parseNamedType();
+    }
+
     private function parsePrintStatement(): Statements\PrintStatement
     {
         $token = $this->expect(TokenType::KeywordPrint);
@@ -423,20 +441,34 @@ final class Parser implements ParserInterface
         );
     }
 
+    private function parseTupleType(): Types\TupleType
+    {
+        $token = $this->expect(TokenType::LeftBracket);
+        $types = [];
+
+        while ($this->current->type !== TokenType::RightBracket) {
+            $types[] = $this->parsePrimaryType();
+
+            if ($this->current->type === TokenType::Comma) {
+                $this->expect(TokenType::Comma);
+            } else {
+                break;
+            }
+        }
+
+        $this->expect(TokenType::RightBracket);
+
+        return new Types\TupleType(
+            line: $token->line,
+            types: $types,
+        );
+    }
+
     private function parseType(): AbstractType
     {
         $this->expect(TokenType::Colon);
 
-        if ($this->current->type === TokenType::QuestionMark) {
-            $token = $this->expect(TokenType::QuestionMark);
-
-            return new Types\NullableType(
-                line: $token->line,
-                type: $this->parseNamedType(),
-            );
-        }
-
-        return $this->parseNamedType();
+        return $this->parsePrimaryType();
     }
 
     private function parseUnaryExpression(): Expressions\UnaryExpression

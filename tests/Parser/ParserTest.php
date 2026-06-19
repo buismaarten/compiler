@@ -575,6 +575,66 @@ class ParserTest extends TestCase
         );
     }
 
+    // TODO
+    #[Test]
+    public function testTupleType(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('var foo: [int, string] = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    line: 1,
+                    name: 'foo',
+                    type: new Types\TupleType(
+                        line: 1,
+                        types: [
+                            new Types\NamedType(
+                                line: 1,
+                                name: 'int',
+                            ),
+                            new Types\NamedType(
+                                line: 1,
+                                name: 'string',
+                            ),
+                        ],
+                    ),
+                    expression: new Literals\NullLiteral(
+                        line: 1,
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('var foo: ?[int, string] = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    line: 1,
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        line: 1,
+                        type: new Types\TupleType(
+                            line: 1,
+                            types: [
+                                new Types\NamedType(
+                                    line: 1,
+                                    name: 'int',
+                                ),
+                                new Types\NamedType(
+                                    line: 1,
+                                    name: 'string',
+                                ),
+                            ],
+                        ),
+                    ),
+                    expression: new Literals\NullLiteral(
+                        line: 1,
+                    ),
+                ),
+            ],
+        );
+    }
+
     #[Test]
     public function testUnaryExpression(): void
     {
