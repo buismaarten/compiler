@@ -236,6 +236,53 @@ class ParserTest extends TestCase
     }
 
     #[Test]
+    public function testFunctionCallExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo();')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\FunctionCallExpression(
+                        line: 1,
+                        name: 'foo',
+                        arguments: [],
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('foo(123, foo("bar"));')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\FunctionCallExpression(
+                        line: 1,
+                        name: 'foo',
+                        arguments: [
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 123,
+                            ),
+                            new Expressions\FunctionCallExpression(
+                                line: 1,
+                                name: 'foo',
+                                arguments: [
+                                    new Literals\StringLiteral(
+                                        line: 1,
+                                        value: 'bar',
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testFunctionStatement(): void
     {
         $this->assertEquals(
@@ -299,53 +346,6 @@ class ParserTest extends TestCase
                             ),
                         ),
                     ],
-                ),
-            ],
-        );
-    }
-
-    #[Test]
-    public function testFunctionCallExpression(): void
-    {
-        $this->assertEquals(
-            actual: self::createParser('foo();')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\FunctionCallExpression(
-                        line: 1,
-                        name: 'foo',
-                        arguments: [],
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('foo(123, foo("bar"));')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\FunctionCallExpression(
-                        line: 1,
-                        name: 'foo',
-                        arguments: [
-                            new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 123,
-                            ),
-                            new Expressions\FunctionCallExpression(
-                                line: 1,
-                                name: 'foo',
-                                arguments: [
-                                    new Literals\StringLiteral(
-                                        line: 1,
-                                        value: 'bar',
-                                    ),
-                                ],
-                            ),
-                        ],
-                    ),
                 ),
             ],
         );
