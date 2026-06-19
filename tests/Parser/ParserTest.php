@@ -575,12 +575,11 @@ class ParserTest extends TestCase
         );
     }
 
-    // TODO
     #[Test]
     public function testTupleType(): void
     {
         $this->assertEquals(
-            actual: self::createParser('var foo: [int, string] = null;')->parse(),
+            actual: self::createParser('var foo: [int, string] = (1, "bar");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -598,15 +597,25 @@ class ParserTest extends TestCase
                             ),
                         ],
                     ),
-                    expression: new Literals\NullLiteral(
+                    expression: new Literals\TupleLiteral(
                         line: 1,
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 1,
+                            ),
+                            new Literals\StringLiteral(
+                                line: 1,
+                                value: 'bar',
+                            ),
+                        ],
                     ),
                 ),
             ],
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: ?[int, string] = null;')->parse(),
+            actual: self::createParser('var foo: ?[int, string] = (1, "bar");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -627,8 +636,18 @@ class ParserTest extends TestCase
                             ],
                         ),
                     ),
-                    expression: new Literals\NullLiteral(
+                    expression: new Literals\TupleLiteral(
                         line: 1,
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 1,
+                            ),
+                            new Literals\StringLiteral(
+                                line: 1,
+                                value: 'bar',
+                            ),
+                        ],
                     ),
                 ),
             ],

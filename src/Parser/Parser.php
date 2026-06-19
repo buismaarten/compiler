@@ -345,19 +345,20 @@ final class Parser implements ParserInterface
     private function parsePrimaryExpression(): AbstractExpression
     {
         return match ($this->current->type) {
-            TokenType::BitwiseNot   => $this->parseUnaryExpression(),
-            TokenType::BooleanNot   => $this->parseUnaryExpression(),
-            TokenType::Decrement    => $this->parseUnaryExpression(),
-            TokenType::Float        => $this->parseFloatLiteral(),
-            TokenType::Identifier   => $this->parseIdentifierExpression(),
-            TokenType::Increment    => $this->parseUnaryExpression(),
-            TokenType::Integer      => $this->parseIntegerLiteral(),
-            TokenType::KeywordFalse => $this->parseBooleanLiteral(),
-            TokenType::KeywordNull  => $this->parseNullLiteral(),
-            TokenType::KeywordTrue  => $this->parseBooleanLiteral(),
-            TokenType::Minus        => $this->parseUnaryExpression(),
-            TokenType::Plus         => $this->parseUnaryExpression(),
-            TokenType::String       => $this->parseStringLiteral(),
+            TokenType::BitwiseNot      => $this->parseUnaryExpression(),
+            TokenType::BooleanNot      => $this->parseUnaryExpression(),
+            TokenType::Decrement       => $this->parseUnaryExpression(),
+            TokenType::Float           => $this->parseFloatLiteral(),
+            TokenType::Identifier      => $this->parseIdentifierExpression(),
+            TokenType::Increment       => $this->parseUnaryExpression(),
+            TokenType::Integer         => $this->parseIntegerLiteral(),
+            TokenType::KeywordFalse    => $this->parseBooleanLiteral(),
+            TokenType::KeywordNull     => $this->parseNullLiteral(),
+            TokenType::KeywordTrue     => $this->parseBooleanLiteral(),
+            TokenType::LeftParenthesis => $this->parseTupleLiteral(),
+            TokenType::Minus           => $this->parseUnaryExpression(),
+            TokenType::Plus            => $this->parseUnaryExpression(),
+            TokenType::String          => $this->parseStringLiteral(),
 
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
@@ -438,6 +439,29 @@ final class Parser implements ParserInterface
         return new Literals\StringLiteral(
             line: $token->line,
             value: $token->value,
+        );
+    }
+
+    private function parseTupleLiteral(): Literals\TupleLiteral
+    {
+        $token = $this->expect(TokenType::LeftParenthesis);
+        $expressions = [];
+
+        while ($this->current->type !== TokenType::RightParenthesis) {
+            $expressions[] = $this->parseExpression();
+
+            if ($this->current->type === TokenType::Comma) {
+                $this->expect(TokenType::Comma);
+            } else {
+                break;
+            }
+        }
+
+        $this->expect(TokenType::RightParenthesis);
+
+        return new Literals\TupleLiteral(
+            line: $token->line,
+            expressions: $expressions,
         );
     }
 
