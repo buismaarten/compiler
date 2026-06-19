@@ -321,16 +321,6 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseNullableType(): Types\NullableType
-    {
-        $token = $this->expect(TokenType::QuestionMark);
-
-        return new Types\NullableType(
-            line: $token->line,
-            type: $this->parsePrimaryType(),
-        );
-    }
-
     private function parseNullLiteral(): Literals\NullLiteral
     {
         $token = $this->expect(TokenType::KeywordNull);
@@ -377,15 +367,39 @@ final class Parser implements ParserInterface
 
     private function parsePrimaryType(): AbstractType
     {
-        if ($this->current->type === TokenType::QuestionMark) {
-            return $this->parseNullableType();
+        $type = match ($this->current->type) {
+            TokenType::LeftBracket => $this->parseTupleType(),
+
+            // Fallback
+            default => $this->parseNamedType(),
+        };
+
+        while ($this->current->type === TokenType::QuestionMark || $this->current->type === TokenType::LeftBracket) {
+            if ($this->current->type === TokenType::QuestionMark) {
+                $token = $this->expect(TokenType::QuestionMark);
+
+                if ($type instanceof Types\NullableType) {
+                    throw new UnexpectedTokenException($token->line, $token->type->name);
+                }
+
+                $type = new Types\NullableType(
+                    line: $token->line,
+                    type: $type,
+                );
+            }
+
+            if ($this->current->type === TokenType::LeftBracket) {
+                $token = $this->expect(TokenType::LeftBracket);
+                $this->expect(TokenType::RightBracket);
+
+                $type = new Types\ArrayType(
+                    line: $token->line,
+                    type: $type,
+                );
+            }
         }
 
-        if ($this->current->type === TokenType::LeftBracket) {
-            return $this->parseTupleType();
-        }
-
-        return $this->parseNamedType();
+        return $type;
     }
 
     private function parsePrintStatement(): Statements\PrintStatement
