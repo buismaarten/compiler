@@ -46,6 +46,17 @@ final class Parser implements ParserInterface
         return $statements;
     }
 
+    private function parseArrayType(AbstractType $type): Types\ArrayType
+    {
+        $token = $this->expect(TokenType::LeftBracket);
+        $this->expect(TokenType::RightBracket);
+
+        return new Types\ArrayType(
+            line: $token->line,
+            type: $type,
+        );
+    }
+
     private function parseBinaryExpression(int $minimumPrecedence = 0): AbstractExpression
     {
         $expression = $this->parsePrimaryExpression();
@@ -321,6 +332,20 @@ final class Parser implements ParserInterface
         );
     }
 
+    private function parseNullableType(AbstractType $type): Types\NullableType
+    {
+        $token = $this->expect(TokenType::QuestionMark);
+
+        if ($type instanceof Types\NullableType) {
+            throw new UnexpectedTokenException($token->line, $token->type->name);
+        }
+
+        return new Types\NullableType(
+            line: $token->line,
+            type: $type,
+        );
+    }
+
     private function parseNullLiteral(): Literals\NullLiteral
     {
         $token = $this->expect(TokenType::KeywordNull);
@@ -376,26 +401,11 @@ final class Parser implements ParserInterface
 
         while ($this->current->type === TokenType::QuestionMark || $this->current->type === TokenType::LeftBracket) {
             if ($this->current->type === TokenType::QuestionMark) {
-                $token = $this->expect(TokenType::QuestionMark);
-
-                if ($type instanceof Types\NullableType) {
-                    throw new UnexpectedTokenException($token->line, $token->type->name);
-                }
-
-                $type = new Types\NullableType(
-                    line: $token->line,
-                    type: $type,
-                );
+                $type = $this->parseNullableType($type);
             }
 
             if ($this->current->type === TokenType::LeftBracket) {
-                $token = $this->expect(TokenType::LeftBracket);
-                $this->expect(TokenType::RightBracket);
-
-                $type = new Types\ArrayType(
-                    line: $token->line,
-                    type: $type,
-                );
+                $type = $this->parseArrayType($type);
             }
         }
 
