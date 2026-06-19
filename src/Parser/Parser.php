@@ -355,7 +355,7 @@ final class Parser implements ParserInterface
             TokenType::KeywordFalse    => $this->parseBooleanLiteral(),
             TokenType::KeywordNull     => $this->parseNullLiteral(),
             TokenType::KeywordTrue     => $this->parseBooleanLiteral(),
-            TokenType::LeftParenthesis => $this->parseTupleLiteral(),
+            TokenType::LeftParenthesis => $this->parseTupleExpression(),
             TokenType::Minus           => $this->parseUnaryExpression(),
             TokenType::Plus            => $this->parseUnaryExpression(),
             TokenType::String          => $this->parseStringLiteral(),
@@ -442,7 +442,7 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseTupleLiteral(): Literals\TupleLiteral
+    private function parseTupleExpression(): Expressions\TupleExpression
     {
         $token = $this->expect(TokenType::LeftParenthesis);
         $expressions = [];
@@ -459,7 +459,7 @@ final class Parser implements ParserInterface
 
         $this->expect(TokenType::RightParenthesis);
 
-        return new Literals\TupleLiteral(
+        return new Expressions\TupleExpression(
             line: $token->line,
             expressions: $expressions,
         );

@@ -597,7 +597,7 @@ class ParserTest extends TestCase
                             ),
                         ],
                     ),
-                    expression: new Literals\TupleLiteral(
+                    expression: new Expressions\TupleExpression(
                         line: 1,
                         expressions: [
                             new Literals\IntegerLiteral(
@@ -636,7 +636,7 @@ class ParserTest extends TestCase
                             ],
                         ),
                     ),
-                    expression: new Literals\TupleLiteral(
+                    expression: new Expressions\TupleExpression(
                         line: 1,
                         expressions: [
                             new Literals\IntegerLiteral(
