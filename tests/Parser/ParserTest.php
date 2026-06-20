@@ -88,6 +88,59 @@ class ParserTest extends TestCase
                 ),
             ],
         );
+
+        $this->assertEquals(
+            actual: self::createParser('var foo: int[]? = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    line: 1,
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        line: 1,
+                        type: new Types\ArrayType(
+                            line: 1,
+                            type: new Types\NamedType(
+                                line: 1,
+                                name: 'int',
+                            ),
+                        ),
+                    ),
+                    expression: new Literals\NullLiteral(
+                        line: 1,
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('var foo: int[]?[]? = 123;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    line: 1,
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        line: 1,
+                        type: new Types\ArrayType(
+                            line: 1,
+                            type: new Types\NullableType(
+                                line: 1,
+                                type: new Types\ArrayType(
+                                    line: 1,
+                                    type: new Types\NamedType(
+                                        line: 1,
+                                        name: 'int',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]
@@ -547,7 +600,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: int[]?[] = null;')->parse(),
+            actual: self::createParser('var foo: int?[] = null;')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -556,12 +609,9 @@ class ParserTest extends TestCase
                         line: 1,
                         type: new Types\NullableType(
                             line: 1,
-                            type: new Types\ArrayType(
+                            type: new Types\NamedType(
                                 line: 1,
-                                type: new Types\NamedType(
-                                    line: 1,
-                                    name: 'int',
-                                ),
+                                name: 'int',
                             ),
                         ),
                     ),
@@ -680,7 +730,7 @@ class ParserTest extends TestCase
     public function testTupleType(): void
     {
         $this->assertEquals(
-            actual: self::createParser('var foo: (int, string, string) = (1, "foo", "bar");')->parse(),
+            actual: self::createParser('var foo: (int, string) = (123, "foo");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -696,10 +746,6 @@ class ParserTest extends TestCase
                                 line: 1,
                                 name: 'string',
                             ),
-                            new Types\NamedType(
-                                line: 1,
-                                name: 'string',
-                            ),
                         ],
                     ),
                     expression: new Expressions\TupleExpression(
@@ -707,15 +753,11 @@ class ParserTest extends TestCase
                         expressions: [
                             new Literals\IntegerLiteral(
                                 line: 1,
-                                value: 1,
+                                value: 123,
                             ),
                             new Literals\StringLiteral(
                                 line: 1,
                                 value: 'foo',
-                            ),
-                            new Literals\StringLiteral(
-                                line: 1,
-                                value: 'bar',
                             ),
                         ],
                     ),
@@ -724,123 +766,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: (int, string, string)? = (1, "foo", "bar");')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    line: 1,
-                    name: 'foo',
-                    type: new Types\NullableType(
-                        line: 1,
-                        type: new Types\TupleType(
-                            line: 1,
-                            types: [
-                                new Types\NamedType(
-                                    line: 1,
-                                    name: 'int',
-                                ),
-                                new Types\NamedType(
-                                    line: 1,
-                                    name: 'string',
-                                ),
-                                new Types\NamedType(
-                                    line: 1,
-                                    name: 'string',
-                                ),
-                            ],
-                        ),
-                    ),
-                    expression: new Expressions\TupleExpression(
-                        line: 1,
-                        expressions: [
-                            new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 1,
-                            ),
-                            new Literals\StringLiteral(
-                                line: 1,
-                                value: 'foo',
-                            ),
-                            new Literals\StringLiteral(
-                                line: 1,
-                                value: 'bar',
-                            ),
-                        ],
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('var foo: string[] = "bar";')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    line: 1,
-                    name: 'foo',
-                    type: new Types\ArrayType(
-                        line: 1,
-                        type: new Types\NamedType(
-                            line: 1,
-                            name: 'string',
-                        ),
-                    ),
-                    expression: new Literals\StringLiteral(
-                        line: 1,
-                        value: 'bar',
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('var foo: string?[] = "bar";')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    line: 1,
-                    name: 'foo',
-                    type: new Types\ArrayType(
-                        line: 1,
-                        type: new Types\NullableType(
-                            line: 1,
-                            type: new Types\NamedType(
-                                line: 1,
-                                name: 'string',
-                            ),
-                        ),
-                    ),
-                    expression: new Literals\StringLiteral(
-                        line: 1,
-                        value: 'bar',
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('var foo: string[]? = "bar";')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    line: 1,
-                    name: 'foo',
-                    type: new Types\NullableType(
-                        line: 1,
-                        type: new Types\ArrayType(
-                            line: 1,
-                            type: new Types\NamedType(
-                                line: 1,
-                                name: 'string',
-                            ),
-                        ),
-                    ),
-                    expression: new Literals\StringLiteral(
-                        line: 1,
-                        value: 'bar',
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('var foo: (int, string)[] = (1, "foo");')->parse(),
+            actual: self::createParser('var foo: (int, string)[] = (123, "foo");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -866,7 +792,7 @@ class ParserTest extends TestCase
                         expressions: [
                             new Literals\IntegerLiteral(
                                 line: 1,
-                                value: 1,
+                                value: 123,
                             ),
                             new Literals\StringLiteral(
                                 line: 1,
@@ -879,36 +805,33 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: (int?, string[]) = (1, "foo");')->parse(),
+            actual: self::createParser('var foo: (int, string)? = (123, "foo");')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
                     name: 'foo',
-                    type: new Types\TupleType(
+                    type: new Types\NullableType(
                         line: 1,
-                        types: [
-                            new Types\NullableType(
-                                line: 1,
-                                type: new Types\NamedType(
+                        type: new Types\TupleType(
+                            line: 1,
+                            types: [
+                                new Types\NamedType(
                                     line: 1,
                                     name: 'int',
                                 ),
-                            ),
-                            new Types\ArrayType(
-                                line: 1,
-                                type: new Types\NamedType(
+                                new Types\NamedType(
                                     line: 1,
                                     name: 'string',
                                 ),
-                            ),
-                        ],
+                            ],
+                        ),
                     ),
                     expression: new Expressions\TupleExpression(
                         line: 1,
                         expressions: [
                             new Literals\IntegerLiteral(
                                 line: 1,
-                                value: 1,
+                                value: 123,
                             ),
                             new Literals\StringLiteral(
                                 line: 1,
