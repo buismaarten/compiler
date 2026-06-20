@@ -21,6 +21,71 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     #[Test]
+    public function testArrayExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('[1, 2, 3];')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\ArrayExpression(
+                        line: 1,
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 1,
+                            ),
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 2,
+                            ),
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 3,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('[1, 2, [3, 4]];')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\ArrayExpression(
+                        line: 1,
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 1,
+                            ),
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 2,
+                            ),
+                            new Expressions\ArrayExpression(
+                                line: 1,
+                                expressions: [
+                                    new Literals\IntegerLiteral(
+                                        line: 1,
+                                        value: 3,
+                                    ),
+                                    new Literals\IntegerLiteral(
+                                        line: 1,
+                                        value: 4,
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testArrayType(): void
     {
         $this->assertEquals(

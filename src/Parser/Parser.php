@@ -46,6 +46,29 @@ final class Parser implements ParserInterface
         return $statements;
     }
 
+    private function parseArrayExpression(): Expressions\ArrayExpression
+    {
+        $token = $this->expect(TokenType::LeftBracket);
+        $expressions = [];
+
+        while ($this->current->type !== TokenType::RightBracket) {
+            $expressions[] = $this->parseExpression();
+
+            if ($this->current->type === TokenType::Comma) {
+                $this->expect(TokenType::Comma);
+            } else {
+                break;
+            }
+        }
+
+        $this->expect(TokenType::RightBracket);
+
+        return new Expressions\ArrayExpression(
+            line: $token->line,
+            expressions: $expressions,
+        );
+    }
+
     private function parseArrayType(AbstractType $type): Types\ArrayType
     {
         $token = $this->expect(TokenType::LeftBracket);
@@ -380,6 +403,7 @@ final class Parser implements ParserInterface
             TokenType::KeywordFalse    => $this->parseBooleanLiteral(),
             TokenType::KeywordNull     => $this->parseNullLiteral(),
             TokenType::KeywordTrue     => $this->parseBooleanLiteral(),
+            TokenType::LeftBracket     => $this->parseArrayExpression(),
             TokenType::LeftParenthesis => $this->parseTupleExpression(),
             TokenType::Minus           => $this->parseUnaryExpression(),
             TokenType::Plus            => $this->parseUnaryExpression(),
