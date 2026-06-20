@@ -471,7 +471,7 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseTupleExpression(): Expressions\TupleExpression
+    private function parseTupleExpression(): AbstractExpression
     {
         $token = $this->expect(TokenType::LeftParenthesis);
         $expressions = [];
@@ -487,6 +487,10 @@ final class Parser implements ParserInterface
         }
 
         $this->expect(TokenType::RightParenthesis);
+
+        if (count($expressions) === 1) {
+            return $expressions[0];
+        }
 
         return new Expressions\TupleExpression(
             line: $token->line,
