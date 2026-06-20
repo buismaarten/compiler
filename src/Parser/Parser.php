@@ -271,7 +271,7 @@ final class Parser implements ParserInterface
 
             return new Expressions\UnaryExpression(
                 line: $token->line,
-                prefix: false,
+                position: Expressions\UnaryPosition::Postfix,
                 operator: Expressions\UnaryOperator::fromTokenType($operator->type),
                 expression: new Expressions\IdentifierExpression(
                     line: $token->line,
@@ -549,7 +549,7 @@ final class Parser implements ParserInterface
 
         return new Expressions\UnaryExpression(
             line: $token->line,
-            prefix: true,
+            position: Expressions\UnaryPosition::Prefix,
             operator: Expressions\UnaryOperator::fromTokenType($token->type),
             expression: $this->parseExpression(),
         );

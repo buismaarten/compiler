@@ -11,15 +11,15 @@ use Package\Nodes\AbstractExpression;
 
 final class UnaryExpression extends AbstractExpression
 {
-    public readonly bool $prefix;
+    public readonly UnaryPosition $position;
     public readonly UnaryOperator $operator;
     public readonly AbstractExpression $expression;
 
-    public function __construct(int $line, bool $prefix, UnaryOperator $operator, AbstractExpression $expression)
+    public function __construct(int $line, UnaryPosition $position, UnaryOperator $operator, AbstractExpression $expression)
     {
         parent::__construct($line);
 
-        $this->prefix = $prefix;
+        $this->position = $position;
         $this->operator = $operator;
         $this->expression = $expression;
     }
