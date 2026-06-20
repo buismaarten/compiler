@@ -89,7 +89,7 @@ class ParserTest extends TestCase
     public function testArrayType(): void
     {
         $this->assertEquals(
-            actual: self::createParser('var foo: int[] = 123;')->parse(),
+            actual: self::createParser('var foo: int[] = [123, 456];')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -101,16 +101,25 @@ class ParserTest extends TestCase
                             name: 'int',
                         ),
                     ),
-                    expression: new Literals\IntegerLiteral(
+                    expression: new Expressions\ArrayExpression(
                         line: 1,
-                        value: 123,
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 123,
+                            ),
+                            new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 456,
+                            ),
+                        ],
                     ),
                 ),
             ],
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: int[][] = 123;')->parse(),
+            actual: self::createParser('var foo: int[][] = [[123, 456]];')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -125,9 +134,23 @@ class ParserTest extends TestCase
                             ),
                         ),
                     ),
-                    expression: new Literals\IntegerLiteral(
+                    expression: new Expressions\ArrayExpression(
                         line: 1,
-                        value: 123,
+                        expressions: [
+                            new Expressions\ArrayExpression(
+                                line: 1,
+                                expressions: [
+                                    new Literals\IntegerLiteral(
+                                        line: 1,
+                                        value: 123,
+                                    ),
+                                    new Literals\IntegerLiteral(
+                                        line: 1,
+                                        value: 456,
+                                    ),
+                                ],
+                            ),
+                        ],
                     ),
                 ),
             ],
@@ -157,7 +180,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: int[]?[]? = 123;')->parse(),
+            actual: self::createParser('var foo: int[]?[]? = null;')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -178,9 +201,8 @@ class ParserTest extends TestCase
                             ),
                         ),
                     ),
-                    expression: new Literals\IntegerLiteral(
+                    expression: new Literals\NullLiteral(
                         line: 1,
-                        value: 123,
                     ),
                 ),
             ],
@@ -867,7 +889,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: (int, int)[] = (123, 456);')->parse(),
+            actual: self::createParser('var foo: (int, int)[] = [(123, 456)];')->parse(),
             expected: [
                 new Statements\VarStatement(
                     line: 1,
@@ -888,16 +910,21 @@ class ParserTest extends TestCase
                             ],
                         ),
                     ),
-                    expression: new Expressions\TupleExpression(
+                    expression: new Expressions\ArrayExpression(
                         line: 1,
                         expressions: [
-                            new Literals\IntegerLiteral(
+                            new Expressions\TupleExpression(
                                 line: 1,
-                                value: 123,
-                            ),
-                            new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 456,
+                                expressions: [
+                                    new Literals\IntegerLiteral(
+                                        line: 1,
+                                        value: 123,
+                                    ),
+                                    new Literals\IntegerLiteral(
+                                        line: 1,
+                                        value: 456,
+                                    ),
+                                ],
                             ),
                         ],
                     ),
