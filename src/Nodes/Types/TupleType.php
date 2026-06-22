@@ -12,7 +12,7 @@ use Package\Nodes\AbstractType;
 final class TupleType extends AbstractType
 {
     /** @var AbstractType[] */
-    public readonly array $types;
+    public array $types;
 
     /** @param AbstractType[] $types */
     public function __construct(int $line, array $types)

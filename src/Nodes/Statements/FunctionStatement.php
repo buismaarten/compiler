@@ -13,14 +13,14 @@ use Package\Nodes\Parameter;
 
 final class FunctionStatement extends AbstractStatement
 {
-    public readonly string $name;
-    public readonly AbstractType $type;
+    public string $name;
+    public AbstractType $type;
 
     /** @var Parameter[] */
-    public readonly array $parameters;
+    public array $parameters;
 
     /** @var AbstractStatement[] */
-    public readonly array $statements;
+    public array $statements;
 
     /**
      * @param Parameter[] $parameters

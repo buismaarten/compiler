@@ -11,7 +11,7 @@ use Package\Nodes\AbstractLiteral;
 
 final class StringLiteral extends AbstractLiteral
 {
-    public readonly string $value;
+    public string $value;
 
     public function __construct(int $line, string $value)
     {

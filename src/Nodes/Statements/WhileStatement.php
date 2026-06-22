@@ -12,10 +12,10 @@ use Package\Nodes\AbstractStatement;
 
 final class WhileStatement extends AbstractStatement
 {
-    public readonly AbstractExpression $condition;
+    public AbstractExpression $condition;
 
     /** @var AbstractStatement[] */
-    public readonly array $statements;
+    public array $statements;
 
     /** @param AbstractStatement[] $statements */
     public function __construct(int $line, AbstractExpression $condition, array $statements)

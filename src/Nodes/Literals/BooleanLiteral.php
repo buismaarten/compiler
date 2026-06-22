@@ -11,7 +11,7 @@ use Package\Nodes\AbstractLiteral;
 
 final class BooleanLiteral extends AbstractLiteral
 {
-    public readonly bool $value;
+    public bool $value;
 
     public function __construct(int $line, bool $value)
     {

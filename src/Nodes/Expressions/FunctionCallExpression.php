@@ -11,10 +11,10 @@ use Package\Nodes\AbstractExpression;
 
 final class FunctionCallExpression extends AbstractExpression
 {
-    public readonly string $name;
+    public string $name;
 
     /** @var AbstractExpression[] */
-    public readonly array $arguments;
+    public array $arguments;
 
     /** @param AbstractExpression[] $arguments */
     public function __construct(int $line, string $name, array $arguments)

@@ -12,7 +12,7 @@ use Package\Nodes\AbstractStatement;
 
 final class BreakStatement extends AbstractStatement
 {
-    public readonly ?AbstractExpression $level;
+    public ?AbstractExpression $level;
 
     public function __construct(int $line, ?AbstractExpression $level = null)
     {

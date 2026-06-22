@@ -11,7 +11,7 @@ use Package\Nodes\AbstractType;
 
 final class NamedType extends AbstractType
 {
-    public readonly string $name;
+    public string $name;
 
     public function __construct(int $line, string $name)
     {

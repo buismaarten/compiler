@@ -12,7 +12,7 @@ use Package\Nodes\AbstractExpression;
 final class ArrayExpression extends AbstractExpression
 {
     /** @var AbstractExpression[] */
-    public readonly array $expressions;
+    public array $expressions;
 
     /** @param AbstractExpression[] $expressions */
     public function __construct(int $line, array $expressions)

@@ -11,7 +11,7 @@ use Package\Nodes\AbstractLiteral;
 
 final class FloatLiteral extends AbstractLiteral
 {
-    public readonly float $value;
+    public float $value;
 
     public function __construct(int $line, float $value)
     {

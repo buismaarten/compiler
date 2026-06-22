@@ -11,7 +11,7 @@ use Package\Nodes\AbstractType;
 
 final class NullableType extends AbstractType
 {
-    public readonly AbstractType $type;
+    public AbstractType $type;
 
     public function __construct(int $line, AbstractType $type)
     {

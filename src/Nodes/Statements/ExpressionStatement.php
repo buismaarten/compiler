@@ -12,7 +12,7 @@ use Package\Nodes\AbstractStatement;
 
 final class ExpressionStatement extends AbstractStatement
 {
-    public readonly AbstractExpression $expression;
+    public AbstractExpression $expression;
 
     public function __construct(int $line, AbstractExpression $expression)
     {

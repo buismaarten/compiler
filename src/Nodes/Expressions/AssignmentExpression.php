@@ -11,8 +11,8 @@ use Package\Nodes\AbstractExpression;
 
 final class AssignmentExpression extends AbstractExpression
 {
-    public readonly string $name;
-    public readonly AbstractExpression $expression;
+    public string $name;
+    public AbstractExpression $expression;
 
     public function __construct(int $line, string $name, AbstractExpression $expression)
     {

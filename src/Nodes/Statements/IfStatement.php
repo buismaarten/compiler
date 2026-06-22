@@ -12,13 +12,13 @@ use Package\Nodes\AbstractStatement;
 
 final class IfStatement extends AbstractStatement
 {
-    public readonly AbstractExpression $condition;
+    public AbstractExpression $condition;
 
     /** @var AbstractStatement[] */
-    public readonly array $thenStatements;
+    public array $thenStatements;
 
     /** @var AbstractStatement[] */
-    public readonly array $elseStatements;
+    public array $elseStatements;
 
     /**
      * @param AbstractStatement[] $thenStatements

@@ -13,9 +13,9 @@ use Package\Nodes\AbstractType;
 
 final class ConstStatement extends AbstractStatement
 {
-    public readonly string $name;
-    public readonly AbstractType $type;
-    public readonly AbstractExpression $expression;
+    public string $name;
+    public AbstractType $type;
+    public AbstractExpression $expression;
 
     public function __construct(int $line, string $name, AbstractType $type, AbstractExpression $expression)
     {

@@ -9,8 +9,8 @@ namespace Package\Nodes;
 
 final class Parameter extends AbstractNode
 {
-    public readonly string $name;
-    public readonly AbstractType $type;
+    public string $name;
+    public AbstractType $type;
 
     public function __construct(int $line, string $name, AbstractType $type)
     {

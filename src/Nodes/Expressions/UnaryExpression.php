@@ -11,9 +11,9 @@ use Package\Nodes\AbstractExpression;
 
 final class UnaryExpression extends AbstractExpression
 {
-    public readonly UnaryPosition $position;
-    public readonly UnaryOperator $operator;
-    public readonly AbstractExpression $expression;
+    public UnaryPosition $position;
+    public UnaryOperator $operator;
+    public AbstractExpression $expression;
 
     public function __construct(int $line, UnaryPosition $position, UnaryOperator $operator, AbstractExpression $expression)
     {

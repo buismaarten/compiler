@@ -11,9 +11,9 @@ use Package\Nodes\AbstractExpression;
 
 final class BinaryExpression extends AbstractExpression
 {
-    public readonly AbstractExpression $left;
-    public readonly BinaryOperator $operator;
-    public readonly AbstractExpression $right;
+    public AbstractExpression $left;
+    public BinaryOperator $operator;
+    public AbstractExpression $right;
 
     public function __construct(int $line, AbstractExpression $left, BinaryOperator $operator, AbstractExpression $right)
     {
