@@ -69,6 +69,17 @@ final class Parser implements ParserInterface
         );
     }
 
+    private function parseAssignmentExpression(Token $token): Expressions\AssignmentExpression
+    {
+        $this->expect(TokenType::Assign);
+
+        return new Expressions\AssignmentExpression(
+            line: $token->line,
+            name: $token->value,
+            expression: $this->parseExpression(),
+        );
+    }
+
     private function parseBinaryExpression(int $minimumPrecedence = 0): AbstractExpression
     {
         $expression = $this->parsePrimaryExpression();
@@ -187,6 +198,31 @@ final class Parser implements ParserInterface
         );
     }
 
+    private function parseFunctionCallExpression(Token $token): Expressions\FunctionCallExpression
+    {
+        $arguments = [];
+
+        $this->expect(TokenType::LeftParenthesis);
+
+        while ($this->current->type !== TokenType::RightParenthesis) {
+            $arguments[] = $this->parseExpression();
+
+            if ($this->current->type === TokenType::Comma) {
+                $this->expect(TokenType::Comma);
+            } else {
+                break;
+            }
+        }
+
+        $this->expect(TokenType::RightParenthesis);
+
+        return new Expressions\FunctionCallExpression(
+            line: $token->line,
+            name: $token->value,
+            arguments: $arguments,
+        );
+    }
+
     private function parseFunctionStatement(): Statements\FunctionStatement
     {
         $token = $this->expect(TokenType::KeywordFn);
@@ -232,52 +268,19 @@ final class Parser implements ParserInterface
         $token = $this->expect(TokenType::Identifier);
 
         if ($this->current->type === TokenType::Assign) {
-            $this->expect(TokenType::Assign);
+            return $this->parseAssignmentExpression($token);
+        }
 
-            return new Expressions\AssignmentExpression(
-                line: $token->line,
-                name: $token->value,
-                expression: $this->parseExpression(),
-            );
+        if ($this->current->type === TokenType::Decrement) {
+            return $this->parsePostfixUnaryExpression($token);
+        }
+
+        if ($this->current->type === TokenType::Increment) {
+            return $this->parsePostfixUnaryExpression($token);
         }
 
         if ($this->current->type === TokenType::LeftParenthesis) {
-            $arguments = [];
-
-            $this->expect(TokenType::LeftParenthesis);
-
-            while ($this->current->type !== TokenType::RightParenthesis) {
-                $arguments[] = $this->parseExpression();
-
-                if ($this->current->type === TokenType::Comma) {
-                    $this->expect(TokenType::Comma);
-                } else {
-                    break;
-                }
-            }
-
-            $this->expect(TokenType::RightParenthesis);
-
-            return new Expressions\FunctionCallExpression(
-                line: $token->line,
-                name: $token->value,
-                arguments: $arguments,
-            );
-        }
-
-        if ($this->current->type === TokenType::Decrement || $this->current->type === TokenType::Increment) {
-            $operator = $this->current;
-            $this->next();
-
-            return new Expressions\UnaryExpression(
-                line: $token->line,
-                position: Expressions\UnaryPosition::Postfix,
-                operator: Expressions\UnaryOperator::fromTokenType($operator->type),
-                expression: new Expressions\IdentifierExpression(
-                    line: $token->line,
-                    name: $token->value,
-                ),
-            );
+            return $this->parseFunctionCallExpression($token);
         }
 
         return new Expressions\IdentifierExpression(
@@ -365,23 +368,52 @@ final class Parser implements ParserInterface
         );
     }
 
+    private function parsePostfixUnaryExpression(Token $token): Expressions\UnaryExpression
+    {
+        $operator = $this->current;
+        $this->next();
+
+        return new Expressions\UnaryExpression(
+            line: $token->line,
+            position: Expressions\UnaryPosition::Postfix,
+            operator: Expressions\UnaryOperator::fromTokenType($operator->type),
+            expression: new Expressions\IdentifierExpression(
+                line: $token->line,
+                name: $token->value,
+            ),
+        );
+    }
+
+    private function parsePrefixUnaryExpression(): Expressions\UnaryExpression
+    {
+        $token = $this->current;
+        $this->next();
+
+        return new Expressions\UnaryExpression(
+            line: $token->line,
+            position: Expressions\UnaryPosition::Prefix,
+            operator: Expressions\UnaryOperator::fromTokenType($token->type),
+            expression: $this->parseExpression(),
+        );
+    }
+
     private function parsePrimaryExpression(): AbstractExpression
     {
         return match ($this->current->type) {
-            TokenType::BitwiseNot      => $this->parseUnaryExpression(),
-            TokenType::BooleanNot      => $this->parseUnaryExpression(),
-            TokenType::Decrement       => $this->parseUnaryExpression(),
+            TokenType::BitwiseNot      => $this->parsePrefixUnaryExpression(),
+            TokenType::BooleanNot      => $this->parsePrefixUnaryExpression(),
+            TokenType::Decrement       => $this->parsePrefixUnaryExpression(),
             TokenType::Float           => $this->parseFloatLiteral(),
             TokenType::Identifier      => $this->parseIdentifierExpression(),
-            TokenType::Increment       => $this->parseUnaryExpression(),
+            TokenType::Increment       => $this->parsePrefixUnaryExpression(),
             TokenType::Integer         => $this->parseIntegerLiteral(),
             TokenType::KeywordFalse    => $this->parseBooleanLiteral(),
             TokenType::KeywordNull     => $this->parseNullLiteral(),
             TokenType::KeywordTrue     => $this->parseBooleanLiteral(),
             TokenType::LeftBracket     => $this->parseArrayExpression(),
             TokenType::LeftParenthesis => $this->parseTupleExpression(),
-            TokenType::Minus           => $this->parseUnaryExpression(),
-            TokenType::Plus            => $this->parseUnaryExpression(),
+            TokenType::Minus           => $this->parsePrefixUnaryExpression(),
+            TokenType::Plus            => $this->parsePrefixUnaryExpression(),
             TokenType::String          => $this->parseStringLiteral(),
 
             // Fallback
@@ -540,19 +572,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Colon);
 
         return $this->parsePrimaryType();
-    }
-
-    private function parseUnaryExpression(): Expressions\UnaryExpression
-    {
-        $token = $this->current;
-        $this->next();
-
-        return new Expressions\UnaryExpression(
-            line: $token->line,
-            position: Expressions\UnaryPosition::Prefix,
-            operator: Expressions\UnaryOperator::fromTokenType($token->type),
-            expression: $this->parseExpression(),
-        );
     }
 
     private function parseVarStatement(): Statements\VarStatement

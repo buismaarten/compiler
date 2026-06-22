@@ -386,28 +386,6 @@ class ParserTest extends TestCase
     }
 
     #[Test]
-    public function testDecrementExpression(): void
-    {
-        $this->assertEquals(
-            actual: self::createParser('foo--;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\UnaryExpression(
-                        line: 1,
-                        position: Expressions\UnaryPosition::Postfix,
-                        operator: Expressions\UnaryOperator::Decrement,
-                        expression: new Expressions\IdentifierExpression(
-                            line: 1,
-                            name: 'foo',
-                        ),
-                    ),
-                ),
-            ],
-        );
-    }
-
-    #[Test]
     public function testFloatLiteral(): void
     {
         $this->assertEquals(
@@ -603,28 +581,6 @@ class ParserTest extends TestCase
     }
 
     #[Test]
-    public function testIncrementExpression(): void
-    {
-        $this->assertEquals(
-            actual: self::createParser('foo++;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\UnaryExpression(
-                        line: 1,
-                        position: Expressions\UnaryPosition::Postfix,
-                        operator: Expressions\UnaryOperator::Increment,
-                        expression: new Expressions\IdentifierExpression(
-                            line: 1,
-                            name: 'foo',
-                        ),
-                    ),
-                ),
-            ],
-        );
-    }
-
-    #[Test]
     public function testIntegerLiteral(): void
     {
         $this->assertEquals(
@@ -746,6 +702,158 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Literals\NullLiteral(
                         line: 1,
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
+    public function testPostfixUnaryExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo--;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        position: Expressions\UnaryPosition::Postfix,
+                        operator: Expressions\UnaryOperator::Decrement,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('foo++;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        position: Expressions\UnaryPosition::Postfix,
+                        operator: Expressions\UnaryOperator::Increment,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+    }
+
+    #[Test]
+    public function testPrefixUnaryExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('~foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        position: Expressions\UnaryPosition::Prefix,
+                        operator: Expressions\UnaryOperator::BitwiseNot,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('!foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        position: Expressions\UnaryPosition::Prefix,
+                        operator: Expressions\UnaryOperator::BooleanNot,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('--foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        position: Expressions\UnaryPosition::Prefix,
+                        operator: Expressions\UnaryOperator::Decrement,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('++foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        position: Expressions\UnaryPosition::Prefix,
+                        operator: Expressions\UnaryOperator::Increment,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('-foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        position: Expressions\UnaryPosition::Prefix,
+                        operator: Expressions\UnaryOperator::Minus,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('+foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\UnaryExpression(
+                        line: 1,
+                        position: Expressions\UnaryPosition::Prefix,
+                        operator: Expressions\UnaryOperator::Plus,
+                        expression: new Expressions\IdentifierExpression(
+                            line: 1,
+                            name: 'foo',
+                        ),
                     ),
                 ),
             ],
@@ -966,118 +1074,6 @@ class ParserTest extends TestCase
                                 value: 456,
                             ),
                         ],
-                    ),
-                ),
-            ],
-        );
-    }
-
-    #[Test]
-    public function testUnaryExpression(): void
-    {
-        $this->assertEquals(
-            actual: self::createParser('~foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\UnaryExpression(
-                        line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
-                        operator: Expressions\UnaryOperator::BitwiseNot,
-                        expression: new Expressions\IdentifierExpression(
-                            line: 1,
-                            name: 'foo',
-                        ),
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('!foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\UnaryExpression(
-                        line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
-                        operator: Expressions\UnaryOperator::BooleanNot,
-                        expression: new Expressions\IdentifierExpression(
-                            line: 1,
-                            name: 'foo',
-                        ),
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('--foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\UnaryExpression(
-                        line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
-                        operator: Expressions\UnaryOperator::Decrement,
-                        expression: new Expressions\IdentifierExpression(
-                            line: 1,
-                            name: 'foo',
-                        ),
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('++foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\UnaryExpression(
-                        line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
-                        operator: Expressions\UnaryOperator::Increment,
-                        expression: new Expressions\IdentifierExpression(
-                            line: 1,
-                            name: 'foo',
-                        ),
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('-foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\UnaryExpression(
-                        line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
-                        operator: Expressions\UnaryOperator::Minus,
-                        expression: new Expressions\IdentifierExpression(
-                            line: 1,
-                            name: 'foo',
-                        ),
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('+foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\UnaryExpression(
-                        line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
-                        operator: Expressions\UnaryOperator::Plus,
-                        expression: new Expressions\IdentifierExpression(
-                            line: 1,
-                            name: 'foo',
-                        ),
                     ),
                 ),
             ],
