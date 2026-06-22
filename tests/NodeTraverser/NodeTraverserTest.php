@@ -26,12 +26,12 @@ class NodeTraverserTest extends TestCase
         $traverser = new NodeTraverser;
         $traverser->addVisitor($visitor = new DummyNodeVisitor);
 
-        $this->assertEquals(
+        $this->assertSame(
             actual: $traverser->traverse([$statement]),
             expected: [$statement],
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             actual: $visitor->trace,
             expected: [$statement, $literal],
         );
