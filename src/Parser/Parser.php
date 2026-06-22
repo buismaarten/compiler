@@ -267,26 +267,18 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::Identifier);
 
-        if ($this->current->type === TokenType::Assign) {
-            return $this->parseAssignmentExpression($token);
-        }
+        return match ($this->current->type) {
+            TokenType::Assign          => $this->parseAssignmentExpression($token),
+            TokenType::Decrement       => $this->parsePostfixUnaryExpression($token),
+            TokenType::Increment       => $this->parsePostfixUnaryExpression($token),
+            TokenType::LeftParenthesis => $this->parseFunctionCallExpression($token),
 
-        if ($this->current->type === TokenType::Decrement) {
-            return $this->parsePostfixUnaryExpression($token);
-        }
-
-        if ($this->current->type === TokenType::Increment) {
-            return $this->parsePostfixUnaryExpression($token);
-        }
-
-        if ($this->current->type === TokenType::LeftParenthesis) {
-            return $this->parseFunctionCallExpression($token);
-        }
-
-        return new Expressions\IdentifierExpression(
-            line: $token->line,
-            name: $token->value,
-        );
+            // Fallback
+            default => new Expressions\IdentifierExpression(
+                line: $token->line,
+                name: $token->value,
+            ),
+        };
     }
 
     private function parseIfStatement(): Statements\IfStatement
