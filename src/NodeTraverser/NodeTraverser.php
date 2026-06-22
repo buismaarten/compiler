@@ -8,9 +8,14 @@ declare(strict_types=1);
 namespace Package\NodeTraverser;
 
 use Package\Nodes\AbstractNode;
+use ReflectionClass;
+use ReflectionProperty;
 
 final class NodeTraverser
 {
+    /** @var array<string, ReflectionProperty[]> */
+    private static array $cache = [];
+
     /** @var NodeVisitor[] */
     private array $visitors = [];
 
@@ -39,7 +44,9 @@ final class NodeTraverser
 
     private function traverseNode(AbstractNode $node): void
     {
-        foreach (Reflection::getClassProperties($node) as $property) {
+        self::$cache[$node::class] ??= new ReflectionClass($node)->getProperties(ReflectionProperty::IS_PUBLIC);
+
+        foreach (self::$cache[$node::class] as $property) {
             $name = $property->getName();
             $subNode = $node->{$name};
 
