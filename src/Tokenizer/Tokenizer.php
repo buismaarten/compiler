@@ -46,59 +46,59 @@ final class Tokenizer implements TokenizerInterface
     #[Override]
     public function next(): Token
     {
-        while (($current = $this->input->current()) !== null && ctype_space($current)) {
-            $this->input->next();
+        while (true) {
+            while (($current = $this->input->current()) !== null && ctype_space($current)) {
+                $this->input->next();
 
-            if ($current === "\n") {
-                $this->line++;
+                if ($current === "\n") {
+                    $this->line++;
+                }
+            }
+
+            if ($current === null) {
+                return new Token(TokenType::Eof, $this->line);
+            }
+
+            $token = match ($current) {
+                '&' => $this->tokenizeAmpersand(),
+                '=' => $this->tokenizeAssign(),
+                '*' => $this->tokenizeAsterisk(),
+                '~' => $this->tokenizeCharacter(TokenType::BitwiseNot),
+                '^' => $this->tokenizeCharacter(TokenType::BitwiseXor),
+                ':' => $this->tokenizeCharacter(TokenType::Colon),
+                ',' => $this->tokenizeCharacter(TokenType::Comma),
+                '{' => $this->tokenizeCharacter(TokenType::LeftBrace),
+                '[' => $this->tokenizeCharacter(TokenType::LeftBracket),
+                '(' => $this->tokenizeCharacter(TokenType::LeftParenthesis),
+                '%' => $this->tokenizeCharacter(TokenType::Modulo),
+                '?' => $this->tokenizeCharacter(TokenType::QuestionMark),
+                '}' => $this->tokenizeCharacter(TokenType::RightBrace),
+                ']' => $this->tokenizeCharacter(TokenType::RightBracket),
+                ')' => $this->tokenizeCharacter(TokenType::RightParenthesis),
+                ';' => $this->tokenizeCharacter(TokenType::Semicolon),
+                '!' => $this->tokenizeExclamationMark(),
+                '_' => $this->tokenizeIdentifier(),
+                '<' => $this->tokenizeLeftAngle(),
+                '-' => $this->tokenizeMinus(),
+                '|' => $this->tokenizePipe(),
+                '+' => $this->tokenizePlus(),
+                '>' => $this->tokenizeRightAngle(),
+                '/' => $this->tokenizeSlash(),
+                '"' => $this->tokenizeString(),
+
+                default => match (true) {
+                    ctype_alpha($current) => $this->tokenizeIdentifier(),
+                    ctype_digit($current) => $this->tokenizeNumber(),
+
+                    // Fallback
+                    default => throw new UnexpectedCharacterException($this->line, $current),
+                },
+            };
+
+            if ($token !== null) {
+                return $token;
             }
         }
-
-        if ($current === null) {
-            return new Token(TokenType::Eof, $this->line);
-        }
-
-        $token = match ($current) {
-            '&' => $this->tokenizeAmpersand(),
-            '=' => $this->tokenizeAssign(),
-            '*' => $this->tokenizeAsterisk(),
-            '~' => $this->tokenizeCharacter(TokenType::BitwiseNot),
-            '^' => $this->tokenizeCharacter(TokenType::BitwiseXor),
-            ':' => $this->tokenizeCharacter(TokenType::Colon),
-            ',' => $this->tokenizeCharacter(TokenType::Comma),
-            '{' => $this->tokenizeCharacter(TokenType::LeftBrace),
-            '[' => $this->tokenizeCharacter(TokenType::LeftBracket),
-            '(' => $this->tokenizeCharacter(TokenType::LeftParenthesis),
-            '%' => $this->tokenizeCharacter(TokenType::Modulo),
-            '?' => $this->tokenizeCharacter(TokenType::QuestionMark),
-            '}' => $this->tokenizeCharacter(TokenType::RightBrace),
-            ']' => $this->tokenizeCharacter(TokenType::RightBracket),
-            ')' => $this->tokenizeCharacter(TokenType::RightParenthesis),
-            ';' => $this->tokenizeCharacter(TokenType::Semicolon),
-            '!' => $this->tokenizeExclamationMark(),
-            '_' => $this->tokenizeIdentifier(),
-            '<' => $this->tokenizeLeftAngle(),
-            '-' => $this->tokenizeMinus(),
-            '|' => $this->tokenizePipe(),
-            '+' => $this->tokenizePlus(),
-            '>' => $this->tokenizeRightAngle(),
-            '/' => $this->tokenizeSlash(),
-            '"' => $this->tokenizeString(),
-
-            default => match (true) {
-                ctype_alpha($current) => $this->tokenizeIdentifier(),
-                ctype_digit($current) => $this->tokenizeNumber(),
-
-                // Fallback
-                default => throw new UnexpectedCharacterException($this->line, $current),
-            },
-        };
-
-        if ($token === null) {
-            return $this->next();
-        }
-
-        return $token;
     }
 
     private function tokenizeAmpersand(): Token
