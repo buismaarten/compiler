@@ -7,29 +7,34 @@ declare(strict_types=1);
 
 namespace Package\NodeTraverser;
 
+use Override;
 use Package\Nodes\AbstractNode;
 
 abstract class AbstractNodeVisitor implements NodeVisitor
 {
     /** {@inheritDoc} */
+    #[Override]
     public function beforeTraverse(array $nodes)
     {
         return null;
     }
 
     /** {@inheritDoc} */
+    #[Override]
     public function enterNode(AbstractNode $node)
     {
         return null;
     }
 
     /** {@inheritDoc} */
+    #[Override]
     public function leaveNode(AbstractNode $node)
     {
         return null;
     }
 
     /** {@inheritDoc} */
+    #[Override]
     public function afterTraverse(array $nodes)
     {
         return null;

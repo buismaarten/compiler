@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tests\NodeTraverser;
 
+use Override;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Literals;
 use Package\Nodes\Statements;
@@ -49,21 +50,25 @@ class DummyNodeVisitor extends AbstractNodeVisitor
 {
     public array $trace = [];
 
+    #[Override]
     public function beforeTraverse(array $nodes)
     {
         return $this->traceEvent('beforeTraverse', $nodes);
     }
 
+    #[Override]
     public function enterNode(AbstractNode $node)
     {
         return $this->traceEvent('enterNode', $node);
     }
 
+    #[Override]
     public function leaveNode(AbstractNode $node)
     {
         return $this->traceEvent('leaveNode', $node);
     }
 
+    #[Override]
     public function afterTraverse(array $nodes)
     {
         return $this->traceEvent('afterTraverse', $nodes);
