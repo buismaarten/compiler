@@ -41,7 +41,7 @@ class NodeTraverserTest extends TestCase
                 ['enterNode', $literal],
                 ['leaveNode', $literal],
                 ['leaveNode', $statement],
-                ['afterTraverse', [$statement]]
+                ['afterTraverse', [$statement]],
             ],
         );
     }
