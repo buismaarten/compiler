@@ -55,7 +55,7 @@ final class Parser implements ParserInterface
             $expressions[] = $this->parseExpression();
 
             if ($this->current->type === TokenType::Comma) {
-                $this->expect(TokenType::Comma);
+                $this->next();
             } else {
                 break;
             }
@@ -208,7 +208,7 @@ final class Parser implements ParserInterface
             $arguments[] = $this->parseExpression();
 
             if ($this->current->type === TokenType::Comma) {
-                $this->expect(TokenType::Comma);
+                $this->next();
             } else {
                 break;
             }
@@ -236,7 +236,7 @@ final class Parser implements ParserInterface
             $parameters[] = $this->parseParameter();
 
             if ($this->current->type === TokenType::Comma) {
-                $this->expect(TokenType::Comma);
+                $this->next();
             } else {
                 break;
             }
@@ -300,7 +300,7 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightBrace);
 
         if ($this->current->type === TokenType::KeywordElse) {
-            $this->expect(TokenType::KeywordElse);
+            $this->next();
             $this->expect(TokenType::LeftBrace);
 
             while ($this->current->type !== TokenType::RightBrace) {
@@ -518,7 +518,7 @@ final class Parser implements ParserInterface
             $expressions[] = $this->parseExpression();
 
             if ($this->current->type === TokenType::Comma) {
-                $this->expect(TokenType::Comma);
+                $this->next();
             } else {
                 break;
             }
@@ -545,7 +545,7 @@ final class Parser implements ParserInterface
             $types[] = $this->parsePrimaryType();
 
             if ($this->current->type === TokenType::Comma) {
-                $this->expect(TokenType::Comma);
+                $this->next();
             } else {
                 break;
             }
