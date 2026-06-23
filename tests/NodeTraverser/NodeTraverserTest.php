@@ -24,8 +24,9 @@ class NodeTraverserTest extends TestCase
         $literal = new Literals\NullLiteral(1);
         $statement = new Statements\ReturnStatement(1, $literal);
 
+        $visitor = new NodeVisitor;
         $traverser = new NodeTraverser;
-        $traverser->addVisitor($visitor = new DummyNodeVisitor);
+        $traverser->addVisitor($visitor);
 
         $this->assertSame(
             actual: $traverser->traverse([$statement]),
@@ -46,7 +47,7 @@ class NodeTraverserTest extends TestCase
     }
 }
 
-class DummyNodeVisitor extends AbstractNodeVisitor
+class NodeVisitor extends AbstractNodeVisitor
 {
     public array $trace = [];
 
