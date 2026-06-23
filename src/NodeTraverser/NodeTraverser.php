@@ -13,7 +13,7 @@ use ReflectionProperty;
 
 final class NodeTraverser
 {
-    /** @var array<string, ReflectionProperty[]> */
+    /** @var array<class-string<AbstractNode>, ReflectionProperty[]> */
     private static array $cache = [];
 
     /** @var NodeVisitor[] */
