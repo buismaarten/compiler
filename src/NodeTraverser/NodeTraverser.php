@@ -30,12 +30,31 @@ final class NodeTraverser
      */
     public function traverse(array $nodes): array
     {
+        foreach ($this->visitors as $visitor) {
+            if (($return = $visitor->beforeTraverse($nodes)) !== null) {
+                $nodes = $return;
+            }
+        }
+
         foreach ($nodes as $i => $node) {
             foreach ($this->visitors as $visitor) {
-                $node = $visitor->visit($node);
-                $nodes[$i] = $node;
+                if (($return = $visitor->enterNode($node)) !== null) {
+                    $node = $return;
+                    $nodes[$i] = $node;
+                }
 
                 $this->traverseNode($node);
+
+                if (($return = $visitor->leaveNode($node)) !== null) {
+                    $node = $return;
+                    $nodes[$i] = $node;
+                }
+            }
+        }
+
+        foreach ($this->visitors as $visitor) {
+            if (($return = $visitor->afterTraverse($nodes)) !== null) {
+                $nodes = $return;
             }
         }
 
@@ -57,10 +76,17 @@ final class NodeTraverser
 
             if ($subNode instanceof AbstractNode) {
                 foreach ($this->visitors as $visitor) {
-                    $subNode = $visitor->visit($subNode);
-                    $node->{$name} = $subNode;
+                    if (($return = $visitor->enterNode($subNode)) !== null) {
+                        $subNode = $return;
+                        $node->{$name} = $subNode;
+                    }
 
                     $this->traverseNode($subNode);
+
+                    if (($return = $visitor->leaveNode($subNode)) !== null) {
+                        $subNode = $return;
+                        $node->{$name} = $subNode;
+                    }
                 }
             }
         }

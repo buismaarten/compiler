@@ -10,8 +10,8 @@ namespace Package\Tests\NodeTraverser;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Literals;
 use Package\Nodes\Statements;
+use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\NodeTraverser\NodeTraverser;
-use Package\NodeTraverser\NodeVisitor;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -34,26 +34,45 @@ class NodeTraverserTest extends TestCase
         $this->assertSame(
             actual: $visitor->trace,
             expected: [
-                ['visit', $statement],
-                ['visit', $literal],
+                ['beforeTraverse', [$statement]],
+                ['enterNode', $statement],
+                ['enterNode', $literal],
+                ['leaveNode', $literal],
+                ['leaveNode', $statement],
+                ['afterTraverse', [$statement]]
             ],
         );
     }
 }
 
-class DummyNodeVisitor implements NodeVisitor
+class DummyNodeVisitor extends AbstractNodeVisitor
 {
     public array $trace = [];
 
-    public function visit(AbstractNode $node): AbstractNode
+    public function beforeTraverse(array $nodes)
     {
-        return $this->traceEvent('visit', $node);
+        return $this->traceEvent('beforeTraverse', $nodes);
     }
 
-    private function traceEvent(string $method, AbstractNode $node): AbstractNode
+    public function enterNode(AbstractNode $node)
     {
-        $this->trace[] = [$method, $node];
+        return $this->traceEvent('enterNode', $node);
+    }
 
-        return $node;
+    public function leaveNode(AbstractNode $node)
+    {
+        return $this->traceEvent('leaveNode', $node);
+    }
+
+    public function afterTraverse(array $nodes)
+    {
+        return $this->traceEvent('afterTraverse', $nodes);
+    }
+
+    private function traceEvent(string $method, mixed $value)
+    {
+        $this->trace[] = [$method, $value];
+
+        return $value;
     }
 }
