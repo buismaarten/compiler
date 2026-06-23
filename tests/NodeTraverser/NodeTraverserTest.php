@@ -33,19 +33,26 @@ class NodeTraverserTest extends TestCase
 
         $this->assertSame(
             actual: $visitor->trace,
-            expected: [$statement, $literal],
+            expected: [
+                ['visit', $statement],
+                ['visit', $literal],
+            ],
         );
     }
 }
 
 class DummyNodeVisitor implements NodeVisitor
 {
-    /** @var AbstractNode[] */
     public array $trace = [];
 
     public function visit(AbstractNode $node): AbstractNode
     {
-        $this->trace[] = $node;
+        return $this->traceEvent('visit', $node);
+    }
+
+    private function traceEvent(string $method, AbstractNode $node): AbstractNode
+    {
+        $this->trace[] = [$method, $node];
 
         return $node;
     }
