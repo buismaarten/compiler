@@ -11,16 +11,16 @@ use Package\Nodes\AbstractExpression;
 
 final class BinaryExpression extends AbstractExpression
 {
-    public AbstractExpression $left;
     public BinaryOperator $operator;
+    public AbstractExpression $left;
     public AbstractExpression $right;
 
-    public function __construct(int $line, AbstractExpression $left, BinaryOperator $operator, AbstractExpression $right)
+    public function __construct(int $line, BinaryOperator $operator, AbstractExpression $left, AbstractExpression $right)
     {
         parent::__construct($line);
 
-        $this->left = $left;
         $this->operator = $operator;
+        $this->left = $left;
         $this->right = $right;
     }
 }

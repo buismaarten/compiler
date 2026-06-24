@@ -240,18 +240,18 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\BinaryExpression(
                         line: 1,
+                        operator: Expressions\BinaryOperator::Plus,
                         left: new Literals\IntegerLiteral(
                             line: 1,
                             value: 1,
                         ),
-                        operator: Expressions\BinaryOperator::Plus,
                         right: new Expressions\BinaryExpression(
                             line: 1,
+                            operator: Expressions\BinaryOperator::Multiply,
                             left: new Literals\IntegerLiteral(
                                 line: 1,
                                 value: 2,
                             ),
-                            operator: Expressions\BinaryOperator::Multiply,
                             right: new Literals\IntegerLiteral(
                                 line: 1,
                                 value: 3,
@@ -718,8 +718,8 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        position: Expressions\UnaryPosition::Postfix,
                         operator: Expressions\UnaryOperator::Decrement,
+                        position: Expressions\UnaryPosition::Postfix,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
                             name: 'foo',
@@ -736,8 +736,8 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        position: Expressions\UnaryPosition::Postfix,
                         operator: Expressions\UnaryOperator::Increment,
+                        position: Expressions\UnaryPosition::Postfix,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
                             name: 'foo',
@@ -758,8 +758,8 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
                         operator: Expressions\UnaryOperator::BitwiseNot,
+                        position: Expressions\UnaryPosition::Prefix,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
                             name: 'foo',
@@ -776,8 +776,8 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
                         operator: Expressions\UnaryOperator::BooleanNot,
+                        position: Expressions\UnaryPosition::Prefix,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
                             name: 'foo',
@@ -794,8 +794,8 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
                         operator: Expressions\UnaryOperator::Decrement,
+                        position: Expressions\UnaryPosition::Prefix,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
                             name: 'foo',
@@ -812,8 +812,8 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
                         operator: Expressions\UnaryOperator::Increment,
+                        position: Expressions\UnaryPosition::Prefix,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
                             name: 'foo',
@@ -830,8 +830,8 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
                         operator: Expressions\UnaryOperator::Minus,
+                        position: Expressions\UnaryPosition::Prefix,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
                             name: 'foo',
@@ -848,8 +848,8 @@ class ParserTest extends TestCase
                     line: 1,
                     expression: new Expressions\UnaryExpression(
                         line: 1,
-                        position: Expressions\UnaryPosition::Prefix,
                         operator: Expressions\UnaryOperator::Plus,
+                        position: Expressions\UnaryPosition::Prefix,
                         expression: new Expressions\IdentifierExpression(
                             line: 1,
                             name: 'foo',
