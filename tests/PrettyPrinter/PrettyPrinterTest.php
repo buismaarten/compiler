@@ -23,52 +23,20 @@ class PrettyPrinterTest extends TestCase
     public function testBinaryExpression(): void
     {
         $this->assertSame(
-            actual: self::createPrettyPrinter()->prettyPrint([
-                new Statements\ExpressionStatement(
+            actual: self::createPrettyPrinter()->prettyPrintExpression(
+                new Expressions\BinaryExpression(
                     line: 1,
-                    expression: new Expressions\BinaryExpression(
+                    operator: Expressions\BinaryOperator::Plus,
+                    left: new Literals\IntegerLiteral(
                         line: 1,
-                        operator: Expressions\BinaryOperator::Plus,
-                        left: new Literals\IntegerLiteral(
-                            line: 1,
-                            value: 1,
-                        ),
-                        right: new Expressions\BinaryExpression(
-                            line: 1,
-                            operator: Expressions\BinaryOperator::Multiply,
-                            left: new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 2,
-                            ),
-                            right: new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 3,
-                            ),
-                        ),
+                        value: 1,
                     ),
-                ),
-            ]),
-            expected: '1 + 2 * 3;',
-        );
-
-        $this->assertSame(
-            actual: self::createPrettyPrinter()->prettyPrint([
-                new Statements\ExpressionStatement(
-                    line: 1,
-                    expression: new Expressions\BinaryExpression(
+                    right: new Expressions\BinaryExpression(
                         line: 1,
                         operator: Expressions\BinaryOperator::Multiply,
-                        left: new Expressions\BinaryExpression(
+                        left: new Literals\IntegerLiteral(
                             line: 1,
-                            operator: Expressions\BinaryOperator::Plus,
-                            left: new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 1,
-                            ),
-                            right: new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 2,
-                            ),
+                            value: 2,
                         ),
                         right: new Literals\IntegerLiteral(
                             line: 1,
@@ -76,37 +44,60 @@ class PrettyPrinterTest extends TestCase
                         ),
                     ),
                 ),
-            ]),
-            expected: '(1 + 2) * 3;',
+            ),
+            expected: '1 + 2 * 3',
         );
 
         $this->assertSame(
-            actual: self::createPrettyPrinter()->prettyPrint([
-                new Statements\ExpressionStatement(
+            actual: self::createPrettyPrinter()->prettyPrintExpression(
+                new Expressions\BinaryExpression(
                     line: 1,
-                    expression: new Expressions\BinaryExpression(
+                    operator: Expressions\BinaryOperator::Multiply,
+                    left: new Expressions\BinaryExpression(
                         line: 1,
-                        operator: Expressions\BinaryOperator::Minus,
+                        operator: Expressions\BinaryOperator::Plus,
                         left: new Literals\IntegerLiteral(
                             line: 1,
                             value: 1,
                         ),
-                        right: new Expressions\BinaryExpression(
+                        right: new Literals\IntegerLiteral(
                             line: 1,
-                            operator: Expressions\BinaryOperator::Minus,
-                            left: new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 2,
-                            ),
-                            right: new Literals\IntegerLiteral(
-                                line: 1,
-                                value: 3,
-                            ),
+                            value: 2,
+                        ),
+                    ),
+                    right: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 3,
+                    ),
+                ),
+            ),
+            expected: '(1 + 2) * 3',
+        );
+
+        $this->assertSame(
+            actual: self::createPrettyPrinter()->prettyPrintExpression(
+                new Expressions\BinaryExpression(
+                    line: 1,
+                    operator: Expressions\BinaryOperator::Minus,
+                    left: new Literals\IntegerLiteral(
+                        line: 1,
+                        value: 1,
+                    ),
+                    right: new Expressions\BinaryExpression(
+                        line: 1,
+                        operator: Expressions\BinaryOperator::Minus,
+                        left: new Literals\IntegerLiteral(
+                            line: 1,
+                            value: 2,
+                        ),
+                        right: new Literals\IntegerLiteral(
+                            line: 1,
+                            value: 3,
                         ),
                     ),
                 ),
-            ]),
-            expected: '1 - (2 - 3);',
+            ),
+            expected: '1 - (2 - 3)',
         );
     }
 
