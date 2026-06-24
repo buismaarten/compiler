@@ -52,7 +52,7 @@ final class PrettyPrinter implements PrettyPrinterInterface
         $indent = str_repeat(self::INDENT, $indentation);
 
         if ($statement instanceof Statements\BreakStatement) {
-            return $indent . 'break' . ($statement->level !== null ? ' ' . $this->printExpression($statement->level) : '') . ';';
+            return $indent.'break'.($statement->level !== null ? ' '.$this->printExpression($statement->level) : '').';';
         }
 
         if ($statement instanceof Statements\ConstStatement) {
@@ -66,11 +66,11 @@ final class PrettyPrinter implements PrettyPrinterInterface
         }
 
         if ($statement instanceof Statements\ContinueStatement) {
-            return $indent . 'continue' . ($statement->level !== null ? ' ' . $this->printExpression($statement->level) : '') . ';';
+            return $indent.'continue'.($statement->level !== null ? ' '.$this->printExpression($statement->level) : '').';';
         }
 
         if ($statement instanceof Statements\ExpressionStatement) {
-            return $indent . $this->printExpression($statement->expression) . ';';
+            return $indent.$this->printExpression($statement->expression).';';
         }
 
         if ($statement instanceof Statements\FunctionStatement) {
@@ -88,14 +88,14 @@ final class PrettyPrinter implements PrettyPrinterInterface
             );
 
             if ($statement->statements === []) {
-                return $header . ' {}';
+                return $header.' {}';
             }
 
-            return $header . " {\n"
-                . $this->printStatements($statement->statements, $indentation + 1)
-                . "\n"
-                . $indent
-                . '}';
+            return $header." {\n"
+                .$this->printStatements($statement->statements, $indentation + 1)
+                ."\n"
+                .$indent
+                .'}';
         }
 
         if ($statement instanceof Statements\IfStatement) {
@@ -105,21 +105,21 @@ final class PrettyPrinter implements PrettyPrinterInterface
                 $output .= ' {}';
             } else {
                 $output .= " {\n"
-                    . $this->printStatements($statement->thenStatements, $indentation + 1)
-                    . "\n"
-                    . $indent
-                    . '}';
+                   .$this->printStatements($statement->thenStatements, $indentation + 1)
+                   ."\n"
+                   .$indent
+                   .'}';
             }
 
             if ($statement->elseStatements === []) {
                 return $output;
             }
 
-            return $output . " else {\n"
-                . $this->printStatements($statement->elseStatements, $indentation + 1)
-                . "\n"
-                . $indent
-                . '}';
+            return $output." else {\n"
+               .$this->printStatements($statement->elseStatements, $indentation + 1)
+               ."\n"
+               .$indent
+               .'}';
         }
 
         if ($statement instanceof Statements\PrintStatement) {
@@ -127,7 +127,7 @@ final class PrettyPrinter implements PrettyPrinterInterface
         }
 
         if ($statement instanceof Statements\ReturnStatement) {
-            return $indent . 'return' . ($statement->expression !== null ? ' ' . $this->printExpression($statement->expression) : '') . ';';
+            return $indent.'return'.($statement->expression !== null ? ' '.$this->printExpression($statement->expression) : '').';';
         }
 
         if ($statement instanceof Statements\VarStatement) {
@@ -144,17 +144,17 @@ final class PrettyPrinter implements PrettyPrinterInterface
             $header = sprintf('%swhile (%s)', $indent, $this->printExpression($statement->condition));
 
             if ($statement->statements === []) {
-                return $header . ' {}';
+                return $header.' {}';
             }
 
-            return $header . " {\n"
-                . $this->printStatements($statement->statements, $indentation + 1)
-                . "\n"
-                . $indent
-                . '}';
+            return $header." {\n"
+               .$this->printStatements($statement->statements, $indentation + 1)
+               ."\n"
+               .$indent
+               .'}';
         }
 
-        throw new \RuntimeException('Unsupported statement node: ' . $statement::class);
+        throw new \RuntimeException('Unsupported statement node: '.$statement::class);
     }
 
     private function printExpression(AbstractExpression $expression, int $minimumPrecedence = 0): string
@@ -162,7 +162,7 @@ final class PrettyPrinter implements PrettyPrinterInterface
         if ($expression instanceof Expressions\ArrayExpression) {
             $values = array_map(fn (AbstractExpression $value): string => $this->printExpression($value), $expression->expressions);
 
-            return '[' . implode(', ', $values) . ']';
+            return '['.implode(', ', $values).']';
         }
 
         if ($expression instanceof Expressions\AssignmentExpression) {
@@ -173,7 +173,7 @@ final class PrettyPrinter implements PrettyPrinterInterface
                 $this->printExpression($expression->expression, $precedence),
             );
 
-            return $precedence < $minimumPrecedence ? '(' . $printed . ')' : $printed;
+            return $precedence < $minimumPrecedence ? '('.$printed.')' : $printed;
         }
 
         if ($expression instanceof Expressions\BinaryExpression) {
@@ -185,7 +185,7 @@ final class PrettyPrinter implements PrettyPrinterInterface
                 $this->printExpression($expression->right, $precedence + 1),
             );
 
-            return $precedence < $minimumPrecedence ? '(' . $printed . ')' : $printed;
+            return $precedence < $minimumPrecedence ? '('.$printed.')' : $printed;
         }
 
         if ($expression instanceof Expressions\FunctionCallExpression) {
@@ -201,19 +201,19 @@ final class PrettyPrinter implements PrettyPrinterInterface
         if ($expression instanceof Expressions\TupleExpression) {
             $values = array_map(fn (AbstractExpression $value): string => $this->printExpression($value), $expression->expressions);
 
-            return '(' . implode(', ', $values) . ')';
+            return '('.implode(', ', $values).')';
         }
 
         if ($expression instanceof Expressions\UnaryExpression) {
             $operator = $this->printUnaryOperator($expression->operator);
 
             if ($expression->position === Expressions\UnaryPosition::Prefix) {
-                $printed = $operator . $this->printExpression($expression->expression, self::PRECEDENCE_UNARY);
+                $printed = $operator.$this->printExpression($expression->expression, self::PRECEDENCE_UNARY);
             } else {
-                $printed = $this->printExpression($expression->expression, self::PRECEDENCE_UNARY) . $operator;
+                $printed = $this->printExpression($expression->expression, self::PRECEDENCE_UNARY).$operator;
             }
 
-            return self::PRECEDENCE_UNARY < $minimumPrecedence ? '(' . $printed . ')' : $printed;
+            return $minimumPrecedence > self::PRECEDENCE_UNARY ? '('.$printed.')' : $printed;
         }
 
         if ($expression instanceof Literals\BooleanLiteral) {
@@ -239,16 +239,16 @@ final class PrettyPrinter implements PrettyPrinterInterface
         }
 
         if ($expression instanceof Literals\StringLiteral) {
-            return '"' . addcslashes($expression->value, "\\\"\n\r\t\v\f") . '"';
+            return '"'.addcslashes($expression->value, "\\\"\n\r\t\v\f").'"';
         }
 
-        throw new \RuntimeException('Unsupported expression node: ' . $expression::class);
+        throw new \RuntimeException('Unsupported expression node: '.$expression::class);
     }
 
     private function printType(AbstractType $type): string
     {
         if ($type instanceof Types\ArrayType) {
-            return $this->printType($type->type) . '[]';
+            return $this->printType($type->type).'[]';
         }
 
         if ($type instanceof Types\NamedType) {
@@ -256,16 +256,16 @@ final class PrettyPrinter implements PrettyPrinterInterface
         }
 
         if ($type instanceof Types\NullableType) {
-            return $this->printType($type->type) . '?';
+            return $this->printType($type->type).'?';
         }
 
         if ($type instanceof Types\TupleType) {
             $types = array_map(fn (AbstractType $child): string => $this->printType($child), $type->types);
 
-            return '(' . implode(', ', $types) . ')';
+            return '('.implode(', ', $types).')';
         }
 
-        throw new \RuntimeException('Unsupported type node: ' . $type::class);
+        throw new \RuntimeException('Unsupported type node: '.$type::class);
     }
 
     private function printBinaryOperator(Expressions\BinaryOperator $operator): string
