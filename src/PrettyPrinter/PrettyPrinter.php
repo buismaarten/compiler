@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\PrettyPrinter;
 
+use Override;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
@@ -16,13 +17,13 @@ use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;
 
-final class PrettyPrinter
+final class PrettyPrinter implements PrettyPrinterInterface
 {
     private const INDENT = '    ';
     private const PRECEDENCE_ASSIGNMENT = 1;
     private const PRECEDENCE_UNARY = 100;
 
-    /** @param AbstractStatement[] $statements */
+    #[Override]
     public function print(array $statements): string
     {
         return $this->printStatements($statements, 0);
