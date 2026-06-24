@@ -7,10 +7,13 @@ declare(strict_types=1);
 
 namespace Package\Tests\PrettyPrinter;
 
-use Package\Parser\Parser;
+use Package\Nodes\Expressions;
+use Package\Nodes\Literals;
+use Package\Nodes\Parameter;
+use Package\Nodes\Statements;
+use Package\Nodes\Types;
 use Package\PrettyPrinter\PrettyPrinter;
 use Package\PrettyPrinter\PrettyPrinterInterface;
-use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -20,17 +23,89 @@ class PrettyPrinterTest extends TestCase
     public function testBinaryExpression(): void
     {
         $this->assertSame(
-            actual: self::print('1 + 2 * 3;'),
+            actual: self::createPrettyPrinter()->prettyPrint([
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\BinaryExpression(
+                        line: 1,
+                        operator: Expressions\BinaryOperator::Plus,
+                        left: new Literals\IntegerLiteral(
+                            line: 1,
+                            value: 1,
+                        ),
+                        right: new Expressions\BinaryExpression(
+                            line: 1,
+                            operator: Expressions\BinaryOperator::Multiply,
+                            left: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 2,
+                            ),
+                            right: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 3,
+                            ),
+                        ),
+                    ),
+                ),
+            ]),
             expected: '1 + 2 * 3;',
         );
 
         $this->assertSame(
-            actual: self::print('(1 + 2) * 3;'),
+            actual: self::createPrettyPrinter()->prettyPrint([
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\BinaryExpression(
+                        line: 1,
+                        operator: Expressions\BinaryOperator::Multiply,
+                        left: new Expressions\BinaryExpression(
+                            line: 1,
+                            operator: Expressions\BinaryOperator::Plus,
+                            left: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 1,
+                            ),
+                            right: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 2,
+                            ),
+                        ),
+                        right: new Literals\IntegerLiteral(
+                            line: 1,
+                            value: 3,
+                        ),
+                    ),
+                ),
+            ]),
             expected: '(1 + 2) * 3;',
         );
 
         $this->assertSame(
-            actual: self::print('1 - (2 - 3);'),
+            actual: self::createPrettyPrinter()->prettyPrint([
+                new Statements\ExpressionStatement(
+                    line: 1,
+                    expression: new Expressions\BinaryExpression(
+                        line: 1,
+                        operator: Expressions\BinaryOperator::Minus,
+                        left: new Literals\IntegerLiteral(
+                            line: 1,
+                            value: 1,
+                        ),
+                        right: new Expressions\BinaryExpression(
+                            line: 1,
+                            operator: Expressions\BinaryOperator::Minus,
+                            left: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 2,
+                            ),
+                            right: new Literals\IntegerLiteral(
+                                line: 1,
+                                value: 3,
+                            ),
+                        ),
+                    ),
+                ),
+            ]),
             expected: '1 - (2 - 3);',
         );
     }
@@ -39,18 +114,53 @@ class PrettyPrinterTest extends TestCase
     public function testFunctionStatement(): void
     {
         $this->assertSame(
-            actual: self::print('fn sum(a: int, b: int): int { return a + b; }'),
+            actual: self::createPrettyPrinter()->prettyPrint([
+                new Statements\FunctionStatement(
+                    line: 1,
+                    name: 'sum',
+                    type: new Types\NamedType(
+                        line: 1,
+                        name: 'int',
+                    ),
+                    parameters: [
+                        new Parameter(
+                            line: 1,
+                            name: 'a',
+                            type: new Types\NamedType(
+                                line: 1,
+                                name: 'int',
+                            ),
+                        ),
+                        new Parameter(
+                            line: 1,
+                            name: 'b',
+                            type: new Types\NamedType(
+                                line: 1,
+                                name: 'int',
+                            ),
+                        ),
+                    ],
+                    statements: [
+                        new Statements\ReturnStatement(
+                            line: 1,
+                            expression: new Expressions\BinaryExpression(
+                                line: 1,
+                                operator: Expressions\BinaryOperator::Plus,
+                                left: new Expressions\IdentifierExpression(
+                                    line: 1,
+                                    name: 'a',
+                                ),
+                                right: new Expressions\IdentifierExpression(
+                                    line: 1,
+                                    name: 'b',
+                                ),
+                            ),
+                        ),
+                    ],
+                ),
+            ]),
             expected: "fn sum(a: int, b: int): int {\n    return a + b;\n}",
         );
-    }
-
-    private static function print(string $input): string
-    {
-        $tokenizer = new Tokenizer($input);
-        $parser = new Parser($tokenizer);
-        $prettyPrinter = new PrettyPrinter;
-
-        return $prettyPrinter->print($parser->parse());
     }
 
     private static function createPrettyPrinter(): PrettyPrinterInterface

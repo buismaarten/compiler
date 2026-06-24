@@ -7,10 +7,13 @@ declare(strict_types=1);
 
 namespace Package\PrettyPrinter;
 
+use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 
 interface PrettyPrinterInterface
 {
     /** @param AbstractStatement[] $statements */
-    public function print(array $statements): string;
+    public function prettyPrint(array $statements): string;
+
+    public function prettyPrintExpression(AbstractExpression $expression): string;
 }

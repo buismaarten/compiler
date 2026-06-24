@@ -24,9 +24,15 @@ final class PrettyPrinter implements PrettyPrinterInterface
     private const PRECEDENCE_UNARY = 100;
 
     #[Override]
-    public function print(array $statements): string
+    public function prettyPrint(array $statements): string
     {
         return $this->printStatements($statements, 0);
+    }
+
+    #[Override]
+    public function prettyPrintExpression(AbstractExpression $expression): string
+    {
+        return $this->printExpression($expression);
     }
 
     /** @param AbstractStatement[] $statements */
