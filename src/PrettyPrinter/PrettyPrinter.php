@@ -173,7 +173,7 @@ final class PrettyPrinter implements PrettyPrinterInterface
                 $this->printExpression($expression->expression, $precedence),
             );
 
-            return $precedence < $minimumPrecedence ? '('.$printed.')' : $printed;
+            return $minimumPrecedence > $precedence ? '('.$printed.')' : $printed;
         }
 
         if ($expression instanceof Expressions\BinaryExpression) {
@@ -185,7 +185,7 @@ final class PrettyPrinter implements PrettyPrinterInterface
                 $this->printExpression($expression->right, $precedence + 1),
             );
 
-            return $precedence < $minimumPrecedence ? '('.$printed.')' : $printed;
+            return $minimumPrecedence > $precedence ? '('.$printed.')' : $printed;
         }
 
         if ($expression instanceof Expressions\FunctionCallExpression) {
