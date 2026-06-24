@@ -16,43 +16,43 @@ use PHPUnit\Framework\TestCase;
 class PrettyPrinterTest extends TestCase
 {
     #[Test]
-    public function testPrintUsesBinaryPrecedence(): void
+    public function testBinaryExpression(): void
     {
         $this->assertSame(
-            '1 + 2 * 3;',
-            self::print('1 + 2 * 3;'),
+            actual: self::print('1 + 2 * 3;'),
+            expected: '1 + 2 * 3;',
         );
 
         $this->assertSame(
-            '(1 + 2) * 3;',
-            self::print('(1 + 2) * 3;'),
+            actual: self::print('(1 + 2) * 3;'),
+            expected: '(1 + 2) * 3;',
         );
 
         $this->assertSame(
-            '1 - (2 - 3);',
-            self::print('1 - (2 - 3);'),
+            actual: self::print('1 - (2 - 3);'),
+            expected: '1 - (2 - 3);',
         );
     }
 
     #[Test]
-    public function testPrintFunctionStatement(): void
+    public function testFunctionStatement(): void
     {
-        $code = <<<'CODE'
-        fn sum(a: int, b: int): int {
-            return a + b;
-        }
-        CODE;
-
         $this->assertSame(
-            $code,
-            self::print('fn sum(a: int, b: int): int { return a + b; }'),
+            actual: self::print('fn sum(a: int, b: int): int { return a + b; }'),
+            expected: <<<'CODE'
+            fn sum(a: int, b: int): int {
+                return a + b;
+            }
+            CODE,
         );
     }
 
-    private static function print(string $source): string
+    private static function print(string $input): string
     {
-        $statements = new Parser(new Tokenizer($source))->parse();
+        $tokenizer = new Tokenizer($input);
+        $parser = new Parser($tokenizer);
+        $prettyPrinter = new PrettyPrinter;
 
-        return (new PrettyPrinter)->print($statements);
+        return $prettyPrinter->print($parser->parse());
     }
 }
