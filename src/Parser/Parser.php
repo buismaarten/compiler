@@ -93,8 +93,8 @@ final class Parser implements ParserInterface
 
             $expression = new Expressions\BinaryExpression(
                 line: $token->line,
-                left: $expression,
                 operator: $operator,
+                left: $expression,
                 right: $this->parseBinaryExpression($precedence),
             );
         }
@@ -367,8 +367,8 @@ final class Parser implements ParserInterface
 
         return new Expressions\UnaryExpression(
             line: $token->line,
-            position: Expressions\UnaryPosition::Postfix,
             operator: Expressions\UnaryOperator::fromTokenType($operator->type),
+            position: Expressions\UnaryPosition::Postfix,
             expression: new Expressions\IdentifierExpression(
                 line: $token->line,
                 name: $token->value,
@@ -383,8 +383,8 @@ final class Parser implements ParserInterface
 
         return new Expressions\UnaryExpression(
             line: $token->line,
-            position: Expressions\UnaryPosition::Prefix,
             operator: Expressions\UnaryOperator::fromTokenType($token->type),
+            position: Expressions\UnaryPosition::Prefix,
             expression: $this->parseExpression(),
         );
     }
