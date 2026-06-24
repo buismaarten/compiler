@@ -231,7 +231,7 @@ final class PrettyPrinter implements PrettyPrinterInterface
         }
 
         if ($expression instanceof Literals\IntegerLiteral) {
-            return (string) $expression->value;
+            return strval($expression->value);
         }
 
         if ($expression instanceof Literals\NullLiteral) {
