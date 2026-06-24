@@ -13,25 +13,25 @@ interface NodeVisitor
 {
     /**
      * @param AbstractNode[] $nodes
-     * @return AbstractNode[]|void
+     * @return AbstractNode[]|null|void
      */
     public function beforeTraverse(array $nodes);
 
     /**
      * @param AbstractNode $node
-     * @return AbstractNode|void
+     * @return AbstractNode|null|void
      */
     public function enterNode(AbstractNode $node);
 
     /**
      * @param AbstractNode $node
-     * @return AbstractNode|void
+     * @return AbstractNode|null|void
      */
     public function leaveNode(AbstractNode $node);
 
     /**
      * @param AbstractNode[] $nodes
-     * @return AbstractNode[]|void
+     * @return AbstractNode[]|null|void
      */
     public function afterTraverse(array $nodes);
 }
