@@ -39,11 +39,7 @@ class PrettyPrinterTest extends TestCase
     {
         $this->assertSame(
             actual: self::print('fn sum(a: int, b: int): int { return a + b; }'),
-            expected: <<<'CODE'
-            fn sum(a: int, b: int): int {
-                return a + b;
-            }
-            CODE,
+            expected: "fn sum(a: int, b: int): int {\n    return a + b;\n}",
         );
     }
 
