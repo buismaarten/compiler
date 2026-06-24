@@ -9,6 +9,7 @@ namespace Package\Tests\NodeTraverser;
 
 use Override;
 use Package\Nodes\AbstractNode;
+use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Statements;
 use Package\NodeTraverser\AbstractNodeVisitor;
@@ -22,7 +23,8 @@ class NodeTraverserTest extends TestCase
     public function testTraverse(): void
     {
         $literal = new Literals\NullLiteral(1);
-        $statement = new Statements\ReturnStatement(1, $literal);
+        $expression = new Expressions\ArrayExpression(1, [$literal]);
+        $statement = new Statements\ReturnStatement(1, $expression);
 
         $visitor = new NodeVisitor;
         $traverser = new NodeTraverser;
@@ -38,8 +40,12 @@ class NodeTraverserTest extends TestCase
             expected: [
                 ['beforeTraverse', [$statement]],
                 ['enterNode', $statement],
+                ['enterNode', $expression],
+                ['beforeTraverse', [$literal]],
                 ['enterNode', $literal],
                 ['leaveNode', $literal],
+                ['afterTraverse', [$literal]],
+                ['leaveNode', $expression],
                 ['leaveNode', $statement],
                 ['afterTraverse', [$statement]],
             ],
