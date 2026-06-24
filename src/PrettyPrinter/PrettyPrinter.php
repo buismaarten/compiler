@@ -22,17 +22,13 @@ final class PrettyPrinter
     private const PRECEDENCE_ASSIGNMENT = 1;
     private const PRECEDENCE_UNARY = 100;
 
-    /**
-     * @param AbstractStatement[] $statements
-     */
+    /** @param AbstractStatement[] $statements */
     public function print(array $statements): string
     {
         return $this->printStatements($statements, 0);
     }
 
-    /**
-     * @param AbstractStatement[] $statements
-     */
+    /** @param AbstractStatement[] $statements */
     private function printStatements(array $statements, int $indentation): string
     {
         $lines = [];
