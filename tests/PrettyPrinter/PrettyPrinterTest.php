@@ -9,6 +9,7 @@ namespace Package\Tests\PrettyPrinter;
 
 use Package\Parser\Parser;
 use Package\PrettyPrinter\PrettyPrinter;
+use Package\PrettyPrinter\PrettyPrinterInterface;
 use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -50,5 +51,10 @@ class PrettyPrinterTest extends TestCase
         $prettyPrinter = new PrettyPrinter;
 
         return $prettyPrinter->print($parser->parse());
+    }
+
+    private static function createPrettyPrinter(): PrettyPrinterInterface
+    {
+        return new PrettyPrinter;
     }
 }
