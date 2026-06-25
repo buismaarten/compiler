@@ -554,22 +554,28 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testIdentifierExpression(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('foo;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\IdentifierExpression(
-    //                     line: 1,
-    //                     name: 'foo',
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testIdentifierExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    expression: new Expressions\IdentifierExpression(
+                        name: 'foo',
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd' => 1,
+                        ],
+                    ),
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd' => 1,
+                    ],
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testIfStatement(): void
