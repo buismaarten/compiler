@@ -1167,20 +1167,20 @@ class ParserTest extends TestCase
                         name: 'foo',
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd'   => 1,
+                            'lineEnd' => 1,
                         ],
                     ),
                     statements: [
                         new Statements\BreakStatement(
                             attributes: [
                                 'lineStart' => 1,
-                                'lineEnd'   => 1,
+                                'lineEnd' => 1,
                             ],
                         ),
                     ],
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd'   => 1,
+                        'lineEnd' => 1,
                     ],
                 ),
             ],
