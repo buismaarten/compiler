@@ -616,22 +616,28 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testIntegerLiteral(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('123;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Literals\IntegerLiteral(
-    //                     line: 1,
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testIntegerLiteral(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('123;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    expression: new Literals\IntegerLiteral(
+                        value: 123,
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd' => 1,
+                        ],
+                    ),
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd' => 1,
+                    ],
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testNamedType(): void
