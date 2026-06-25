@@ -17,9 +17,9 @@ final class FunctionCallExpression extends AbstractExpression
     public array $arguments;
 
     /** @param AbstractExpression[] $arguments */
-    public function __construct(int $line, string $name, array $arguments)
+    public function __construct(string $name, array $arguments, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->name = $name;
         $this->arguments = $arguments;

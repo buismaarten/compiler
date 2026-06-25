@@ -17,9 +17,9 @@ final class VarStatement extends AbstractStatement
     public AbstractType $type;
     public AbstractExpression $expression;
 
-    public function __construct(int $line, string $name, AbstractType $type, AbstractExpression $expression)
+    public function __construct(string $name, AbstractType $type, AbstractExpression $expression, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->name = $name;
         $this->type = $type;

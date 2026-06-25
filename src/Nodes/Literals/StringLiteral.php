@@ -13,9 +13,9 @@ final class StringLiteral extends AbstractLiteral
 {
     public string $value;
 
-    public function __construct(int $line, string $value)
+    public function __construct(string $value, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->value = $value;
     }

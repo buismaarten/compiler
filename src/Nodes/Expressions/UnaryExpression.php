@@ -15,9 +15,9 @@ final class UnaryExpression extends AbstractExpression
     public UnaryPosition $position;
     public AbstractExpression $expression;
 
-    public function __construct(int $line, UnaryOperator $operator, UnaryPosition $position, AbstractExpression $expression)
+    public function __construct(UnaryOperator $operator, UnaryPosition $position, AbstractExpression $expression, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->operator = $operator;
         $this->position = $position;

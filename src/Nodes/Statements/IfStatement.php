@@ -24,9 +24,9 @@ final class IfStatement extends AbstractStatement
      * @param AbstractStatement[] $thenStatements
      * @param AbstractStatement[] $elseStatements
      */
-    public function __construct(int $line, AbstractExpression $condition, array $thenStatements, array $elseStatements = [])
+    public function __construct(AbstractExpression $condition, array $thenStatements, array $elseStatements = [], array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->condition = $condition;
         $this->thenStatements = $thenStatements;

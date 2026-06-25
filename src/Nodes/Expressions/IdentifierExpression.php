@@ -13,9 +13,9 @@ final class IdentifierExpression extends AbstractExpression
 {
     public string $name;
 
-    public function __construct(int $line, string $name)
+    public function __construct(string $name, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->name = $name;
     }

@@ -14,9 +14,9 @@ final class ExpressionStatement extends AbstractStatement
 {
     public AbstractExpression $expression;
 
-    public function __construct(int $line, AbstractExpression $expression)
+    public function __construct(AbstractExpression $expression, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->expression = $expression;
     }

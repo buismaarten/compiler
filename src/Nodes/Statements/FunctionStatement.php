@@ -26,9 +26,9 @@ final class FunctionStatement extends AbstractStatement
      * @param Parameter[] $parameters
      * @param AbstractStatement[] $statements
      */
-    public function __construct(int $line, string $name, AbstractType $type, array $parameters, array $statements)
+    public function __construct(string $name, AbstractType $type, array $parameters, array $statements, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->name = $name;
         $this->type = $type;

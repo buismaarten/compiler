@@ -13,9 +13,9 @@ final class ArrayType extends AbstractType
 {
     public AbstractType $type;
 
-    public function __construct(int $line, AbstractType $type)
+    public function __construct(AbstractType $type, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->type = $type;
     }

@@ -13,9 +13,9 @@ final class IntegerLiteral extends AbstractLiteral
 {
     public int $value;
 
-    public function __construct(int $line, int $value)
+    public function __construct(int $value, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->value = $value;
     }

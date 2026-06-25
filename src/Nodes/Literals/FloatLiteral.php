@@ -13,9 +13,9 @@ final class FloatLiteral extends AbstractLiteral
 {
     public float $value;
 
-    public function __construct(int $line, float $value)
+    public function __construct(float $value, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->value = $value;
     }

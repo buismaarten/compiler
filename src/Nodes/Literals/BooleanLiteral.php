@@ -13,9 +13,9 @@ final class BooleanLiteral extends AbstractLiteral
 {
     public bool $value;
 
-    public function __construct(int $line, bool $value)
+    public function __construct(bool $value, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->value = $value;
     }

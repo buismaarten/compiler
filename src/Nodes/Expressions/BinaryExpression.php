@@ -15,9 +15,9 @@ final class BinaryExpression extends AbstractExpression
     public AbstractExpression $left;
     public AbstractExpression $right;
 
-    public function __construct(int $line, BinaryOperator $operator, AbstractExpression $left, AbstractExpression $right)
+    public function __construct(BinaryOperator $operator, AbstractExpression $left, AbstractExpression $right, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->operator = $operator;
         $this->left = $left;

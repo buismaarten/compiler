@@ -15,9 +15,9 @@ final class TupleType extends AbstractType
     public array $types;
 
     /** @param AbstractType[] $types */
-    public function __construct(int $line, array $types)
+    public function __construct(array $types, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->types = $types;
     }

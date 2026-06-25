@@ -13,9 +13,9 @@ final class NullLiteral extends AbstractLiteral
 {
     public null $value;
 
-    public function __construct(int $line, null $value = null)
+    public function __construct(null $value = null, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->value = $value;
     }

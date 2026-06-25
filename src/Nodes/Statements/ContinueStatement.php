@@ -14,9 +14,9 @@ final class ContinueStatement extends AbstractStatement
 {
     public ?AbstractExpression $level;
 
-    public function __construct(int $line, ?AbstractExpression $level = null)
+    public function __construct(?AbstractExpression $level = null, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->level = $level;
     }

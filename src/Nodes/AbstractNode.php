@@ -11,16 +11,18 @@ use JsonSerializable;
 
 abstract class AbstractNode implements JsonSerializable
 {
-    private int $line;
+    /** @var array<mixed> */
+    private array $attributes = [];
 
-    public function __construct(int $line)
+    /** @param array<mixed> $attributes */
+    public function __construct(array $attributes = [])
     {
-        $this->line = $line;
+        $this->attributes = $attributes;
     }
 
-    public function getLine(): int
+    public function setAttribute(string $name, mixed $value): void
     {
-        return $this->line;
+        $this->attributes[$name] = $value;
     }
 
     /** @return array<mixed> */

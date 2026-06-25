@@ -14,9 +14,9 @@ final class AssignmentExpression extends AbstractExpression
     public string $name;
     public AbstractExpression $expression;
 
-    public function __construct(int $line, string $name, AbstractExpression $expression)
+    public function __construct(string $name, AbstractExpression $expression, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->name = $name;
         $this->expression = $expression;

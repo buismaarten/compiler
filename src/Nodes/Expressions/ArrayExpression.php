@@ -15,9 +15,9 @@ final class ArrayExpression extends AbstractExpression
     public array $expressions;
 
     /** @param AbstractExpression[] $expressions */
-    public function __construct(int $line, array $expressions)
+    public function __construct(array $expressions, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->expressions = $expressions;
     }

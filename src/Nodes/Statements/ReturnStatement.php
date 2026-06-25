@@ -14,9 +14,9 @@ final class ReturnStatement extends AbstractStatement
 {
     public ?AbstractExpression $expression;
 
-    public function __construct(int $line, ?AbstractExpression $expression = null)
+    public function __construct(?AbstractExpression $expression = null, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->expression = $expression;
     }

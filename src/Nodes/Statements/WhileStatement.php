@@ -18,9 +18,9 @@ final class WhileStatement extends AbstractStatement
     public array $statements;
 
     /** @param AbstractStatement[] $statements */
-    public function __construct(int $line, AbstractExpression $condition, array $statements)
+    public function __construct(AbstractExpression $condition, array $statements, array $attributes = [])
     {
-        parent::__construct($line);
+        parent::__construct($attributes);
 
         $this->condition = $condition;
         $this->statements = $statements;
