@@ -22,9 +22,9 @@ class NodeTraverserTest extends TestCase
     #[Test]
     public function testTraverse(): void
     {
-        $literal = new Literals\NullLiteral(1);
-        $expression = new Expressions\ArrayExpression(1, [$literal]);
-        $statement = new Statements\ReturnStatement(1, $expression);
+        $literal = new Literals\NullLiteral;
+        $expression = new Expressions\ArrayExpression([$literal]);
+        $statement = new Statements\ReturnStatement($expression);
 
         $visitor = new NodeVisitor;
         $traverser = new NodeTraverser;
