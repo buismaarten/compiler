@@ -785,21 +785,27 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testNullLiteral(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('null;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Literals\NullLiteral(
-    //                     line: 1,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testNullLiteral(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('null;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    expression: new Literals\NullLiteral(
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd'   => 1,
+                        ],
+                    ),
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd'   => 1,
+                    ],
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testPostfixUnaryExpression(): void
