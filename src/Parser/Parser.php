@@ -394,9 +394,7 @@ final class Parser implements ParserInterface
 
     private function parsePrimaryExpression(): AbstractExpression
     {
-        $token = $this->current;
-
-        return match ($token->type) {
+        return match ($this->current->type) {
             TokenType::BitwiseNot      => $this->parsePrefixUnaryExpression(),
             TokenType::BooleanNot      => $this->parsePrefixUnaryExpression(),
             TokenType::Decrement       => $this->parsePrefixUnaryExpression(),
@@ -420,9 +418,7 @@ final class Parser implements ParserInterface
 
     private function parsePrimaryType(): AbstractType
     {
-        $token = $this->current;
-
-        $type = match ($token->type) {
+        $type = match ($this->current->type) {
             TokenType::LeftParenthesis => $this->parseTupleType(),
 
             // Fallback
@@ -490,9 +486,7 @@ final class Parser implements ParserInterface
 
     private function parseStatement(): AbstractStatement
     {
-        $token = $this->current;
-
-        return match ($token->type) {
+        return match ($this->current->type) {
             TokenType::KeywordBreak    => $this->parseBreakStatement(),
             TokenType::KeywordConst    => $this->parseConstStatement(),
             TokenType::KeywordContinue => $this->parseContinueStatement(),
