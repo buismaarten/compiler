@@ -12,6 +12,7 @@ use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Exceptions\UnexpectedEndOfInputException;
 use Package\Nodes\AbstractExpression;
+use Package\Nodes\AbstractNode;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
 use Package\Nodes\Expressions;
@@ -26,12 +27,14 @@ use Package\Tokenizer\TokenType;
 final class Parser implements ParserInterface
 {
     private TokenizerInterface $tokenizer;
+    private Token $previous;
     private Token $current;
 
     public function __construct(TokenizerInterface $tokenizer)
     {
         $this->tokenizer = $tokenizer;
-        $this->current = $tokenizer->next();
+        $this->previous = $this->tokenizer->next();
+        $this->current = $this->previous;
     }
 
     #[Override]
@@ -64,7 +67,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightBracket);
 
         return new Expressions\ArrayExpression(
-            line: $token->line,
             expressions: $expressions,
         );
     }
@@ -74,7 +76,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Assign);
 
         return new Expressions\AssignmentExpression(
-            line: $token->line,
             name: $token->value,
             expression: $this->parseExpression(),
         );
@@ -92,7 +93,6 @@ final class Parser implements ParserInterface
             $this->next();
 
             $expression = new Expressions\BinaryExpression(
-                line: $token->line,
                 operator: $operator,
                 left: $expression,
                 right: $this->parseBinaryExpression($precedence),
@@ -108,7 +108,6 @@ final class Parser implements ParserInterface
         $this->next();
 
         return new Literals\BooleanLiteral(
-            line: $token->line,
             value: $token->type === TokenType::KeywordTrue,
         );
     }
@@ -126,7 +125,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\BreakStatement(
-            line: $token->line,
             level: $level,
         );
     }
@@ -144,7 +142,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\ConstStatement(
-            line: $token->line,
             name: $name->value,
             type: $type,
             expression: $expression,
@@ -164,7 +161,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\ContinueStatement(
-            line: $token->line,
             level: $level,
         );
     }
@@ -182,7 +178,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\ExpressionStatement(
-            line: $token->line,
             expression: $expression,
         );
     }
@@ -193,7 +188,6 @@ final class Parser implements ParserInterface
         $value = floatval($token->value);
 
         return new Literals\FloatLiteral(
-            line: $token->line,
             value: $value,
         );
     }
@@ -217,7 +211,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightParenthesis);
 
         return new Expressions\FunctionCallExpression(
-            line: $token->line,
             name: $token->value,
             arguments: $arguments,
         );
@@ -255,7 +248,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightBrace);
 
         return new Statements\FunctionStatement(
-            line: $token->line,
             name: $name->value,
             type: $type,
             parameters: $parameters,
@@ -267,7 +259,7 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::Identifier);
 
-        return match ($this->current->type) {
+        $node = match ($this->current->type) {
             TokenType::Assign          => $this->parseAssignmentExpression($token),
             TokenType::Decrement       => $this->parsePostfixUnaryExpression($token),
             TokenType::Increment       => $this->parsePostfixUnaryExpression($token),
@@ -275,10 +267,14 @@ final class Parser implements ParserInterface
 
             // Fallback
             default => new Expressions\IdentifierExpression(
-                line: $token->line,
                 name: $token->value,
             ),
         };
+
+        // TODO
+        // $this->setNodeAttributes($node, $token);
+
+        return $node;
     }
 
     private function parseIfStatement(): Statements\IfStatement
@@ -311,7 +307,6 @@ final class Parser implements ParserInterface
         }
 
         return new Statements\IfStatement(
-            line: $token->line,
             condition: $condition,
             thenStatements: $thenStatements,
             elseStatements: $elseStatements,
@@ -324,7 +319,6 @@ final class Parser implements ParserInterface
         $value = intval($token->value);
 
         return new Literals\IntegerLiteral(
-            line: $token->line,
             value: $value,
         );
     }
@@ -334,7 +328,6 @@ final class Parser implements ParserInterface
         $token = $this->expect(TokenType::Identifier);
 
         return new Types\NamedType(
-            line: $token->line,
             name: $token->value,
         );
     }
@@ -344,7 +337,6 @@ final class Parser implements ParserInterface
         $token = $this->expect(TokenType::KeywordNull);
 
         return new Literals\NullLiteral(
-            line: $token->line,
         );
     }
 
@@ -354,7 +346,6 @@ final class Parser implements ParserInterface
         $type = $this->parseType();
 
         return new Parameter(
-            line: $token->line,
             name: $token->value,
             type: $type,
         );
@@ -366,11 +357,9 @@ final class Parser implements ParserInterface
         $this->next();
 
         return new Expressions\UnaryExpression(
-            line: $token->line,
             operator: Expressions\UnaryOperator::fromTokenType($operator->type),
             position: Expressions\UnaryPosition::Postfix,
             expression: new Expressions\IdentifierExpression(
-                line: $token->line,
                 name: $token->value,
             ),
         );
@@ -382,7 +371,6 @@ final class Parser implements ParserInterface
         $this->next();
 
         return new Expressions\UnaryExpression(
-            line: $token->line,
             operator: Expressions\UnaryOperator::fromTokenType($token->type),
             position: Expressions\UnaryPosition::Prefix,
             expression: $this->parseExpression(),
@@ -391,7 +379,9 @@ final class Parser implements ParserInterface
 
     private function parsePrimaryExpression(): AbstractExpression
     {
-        return match ($this->current->type) {
+        $token = $this->current;
+
+        $node = match ($token->type) {
             TokenType::BitwiseNot      => $this->parsePrefixUnaryExpression(),
             TokenType::BooleanNot      => $this->parsePrefixUnaryExpression(),
             TokenType::Decrement       => $this->parsePrefixUnaryExpression(),
@@ -411,16 +401,26 @@ final class Parser implements ParserInterface
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
         };
+
+        // TODO
+        // $this->setNodeAttributes($node, $token);
+
+        return $node;
     }
 
     private function parsePrimaryType(): AbstractType
     {
-        $type = match ($this->current->type) {
+        $token = $this->current;
+
+        $type = match ($token->type) {
             TokenType::LeftParenthesis => $this->parseTupleType(),
 
             // Fallback
             default => $this->parseNamedType(),
         };
+
+        // TODO
+        // $this->setNodeAttributes($type, $token);
 
         while ($this->current->type === TokenType::QuestionMark || $this->current->type === TokenType::LeftBracket) {
             $token = $this->current;
@@ -431,21 +431,18 @@ final class Parser implements ParserInterface
                     throw new UnexpectedTokenException($token->line, $token->type->name);
                 }
 
-                $type = new Types\NullableType(
-                    line: $token->line,
-                    type: $type,
-                );
+                $type = new Types\NullableType($type);
             }
 
             if ($token->type === TokenType::LeftBracket) {
                 $this->expect(TokenType::RightBracket);
 
-                $type = new Types\ArrayType(
-                    line: $token->line,
-                    type: $type,
-                );
+                $type = new Types\ArrayType($type);
             }
         }
+
+        // TODO
+        // $this->setNodeAttributes($type, $token);
 
         return $type;
     }
@@ -458,7 +455,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\PrintStatement(
-            line: $token->line,
             expression: $expression,
         );
     }
@@ -476,14 +472,15 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\ReturnStatement(
-            line: $token->line,
             expression: $expression,
         );
     }
 
     private function parseStatement(): AbstractStatement
     {
-        return match ($this->current->type) {
+        $token = $this->current;
+
+        $node = match ($token->type) {
             TokenType::KeywordBreak    => $this->parseBreakStatement(),
             TokenType::KeywordConst    => $this->parseConstStatement(),
             TokenType::KeywordContinue => $this->parseContinueStatement(),
@@ -497,6 +494,11 @@ final class Parser implements ParserInterface
             // Fallback
             default => $this->parseExpressionStatement(),
         };
+
+        // TODO
+        // $this->setNodeAttributes($node, $token);
+
+        return $node;
     }
 
     private function parseStringLiteral(): Literals\StringLiteral
@@ -504,7 +506,6 @@ final class Parser implements ParserInterface
         $token = $this->expect(TokenType::String);
 
         return new Literals\StringLiteral(
-            line: $token->line,
             value: $token->value,
         );
     }
@@ -531,7 +532,6 @@ final class Parser implements ParserInterface
         }
 
         return new Expressions\TupleExpression(
-            line: $token->line,
             expressions: $expressions,
         );
     }
@@ -554,7 +554,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightParenthesis);
 
         return new Types\TupleType(
-            line: $token->line,
             types: $types,
         );
     }
@@ -579,7 +578,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\VarStatement(
-            line: $token->line,
             name: $name->value,
             type: $type,
             expression: $expression,
@@ -604,7 +602,6 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightBrace);
 
         return new Statements\WhileStatement(
-            line: $token->line,
             condition: $condition,
             statements: $statements,
         );
@@ -631,6 +628,14 @@ final class Parser implements ParserInterface
     /** @phpstan-impure */
     private function next(): void
     {
+        $this->previous = $this->current;
         $this->current = $this->tokenizer->next();
     }
+
+    // TODO
+    // private function setNodeAttributes(AbstractNode $node, Token $token): void
+    // {
+    //     $node->setAttribute('lineStart', $token->line);
+    //     $node->setAttribute('lineEnd', $this->previous->line);
+    // }
 }

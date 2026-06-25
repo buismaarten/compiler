@@ -20,10 +20,11 @@ abstract class AbstractNode implements JsonSerializable
         $this->attributes = $attributes;
     }
 
-    public function setAttribute(string $name, mixed $value): void
-    {
-        $this->attributes[$name] = $value;
-    }
+    // TODO
+    // public function setAttribute(string $name, mixed $value): void
+    // {
+    //     $this->attributes[$name] = $value;
+    // }
 
     /** @return array<mixed> */
     public function jsonSerialize(): array
