@@ -33,32 +33,32 @@ class ParserTest extends TestCase
                                 value: 1,
                                 attributes: [
                                     'lineStart' => 1,
-                                    'lineEnd' => 1,
+                                    'lineEnd'   => 1,
                                 ],
                             ),
                             new Literals\IntegerLiteral(
                                 value: 2,
                                 attributes: [
                                     'lineStart' => 1,
-                                    'lineEnd' => 1,
+                                    'lineEnd'   => 1,
                                 ],
                             ),
                             new Literals\IntegerLiteral(
                                 value: 3,
                                 attributes: [
                                     'lineStart' => 1,
-                                    'lineEnd' => 1,
+                                    'lineEnd'   => 1,
                                 ],
                             ),
                         ],
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -74,14 +74,14 @@ class ParserTest extends TestCase
                                 value: 1,
                                 attributes: [
                                     'lineStart' => 1,
-                                    'lineEnd' => 1,
+                                    'lineEnd'   => 1,
                                 ],
                             ),
                             new Literals\IntegerLiteral(
                                 value: 2,
                                 attributes: [
                                     'lineStart' => 1,
-                                    'lineEnd' => 1,
+                                    'lineEnd'   => 1,
                                 ],
                             ),
                             new Expressions\ArrayExpression(
@@ -90,31 +90,31 @@ class ParserTest extends TestCase
                                         value: 3,
                                         attributes: [
                                             'lineStart' => 1,
-                                            'lineEnd' => 1,
+                                            'lineEnd'   => 1,
                                         ],
                                     ),
                                     new Literals\IntegerLiteral(
                                         value: 4,
                                         attributes: [
                                             'lineStart' => 1,
-                                            'lineEnd' => 1,
+                                            'lineEnd'   => 1,
                                         ],
                                     ),
                                 ],
                                 attributes: [
                                     'lineStart' => 1,
-                                    'lineEnd' => 1,
+                                    'lineEnd'   => 1,
                                 ],
                             ),
                         ],
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -310,12 +310,12 @@ class ParserTest extends TestCase
                         value: false,
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -329,12 +329,12 @@ class ParserTest extends TestCase
                         value: true,
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -350,7 +350,7 @@ class ParserTest extends TestCase
                 new Statements\BreakStatement(
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -364,12 +364,12 @@ class ParserTest extends TestCase
                         value: 2,
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -425,7 +425,7 @@ class ParserTest extends TestCase
                 new Statements\ContinueStatement(
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -439,12 +439,12 @@ class ParserTest extends TestCase
                         value: 2,
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -462,12 +462,12 @@ class ParserTest extends TestCase
                         value: 3.14,
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -601,12 +601,12 @@ class ParserTest extends TestCase
                         name: 'foo',
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -669,12 +669,12 @@ class ParserTest extends TestCase
                         value: 123,
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -955,12 +955,12 @@ class ParserTest extends TestCase
                         value: 123,
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
@@ -1221,20 +1221,20 @@ class ParserTest extends TestCase
                         name: 'foo',
                         attributes: [
                             'lineStart' => 1,
-                            'lineEnd' => 1,
+                            'lineEnd'   => 1,
                         ],
                     ),
                     statements: [
                         new Statements\BreakStatement(
                             attributes: [
                                 'lineStart' => 1,
-                                'lineEnd' => 1,
+                                'lineEnd'   => 1,
                             ],
                         ),
                     ],
                     attributes: [
                         'lineStart' => 1,
-                        'lineEnd' => 1,
+                        'lineEnd'   => 1,
                     ],
                 ),
             ],
