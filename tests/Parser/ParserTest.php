@@ -395,48 +395,63 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testContinueStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('continue;')->parse(),
-    //         expected: [
-    //             new Statements\ContinueStatement(
-    //                 line: 1,
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testContinueStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('continue;')->parse(),
+            expected: [
+                new Statements\ContinueStatement(
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd' => 1,
+                    ],
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('continue 2;')->parse(),
-    //         expected: [
-    //             new Statements\ContinueStatement(
-    //                 line: 1,
-    //                 level: new Literals\IntegerLiteral(
-    //                     line: 1,
-    //                     value: 2,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('continue 2;')->parse(),
+            expected: [
+                new Statements\ContinueStatement(
+                    level: new Literals\IntegerLiteral(
+                        value: 2,
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd' => 1,
+                        ],
+                    ),
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd' => 1,
+                    ],
+                ),
+            ],
+        );
+    }
 
-    // #[Test]
-    // public function testFloatLiteral(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('3.14;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Literals\FloatLiteral(
-    //                     line: 1,
-    //                     value: 3.14,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testFloatLiteral(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('3.14;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    expression: new Literals\FloatLiteral(
+                        value: 3.14,
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd' => 1,
+                        ],
+                    ),
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd' => 1,
+                    ],
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testFunctionCallExpression(): void
