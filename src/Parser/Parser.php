@@ -282,9 +282,6 @@ final class Parser implements ParserInterface
             ),
         };
 
-        // TODO
-        // $this->setNodeAttributes($node, $token);
-
         return $node;
     }
 
@@ -422,9 +419,6 @@ final class Parser implements ParserInterface
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
         };
 
-        // TODO
-        // $this->setNodeAttributes($node, $token);
-
         return $node;
     }
 
@@ -438,9 +432,6 @@ final class Parser implements ParserInterface
             // Fallback
             default => $this->parseNamedType(),
         };
-
-        // TODO
-        // $this->setNodeAttributes($type, $token);
 
         while ($this->current->type === TokenType::QuestionMark || $this->current->type === TokenType::LeftBracket) {
             $token = $this->current;
@@ -466,9 +457,6 @@ final class Parser implements ParserInterface
                 );
             }
         }
-
-        // TODO
-        // $this->setNodeAttributes($type, $token);
 
         return $type;
     }
@@ -522,9 +510,6 @@ final class Parser implements ParserInterface
             // Fallback
             default => $this->parseExpressionStatement(),
         };
-
-        // TODO
-        // $this->setNodeAttributes($node, $token);
 
         return $node;
     }
@@ -675,11 +660,4 @@ final class Parser implements ParserInterface
             'lineEnd'   => $previous->line,
         ];
     }
-
-    // TODO
-    // private function setNodeAttributes(AbstractNode $node, Token $token): void
-    // {
-    //     $node->setAttribute('lineStart', $token->line);
-    //     $node->setAttribute('lineEnd', $this->previous->line);
-    // }
 }

@@ -12,19 +12,13 @@ use JsonSerializable;
 abstract class AbstractNode implements JsonSerializable
 {
     /** @var array<mixed> */
-    private array $attributes = [];
+    public array $attributes = [];
 
     /** @param array<mixed> $attributes */
     public function __construct(array $attributes = [])
     {
         $this->attributes = $attributes;
     }
-
-    // TODO
-    // public function setAttribute(string $name, mixed $value): void
-    // {
-    //     $this->attributes[$name] = $value;
-    // }
 
     /** @return array<mixed> */
     public function jsonSerialize(): array
