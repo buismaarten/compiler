@@ -27,24 +27,39 @@ class ParserTest extends TestCase
             actual: self::createParser('[1, 2, 3];')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    line: 1,
                     expression: new Expressions\ArrayExpression(
-                        line: 1,
                         expressions: [
                             new Literals\IntegerLiteral(
-                                line: 1,
                                 value: 1,
+                                attributes: [
+                                    'lineStart' => 1,
+                                    'lineEnd' => 1,
+                                ],
                             ),
                             new Literals\IntegerLiteral(
-                                line: 1,
                                 value: 2,
+                                attributes: [
+                                    'lineStart' => 1,
+                                    'lineEnd' => 1,
+                                ],
                             ),
                             new Literals\IntegerLiteral(
-                                line: 1,
                                 value: 3,
+                                attributes: [
+                                    'lineStart' => 1,
+                                    'lineEnd' => 1,
+                                ],
                             ),
                         ],
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd' => 1,
+                        ],
                     ),
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd' => 1,
+                    ],
                 ),
             ],
         );
@@ -53,33 +68,54 @@ class ParserTest extends TestCase
             actual: self::createParser('[1, 2, [3, 4]];')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    line: 1,
                     expression: new Expressions\ArrayExpression(
-                        line: 1,
                         expressions: [
                             new Literals\IntegerLiteral(
-                                line: 1,
                                 value: 1,
+                                attributes: [
+                                    'lineStart' => 1,
+                                    'lineEnd' => 1,
+                                ],
                             ),
                             new Literals\IntegerLiteral(
-                                line: 1,
                                 value: 2,
+                                attributes: [
+                                    'lineStart' => 1,
+                                    'lineEnd' => 1,
+                                ],
                             ),
                             new Expressions\ArrayExpression(
-                                line: 1,
                                 expressions: [
                                     new Literals\IntegerLiteral(
-                                        line: 1,
                                         value: 3,
+                                        attributes: [
+                                            'lineStart' => 1,
+                                            'lineEnd' => 1,
+                                        ],
                                     ),
                                     new Literals\IntegerLiteral(
-                                        line: 1,
                                         value: 4,
+                                        attributes: [
+                                            'lineStart' => 1,
+                                            'lineEnd' => 1,
+                                        ],
                                     ),
+                                ],
+                                attributes: [
+                                    'lineStart' => 1,
+                                    'lineEnd' => 1,
                                 ],
                             ),
                         ],
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd' => 1,
+                        ],
                     ),
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd' => 1,
+                    ],
                 ),
             ],
         );
