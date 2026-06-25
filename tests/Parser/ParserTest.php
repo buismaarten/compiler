@@ -1156,27 +1156,36 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testWhileStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('while (foo) { break; }')->parse(),
-    //         expected: [
-    //             new Statements\WhileStatement(
-    //                 line: 1,
-    //                 condition: new Expressions\IdentifierExpression(
-    //                     line: 1,
-    //                     name: 'foo',
-    //                 ),
-    //                 statements: [
-    //                     new Statements\BreakStatement(
-    //                         line: 1,
-    //                     ),
-    //                 ],
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testWhileStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('while (foo) { break; }')->parse(),
+            expected: [
+                new Statements\WhileStatement(
+                    condition: new Expressions\IdentifierExpression(
+                        name: 'foo',
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd'   => 1,
+                        ],
+                    ),
+                    statements: [
+                        new Statements\BreakStatement(
+                            attributes: [
+                                'lineStart' => 1,
+                                'lineEnd'   => 1,
+                            ],
+                        ),
+                    ],
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd'   => 1,
+                    ],
+                ),
+            ],
+        );
+    }
 
     private static function createParser(string $input): ParserInterface
     {
