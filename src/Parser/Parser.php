@@ -31,7 +31,7 @@ final class Parser implements ParserInterface
     public function __construct(TokenizerInterface $tokenizer)
     {
         $this->tokenizer = $tokenizer;
-        $this->current = $this->tokenizer->next();
+        $this->current = $tokenizer->next();
     }
 
     #[Override]

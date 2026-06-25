@@ -11,7 +11,7 @@ use JsonSerializable;
 
 abstract class AbstractNode implements JsonSerializable
 {
-    private readonly int $line;
+    private int $line;
 
     public function __construct(int $line)
     {
