@@ -329,31 +329,40 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testBreakStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('break;')->parse(),
-    //         expected: [
-    //             new Statements\BreakStatement(
-    //                 line: 1,
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testBreakStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('break;')->parse(),
+            expected: [
+                new Statements\BreakStatement(
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd' => 1,
+                    ],
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('break 2;')->parse(),
-    //         expected: [
-    //             new Statements\BreakStatement(
-    //                 line: 1,
-    //                 level: new Literals\IntegerLiteral(
-    //                     line: 1,
-    //                     value: 2,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('break 2;')->parse(),
+            expected: [
+                new Statements\BreakStatement(
+                    level: new Literals\IntegerLiteral(
+                        value: 2,
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd' => 1,
+                        ],
+                    ),
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd' => 1,
+                    ],
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testConstStatement(): void
