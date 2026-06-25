@@ -976,32 +976,41 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testReturnStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('return;')->parse(),
-    //         expected: [
-    //             new Statements\ReturnStatement(
-    //                 line: 1,
-    //                 expression: null,
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testReturnStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('return;')->parse(),
+            expected: [
+                new Statements\ReturnStatement(
+                    expression: null,
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd'   => 1,
+                    ],
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('return 123;')->parse(),
-    //         expected: [
-    //             new Statements\ReturnStatement(
-    //                 line: 1,
-    //                 expression: new Literals\IntegerLiteral(
-    //                     line: 1,
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('return 123;')->parse(),
+            expected: [
+                new Statements\ReturnStatement(
+                    expression: new Literals\IntegerLiteral(
+                        value: 123,
+                        attributes: [
+                            'lineStart' => 1,
+                            'lineEnd'   => 1,
+                        ],
+                    ),
+                    attributes: [
+                        'lineStart' => 1,
+                        'lineEnd'   => 1,
+                    ],
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testStringLiteral(): void
