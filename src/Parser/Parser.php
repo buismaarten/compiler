@@ -444,7 +444,7 @@ final class Parser implements ParserInterface
 
                 $type = new Types\NullableType(
                     type: $type,
-                    attributes: $this->buildAttributes($token)
+                    attributes: $this->buildAttributes($token),
                 );
             }
 
@@ -453,7 +453,7 @@ final class Parser implements ParserInterface
 
                 $type = new Types\ArrayType(
                     type: $type,
-                    attributes: $this->buildAttributes($token)
+                    attributes: $this->buildAttributes($token),
                 );
             }
         }
