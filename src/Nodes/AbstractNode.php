@@ -12,12 +12,26 @@ use JsonSerializable;
 abstract class AbstractNode implements JsonSerializable
 {
     /** @var array<mixed> */
-    public array $attributes = [];
+    private array $attributes = [];
 
     /** @param array<mixed> $attributes */
     public function __construct(array $attributes = [])
     {
         $this->attributes = $attributes;
+    }
+
+    // TODO
+    public function getLineStart(): int
+    {
+        // @phpstan-ignore-next-line
+        return intval($this->attributes['lineStart'] ?? 0);
+    }
+
+    // TODO
+    public function getLineEnd(): int
+    {
+        // @phpstan-ignore-next-line
+        return intval($this->attributes['lineEnd'] ?? 0);
     }
 
     /** @return array<mixed> */
