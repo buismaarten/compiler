@@ -269,7 +269,7 @@ final class Parser implements ParserInterface
     {
         $token = $this->expect(TokenType::Identifier);
 
-        $node = match ($this->current->type) {
+        return match ($this->current->type) {
             TokenType::Assign          => $this->parseAssignmentExpression($token),
             TokenType::Decrement       => $this->parsePostfixUnaryExpression($token),
             TokenType::Increment       => $this->parsePostfixUnaryExpression($token),
@@ -281,8 +281,6 @@ final class Parser implements ParserInterface
                 attributes: $this->buildAttributes($token),
             ),
         };
-
-        return $node;
     }
 
     private function parseIfStatement(): Statements\IfStatement
@@ -398,7 +396,7 @@ final class Parser implements ParserInterface
     {
         $token = $this->current;
 
-        $node = match ($token->type) {
+        return match ($token->type) {
             TokenType::BitwiseNot      => $this->parsePrefixUnaryExpression(),
             TokenType::BooleanNot      => $this->parsePrefixUnaryExpression(),
             TokenType::Decrement       => $this->parsePrefixUnaryExpression(),
@@ -418,8 +416,6 @@ final class Parser implements ParserInterface
             // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
         };
-
-        return $node;
     }
 
     private function parsePrimaryType(): AbstractType
@@ -496,7 +492,7 @@ final class Parser implements ParserInterface
     {
         $token = $this->current;
 
-        $node = match ($token->type) {
+        return match ($token->type) {
             TokenType::KeywordBreak    => $this->parseBreakStatement(),
             TokenType::KeywordConst    => $this->parseConstStatement(),
             TokenType::KeywordContinue => $this->parseContinueStatement(),
@@ -510,8 +506,6 @@ final class Parser implements ParserInterface
             // Fallback
             default => $this->parseExpressionStatement(),
         };
-
-        return $node;
     }
 
     private function parseStringLiteral(): Literals\StringLiteral
