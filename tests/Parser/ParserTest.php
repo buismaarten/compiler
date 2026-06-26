@@ -691,100 +691,154 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testNamedType(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int = 123;')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NamedType(
-    //                     line: 1,
-    //                     name: 'int',
-    //                 ),
-    //                 expression: new Literals\IntegerLiteral(
-    //                     line: 1,
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testNamedType(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('var foo: int = 123;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'int',
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
+    }
 
-    // #[Test]
-    // public function testNullableType(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int? = null;')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NullableType(
-    //                     line: 1,
-    //                     type: new Types\NamedType(
-    //                         line: 1,
-    //                         name: 'int',
-    //                     ),
-    //                 ),
-    //                 expression: new Literals\NullLiteral(
-    //                     line: 1,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testNullableType(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('var foo: int? = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        type: new Types\NamedType(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'int',
+                        ),
+                    ),
+                    expression: new Literals\NullLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int?[] = null;')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\ArrayType(
-    //                     line: 1,
-    //                     type: new Types\NullableType(
-    //                         line: 1,
-    //                         type: new Types\NamedType(
-    //                             line: 1,
-    //                             name: 'int',
-    //                         ),
-    //                     ),
-    //                 ),
-    //                 expression: new Literals\NullLiteral(
-    //                     line: 1,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+        $this->assertEquals(
+            actual: self::createParser('var foo: int?[] = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\ArrayType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        type: new Types\NullableType(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            type: new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'int',
+                            ),
+                        ),
+                    ),
+                    expression: new Literals\NullLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int?[]? = null;')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NullableType(
-    //                     line: 1,
-    //                     type: new Types\ArrayType(
-    //                         line: 1,
-    //                         type: new Types\NullableType(
-    //                             line: 1,
-    //                             type: new Types\NamedType(
-    //                                 line: 1,
-    //                                 name: 'int',
-    //                             ),
-    //                         ),
-    //                     ),
-    //                 ),
-    //                 expression: new Literals\NullLiteral(
-    //                     line: 1,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('var foo: int?[]? = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        type: new Types\ArrayType(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            type: new Types\NullableType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                type: new Types\NamedType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        endLine: 1,
+                                    ),
+                                    name: 'int',
+                                ),
+                            ),
+                        ),
+                    ),
+                    expression: new Literals\NullLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                    ),
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testNullLiteral(): void
