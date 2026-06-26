@@ -969,39 +969,47 @@ class ParserTest extends TestCase
     #[Test]
     public function testIfStatement(): void
     {
-        // $this->assertEquals(
-        //     actual: self::createParser('if (foo) { return 1; }')->parse(),
-        //     expected: [
-        //         new Statements\IfStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             condition: new Expressions\IdentifierExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 name: 'foo',
-        //             ),
-        //             thenStatements: [
-        //                 new Statements\ReturnStatement(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     expression: new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 1,
-        //                     ),
-        //                 ),
-        //             ],
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('if (foo) { return 1; }')->parse(),
+            expected: [
+                new Statements\IfStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 22,
+                    ),
+                    condition: new Expressions\IdentifierExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 4,
+                            endLine: 1,
+                            endOffset: 7,
+                        ),
+                        name: 'foo',
+                    ),
+                    thenStatements: [
+                        new Statements\ReturnStatement(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 11,
+                                endLine: 1,
+                                endOffset: 20,
+                            ),
+                            expression: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 18,
+                                    endLine: 1,
+                                    endOffset: 19,
+                                ),
+                                value: 1,
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
 
         // $this->assertEquals(
         //     actual: self::createParser('if (foo) { return 1; } else { return 2; }')->parse(),
