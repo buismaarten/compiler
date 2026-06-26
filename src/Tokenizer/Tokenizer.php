@@ -47,6 +47,8 @@ final class Tokenizer implements TokenizerInterface
     public function next(): Token
     {
         while (true) {
+            $offset = $this->input->offset();
+
             while (($current = $this->input->current()) !== null && ctype_space($current)) {
                 $this->input->next();
 
@@ -56,7 +58,7 @@ final class Tokenizer implements TokenizerInterface
             }
 
             if ($current === null) {
-                return new Token(TokenType::Eof, $this->line);
+                return new Token(TokenType::Eof, $this->line, $offset, $offset);
             }
 
             $token = match ($current) {
@@ -103,19 +105,21 @@ final class Tokenizer implements TokenizerInterface
 
     private function tokenizeAmpersand(): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '&') {
             $this->input->next();
 
-            return new Token(TokenType::BooleanAnd, $this->line);
+            return new Token(TokenType::BooleanAnd, $this->line, $offset, $this->input->offset());
         }
 
-        return new Token(TokenType::BitwiseAnd, $this->line);
+        return new Token(TokenType::BitwiseAnd, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizeAssign(): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '=') {
@@ -124,31 +128,34 @@ final class Tokenizer implements TokenizerInterface
             if ($this->input->current() === '=') {
                 $this->input->next();
 
-                return new Token(TokenType::Identical, $this->line);
+                return new Token(TokenType::Identical, $this->line, $offset, $this->input->offset());
             }
 
-            return new Token(TokenType::Equal, $this->line);
+            return new Token(TokenType::Equal, $this->line, $offset, $this->input->offset());
         }
 
-        return new Token(TokenType::Assign, $this->line);
+        return new Token(TokenType::Assign, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizeAsterisk(): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
-        return new Token(TokenType::Multiply, $this->line);
+        return new Token(TokenType::Multiply, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizeCharacter(TokenType $type): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
-        return new Token($type, $this->line);
+        return new Token($type, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizeExclamationMark(): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '=') {
@@ -157,41 +164,42 @@ final class Tokenizer implements TokenizerInterface
             if ($this->input->current() === '=') {
                 $this->input->next();
 
-                return new Token(TokenType::NotIdentical, $this->line);
+                return new Token(TokenType::NotIdentical, $this->line, $offset, $this->input->offset());
             }
 
-            return new Token(TokenType::NotEqual, $this->line);
+            return new Token(TokenType::NotEqual, $this->line, $offset, $this->input->offset());
         }
 
-        return new Token(TokenType::BooleanNot, $this->line);
+        return new Token(TokenType::BooleanNot, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizeIdentifier(): Token
     {
-        $start = $this->input->offset();
+        $offset = $this->input->offset();
 
         while (($current = $this->input->current()) !== null && (ctype_alnum($current) || $current === '_')) {
             $this->input->next();
         }
 
-        $value = $this->input->slice($start, $this->input->offset());
+        $value = $this->input->slice($offset, $this->input->offset());
         $type = self::KEYWORDS[$value] ?? TokenType::Identifier;
 
         if ($type !== TokenType::Identifier) {
             $value = '';
         }
 
-        return new Token($type, $this->line, $value);
+        return new Token($type, $this->line, $offset, $this->input->offset(), $value);
     }
 
     private function tokenizeLeftAngle(): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '<') {
             $this->input->next();
 
-            return new Token(TokenType::ShiftLeft, $this->line);
+            return new Token(TokenType::ShiftLeft, $this->line, $offset, $this->input->offset());
         }
 
         if ($this->input->current() === '=') {
@@ -200,31 +208,32 @@ final class Tokenizer implements TokenizerInterface
             if ($this->input->current() === '>') {
                 $this->input->next();
 
-                return new Token(TokenType::Spaceship, $this->line);
+                return new Token(TokenType::Spaceship, $this->line, $offset, $this->input->offset());
             }
 
-            return new Token(TokenType::LessThanEqual, $this->line);
+            return new Token(TokenType::LessThanEqual, $this->line, $offset, $this->input->offset());
         }
 
-        return new Token(TokenType::LessThan, $this->line);
+        return new Token(TokenType::LessThan, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizeMinus(): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '-') {
             $this->input->next();
 
-            return new Token(TokenType::Decrement, $this->line);
+            return new Token(TokenType::Decrement, $this->line, $offset, $this->input->offset());
         }
 
-        return new Token(TokenType::Minus, $this->line);
+        return new Token(TokenType::Minus, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizeNumber(): Token
     {
-        $start = $this->input->offset();
+        $offset = $this->input->offset();
         $token = TokenType::Integer;
 
         while (($current = $this->input->current()) !== null && ctype_digit($current)) {
@@ -247,57 +256,63 @@ final class Tokenizer implements TokenizerInterface
         return new Token(
             type: $token,
             line: $this->line,
-            value: $this->input->slice($start, $this->input->offset()),
+            offsetStart: $offset,
+            offsetEnd: $this->input->offset(),
+            value: $this->input->slice($offset, $this->input->offset()),
         );
     }
 
     private function tokenizePipe(): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '|') {
             $this->input->next();
 
-            return new Token(TokenType::BooleanOr, $this->line);
+            return new Token(TokenType::BooleanOr, $this->line, $offset, $this->input->offset());
         }
 
-        return new Token(TokenType::BitwiseOr, $this->line);
+        return new Token(TokenType::BitwiseOr, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizePlus(): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '+') {
             $this->input->next();
 
-            return new Token(TokenType::Increment, $this->line);
+            return new Token(TokenType::Increment, $this->line, $offset, $this->input->offset());
         }
 
-        return new Token(TokenType::Plus, $this->line);
+        return new Token(TokenType::Plus, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizeRightAngle(): Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '>') {
             $this->input->next();
 
-            return new Token(TokenType::ShiftRight, $this->line);
+            return new Token(TokenType::ShiftRight, $this->line, $offset, $this->input->offset());
         }
 
         if ($this->input->current() === '=') {
             $this->input->next();
 
-            return new Token(TokenType::GreaterThanEqual, $this->line);
+            return new Token(TokenType::GreaterThanEqual, $this->line, $offset, $this->input->offset());
         }
 
-        return new Token(TokenType::GreaterThan, $this->line);
+        return new Token(TokenType::GreaterThan, $this->line, $offset, $this->input->offset());
     }
 
     private function tokenizeSlash(): ?Token
     {
+        $offset = $this->input->offset();
         $this->input->next();
 
         if ($this->input->current() === '/') {
@@ -310,11 +325,13 @@ final class Tokenizer implements TokenizerInterface
             return null;
         }
 
-        return new Token(TokenType::Divide, $this->line);
+        return new Token(TokenType::Divide, $this->line, $offset, $this->input->offset());
     }
 
+    // TODO
     private function tokenizeString(): Token
     {
+        $offset = $this->input->offset();
         $value = '';
 
         if ($this->input->current() === '"') {
@@ -373,6 +390,6 @@ final class Tokenizer implements TokenizerInterface
             $this->input->next();
         }
 
-        return new Token(TokenType::String, $this->line, $value);
+        return new Token(TokenType::String, $this->line, $offset, $this->input->offset(), $value);
     }
 }

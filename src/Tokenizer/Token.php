@@ -11,12 +11,16 @@ final class Token
 {
     public readonly TokenType $type;
     public readonly int $line;
+    public readonly int $offsetStart;
+    public readonly int $offsetEnd;
     public readonly string $value;
 
-    public function __construct(TokenType $type, int $line, string $value = '')
+    public function __construct(TokenType $type, int $line, int $offsetStart, int $offsetEnd, string $value = '')
     {
         $this->type = $type;
         $this->line = $line;
+        $this->offsetStart = $offsetStart;
+        $this->offsetEnd = $offsetEnd;
         $this->value = $value;
     }
 }

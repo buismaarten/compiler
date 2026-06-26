@@ -21,7 +21,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('=')->next(),
-            expected: new Token(TokenType::Assign, 1),
+            expected: new Token(TokenType::Assign, 1, 0, 1),
         );
     }
 
@@ -30,7 +30,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('&')->next(),
-            expected: new Token(TokenType::BitwiseAnd, 1),
+            expected: new Token(TokenType::BitwiseAnd, 1, 0, 1),
         );
     }
 
@@ -39,7 +39,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('~')->next(),
-            expected: new Token(TokenType::BitwiseNot, 1),
+            expected: new Token(TokenType::BitwiseNot, 1, 0, 1),
         );
     }
 
@@ -48,7 +48,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('|')->next(),
-            expected: new Token(TokenType::BitwiseOr, 1),
+            expected: new Token(TokenType::BitwiseOr, 1, 0, 1),
         );
     }
 
@@ -57,7 +57,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('^')->next(),
-            expected: new Token(TokenType::BitwiseXor, 1),
+            expected: new Token(TokenType::BitwiseXor, 1, 0, 1),
         );
     }
 
@@ -66,7 +66,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('&&')->next(),
-            expected: new Token(TokenType::BooleanAnd, 1),
+            expected: new Token(TokenType::BooleanAnd, 1, 0, 2),
         );
     }
 
@@ -75,7 +75,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('!')->next(),
-            expected: new Token(TokenType::BooleanNot, 1),
+            expected: new Token(TokenType::BooleanNot, 1, 0, 1),
         );
     }
 
@@ -84,7 +84,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('||')->next(),
-            expected: new Token(TokenType::BooleanOr, 1),
+            expected: new Token(TokenType::BooleanOr, 1, 0, 2),
         );
     }
 
@@ -93,7 +93,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer(':')->next(),
-            expected: new Token(TokenType::Colon, 1),
+            expected: new Token(TokenType::Colon, 1, 0, 1),
         );
     }
 
@@ -102,7 +102,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer(',')->next(),
-            expected: new Token(TokenType::Comma, 1),
+            expected: new Token(TokenType::Comma, 1, 0, 1),
         );
     }
 
@@ -111,7 +111,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('// This is a comment')->next(),
-            expected: new Token(TokenType::Eof, 1),
+            expected: new Token(TokenType::Eof, 1, 20, 20),
         );
     }
 
@@ -120,7 +120,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('--')->next(),
-            expected: new Token(TokenType::Decrement, 1),
+            expected: new Token(TokenType::Decrement, 1, 0, 2),
         );
     }
 
@@ -129,7 +129,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('/')->next(),
-            expected: new Token(TokenType::Divide, 1),
+            expected: new Token(TokenType::Divide, 1, 0, 1),
         );
     }
 
@@ -138,7 +138,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('==')->next(),
-            expected: new Token(TokenType::Equal, 1),
+            expected: new Token(TokenType::Equal, 1, 0, 2),
         );
     }
 
@@ -147,7 +147,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('3.14')->next(),
-            expected: new Token(TokenType::Float, 1, '3.14'),
+            expected: new Token(TokenType::Float, 1, 0, 4, '3.14'),
         );
     }
 
@@ -156,7 +156,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('>')->next(),
-            expected: new Token(TokenType::GreaterThan, 1),
+            expected: new Token(TokenType::GreaterThan, 1, 0, 1),
         );
     }
 
@@ -165,7 +165,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('>=')->next(),
-            expected: new Token(TokenType::GreaterThanEqual, 1),
+            expected: new Token(TokenType::GreaterThanEqual, 1, 0, 2),
         );
     }
 
@@ -174,7 +174,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('===')->next(),
-            expected: new Token(TokenType::Identical, 1),
+            expected: new Token(TokenType::Identical, 1, 0, 3),
         );
     }
 
@@ -183,12 +183,12 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('foo_123')->next(),
-            expected: new Token(TokenType::Identifier, 1, 'foo_123'),
+            expected: new Token(TokenType::Identifier, 1, 0, 7, 'foo_123'),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('_foo123')->next(),
-            expected: new Token(TokenType::Identifier, 1, '_foo123'),
+            expected: new Token(TokenType::Identifier, 1, 0, 7, '_foo123'),
         );
     }
 
@@ -197,7 +197,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('++')->next(),
-            expected: new Token(TokenType::Increment, 1),
+            expected: new Token(TokenType::Increment, 1, 0, 2),
         );
     }
 
@@ -206,7 +206,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('123')->next(),
-            expected: new Token(TokenType::Integer, 1, '123'),
+            expected: new Token(TokenType::Integer, 1, 0, 3, '123'),
         );
     }
 
@@ -215,62 +215,62 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('break')->next(),
-            expected: new Token(TokenType::KeywordBreak, 1),
+            expected: new Token(TokenType::KeywordBreak, 1, 0, 5),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('const')->next(),
-            expected: new Token(TokenType::KeywordConst, 1),
+            expected: new Token(TokenType::KeywordConst, 1, 0, 5),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('continue')->next(),
-            expected: new Token(TokenType::KeywordContinue, 1),
+            expected: new Token(TokenType::KeywordContinue, 1, 0, 8),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('else')->next(),
-            expected: new Token(TokenType::KeywordElse, 1),
+            expected: new Token(TokenType::KeywordElse, 1, 0, 4),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('false')->next(),
-            expected: new Token(TokenType::KeywordFalse, 1),
+            expected: new Token(TokenType::KeywordFalse, 1, 0, 5),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('fn')->next(),
-            expected: new Token(TokenType::KeywordFn, 1),
+            expected: new Token(TokenType::KeywordFn, 1, 0, 2),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('if')->next(),
-            expected: new Token(TokenType::KeywordIf, 1),
+            expected: new Token(TokenType::KeywordIf, 1, 0, 2),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('null')->next(),
-            expected: new Token(TokenType::KeywordNull, 1),
+            expected: new Token(TokenType::KeywordNull, 1, 0, 4),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('print')->next(),
-            expected: new Token(TokenType::KeywordPrint, 1),
+            expected: new Token(TokenType::KeywordPrint, 1, 0, 5),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('return')->next(),
-            expected: new Token(TokenType::KeywordReturn, 1),
+            expected: new Token(TokenType::KeywordReturn, 1, 0, 6),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('true')->next(),
-            expected: new Token(TokenType::KeywordTrue, 1),
+            expected: new Token(TokenType::KeywordTrue, 1, 0, 4),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('var')->next(),
-            expected: new Token(TokenType::KeywordVar, 1),
+            expected: new Token(TokenType::KeywordVar, 1, 0, 3),
         );
     }
 
@@ -279,7 +279,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('{')->next(),
-            expected: new Token(TokenType::LeftBrace, 1),
+            expected: new Token(TokenType::LeftBrace, 1, 0, 1),
         );
     }
 
@@ -288,7 +288,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('[')->next(),
-            expected: new Token(TokenType::LeftBracket, 1),
+            expected: new Token(TokenType::LeftBracket, 1, 0, 1),
         );
     }
 
@@ -297,7 +297,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('(')->next(),
-            expected: new Token(TokenType::LeftParenthesis, 1),
+            expected: new Token(TokenType::LeftParenthesis, 1, 0, 1),
         );
     }
 
@@ -306,7 +306,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('<')->next(),
-            expected: new Token(TokenType::LessThan, 1),
+            expected: new Token(TokenType::LessThan, 1, 0, 1),
         );
     }
 
@@ -315,7 +315,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('<=')->next(),
-            expected: new Token(TokenType::LessThanEqual, 1),
+            expected: new Token(TokenType::LessThanEqual, 1, 0, 2),
         );
     }
 
@@ -324,7 +324,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('-')->next(),
-            expected: new Token(TokenType::Minus, 1),
+            expected: new Token(TokenType::Minus, 1, 0, 1),
         );
     }
 
@@ -333,7 +333,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('%')->next(),
-            expected: new Token(TokenType::Modulo, 1),
+            expected: new Token(TokenType::Modulo, 1, 0, 1),
         );
     }
 
@@ -342,7 +342,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('*')->next(),
-            expected: new Token(TokenType::Multiply, 1),
+            expected: new Token(TokenType::Multiply, 1, 0, 1),
         );
     }
 
@@ -351,7 +351,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('!=')->next(),
-            expected: new Token(TokenType::NotEqual, 1),
+            expected: new Token(TokenType::NotEqual, 1, 0, 2),
         );
     }
 
@@ -360,7 +360,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('!==')->next(),
-            expected: new Token(TokenType::NotIdentical, 1),
+            expected: new Token(TokenType::NotIdentical, 1, 0, 3),
         );
     }
 
@@ -369,7 +369,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('+')->next(),
-            expected: new Token(TokenType::Plus, 1),
+            expected: new Token(TokenType::Plus, 1, 0, 1),
         );
     }
 
@@ -378,7 +378,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('?')->next(),
-            expected: new Token(TokenType::QuestionMark, 1),
+            expected: new Token(TokenType::QuestionMark, 1, 0, 1),
         );
     }
 
@@ -387,7 +387,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('}')->next(),
-            expected: new Token(TokenType::RightBrace, 1),
+            expected: new Token(TokenType::RightBrace, 1, 0, 1),
         );
     }
 
@@ -396,7 +396,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer(']')->next(),
-            expected: new Token(TokenType::RightBracket, 1),
+            expected: new Token(TokenType::RightBracket, 1, 0, 1),
         );
     }
 
@@ -405,7 +405,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer(')')->next(),
-            expected: new Token(TokenType::RightParenthesis, 1),
+            expected: new Token(TokenType::RightParenthesis, 1, 0, 1),
         );
     }
 
@@ -414,7 +414,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer(';')->next(),
-            expected: new Token(TokenType::Semicolon, 1),
+            expected: new Token(TokenType::Semicolon, 1, 0, 1),
         );
     }
 
@@ -423,7 +423,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('<<')->next(),
-            expected: new Token(TokenType::ShiftLeft, 1),
+            expected: new Token(TokenType::ShiftLeft, 1, 0, 2),
         );
     }
 
@@ -432,7 +432,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('>>')->next(),
-            expected: new Token(TokenType::ShiftRight, 1),
+            expected: new Token(TokenType::ShiftRight, 1, 0, 2),
         );
     }
 
@@ -441,7 +441,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('<=>')->next(),
-            expected: new Token(TokenType::Spaceship, 1),
+            expected: new Token(TokenType::Spaceship, 1, 0, 3),
         );
     }
 
@@ -450,62 +450,62 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer('"Hello, World!"')->next(),
-            expected: new Token(TokenType::String, 1, 'Hello, World!'),
+            expected: new Token(TokenType::String, 1, 0, 15, 'Hello, World!'),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\'"')->next(),
-            expected: new Token(TokenType::String, 1, "'"),
+            expected: new Token(TokenType::String, 1, 0, 3, "'"),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\""')->next(),
-            expected: new Token(TokenType::String, 1, '"'),
+            expected: new Token(TokenType::String, 1, 0, 4, '"'),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\\\\"')->next(),
-            expected: new Token(TokenType::String, 1, '\\'),
+            expected: new Token(TokenType::String, 1, 0, 4, '\\'),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\0"')->next(),
-            expected: new Token(TokenType::String, 1, "\0"),
+            expected: new Token(TokenType::String, 1, 0, 4, "\0"),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\f"')->next(),
-            expected: new Token(TokenType::String, 1, "\f"),
+            expected: new Token(TokenType::String, 1, 0, 4, "\f"),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\n"')->next(),
-            expected: new Token(TokenType::String, 1, "\n"),
+            expected: new Token(TokenType::String, 1, 0, 4, "\n"),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\r"')->next(),
-            expected: new Token(TokenType::String, 1, "\r"),
+            expected: new Token(TokenType::String, 1, 0, 4, "\r"),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\t"')->next(),
-            expected: new Token(TokenType::String, 1, "\t"),
+            expected: new Token(TokenType::String, 1, 0, 4, "\t"),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\u1F600"')->next(),
-            expected: new Token(TokenType::String, 1, '😀'),
+            expected: new Token(TokenType::String, 1, 0, 9, '😀'),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\v"')->next(),
-            expected: new Token(TokenType::String, 1, "\v"),
+            expected: new Token(TokenType::String, 1, 0, 4, "\v"),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('"\p"')->next(),
-            expected: new Token(TokenType::String, 1, '\p'),
+            expected: new Token(TokenType::String, 1, 0, 4, '\p'),
         );
     }
 
@@ -514,7 +514,7 @@ class TokenizerTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createTokenizer(" \t\nfoo")->next(),
-            expected: new Token(TokenType::Identifier, 2, 'foo'),
+            expected: new Token(TokenType::Identifier, 2, 3, 6, 'foo'),
         );
     }
 
