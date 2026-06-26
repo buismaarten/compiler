@@ -1549,32 +1549,38 @@ class ParserTest extends TestCase
             ],
         );
 
-        // $this->assertEquals(
-        //     actual: self::createParser('+foo;')->parse(),
-        //     expected: [
-        //         new Statements\ExpressionStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             expression: new Expressions\UnaryExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 operator: Expressions\UnaryOperator::Plus,
-        //                 position: Expressions\UnaryPosition::Prefix,
-        //                 expression: new Expressions\IdentifierExpression(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     name: 'foo',
-        //                 ),
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('+foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 5,
+                    ),
+                    expression: new Expressions\UnaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 4,
+                        ),
+                        operator: Expressions\UnaryOperator::Plus,
+                        position: Expressions\UnaryPosition::Prefix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 1,
+                                endLine: 1,
+                                endOffset: 4,
+                            ),
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]
