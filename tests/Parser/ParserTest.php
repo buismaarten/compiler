@@ -24,102 +24,126 @@ class ParserTest extends TestCase
     #[Test]
     public function testArrayExpression(): void
     {
-        // $this->assertEquals(
-        //     actual: self::createParser('[1, 2, 3];')->parse(),
-        //     expected: [
-        //         new Statements\ExpressionStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             expression: new Expressions\ArrayExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 expressions: [
-        //                     new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 1,
-        //                     ),
-        //                     new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 2,
-        //                     ),
-        //                     new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 3,
-        //                     ),
-        //                 ],
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('[1, 2, 3];')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 10,
+                    ),
+                    expression: new Expressions\ArrayExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 9,
+                        ),
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 1,
+                                    endLine: 1,
+                                    endOffset: 2,
+                                ),
+                                value: 1,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 4,
+                                    endLine: 1,
+                                    endOffset: 5,
+                                ),
+                                value: 2,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 7,
+                                    endLine: 1,
+                                    endOffset: 8,
+                                ),
+                                value: 3,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
 
-        // $this->assertEquals(
-        //     actual: self::createParser('[1, 2, [3, 4]];')->parse(),
-        //     expected: [
-        //         new Statements\ExpressionStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             expression: new Expressions\ArrayExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 expressions: [
-        //                     new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 1,
-        //                     ),
-        //                     new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 2,
-        //                     ),
-        //                     new Expressions\ArrayExpression(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         expressions: [
-        //                             new Literals\IntegerLiteral(
-        //                                 location: new Location(
-        //                                     startLine: 1,
-        //                                     endLine: 1,
-        //                                 ),
-        //                                 value: 3,
-        //                             ),
-        //                             new Literals\IntegerLiteral(
-        //                                 location: new Location(
-        //                                     startLine: 1,
-        //                                     endLine: 1,
-        //                                 ),
-        //                                 value: 4,
-        //                             ),
-        //                         ],
-        //                     ),
-        //                 ],
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('[1, 2, [3, 4]];')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 15,
+                    ),
+                    expression: new Expressions\ArrayExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 14,
+                        ),
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 1,
+                                    endLine: 1,
+                                    endOffset: 2,
+                                ),
+                                value: 1,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 4,
+                                    endLine: 1,
+                                    endOffset: 5,
+                                ),
+                                value: 2,
+                            ),
+                            new Expressions\ArrayExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 7,
+                                    endLine: 1,
+                                    endOffset: 13,
+                                ),
+                                expressions: [
+                                    new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 8,
+                                            endLine: 1,
+                                            endOffset: 9,
+                                        ),
+                                        value: 3,
+                                    ),
+                                    new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 11,
+                                            endLine: 1,
+                                            endOffset: 12,
+                                        ),
+                                        value: 4,
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]
