@@ -1140,37 +1140,45 @@ class ParserTest extends TestCase
     #[Test]
     public function testNullableType(): void
     {
-        // $this->assertEquals(
-        //     actual: self::createParser('var foo: int? = null;')->parse(),
-        //     expected: [
-        //         new Statements\VarStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             name: 'foo',
-        //             type: new Types\NullableType(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 type: new Types\NamedType(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     name: 'int',
-        //                 ),
-        //             ),
-        //             expression: new Literals\NullLiteral(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('var foo: int? = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 21,
+                    ),
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 12,
+                            endLine: 1,
+                            endOffset: 13,
+                        ),
+                        type: new Types\NamedType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 9,
+                                endLine: 1,
+                                endOffset: 12,
+                            ),
+                            name: 'int',
+                        ),
+                    ),
+                    expression: new Literals\NullLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 16,
+                            endLine: 1,
+                            endOffset: 20,
+                        ),
+                    ),
+                ),
+            ],
+        );
 
         // $this->assertEquals(
         //     actual: self::createParser('var foo: int?[] = null;')->parse(),
