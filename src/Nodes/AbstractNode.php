@@ -28,9 +28,19 @@ abstract class AbstractNode implements JsonSerializable
         return $this->getLocation()->startLine;
     }
 
+    public function getStartOffset(): int
+    {
+        return $this->getLocation()->startOffset;
+    }
+
     public function getEndLine(): int
     {
         return $this->getLocation()->endLine;
+    }
+
+    public function getEndOffset(): int
+    {
+        return $this->getLocation()->endOffset;
     }
 
     /** @return array<mixed> */
