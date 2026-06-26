@@ -857,70 +857,86 @@ class ParserTest extends TestCase
             ],
         );
 
-        // $this->assertEquals(
-        //     actual: self::createParser('fn foo(bar: int, baz: xyz): xyz { return baz; }')->parse(),
-        //     expected: [
-        //         new Statements\FunctionStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             name: 'foo',
-        //             type: new Types\NamedType(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 name: 'xyz',
-        //             ),
-        //             parameters: [
-        //                 new Parameter(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     name: 'bar',
-        //                     type: new Types\NamedType(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         name: 'int',
-        //                     ),
-        //                 ),
-        //                 new Parameter(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     name: 'baz',
-        //                     type: new Types\NamedType(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         name: 'xyz',
-        //                     ),
-        //                 ),
-        //             ],
-        //             statements: [
-        //                 new Statements\ReturnStatement(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     expression: new Expressions\IdentifierExpression(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         name: 'baz',
-        //                     ),
-        //                 ),
-        //             ],
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('fn foo(bar: int, baz: xyz): xyz { return baz; }')->parse(),
+            expected: [
+                new Statements\FunctionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 47,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 28,
+                            endLine: 1,
+                            endOffset: 31,
+                        ),
+                        name: 'xyz',
+                    ),
+                    parameters: [
+                        new Parameter(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 7,
+                                endLine: 1,
+                                endOffset: 15,
+                            ),
+                            name: 'bar',
+                            type: new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 12,
+                                    endLine: 1,
+                                    endOffset: 15,
+                                ),
+                                name: 'int',
+                            ),
+                        ),
+                        new Parameter(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 17,
+                                endLine: 1,
+                                endOffset: 25,
+                            ),
+                            name: 'baz',
+                            type: new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 22,
+                                    endLine: 1,
+                                    endOffset: 25,
+                                ),
+                                name: 'xyz',
+                            ),
+                        ),
+                    ],
+                    statements: [
+                        new Statements\ReturnStatement(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 34,
+                                endLine: 1,
+                                endOffset: 45,
+                            ),
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 41,
+                                    endLine: 1,
+                                    endOffset: 44,
+                                ),
+                                name: 'baz',
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
     }
 
     #[Test]
