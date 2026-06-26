@@ -122,129 +122,207 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testArrayType(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int[] = [123, 456];')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\ArrayType(
-    //                     line: 1,
-    //                     type: new Types\NamedType(
-    //                         line: 1,
-    //                         name: 'int',
-    //                     ),
-    //                 ),
-    //                 expression: new Expressions\ArrayExpression(
-    //                     line: 1,
-    //                     expressions: [
-    //                         new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 123,
-    //                         ),
-    //                         new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 456,
-    //                         ),
-    //                     ],
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testArrayType(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('var foo: int[] = [123, 456];')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\ArrayType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        type: new Types\NamedType(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'int',
+                        ),
+                    ),
+                    expression: new Expressions\ArrayExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 123,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 456,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int[][] = [[123, 456]];')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\ArrayType(
-    //                     line: 1,
-    //                     type: new Types\ArrayType(
-    //                         line: 1,
-    //                         type: new Types\NamedType(
-    //                             line: 1,
-    //                             name: 'int',
-    //                         ),
-    //                     ),
-    //                 ),
-    //                 expression: new Expressions\ArrayExpression(
-    //                     line: 1,
-    //                     expressions: [
-    //                         new Expressions\ArrayExpression(
-    //                             line: 1,
-    //                             expressions: [
-    //                                 new Literals\IntegerLiteral(
-    //                                     line: 1,
-    //                                     value: 123,
-    //                                 ),
-    //                                 new Literals\IntegerLiteral(
-    //                                     line: 1,
-    //                                     value: 456,
-    //                                 ),
-    //                             ],
-    //                         ),
-    //                     ],
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+        $this->assertEquals(
+            actual: self::createParser('var foo: int[][] = [[123, 456]];')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\ArrayType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        type: new Types\ArrayType(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            type: new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'int',
+                            ),
+                        ),
+                    ),
+                    expression: new Expressions\ArrayExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        expressions: [
+                            new Expressions\ArrayExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                expressions: [
+                                    new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            endLine: 1,
+                                        ),
+                                        value: 123,
+                                    ),
+                                    new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            endLine: 1,
+                                        ),
+                                        value: 456,
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int[]? = null;')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NullableType(
-    //                     line: 1,
-    //                     type: new Types\ArrayType(
-    //                         line: 1,
-    //                         type: new Types\NamedType(
-    //                             line: 1,
-    //                             name: 'int',
-    //                         ),
-    //                     ),
-    //                 ),
-    //                 expression: new Literals\NullLiteral(
-    //                     line: 1,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+        $this->assertEquals(
+            actual: self::createParser('var foo: int[]? = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        type: new Types\ArrayType(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            type: new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'int',
+                            ),
+                        ),
+                    ),
+                    expression: new Literals\NullLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int[]?[]? = null;')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NullableType(
-    //                     line: 1,
-    //                     type: new Types\ArrayType(
-    //                         line: 1,
-    //                         type: new Types\NullableType(
-    //                             line: 1,
-    //                             type: new Types\ArrayType(
-    //                                 line: 1,
-    //                                 type: new Types\NamedType(
-    //                                     line: 1,
-    //                                     name: 'int',
-    //                                 ),
-    //                             ),
-    //                         ),
-    //                     ),
-    //                 ),
-    //                 expression: new Literals\NullLiteral(
-    //                     line: 1,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('var foo: int[]?[]? = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        type: new Types\ArrayType(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            type: new Types\NullableType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                type: new Types\ArrayType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        endLine: 1,
+                                    ),
+                                    type: new Types\NamedType(
+                                        location: new Location(
+                                            startLine: 1,
+                                            endLine: 1,
+                                        ),
+                                        name: 'int',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                    expression: new Literals\NullLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        )
+                    ),
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testAssignmentExpression(): void
@@ -276,38 +354,56 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testBinaryExpression(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('1 + 2 * 3;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\BinaryExpression(
-    //                     line: 1,
-    //                     operator: Expressions\BinaryOperator::Plus,
-    //                     left: new Literals\IntegerLiteral(
-    //                         line: 1,
-    //                         value: 1,
-    //                     ),
-    //                     right: new Expressions\BinaryExpression(
-    //                         line: 1,
-    //                         operator: Expressions\BinaryOperator::Multiply,
-    //                         left: new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 2,
-    //                         ),
-    //                         right: new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 3,
-    //                         ),
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testBinaryExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('1 + 2 * 3;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\BinaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        operator: Expressions\BinaryOperator::Plus,
+                        left: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            value: 1,
+                        ),
+                        right: new Expressions\BinaryExpression(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            operator: Expressions\BinaryOperator::Multiply,
+                            left: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 2,
+                            ),
+                            right: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 3,
+                            ),
+                        ),
+                    ),
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testBooleanLiteral(): void
@@ -386,45 +482,63 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testConstStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('const foo: int = 123;')->parse(),
-    //         expected: [
-    //             new Statements\ConstStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NamedType(
-    //                     line: 1,
-    //                     name: 'int',
-    //                 ),
-    //                 expression: new Literals\IntegerLiteral(
-    //                     line: 1,
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testConstStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('const foo: int = 123;')->parse(),
+            expected: [
+                new Statements\ConstStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'int',
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('const foo: xyz = 123;')->parse(),
-    //         expected: [
-    //             new Statements\ConstStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NamedType(
-    //                     line: 1,
-    //                     name: 'xyz',
-    //                 ),
-    //                 expression: new Literals\IntegerLiteral(
-    //                     line: 1,
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('const foo: xyz = 123;')->parse(),
+            expected: [
+                new Statements\ConstStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'xyz',
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testContinueStatement(): void
@@ -484,121 +598,178 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testFunctionCallExpression(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('foo();')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\FunctionCallExpression(
-    //                     line: 1,
-    //                     name: 'foo',
-    //                     arguments: [],
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testFunctionCallExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo();')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\FunctionCallExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'foo',
+                        arguments: [],
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('foo(123, foo("bar"));')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\FunctionCallExpression(
-    //                     line: 1,
-    //                     name: 'foo',
-    //                     arguments: [
-    //                         new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 123,
-    //                         ),
-    //                         new Expressions\FunctionCallExpression(
-    //                             line: 1,
-    //                             name: 'foo',
-    //                             arguments: [
-    //                                 new Literals\StringLiteral(
-    //                                     line: 1,
-    //                                     value: 'bar',
-    //                                 ),
-    //                             ],
-    //                         ),
-    //                     ],
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('foo(123, foo("bar"));')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\FunctionCallExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'foo',
+                        arguments: [
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 123,
+                            ),
+                            new Expressions\FunctionCallExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'foo',
+                                arguments: [
+                                    new Literals\StringLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            endLine: 1,
+                                        ),
+                                        value: 'bar',
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+    }
 
-    // #[Test]
-    // public function testFunctionStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('fn foo(): void { print "Hello, World!"; }')->parse(),
-    //         expected: [
-    //             new Statements\FunctionStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NamedType(
-    //                     line: 1,
-    //                     name: 'void',
-    //                 ),
-    //                 parameters: [],
-    //                 statements: [
-    //                     new Statements\PrintStatement(
-    //                         line: 1,
-    //                         expression: new Literals\StringLiteral(
-    //                             line: 1,
-    //                             value: 'Hello, World!',
-    //                         ),
-    //                     ),
-    //                 ],
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testFunctionStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('fn foo(): void { print "Hello, World!"; }')->parse(),
+            expected: [
+                new Statements\FunctionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'void',
+                    ),
+                    parameters: [],
+                    statements: [
+                        new Statements\PrintStatement(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            expression: new Literals\StringLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 'Hello, World!',
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('fn foo(bar: int, baz: xyz): xyz { return baz; }')->parse(),
-    //         expected: [
-    //             new Statements\FunctionStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NamedType(
-    //                     line: 1,
-    //                     name: 'xyz',
-    //                 ),
-    //                 parameters: [
-    //                     new Parameter(
-    //                         line: 1,
-    //                         name: 'bar',
-    //                         type: new Types\NamedType(
-    //                             line: 1,
-    //                             name: 'int',
-    //                         ),
-    //                     ),
-    //                     new Parameter(
-    //                         line: 1,
-    //                         name: 'baz',
-    //                         type: new Types\NamedType(
-    //                             line: 1,
-    //                             name: 'xyz',
-    //                         ),
-    //                     ),
-    //                 ],
-    //                 statements: [
-    //                     new Statements\ReturnStatement(
-    //                         line: 1,
-    //                         expression: new Expressions\IdentifierExpression(
-    //                             line: 1,
-    //                             name: 'baz',
-    //                         ),
-    //                     ),
-    //                 ],
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('fn foo(bar: int, baz: xyz): xyz { return baz; }')->parse(),
+            expected: [
+                new Statements\FunctionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'xyz',
+                    ),
+                    parameters: [
+                        new Parameter(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'bar',
+                            type: new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'int',
+                            ),
+                        ),
+                        new Parameter(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'baz',
+                            type: new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'xyz',
+                            ),
+                        ),
+                    ],
+                    statements: [
+                        new Statements\ReturnStatement(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'baz',
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testIdentifierExpression(): void
@@ -941,117 +1112,171 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testPrefixUnaryExpression(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('~foo;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\UnaryExpression(
-    //                     line: 1,
-    //                     operator: Expressions\UnaryOperator::BitwiseNot,
-    //                     position: Expressions\UnaryPosition::Prefix,
-    //                     expression: new Expressions\IdentifierExpression(
-    //                         line: 1,
-    //                         name: 'foo',
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testPrefixUnaryExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('~foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\UnaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        operator: Expressions\UnaryOperator::BitwiseNot,
+                        position: Expressions\UnaryPosition::Prefix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('!foo;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\UnaryExpression(
-    //                     line: 1,
-    //                     operator: Expressions\UnaryOperator::BooleanNot,
-    //                     position: Expressions\UnaryPosition::Prefix,
-    //                     expression: new Expressions\IdentifierExpression(
-    //                         line: 1,
-    //                         name: 'foo',
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+        $this->assertEquals(
+            actual: self::createParser('!foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\UnaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        operator: Expressions\UnaryOperator::BooleanNot,
+                        position: Expressions\UnaryPosition::Prefix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('--foo;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\UnaryExpression(
-    //                     line: 1,
-    //                     operator: Expressions\UnaryOperator::Decrement,
-    //                     position: Expressions\UnaryPosition::Prefix,
-    //                     expression: new Expressions\IdentifierExpression(
-    //                         line: 1,
-    //                         name: 'foo',
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+        $this->assertEquals(
+            actual: self::createParser('--foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\UnaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        operator: Expressions\UnaryOperator::Decrement,
+                        position: Expressions\UnaryPosition::Prefix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('++foo;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\UnaryExpression(
-    //                     line: 1,
-    //                     operator: Expressions\UnaryOperator::Increment,
-    //                     position: Expressions\UnaryPosition::Prefix,
-    //                     expression: new Expressions\IdentifierExpression(
-    //                         line: 1,
-    //                         name: 'foo',
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+        $this->assertEquals(
+            actual: self::createParser('++foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\UnaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        operator: Expressions\UnaryOperator::Increment,
+                        position: Expressions\UnaryPosition::Prefix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('-foo;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\UnaryExpression(
-    //                     line: 1,
-    //                     operator: Expressions\UnaryOperator::Minus,
-    //                     position: Expressions\UnaryPosition::Prefix,
-    //                     expression: new Expressions\IdentifierExpression(
-    //                         line: 1,
-    //                         name: 'foo',
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+        $this->assertEquals(
+            actual: self::createParser('-foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\UnaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        operator: Expressions\UnaryOperator::Minus,
+                        position: Expressions\UnaryPosition::Prefix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('+foo;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\UnaryExpression(
-    //                     line: 1,
-    //                     operator: Expressions\UnaryOperator::Plus,
-    //                     position: Expressions\UnaryPosition::Prefix,
-    //                     expression: new Expressions\IdentifierExpression(
-    //                         line: 1,
-    //                         name: 'foo',
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('+foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\UnaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        operator: Expressions\UnaryOperator::Plus,
+                        position: Expressions\UnaryPosition::Prefix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testPrintStatement(): void
@@ -1135,204 +1360,315 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testTupleType(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: (int, int) = (123, 456);')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\TupleType(
-    //                     line: 1,
-    //                     types: [
-    //                         new Types\NamedType(
-    //                             line: 1,
-    //                             name: 'int',
-    //                         ),
-    //                         new Types\NamedType(
-    //                             line: 1,
-    //                             name: 'int',
-    //                         ),
-    //                     ],
-    //                 ),
-    //                 expression: new Expressions\TupleExpression(
-    //                     line: 1,
-    //                     expressions: [
-    //                         new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 123,
-    //                         ),
-    //                         new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 456,
-    //                         ),
-    //                     ],
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testTupleType(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('var foo: (int, int) = (123, 456);')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\TupleType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        types: [
+                            new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'int',
+                            ),
+                            new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'int',
+                            ),
+                        ],
+                    ),
+                    expression: new Expressions\TupleExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 123,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 456,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: (int, int) = ((123, 456));')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\TupleType(
-    //                     line: 1,
-    //                     types: [
-    //                         new Types\NamedType(
-    //                             line: 1,
-    //                             name: 'int',
-    //                         ),
-    //                         new Types\NamedType(
-    //                             line: 1,
-    //                             name: 'int',
-    //                         ),
-    //                     ],
-    //                 ),
-    //                 expression: new Expressions\TupleExpression(
-    //                     line: 1,
-    //                     expressions: [
-    //                         new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 123,
-    //                         ),
-    //                         new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 456,
-    //                         ),
-    //                     ],
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+        $this->assertEquals(
+            actual: self::createParser('var foo: (int, int) = ((123, 456));')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\TupleType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        types: [
+                            new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'int',
+                            ),
+                            new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                name: 'int',
+                            ),
+                        ],
+                    ),
+                    expression: new Expressions\TupleExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 123,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 456,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: (int, int)[] = [(123, 456)];')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\ArrayType(
-    //                     line: 1,
-    //                     type: new Types\TupleType(
-    //                         line: 1,
-    //                         types: [
-    //                             new Types\NamedType(
-    //                                 line: 1,
-    //                                 name: 'int',
-    //                             ),
-    //                             new Types\NamedType(
-    //                                 line: 1,
-    //                                 name: 'int',
-    //                             ),
-    //                         ],
-    //                     ),
-    //                 ),
-    //                 expression: new Expressions\ArrayExpression(
-    //                     line: 1,
-    //                     expressions: [
-    //                         new Expressions\TupleExpression(
-    //                             line: 1,
-    //                             expressions: [
-    //                                 new Literals\IntegerLiteral(
-    //                                     line: 1,
-    //                                     value: 123,
-    //                                 ),
-    //                                 new Literals\IntegerLiteral(
-    //                                     line: 1,
-    //                                     value: 456,
-    //                                 ),
-    //                             ],
-    //                         ),
-    //                     ],
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+        $this->assertEquals(
+            actual: self::createParser('var foo: (int, int)[] = [(123, 456)];')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\ArrayType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        type: new Types\TupleType(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            types: [
+                                new Types\NamedType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        endLine: 1,
+                                    ),
+                                    name: 'int',
+                                ),
+                                new Types\NamedType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        endLine: 1,
+                                    ),
+                                    name: 'int',
+                                ),
+                            ],
+                        ),
+                    ),
+                    expression: new Expressions\ArrayExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        expressions: [
+                            new Expressions\TupleExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                expressions: [
+                                    new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            endLine: 1,
+                                        ),
+                                        value: 123,
+                                    ),
+                                    new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            endLine: 1,
+                                        ),
+                                        value: 456,
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: (int, int)? = (123, 456);')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NullableType(
-    //                     line: 1,
-    //                     type: new Types\TupleType(
-    //                         line: 1,
-    //                         types: [
-    //                             new Types\NamedType(
-    //                                 line: 1,
-    //                                 name: 'int',
-    //                             ),
-    //                             new Types\NamedType(
-    //                                 line: 1,
-    //                                 name: 'int',
-    //                             ),
-    //                         ],
-    //                     ),
-    //                 ),
-    //                 expression: new Expressions\TupleExpression(
-    //                     line: 1,
-    //                     expressions: [
-    //                         new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 123,
-    //                         ),
-    //                         new Literals\IntegerLiteral(
-    //                             line: 1,
-    //                             value: 456,
-    //                         ),
-    //                     ],
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('var foo: (int, int)? = (123, 456);')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        type: new Types\TupleType(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            types: [
+                                new Types\NamedType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        endLine: 1,
+                                    ),
+                                    name: 'int',
+                                ),
+                                new Types\NamedType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        endLine: 1,
+                                    ),
+                                    name: 'int',
+                                ),
+                            ],
+                        ),
+                    ),
+                    expression: new Expressions\TupleExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 123,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 456,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+    }
 
-    // #[Test]
-    // public function testVarStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int = 123;')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NamedType(
-    //                     line: 1,
-    //                     name: 'int',
-    //                 ),
-    //                 expression: new Literals\IntegerLiteral(
-    //                     line: 1,
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testVarStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('var foo: int = 123;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'int',
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: xyz = 123;')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 line: 1,
-    //                 name: 'foo',
-    //                 type: new Types\NamedType(
-    //                     line: 1,
-    //                     name: 'xyz',
-    //                 ),
-    //                 expression: new Literals\IntegerLiteral(
-    //                     line: 1,
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('var foo: xyz = 123;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'xyz',
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testWhileStatement(): void
