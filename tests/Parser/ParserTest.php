@@ -813,41 +813,49 @@ class ParserTest extends TestCase
     #[Test]
     public function testFunctionStatement(): void
     {
-        // $this->assertEquals(
-        //     actual: self::createParser('fn foo(): void { print "Hello, World!"; }')->parse(),
-        //     expected: [
-        //         new Statements\FunctionStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             name: 'foo',
-        //             type: new Types\NamedType(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 name: 'void',
-        //             ),
-        //             parameters: [],
-        //             statements: [
-        //                 new Statements\PrintStatement(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     expression: new Literals\StringLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 'Hello, World!',
-        //                     ),
-        //                 ),
-        //             ],
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('fn foo(): void { print "Hello, World!"; }')->parse(),
+            expected: [
+                new Statements\FunctionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 41,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 10,
+                            endLine: 1,
+                            endOffset: 14,
+                        ),
+                        name: 'void',
+                    ),
+                    parameters: [],
+                    statements: [
+                        new Statements\PrintStatement(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 17,
+                                endLine: 1,
+                                endOffset: 39,
+                            ),
+                            expression: new Literals\StringLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 23,
+                                    endLine: 1,
+                                    endOffset: 38,
+                                ),
+                                value: 'Hello, World!',
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
 
         // $this->assertEquals(
         //     actual: self::createParser('fn foo(bar: int, baz: xyz): xyz { return baz; }')->parse(),
