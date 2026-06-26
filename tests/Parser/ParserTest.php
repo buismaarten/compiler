@@ -209,67 +209,83 @@ class ParserTest extends TestCase
             ],
         );
 
-        // $this->assertEquals(
-        //     actual: self::createParser('var foo: int[][] = [[123, 456]];')->parse(),
-        //     expected: [
-        //         new Statements\VarStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             name: 'foo',
-        //             type: new Types\ArrayType(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 type: new Types\ArrayType(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     type: new Types\NamedType(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         name: 'int',
-        //                     ),
-        //                 ),
-        //             ),
-        //             expression: new Expressions\ArrayExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 expressions: [
-        //                     new Expressions\ArrayExpression(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         expressions: [
-        //                             new Literals\IntegerLiteral(
-        //                                 location: new Location(
-        //                                     startLine: 1,
-        //                                     endLine: 1,
-        //                                 ),
-        //                                 value: 123,
-        //                             ),
-        //                             new Literals\IntegerLiteral(
-        //                                 location: new Location(
-        //                                     startLine: 1,
-        //                                     endLine: 1,
-        //                                 ),
-        //                                 value: 456,
-        //                             ),
-        //                         ],
-        //                     ),
-        //                 ],
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('var foo: int[][] = [[123, 456]];')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 32,
+                    ),
+                    name: 'foo',
+                    type: new Types\ArrayType(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 14,
+                            endLine: 1,
+                            endOffset: 16,
+                        ),
+                        type: new Types\ArrayType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 12,
+                                endLine: 1,
+                                endOffset: 14,
+                            ),
+                            type: new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 9,
+                                    endLine: 1,
+                                    endOffset: 12,
+                                ),
+                                name: 'int',
+                            ),
+                        ),
+                    ),
+                    expression: new Expressions\ArrayExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 19,
+                            endLine: 1,
+                            endOffset: 31,
+                        ),
+                        expressions: [
+                            new Expressions\ArrayExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 20,
+                                    endLine: 1,
+                                    endOffset: 30,
+                                ),
+                                expressions: [
+                                    new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 21,
+                                            endLine: 1,
+                                            endOffset: 24,
+                                        ),
+                                        value: 123,
+                                    ),
+                                    new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 26,
+                                            endLine: 1,
+                                            endOffset: 29,
+                                        ),
+                                        value: 456,
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
 
         // $this->assertEquals(
         //     actual: self::createParser('var foo: int[]? = null;')->parse(),
