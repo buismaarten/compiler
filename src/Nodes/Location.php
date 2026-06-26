@@ -22,6 +22,9 @@ final class Location
 
     public static function fromToken(Token $startToken, Token $endToken): self
     {
-        return new self($startToken->line, $endToken->line);
+        return new self(
+            startLine: $startToken->line,
+            endLine: $endToken->line,
+        );
     }
 }
