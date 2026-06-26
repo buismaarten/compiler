@@ -1011,54 +1011,66 @@ class ParserTest extends TestCase
             ],
         );
 
-        // $this->assertEquals(
-        //     actual: self::createParser('if (foo) { return 1; } else { return 2; }')->parse(),
-        //     expected: [
-        //         new Statements\IfStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             condition: new Expressions\IdentifierExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 name: 'foo',
-        //             ),
-        //             thenStatements: [
-        //                 new Statements\ReturnStatement(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     expression: new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 1,
-        //                     ),
-        //                 ),
-        //             ],
-        //             elseStatements: [
-        //                 new Statements\ReturnStatement(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     expression: new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 2,
-        //                     ),
-        //                 ),
-        //             ],
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('if (foo) { return 1; } else { return 2; }')->parse(),
+            expected: [
+                new Statements\IfStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 41,
+                    ),
+                    condition: new Expressions\IdentifierExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 4,
+                            endLine: 1,
+                            endOffset: 7,
+                        ),
+                        name: 'foo',
+                    ),
+                    thenStatements: [
+                        new Statements\ReturnStatement(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 11,
+                                endLine: 1,
+                                endOffset: 20,
+                            ),
+                            expression: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 18,
+                                    endLine: 1,
+                                    endOffset: 19,
+                                ),
+                                value: 1,
+                            ),
+                        ),
+                    ],
+                    elseStatements: [
+                        new Statements\ReturnStatement(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 30,
+                                endLine: 1,
+                                endOffset: 39,
+                            ),
+                            expression: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 37,
+                                    endLine: 1,
+                                    endOffset: 38,
+                                ),
+                                value: 2,
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
     }
 
     #[Test]
