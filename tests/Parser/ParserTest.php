@@ -731,25 +731,29 @@ class ParserTest extends TestCase
     #[Test]
     public function testFunctionCallExpression(): void
     {
-        // $this->assertEquals(
-        //     actual: self::createParser('foo();')->parse(),
-        //     expected: [
-        //         new Statements\ExpressionStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             expression: new Expressions\FunctionCallExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 name: 'foo',
-        //                 arguments: [],
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('foo();')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 6,
+                    ),
+                    expression: new Expressions\FunctionCallExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 5,
+                        ),
+                        name: 'foo',
+                        arguments: [],
+                    ),
+                ),
+            ],
+        );
 
         // $this->assertEquals(
         //     actual: self::createParser('foo(123, foo("bar"));')->parse(),
