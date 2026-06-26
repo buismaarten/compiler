@@ -335,55 +335,69 @@ class ParserTest extends TestCase
             ],
         );
 
-        // $this->assertEquals(
-        //     actual: self::createParser('var foo: int[]?[]? = null;')->parse(),
-        //     expected: [
-        //         new Statements\VarStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             name: 'foo',
-        //             type: new Types\NullableType(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 type: new Types\ArrayType(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     type: new Types\NullableType(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         type: new Types\ArrayType(
-        //                             location: new Location(
-        //                                 startLine: 1,
-        //                                 endLine: 1,
-        //                             ),
-        //                             type: new Types\NamedType(
-        //                                 location: new Location(
-        //                                     startLine: 1,
-        //                                     endLine: 1,
-        //                                 ),
-        //                                 name: 'int',
-        //                             ),
-        //                         ),
-        //                     ),
-        //                 ),
-        //             ),
-        //             expression: new Literals\NullLiteral(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('var foo: int[]?[]? = null;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 26,
+                    ),
+                    name: 'foo',
+                    type: new Types\NullableType(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 17,
+                            endLine: 1,
+                            endOffset: 18,
+                        ),
+                        type: new Types\ArrayType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 15,
+                                endLine: 1,
+                                endOffset: 17,
+                            ),
+                            type: new Types\NullableType(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 14,
+                                    endLine: 1,
+                                    endOffset: 15,
+                                ),
+                                type: new Types\ArrayType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 12,
+                                        endLine: 1,
+                                        endOffset: 14,
+                                    ),
+                                    type: new Types\NamedType(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 9,
+                                            endLine: 1,
+                                            endOffset: 12,
+                                        ),
+                                        name: 'int',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                    expression: new Literals\NullLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 21,
+                            endLine: 1,
+                            endOffset: 25,
+                        ),
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]
