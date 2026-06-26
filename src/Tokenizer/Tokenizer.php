@@ -387,13 +387,13 @@ final class Tokenizer implements TokenizerInterface
         return $this->createToken(TokenType::String, $offset, $value);
     }
 
-    private function createToken(TokenType $type, int $offsetStart, string $value = ''): Token
+    private function createToken(TokenType $type, int $startOffset, string $value = ''): Token
     {
         return new Token(
             type: $type,
             line: $this->line,
-            offsetStart: $offsetStart,
-            offsetEnd: $this->input->offset(),
+            startOffset: $startOffset,
+            endOffset: $this->input->offset(),
             value: $value,
         );
     }

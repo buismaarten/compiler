@@ -24,8 +24,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Assign,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -38,8 +38,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::BitwiseAnd,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -52,8 +52,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::BitwiseNot,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -66,8 +66,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::BitwiseOr,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -80,8 +80,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::BitwiseXor,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -94,8 +94,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::BooleanAnd,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -108,8 +108,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::BooleanNot,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -122,8 +122,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::BooleanOr,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -136,8 +136,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Colon,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -150,8 +150,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Comma,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -164,8 +164,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Eof,
                 line: 1,
-                offsetStart: 20,
-                offsetEnd: 20,
+                startOffset: 20,
+                endOffset: 20,
             ),
         );
     }
@@ -178,8 +178,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Decrement,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -192,8 +192,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Divide,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -206,8 +206,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Equal,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -220,8 +220,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Float,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: '3.14',
             ),
         );
@@ -235,8 +235,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::GreaterThan,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -249,8 +249,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::GreaterThanEqual,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -263,8 +263,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Identical,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 3,
+                startOffset: 0,
+                endOffset: 3,
             ),
         );
     }
@@ -277,8 +277,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Identifier,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 7,
+                startOffset: 0,
+                endOffset: 7,
                 value: 'foo_123',
             ),
         );
@@ -288,8 +288,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Identifier,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 7,
+                startOffset: 0,
+                endOffset: 7,
                 value: '_foo123',
             ),
         );
@@ -303,8 +303,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Increment,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -317,8 +317,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Integer,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 3,
+                startOffset: 0,
+                endOffset: 3,
                 value: '123',
             ),
         );
@@ -332,8 +332,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordBreak,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 5,
+                startOffset: 0,
+                endOffset: 5,
             ),
         );
 
@@ -342,8 +342,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordConst,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 5,
+                startOffset: 0,
+                endOffset: 5,
             ),
         );
 
@@ -352,8 +352,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordContinue,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 8,
+                startOffset: 0,
+                endOffset: 8,
             ),
         );
 
@@ -362,8 +362,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordElse,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
             ),
         );
 
@@ -372,8 +372,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordFalse,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 5,
+                startOffset: 0,
+                endOffset: 5,
             ),
         );
 
@@ -382,8 +382,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordFn,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
 
@@ -392,8 +392,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordIf,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
 
@@ -402,8 +402,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordNull,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
             ),
         );
 
@@ -412,8 +412,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordPrint,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 5,
+                startOffset: 0,
+                endOffset: 5,
             ),
         );
 
@@ -422,8 +422,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordReturn,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 6,
+                startOffset: 0,
+                endOffset: 6,
             ),
         );
 
@@ -432,8 +432,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordTrue,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
             ),
         );
 
@@ -442,8 +442,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::KeywordVar,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 3,
+                startOffset: 0,
+                endOffset: 3,
             ),
         );
     }
@@ -456,8 +456,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::LeftBrace,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -470,8 +470,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::LeftBracket,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -484,8 +484,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::LeftParenthesis,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -498,8 +498,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::LessThan,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -512,8 +512,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::LessThanEqual,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -526,8 +526,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Minus,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -540,8 +540,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Modulo,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -554,8 +554,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Multiply,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -568,8 +568,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::NotEqual,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -582,8 +582,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::NotIdentical,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 3,
+                startOffset: 0,
+                endOffset: 3,
             ),
         );
     }
@@ -596,8 +596,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Plus,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -610,8 +610,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::QuestionMark,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -624,8 +624,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::RightBrace,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -638,8 +638,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::RightBracket,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -652,8 +652,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::RightParenthesis,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -666,8 +666,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Semicolon,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 1,
+                startOffset: 0,
+                endOffset: 1,
             ),
         );
     }
@@ -680,8 +680,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::ShiftLeft,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -694,8 +694,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::ShiftRight,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 2,
+                startOffset: 0,
+                endOffset: 2,
             ),
         );
     }
@@ -708,8 +708,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Spaceship,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 3,
+                startOffset: 0,
+                endOffset: 3,
             ),
         );
     }
@@ -722,8 +722,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 15,
+                startOffset: 0,
+                endOffset: 15,
                 value: 'Hello, World!',
             ),
         );
@@ -733,8 +733,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 3,
+                startOffset: 0,
+                endOffset: 3,
                 value: "'",
             ),
         );
@@ -744,8 +744,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: '"',
             ),
         );
@@ -755,8 +755,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: '\\',
             ),
         );
@@ -766,8 +766,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: "\0",
             ),
         );
@@ -777,8 +777,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: "\f",
             ),
         );
@@ -788,8 +788,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: "\n",
             ),
         );
@@ -799,8 +799,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: "\r",
             ),
         );
@@ -810,8 +810,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: "\t",
             ),
         );
@@ -821,8 +821,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 9,
+                startOffset: 0,
+                endOffset: 9,
                 value: '😀',
             ),
         );
@@ -832,8 +832,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: "\v",
             ),
         );
@@ -843,8 +843,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::String,
                 line: 1,
-                offsetStart: 0,
-                offsetEnd: 4,
+                startOffset: 0,
+                endOffset: 4,
                 value: '\p',
             ),
         );
@@ -858,8 +858,8 @@ class TokenizerTest extends TestCase
             expected: new Token(
                 type: TokenType::Identifier,
                 line: 2,
-                offsetStart: 3,
-                offsetEnd: 6,
+                startOffset: 3,
+                endOffset: 6,
                 value: 'foo',
             ),
         );
