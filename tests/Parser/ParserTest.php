@@ -439,52 +439,64 @@ class ParserTest extends TestCase
     #[Test]
     public function testBinaryExpression(): void
     {
-        // $this->assertEquals(
-        //     actual: self::createParser('1 + 2 * 3;')->parse(),
-        //     expected: [
-        //         new Statements\ExpressionStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             expression: new Expressions\BinaryExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 operator: Expressions\BinaryOperator::Plus,
-        //                 left: new Literals\IntegerLiteral(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     value: 1,
-        //                 ),
-        //                 right: new Expressions\BinaryExpression(
-        //                     location: new Location(
-        //                         startLine: 1,
-        //                         endLine: 1,
-        //                     ),
-        //                     operator: Expressions\BinaryOperator::Multiply,
-        //                     left: new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 2,
-        //                     ),
-        //                     right: new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 3,
-        //                     ),
-        //                 ),
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('1 + 2 * 3;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 10,
+                    ),
+                    expression: new Expressions\BinaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 2,
+                            endLine: 1,
+                            endOffset: 9,
+                        ),
+                        operator: Expressions\BinaryOperator::Plus,
+                        left: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 1,
+                            ),
+                            value: 1,
+                        ),
+                        right: new Expressions\BinaryExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 6,
+                                endLine: 1,
+                                endOffset: 9,
+                            ),
+                            operator: Expressions\BinaryOperator::Multiply,
+                            left: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 4,
+                                    endLine: 1,
+                                    endOffset: 5,
+                                ),
+                                value: 2,
+                            ),
+                            right: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 8,
+                                    endLine: 1,
+                                    endOffset: 9,
+                                ),
+                                value: 3,
+                            ),
+                        ),
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]
