@@ -25,7 +25,9 @@ class NodeTraverserTest extends TestCase
     {
         $location = new Location(
             startLine: -1,
+            startOffset: -1,
             endLine: -1,
+            endOffset: -1,
         );
 
         $literal = new Literals\NullLiteral($location);
