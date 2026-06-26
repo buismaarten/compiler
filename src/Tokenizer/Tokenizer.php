@@ -322,7 +322,6 @@ final class Tokenizer implements TokenizerInterface
         return $this->createToken(TokenType::Divide, $offset);
     }
 
-    // TODO
     private function tokenizeString(): Token
     {
         $offset = $this->input->offset();
