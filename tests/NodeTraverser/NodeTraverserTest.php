@@ -11,6 +11,7 @@ use Override;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
+use Package\Nodes\Location;
 use Package\Nodes\Statements;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\NodeTraverser\NodeTraverser;
@@ -22,9 +23,14 @@ class NodeTraverserTest extends TestCase
     #[Test]
     public function testTraverse(): void
     {
-        $literal = new Literals\NullLiteral;
-        $expression = new Expressions\ArrayExpression([$literal]);
-        $statement = new Statements\ReturnStatement($expression);
+        $location = new Location(
+            startLine: -1,
+            endLine: -1,
+        );
+
+        $literal = new Literals\NullLiteral($location);
+        $expression = new Expressions\ArrayExpression($location, [$literal]);
+        $statement = new Statements\ReturnStatement($location, $expression);
 
         $visitor = new NodeVisitor;
         $traverser = new NodeTraverser;

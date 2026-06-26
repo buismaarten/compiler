@@ -8,14 +8,15 @@ declare(strict_types=1);
 namespace Package\Nodes\Types;
 
 use Package\Nodes\AbstractType;
+use Package\Nodes\Location;
 
 final class NamedType extends AbstractType
 {
     public string $name;
 
-    public function __construct(string $name, array $attributes = [])
+    public function __construct(Location $location, string $name)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->name = $name;
     }

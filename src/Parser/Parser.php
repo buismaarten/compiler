@@ -17,6 +17,7 @@ use Package\Nodes\AbstractType;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Parameter;
+use Package\Nodes\Location;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;
 use Package\Tokenizer\Token;
@@ -66,8 +67,8 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightBracket);
 
         return new Expressions\ArrayExpression(
+            location: Location::fromToken($token, $this->previous),
             expressions: $expressions,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -75,10 +76,12 @@ final class Parser implements ParserInterface
     {
         $this->expect(TokenType::Assign);
 
+        $expression = $this->parseExpression();
+
         return new Expressions\AssignmentExpression(
+            location: Location::fromToken($token, $this->previous),
             name: $token->value,
-            expression: $this->parseExpression(),
-            attributes: $this->buildAttributes($token),
+            expression: $expression,
         );
     }
 
@@ -93,11 +96,13 @@ final class Parser implements ParserInterface
             $token = $this->current;
             $this->next();
 
+            $right = $this->parseBinaryExpression($precedence);
+
             $expression = new Expressions\BinaryExpression(
+                location: Location::fromToken($token, $this->previous),
                 operator: $operator,
                 left: $expression,
-                right: $this->parseBinaryExpression($precedence),
-                attributes: $this->buildAttributes($token),
+                right: $right,
             );
         }
 
@@ -110,8 +115,8 @@ final class Parser implements ParserInterface
         $this->next();
 
         return new Literals\BooleanLiteral(
+            location: Location::fromToken($token, $this->previous),
             value: $token->type === TokenType::KeywordTrue,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -128,8 +133,8 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\BreakStatement(
+            location: Location::fromToken($token, $this->previous),
             level: $level,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -146,10 +151,10 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\ConstStatement(
+            location: Location::fromToken($token, $this->previous),
             name: $name->value,
             type: $type,
             expression: $expression,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -166,8 +171,8 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\ContinueStatement(
+            location: Location::fromToken($token, $this->previous),
             level: $level,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -184,8 +189,8 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\ExpressionStatement(
+            location: Location::fromToken($token, $this->previous),
             expression: $expression,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -195,8 +200,8 @@ final class Parser implements ParserInterface
         $value = floatval($token->value);
 
         return new Literals\FloatLiteral(
+            location: Location::fromToken($token, $this->previous),
             value: $value,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -219,9 +224,9 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightParenthesis);
 
         return new Expressions\FunctionCallExpression(
+            location: Location::fromToken($token, $this->previous),
             name: $token->value,
             arguments: $arguments,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -257,11 +262,11 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightBrace);
 
         return new Statements\FunctionStatement(
+            location: Location::fromToken($token, $this->previous),
             name: $name->value,
             type: $type,
             parameters: $parameters,
             statements: $statements,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -277,8 +282,8 @@ final class Parser implements ParserInterface
 
             // Fallback
             default => new Expressions\IdentifierExpression(
+                location: Location::fromToken($token, $this->previous),
                 name: $token->value,
-                attributes: $this->buildAttributes($token),
             ),
         };
     }
@@ -313,10 +318,10 @@ final class Parser implements ParserInterface
         }
 
         return new Statements\IfStatement(
+            location: Location::fromToken($token, $this->previous),
             condition: $condition,
             thenStatements: $thenStatements,
             elseStatements: $elseStatements,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -326,8 +331,8 @@ final class Parser implements ParserInterface
         $value = intval($token->value);
 
         return new Literals\IntegerLiteral(
+            location: Location::fromToken($token, $this->previous),
             value: $value,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -336,8 +341,8 @@ final class Parser implements ParserInterface
         $token = $this->expect(TokenType::Identifier);
 
         return new Types\NamedType(
+            location: Location::fromToken($token, $this->previous),
             name: $token->value,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -346,8 +351,8 @@ final class Parser implements ParserInterface
         $token = $this->expect(TokenType::KeywordNull);
 
         return new Literals\NullLiteral(
+            location: Location::fromToken($token, $this->previous),
             value: null,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -357,9 +362,9 @@ final class Parser implements ParserInterface
         $type = $this->parseType();
 
         return new Parameter(
+            location: Location::fromToken($token, $this->previous),
             name: $token->value,
             type: $type,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -369,13 +374,13 @@ final class Parser implements ParserInterface
         $this->next();
 
         return new Expressions\UnaryExpression(
+            location: Location::fromToken($token, $this->previous),
             operator: Expressions\UnaryOperator::fromTokenType($operator->type),
             position: Expressions\UnaryPosition::Postfix,
             expression: new Expressions\IdentifierExpression(
+                location: Location::fromToken($token, $token),
                 name: $token->value,
-                attributes: $this->buildAttributes($token),
             ),
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -384,11 +389,13 @@ final class Parser implements ParserInterface
         $token = $this->current;
         $this->next();
 
+        $expression = $this->parseExpression();
+
         return new Expressions\UnaryExpression(
+            location: Location::fromToken($token, $this->previous),
             operator: Expressions\UnaryOperator::fromTokenType($token->type),
             position: Expressions\UnaryPosition::Prefix,
-            expression: $this->parseExpression(),
-            attributes: $this->buildAttributes($token),
+            expression: $expression,
         );
     }
 
@@ -435,8 +442,8 @@ final class Parser implements ParserInterface
                 }
 
                 $type = new Types\NullableType(
+                    location: Location::fromToken($token, $this->previous),
                     type: $type,
-                    attributes: $this->buildAttributes($token),
                 );
             }
 
@@ -444,8 +451,8 @@ final class Parser implements ParserInterface
                 $this->expect(TokenType::RightBracket);
 
                 $type = new Types\ArrayType(
+                    location: Location::fromToken($token, $this->previous),
                     type: $type,
-                    attributes: $this->buildAttributes($token),
                 );
             }
         }
@@ -461,8 +468,8 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\PrintStatement(
+            location: Location::fromToken($token, $this->previous),
             expression: $expression,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -479,8 +486,8 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\ReturnStatement(
+            location: Location::fromToken($token, $this->previous),
             expression: $expression,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -507,8 +514,8 @@ final class Parser implements ParserInterface
         $token = $this->expect(TokenType::String);
 
         return new Literals\StringLiteral(
+            location: Location::fromToken($token, $this->previous),
             value: $token->value,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -534,8 +541,8 @@ final class Parser implements ParserInterface
         }
 
         return new Expressions\TupleExpression(
+            location: Location::fromToken($token, $this->previous),
             expressions: $expressions,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -557,8 +564,8 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightParenthesis);
 
         return new Types\TupleType(
+            location: Location::fromToken($token, $this->previous),
             types: $types,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -582,10 +589,10 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::Semicolon);
 
         return new Statements\VarStatement(
+            location: Location::fromToken($token, $this->previous),
             name: $name->value,
             type: $type,
             expression: $expression,
-            attributes: $this->buildAttributes($token),
         );
     }
 
@@ -607,21 +614,10 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightBrace);
 
         return new Statements\WhileStatement(
+            location: Location::fromToken($token, $this->previous),
             condition: $condition,
             statements: $statements,
-            attributes: $this->buildAttributes($token),
         );
-    }
-
-    /** @return array<mixed> */
-    private function buildAttributes(Token $token): array
-    {
-        $previous = $this->previous;
-
-        return [
-            'lineStart' => $token->line,
-            'lineEnd'   => $previous->line,
-        ];
     }
 
     /** @phpstan-impure */

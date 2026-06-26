@@ -9,6 +9,7 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
+use Package\Nodes\Location;
 use Package\Nodes\Parameter;
 
 final class FunctionStatement extends AbstractStatement
@@ -26,9 +27,9 @@ final class FunctionStatement extends AbstractStatement
      * @param Parameter[] $parameters
      * @param AbstractStatement[] $statements
      */
-    public function __construct(string $name, AbstractType $type, array $parameters, array $statements, array $attributes = [])
+    public function __construct(Location $location, string $name, AbstractType $type, array $parameters, array $statements)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->name = $name;
         $this->type = $type;

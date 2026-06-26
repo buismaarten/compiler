@@ -11,27 +11,26 @@ use JsonSerializable;
 
 abstract class AbstractNode implements JsonSerializable
 {
-    /** @var array<mixed> */
-    private array $attributes = [];
+    private Location $location;
 
-    /** @param array<mixed> $attributes */
-    public function __construct(array $attributes = [])
+    public function __construct(Location $location)
     {
-        $this->attributes = $attributes;
+        $this->location = $location;
     }
 
-    // TODO
-    public function getLineStart(): int
+    public function getLocation(): Location
     {
-        // @phpstan-ignore-next-line
-        return intval($this->attributes['lineStart'] ?? 0);
+        return $this->location;
     }
 
-    // TODO
-    public function getLineEnd(): int
+    public function getStartLine(): int
     {
-        // @phpstan-ignore-next-line
-        return intval($this->attributes['lineEnd'] ?? 0);
+        return $this->getLocation()->startLine;
+    }
+
+    public function getEndLine(): int
+    {
+        return $this->getLocation()->endLine;
     }
 
     /** @return array<mixed> */

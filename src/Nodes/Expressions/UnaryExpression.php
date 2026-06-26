@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes\Expressions;
 
 use Package\Nodes\AbstractExpression;
+use Package\Nodes\Location;
 
 final class UnaryExpression extends AbstractExpression
 {
@@ -15,9 +16,9 @@ final class UnaryExpression extends AbstractExpression
     public UnaryPosition $position;
     public AbstractExpression $expression;
 
-    public function __construct(UnaryOperator $operator, UnaryPosition $position, AbstractExpression $expression, array $attributes = [])
+    public function __construct(Location $location, UnaryOperator $operator, UnaryPosition $position, AbstractExpression $expression)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->operator = $operator;
         $this->position = $position;

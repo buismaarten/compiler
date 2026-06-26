@@ -8,14 +8,15 @@ declare(strict_types=1);
 namespace Package\Nodes\Types;
 
 use Package\Nodes\AbstractType;
+use Package\Nodes\Location;
 
 final class ArrayType extends AbstractType
 {
     public AbstractType $type;
 
-    public function __construct(AbstractType $type, array $attributes = [])
+    public function __construct(Location $location, AbstractType $type)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->type = $type;
     }

@@ -9,6 +9,7 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Location;
 
 final class WhileStatement extends AbstractStatement
 {
@@ -18,9 +19,9 @@ final class WhileStatement extends AbstractStatement
     public array $statements;
 
     /** @param AbstractStatement[] $statements */
-    public function __construct(AbstractExpression $condition, array $statements, array $attributes = [])
+    public function __construct(Location $location, AbstractExpression $condition, array $statements)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->condition = $condition;
         $this->statements = $statements;

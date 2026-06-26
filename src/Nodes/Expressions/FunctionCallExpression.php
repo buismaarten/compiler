@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes\Expressions;
 
 use Package\Nodes\AbstractExpression;
+use Package\Nodes\Location;
 
 final class FunctionCallExpression extends AbstractExpression
 {
@@ -17,9 +18,9 @@ final class FunctionCallExpression extends AbstractExpression
     public array $arguments;
 
     /** @param AbstractExpression[] $arguments */
-    public function __construct(string $name, array $arguments, array $attributes = [])
+    public function __construct(Location $location, string $name, array $arguments)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->name = $name;
         $this->arguments = $arguments;

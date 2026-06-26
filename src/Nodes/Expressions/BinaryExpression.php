@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes\Expressions;
 
 use Package\Nodes\AbstractExpression;
+use Package\Nodes\Location;
 
 final class BinaryExpression extends AbstractExpression
 {
@@ -15,9 +16,9 @@ final class BinaryExpression extends AbstractExpression
     public AbstractExpression $left;
     public AbstractExpression $right;
 
-    public function __construct(BinaryOperator $operator, AbstractExpression $left, AbstractExpression $right, array $attributes = [])
+    public function __construct(Location $location, BinaryOperator $operator, AbstractExpression $left, AbstractExpression $right)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->operator = $operator;
         $this->left = $left;

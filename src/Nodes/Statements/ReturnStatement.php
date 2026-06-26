@@ -9,14 +9,15 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Location;
 
 final class ReturnStatement extends AbstractStatement
 {
     public ?AbstractExpression $expression;
 
-    public function __construct(?AbstractExpression $expression = null, array $attributes = [])
+    public function __construct(Location $location, ?AbstractExpression $expression = null)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->expression = $expression;
     }

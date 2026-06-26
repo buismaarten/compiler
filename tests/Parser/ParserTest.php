@@ -9,6 +9,7 @@ namespace Package\Tests\Parser;
 
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
+use Package\Nodes\Location;
 use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;
@@ -27,39 +28,39 @@ class ParserTest extends TestCase
             actual: self::createParser('[1, 2, 3];')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
                     expression: new Expressions\ArrayExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
                         expressions: [
                             new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
                                 value: 1,
-                                attributes: [
-                                    'lineStart' => 1,
-                                    'lineEnd'   => 1,
-                                ],
                             ),
                             new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
                                 value: 2,
-                                attributes: [
-                                    'lineStart' => 1,
-                                    'lineEnd'   => 1,
-                                ],
                             ),
                             new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
                                 value: 3,
-                                attributes: [
-                                    'lineStart' => 1,
-                                    'lineEnd'   => 1,
-                                ],
                             ),
-                        ],
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
                         ],
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
                 ),
             ],
         );
@@ -68,54 +69,54 @@ class ParserTest extends TestCase
             actual: self::createParser('[1, 2, [3, 4]];')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
                     expression: new Expressions\ArrayExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
                         expressions: [
                             new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
                                 value: 1,
-                                attributes: [
-                                    'lineStart' => 1,
-                                    'lineEnd'   => 1,
-                                ],
                             ),
                             new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
                                 value: 2,
-                                attributes: [
-                                    'lineStart' => 1,
-                                    'lineEnd'   => 1,
-                                ],
                             ),
                             new Expressions\ArrayExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
                                 expressions: [
                                     new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            endLine: 1,
+                                        ),
                                         value: 3,
-                                        attributes: [
-                                            'lineStart' => 1,
-                                            'lineEnd'   => 1,
-                                        ],
                                     ),
                                     new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            endLine: 1,
+                                        ),
                                         value: 4,
-                                        attributes: [
-                                            'lineStart' => 1,
-                                            'lineEnd'   => 1,
-                                        ],
                                     ),
-                                ],
-                                attributes: [
-                                    'lineStart' => 1,
-                                    'lineEnd'   => 1,
                                 ],
                             ),
                         ],
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
                 ),
             ],
         );
@@ -252,24 +253,24 @@ class ParserTest extends TestCase
             actual: self::createParser('foo = 123;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
                     expression: new Expressions\AssignmentExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
                         name: 'foo',
                         expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
                             value: 123,
-                            attributes: [
-                                'lineStart' => 1,
-                                'lineEnd'   => 1,
-                            ],
                         ),
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
                 ),
             ],
         );
@@ -315,17 +316,17 @@ class ParserTest extends TestCase
             actual: self::createParser('false;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\BooleanLiteral(
-                        value: false,
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    expression: new Literals\BooleanLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: false,
+                    ),
                 ),
             ],
         );
@@ -334,17 +335,17 @@ class ParserTest extends TestCase
             actual: self::createParser('true;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\BooleanLiteral(
-                        value: true,
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    expression: new Literals\BooleanLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: true,
+                    ),
                 ),
             ],
         );
@@ -357,10 +358,10 @@ class ParserTest extends TestCase
             actual: self::createParser('break;')->parse(),
             expected: [
                 new Statements\BreakStatement(
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
                 ),
             ],
         );
@@ -369,17 +370,17 @@ class ParserTest extends TestCase
             actual: self::createParser('break 2;')->parse(),
             expected: [
                 new Statements\BreakStatement(
-                    level: new Literals\IntegerLiteral(
-                        value: 2,
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    level: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 2,
+                    ),
                 ),
             ],
         );
@@ -432,10 +433,10 @@ class ParserTest extends TestCase
             actual: self::createParser('continue;')->parse(),
             expected: [
                 new Statements\ContinueStatement(
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
                 ),
             ],
         );
@@ -444,17 +445,17 @@ class ParserTest extends TestCase
             actual: self::createParser('continue 2;')->parse(),
             expected: [
                 new Statements\ContinueStatement(
-                    level: new Literals\IntegerLiteral(
-                        value: 2,
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    level: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 2,
+                    ),
                 ),
             ],
         );
@@ -467,17 +468,17 @@ class ParserTest extends TestCase
             actual: self::createParser('3.14;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\FloatLiteral(
-                        value: 3.14,
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    expression: new Literals\FloatLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 3.14,
+                    ),
                 ),
             ],
         );
@@ -606,17 +607,17 @@ class ParserTest extends TestCase
             actual: self::createParser('foo;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Expressions\IdentifierExpression(
-                        name: 'foo',
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    expression: new Expressions\IdentifierExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'foo',
+                    ),
                 ),
             ],
         );
@@ -674,17 +675,17 @@ class ParserTest extends TestCase
             actual: self::createParser('123;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\IntegerLiteral(
-                        value: 123,
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 123,
+                    ),
                 ),
             ],
         );
@@ -792,16 +793,16 @@ class ParserTest extends TestCase
             actual: self::createParser('null;')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\NullLiteral(
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    expression: new Literals\NullLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                    ),
                 ),
             ],
         );
@@ -966,17 +967,17 @@ class ParserTest extends TestCase
             actual: self::createParser('print 123;')->parse(),
             expected: [
                 new Statements\PrintStatement(
-                    expression: new Literals\IntegerLiteral(
-                        value: 123,
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 123,
+                    ),
                 ),
             ],
         );
@@ -989,11 +990,11 @@ class ParserTest extends TestCase
             actual: self::createParser('return;')->parse(),
             expected: [
                 new Statements\ReturnStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
                     expression: null,
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
                 ),
             ],
         );
@@ -1002,17 +1003,17 @@ class ParserTest extends TestCase
             actual: self::createParser('return 123;')->parse(),
             expected: [
                 new Statements\ReturnStatement(
-                    expression: new Literals\IntegerLiteral(
-                        value: 123,
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 123,
+                    ),
                 ),
             ],
         );
@@ -1025,17 +1026,17 @@ class ParserTest extends TestCase
             actual: self::createParser('"Hello, World!";')->parse(),
             expected: [
                 new Statements\ExpressionStatement(
-                    expression: new Literals\StringLiteral(
-                        value: 'Hello, World!',
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
                     ),
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
-                    ],
+                    expression: new Literals\StringLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        value: 'Hello, World!',
+                    ),
                 ),
             ],
         );
@@ -1247,24 +1248,24 @@ class ParserTest extends TestCase
             actual: self::createParser('while (foo) { break; }')->parse(),
             expected: [
                 new Statements\WhileStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
                     condition: new Expressions\IdentifierExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
                         name: 'foo',
-                        attributes: [
-                            'lineStart' => 1,
-                            'lineEnd'   => 1,
-                        ],
                     ),
                     statements: [
                         new Statements\BreakStatement(
-                            attributes: [
-                                'lineStart' => 1,
-                                'lineEnd'   => 1,
-                            ],
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            )
                         ),
-                    ],
-                    attributes: [
-                        'lineStart' => 1,
-                        'lineEnd'   => 1,
                     ],
                 ),
             ],

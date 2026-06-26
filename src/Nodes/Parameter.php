@@ -12,9 +12,9 @@ final class Parameter extends AbstractNode
     public string $name;
     public AbstractType $type;
 
-    public function __construct(string $name, AbstractType $type, array $attributes = [])
+    public function __construct(Location $location, string $name, AbstractType $type)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->name = $name;
         $this->type = $type;

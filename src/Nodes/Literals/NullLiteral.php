@@ -8,14 +8,15 @@ declare(strict_types=1);
 namespace Package\Nodes\Literals;
 
 use Package\Nodes\AbstractLiteral;
+use Package\Nodes\Location;
 
 final class NullLiteral extends AbstractLiteral
 {
     public null $value;
 
-    public function __construct(null $value = null, array $attributes = [])
+    public function __construct(Location $location, null $value = null)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->value = $value;
     }

@@ -8,15 +8,16 @@ declare(strict_types=1);
 namespace Package\Nodes\Expressions;
 
 use Package\Nodes\AbstractExpression;
+use Package\Nodes\Location;
 
 final class AssignmentExpression extends AbstractExpression
 {
     public string $name;
     public AbstractExpression $expression;
 
-    public function __construct(string $name, AbstractExpression $expression, array $attributes = [])
+    public function __construct(Location $location, string $name, AbstractExpression $expression)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->name = $name;
         $this->expression = $expression;

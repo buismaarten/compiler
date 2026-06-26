@@ -8,14 +8,15 @@ declare(strict_types=1);
 namespace Package\Nodes\Literals;
 
 use Package\Nodes\AbstractLiteral;
+use Package\Nodes\Location;
 
 final class FloatLiteral extends AbstractLiteral
 {
     public float $value;
 
-    public function __construct(float $value, array $attributes = [])
+    public function __construct(Location $location, float $value)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->value = $value;
     }

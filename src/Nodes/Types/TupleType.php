@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes\Types;
 
 use Package\Nodes\AbstractType;
+use Package\Nodes\Location;
 
 final class TupleType extends AbstractType
 {
@@ -15,9 +16,9 @@ final class TupleType extends AbstractType
     public array $types;
 
     /** @param AbstractType[] $types */
-    public function __construct(array $types, array $attributes = [])
+    public function __construct(Location $location, array $types)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->types = $types;
     }

@@ -8,14 +8,15 @@ declare(strict_types=1);
 namespace Package\Nodes\Expressions;
 
 use Package\Nodes\AbstractExpression;
+use Package\Nodes\Location;
 
 final class IdentifierExpression extends AbstractExpression
 {
     public string $name;
 
-    public function __construct(string $name, array $attributes = [])
+    public function __construct(Location $location, string $name)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->name = $name;
     }

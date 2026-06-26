@@ -10,6 +10,7 @@ namespace Package\Nodes\Statements;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
+use Package\Nodes\Location;
 
 final class VarStatement extends AbstractStatement
 {
@@ -17,9 +18,9 @@ final class VarStatement extends AbstractStatement
     public AbstractType $type;
     public AbstractExpression $expression;
 
-    public function __construct(string $name, AbstractType $type, AbstractExpression $expression, array $attributes = [])
+    public function __construct(Location $location, string $name, AbstractType $type, AbstractExpression $expression)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->name = $name;
         $this->type = $type;

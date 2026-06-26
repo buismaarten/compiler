@@ -9,14 +9,15 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Location;
 
 final class ContinueStatement extends AbstractStatement
 {
     public ?AbstractExpression $level;
 
-    public function __construct(?AbstractExpression $level = null, array $attributes = [])
+    public function __construct(Location $location, ?AbstractExpression $level = null)
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->level = $level;
     }

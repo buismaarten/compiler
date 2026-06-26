@@ -9,6 +9,7 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Location;
 
 final class IfStatement extends AbstractStatement
 {
@@ -24,9 +25,9 @@ final class IfStatement extends AbstractStatement
      * @param AbstractStatement[] $thenStatements
      * @param AbstractStatement[] $elseStatements
      */
-    public function __construct(AbstractExpression $condition, array $thenStatements, array $elseStatements = [], array $attributes = [])
+    public function __construct(Location $location, AbstractExpression $condition, array $thenStatements, array $elseStatements = [])
     {
-        parent::__construct($attributes);
+        parent::__construct($location);
 
         $this->condition = $condition;
         $this->thenStatements = $thenStatements;
