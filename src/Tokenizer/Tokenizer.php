@@ -58,7 +58,7 @@ final class Tokenizer implements TokenizerInterface
             }
 
             if ($current === null) {
-                return new Token(TokenType::Eof, $this->line, $offset, $offset);
+                return $this->createToken(TokenType::Eof, $offset);
             }
 
             $token = match ($current) {
@@ -111,10 +111,10 @@ final class Tokenizer implements TokenizerInterface
         if ($this->input->current() === '&') {
             $this->input->next();
 
-            return new Token(TokenType::BooleanAnd, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::BooleanAnd, $offset);
         }
 
-        return new Token(TokenType::BitwiseAnd, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::BitwiseAnd, $offset);
     }
 
     private function tokenizeAssign(): Token
@@ -128,13 +128,13 @@ final class Tokenizer implements TokenizerInterface
             if ($this->input->current() === '=') {
                 $this->input->next();
 
-                return new Token(TokenType::Identical, $this->line, $offset, $this->input->offset());
+                return $this->createToken(TokenType::Identical, $offset);
             }
 
-            return new Token(TokenType::Equal, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::Equal, $offset);
         }
 
-        return new Token(TokenType::Assign, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::Assign, $offset);
     }
 
     private function tokenizeAsterisk(): Token
@@ -142,7 +142,7 @@ final class Tokenizer implements TokenizerInterface
         $offset = $this->input->offset();
         $this->input->next();
 
-        return new Token(TokenType::Multiply, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::Multiply, $offset);
     }
 
     private function tokenizeCharacter(TokenType $type): Token
@@ -150,7 +150,7 @@ final class Tokenizer implements TokenizerInterface
         $offset = $this->input->offset();
         $this->input->next();
 
-        return new Token($type, $this->line, $offset, $this->input->offset());
+        return $this->createToken($type, $offset);
     }
 
     private function tokenizeExclamationMark(): Token
@@ -164,13 +164,13 @@ final class Tokenizer implements TokenizerInterface
             if ($this->input->current() === '=') {
                 $this->input->next();
 
-                return new Token(TokenType::NotIdentical, $this->line, $offset, $this->input->offset());
+                return $this->createToken(TokenType::NotIdentical, $offset);
             }
 
-            return new Token(TokenType::NotEqual, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::NotEqual, $offset);
         }
 
-        return new Token(TokenType::BooleanNot, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::BooleanNot, $offset);
     }
 
     private function tokenizeIdentifier(): Token
@@ -188,7 +188,7 @@ final class Tokenizer implements TokenizerInterface
             $value = '';
         }
 
-        return new Token($type, $this->line, $offset, $this->input->offset(), $value);
+        return $this->createToken($type, $offset, $value);
     }
 
     private function tokenizeLeftAngle(): Token
@@ -199,7 +199,7 @@ final class Tokenizer implements TokenizerInterface
         if ($this->input->current() === '<') {
             $this->input->next();
 
-            return new Token(TokenType::ShiftLeft, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::ShiftLeft, $offset);
         }
 
         if ($this->input->current() === '=') {
@@ -208,13 +208,13 @@ final class Tokenizer implements TokenizerInterface
             if ($this->input->current() === '>') {
                 $this->input->next();
 
-                return new Token(TokenType::Spaceship, $this->line, $offset, $this->input->offset());
+                return $this->createToken(TokenType::Spaceship, $offset);
             }
 
-            return new Token(TokenType::LessThanEqual, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::LessThanEqual, $offset);
         }
 
-        return new Token(TokenType::LessThan, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::LessThan, $offset);
     }
 
     private function tokenizeMinus(): Token
@@ -225,10 +225,10 @@ final class Tokenizer implements TokenizerInterface
         if ($this->input->current() === '-') {
             $this->input->next();
 
-            return new Token(TokenType::Decrement, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::Decrement, $offset);
         }
 
-        return new Token(TokenType::Minus, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::Minus, $offset);
     }
 
     private function tokenizeNumber(): Token
@@ -253,13 +253,7 @@ final class Tokenizer implements TokenizerInterface
             }
         }
 
-        return new Token(
-            type: $token,
-            line: $this->line,
-            offsetStart: $offset,
-            offsetEnd: $this->input->offset(),
-            value: $this->input->slice($offset, $this->input->offset()),
-        );
+        return $this->createToken($token, $offset, $this->input->slice($offset, $this->input->offset()));
     }
 
     private function tokenizePipe(): Token
@@ -270,10 +264,10 @@ final class Tokenizer implements TokenizerInterface
         if ($this->input->current() === '|') {
             $this->input->next();
 
-            return new Token(TokenType::BooleanOr, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::BooleanOr, $offset);
         }
 
-        return new Token(TokenType::BitwiseOr, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::BitwiseOr, $offset);
     }
 
     private function tokenizePlus(): Token
@@ -284,10 +278,10 @@ final class Tokenizer implements TokenizerInterface
         if ($this->input->current() === '+') {
             $this->input->next();
 
-            return new Token(TokenType::Increment, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::Increment, $offset);
         }
 
-        return new Token(TokenType::Plus, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::Plus, $offset);
     }
 
     private function tokenizeRightAngle(): Token
@@ -298,16 +292,16 @@ final class Tokenizer implements TokenizerInterface
         if ($this->input->current() === '>') {
             $this->input->next();
 
-            return new Token(TokenType::ShiftRight, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::ShiftRight, $offset);
         }
 
         if ($this->input->current() === '=') {
             $this->input->next();
 
-            return new Token(TokenType::GreaterThanEqual, $this->line, $offset, $this->input->offset());
+            return $this->createToken(TokenType::GreaterThanEqual, $offset);
         }
 
-        return new Token(TokenType::GreaterThan, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::GreaterThan, $offset);
     }
 
     private function tokenizeSlash(): ?Token
@@ -325,7 +319,7 @@ final class Tokenizer implements TokenizerInterface
             return null;
         }
 
-        return new Token(TokenType::Divide, $this->line, $offset, $this->input->offset());
+        return $this->createToken(TokenType::Divide, $offset);
     }
 
     // TODO
@@ -390,6 +384,17 @@ final class Tokenizer implements TokenizerInterface
             $this->input->next();
         }
 
-        return new Token(TokenType::String, $this->line, $offset, $this->input->offset(), $value);
+        return $this->createToken(TokenType::String, $offset, $value);
+    }
+
+    private function createToken(TokenType $type, int $offsetStart, string $value = ''): Token
+    {
+        return new Token(
+            type: $type,
+            line: $this->line,
+            offsetStart: $offsetStart,
+            offsetEnd: $this->input->offset(),
+            value: $value,
+        );
     }
 }
