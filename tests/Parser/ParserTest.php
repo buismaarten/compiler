@@ -623,50 +623,71 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testIfStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('if (foo) { break; }')->parse(),
-    //         expected: [
-    //             new Statements\IfStatement(
-    //                 line: 1,
-    //                 condition: new Expressions\IdentifierExpression(
-    //                     line: 1,
-    //                     name: 'foo',
-    //                 ),
-    //                 thenStatements: [
-    //                     new Statements\BreakStatement(
-    //                         line: 1,
-    //                     ),
-    //                 ],
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testIfStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('if (foo) { break; }')->parse(),
+            expected: [
+                new Statements\IfStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    condition: new Expressions\IdentifierExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'foo',
+                    ),
+                    thenStatements: [
+                        new Statements\BreakStatement(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('if (foo) { break; } else { continue; }')->parse(),
-    //         expected: [
-    //             new Statements\IfStatement(
-    //                 line: 1,
-    //                 condition: new Expressions\IdentifierExpression(
-    //                     line: 1,
-    //                     name: 'foo',
-    //                 ),
-    //                 thenStatements: [
-    //                     new Statements\BreakStatement(
-    //                         line: 1,
-    //                     ),
-    //                 ],
-    //                 elseStatements: [
-    //                     new Statements\ContinueStatement(
-    //                         line: 1,
-    //                     ),
-    //                 ],
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('if (foo) { break; } else { continue; }')->parse(),
+            expected: [
+                new Statements\IfStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    condition: new Expressions\IdentifierExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        name: 'foo',
+                    ),
+                    thenStatements: [
+                        new Statements\BreakStatement(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                        ),
+                    ],
+                    elseStatements: [
+                        new Statements\ContinueStatement(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                        ),
+                    ],
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testIntegerLiteral(): void
