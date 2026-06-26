@@ -798,7 +798,7 @@ class ParserTest extends TestCase
     public function testIfStatement(): void
     {
         $this->assertEquals(
-            actual: self::createParser('if (foo) { break; }')->parse(),
+            actual: self::createParser('if (foo) { return 1; }')->parse(),
             expected: [
                 new Statements\IfStatement(
                     location: new Location(
@@ -813,10 +813,17 @@ class ParserTest extends TestCase
                         name: 'foo',
                     ),
                     thenStatements: [
-                        new Statements\BreakStatement(
+                        new Statements\ReturnStatement(
                             location: new Location(
                                 startLine: 1,
                                 endLine: 1,
+                            ),
+                            expression: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 1,
                             ),
                         ),
                     ],
@@ -825,7 +832,7 @@ class ParserTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createParser('if (foo) { break; } else { continue; }')->parse(),
+            actual: self::createParser('if (foo) { return 1; } else { return 2; }')->parse(),
             expected: [
                 new Statements\IfStatement(
                     location: new Location(
@@ -840,18 +847,32 @@ class ParserTest extends TestCase
                         name: 'foo',
                     ),
                     thenStatements: [
-                        new Statements\BreakStatement(
+                        new Statements\ReturnStatement(
                             location: new Location(
                                 startLine: 1,
                                 endLine: 1,
                             ),
+                            expression: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 1,
+                            ),
                         ),
                     ],
                     elseStatements: [
-                        new Statements\ContinueStatement(
+                        new Statements\ReturnStatement(
                             location: new Location(
                                 startLine: 1,
                                 endLine: 1,
+                            ),
+                            expression: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    endLine: 1,
+                                ),
+                                value: 2,
                             ),
                         ),
                     ],
