@@ -1698,7 +1698,7 @@ class ParserTest extends TestCase
                                     startLine: 1,
                                     startOffset: 23,
                                     endLine: 1,
-                                    endOffset: 26
+                                    endOffset: 26,
                                 ),
                                 value: 123,
                             ),
@@ -1707,7 +1707,7 @@ class ParserTest extends TestCase
                                     startLine: 1,
                                     startOffset: 28,
                                     endLine: 1,
-                                    endOffset: 31
+                                    endOffset: 31,
                                 ),
                                 value: 456,
                             ),
