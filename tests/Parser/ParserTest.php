@@ -324,35 +324,41 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testAssignmentExpression(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('foo = 123;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //                 expression: new Expressions\AssignmentExpression(
-    //                     location: new Location(
-    //                         startLine: 1,
-    //                         endLine: 1,
-    //                     ),
-    //                     name: 'foo',
-    //                     expression: new Literals\IntegerLiteral(
-    //                         location: new Location(
-    //                             startLine: 1,
-    //                             endLine: 1,
-    //                         ),
-    //                         value: 123,
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testAssignmentExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo = 123;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 10,
+                    ),
+                    expression: new Expressions\AssignmentExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 9,
+                        ),
+                        name: 'foo',
+                        expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 6,
+                                endLine: 1,
+                                endOffset: 9,
+                            ),
+                            value: 123,
+                        ),
+                    ),
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testBinaryExpression(): void
