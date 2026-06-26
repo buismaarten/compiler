@@ -455,40 +455,46 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testBreakStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('break;')->parse(),
-    //         expected: [
-    //             new Statements\BreakStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testBreakStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('break;')->parse(),
+            expected: [
+                new Statements\BreakStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 6,
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('break 2;')->parse(),
-    //         expected: [
-    //             new Statements\BreakStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //                 level: new Literals\IntegerLiteral(
-    //                     location: new Location(
-    //                         startLine: 1,
-    //                         endLine: 1,
-    //                     ),
-    //                     value: 2,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('break 2;')->parse(),
+            expected: [
+                new Statements\BreakStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 8,
+                    ),
+                    level: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 6,
+                            endLine: 1,
+                            endOffset: 7,
+                        ),
+                        value: 2,
+                    ),
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testConstStatement(): void
@@ -548,40 +554,46 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testContinueStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('continue;')->parse(),
-    //         expected: [
-    //             new Statements\ContinueStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testContinueStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('continue;')->parse(),
+            expected: [
+                new Statements\ContinueStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 9,
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('continue 2;')->parse(),
-    //         expected: [
-    //             new Statements\ContinueStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //                 level: new Literals\IntegerLiteral(
-    //                     location: new Location(
-    //                         startLine: 1,
-    //                         endLine: 1,
-    //                     ),
-    //                     value: 2,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('continue 2;')->parse(),
+            expected: [
+                new Statements\ContinueStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 11,
+                    ),
+                    level: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 9,
+                            endLine: 1,
+                            endOffset: 10,
+                        ),
+                        value: 2,
+                    ),
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testFloatLiteral(): void
