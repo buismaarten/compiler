@@ -1646,62 +1646,76 @@ class ParserTest extends TestCase
     #[Test]
     public function testTupleType(): void
     {
-        // $this->assertEquals(
-        //     actual: self::createParser('var foo: (int, int) = (123, 456);')->parse(),
-        //     expected: [
-        //         new Statements\VarStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             name: 'foo',
-        //             type: new Types\TupleType(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 types: [
-        //                     new Types\NamedType(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         name: 'int',
-        //                     ),
-        //                     new Types\NamedType(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         name: 'int',
-        //                     ),
-        //                 ],
-        //             ),
-        //             expression: new Expressions\TupleExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 expressions: [
-        //                     new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 123,
-        //                     ),
-        //                     new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 456,
-        //                     ),
-        //                 ],
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('var foo: (int, int) = (123, 456);')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 33,
+                    ),
+                    name: 'foo',
+                    type: new Types\TupleType(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 9,
+                            endLine: 1,
+                            endOffset: 19,
+                        ),
+                        types: [
+                            new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 10,
+                                    endLine: 1,
+                                    endOffset: 13,
+                                ),
+                                name: 'int',
+                            ),
+                            new Types\NamedType(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 15,
+                                    endLine: 1,
+                                    endOffset: 18,
+                                ),
+                                name: 'int',
+                            ),
+                        ],
+                    ),
+                    expression: new Expressions\TupleExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 22,
+                            endLine: 1,
+                            endOffset: 32,
+                        ),
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 23,
+                                    endLine: 1,
+                                    endOffset: 26
+                                ),
+                                value: 123,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 28,
+                                    endLine: 1,
+                                    endOffset: 31
+                                ),
+                                value: 456,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
 
         // $this->assertEquals(
         //     actual: self::createParser('var foo: (int, int) = ((123, 456));')->parse(),
