@@ -783,28 +783,32 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testIdentifierExpression(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('foo;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //                 expression: new Expressions\IdentifierExpression(
-    //                     location: new Location(
-    //                         startLine: 1,
-    //                         endLine: 1,
-    //                     ),
-    //                     name: 'foo',
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testIdentifierExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 4,
+                    ),
+                    expression: new Expressions\IdentifierExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 3,
+                        ),
+                        name: 'foo',
+                    ),
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testIfStatement(): void
