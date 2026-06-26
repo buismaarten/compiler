@@ -317,7 +317,7 @@ class ParserTest extends TestCase
                         location: new Location(
                             startLine: 1,
                             endLine: 1,
-                        )
+                        ),
                     ),
                 ),
             ],
@@ -1693,7 +1693,7 @@ class ParserTest extends TestCase
                             location: new Location(
                                 startLine: 1,
                                 endLine: 1,
-                            )
+                            ),
                         ),
                     ],
                 ),
