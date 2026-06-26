@@ -1319,64 +1319,74 @@ class ParserTest extends TestCase
     //     );
     // }
 
-    // #[Test]
-    // public function testPrintStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('print 123;')->parse(),
-    //         expected: [
-    //             new Statements\PrintStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //                 expression: new Literals\IntegerLiteral(
-    //                     location: new Location(
-    //                         startLine: 1,
-    //                         endLine: 1,
-    //                     ),
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testPrintStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('print 123;')->parse(),
+            expected: [
+                new Statements\PrintStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 10,
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 6,
+                            endLine: 1,
+                            endOffset: 9,
+                        ),
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
+    }
 
-    // #[Test]
-    // public function testReturnStatement(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('return;')->parse(),
-    //         expected: [
-    //             new Statements\ReturnStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //                 expression: null,
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testReturnStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('return;')->parse(),
+            expected: [
+                new Statements\ReturnStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 7,
+                    ),
+                    expression: null,
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('return 123;')->parse(),
-    //         expected: [
-    //             new Statements\ReturnStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //                 expression: new Literals\IntegerLiteral(
-    //                     location: new Location(
-    //                         startLine: 1,
-    //                         endLine: 1,
-    //                     ),
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('return 123;')->parse(),
+            expected: [
+                new Statements\ReturnStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 11,
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 7,
+                            endLine: 1,
+                            endOffset: 10,
+                        ),
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
+    }
 
     #[Test]
     public function testStringLiteral(): void
