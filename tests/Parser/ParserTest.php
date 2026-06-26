@@ -862,45 +862,63 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testPostfixUnaryExpression(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('foo--;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\UnaryExpression(
-    //                     line: 1,
-    //                     operator: Expressions\UnaryOperator::Decrement,
-    //                     position: Expressions\UnaryPosition::Postfix,
-    //                     expression: new Expressions\IdentifierExpression(
-    //                         line: 1,
-    //                         name: 'foo',
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
+    #[Test]
+    public function testPostfixUnaryExpression(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('foo--;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\UnaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        operator: Expressions\UnaryOperator::Decrement,
+                        position: Expressions\UnaryPosition::Postfix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
 
-    //     $this->assertEquals(
-    //         actual: self::createParser('foo++;')->parse(),
-    //         expected: [
-    //             new Statements\ExpressionStatement(
-    //                 line: 1,
-    //                 expression: new Expressions\UnaryExpression(
-    //                     line: 1,
-    //                     operator: Expressions\UnaryOperator::Increment,
-    //                     position: Expressions\UnaryPosition::Postfix,
-    //                     expression: new Expressions\IdentifierExpression(
-    //                         line: 1,
-    //                         name: 'foo',
-    //                     ),
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+        $this->assertEquals(
+            actual: self::createParser('foo++;')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        endLine: 1,
+                    ),
+                    expression: new Expressions\UnaryExpression(
+                        location: new Location(
+                            startLine: 1,
+                            endLine: 1,
+                        ),
+                        operator: Expressions\UnaryOperator::Increment,
+                        position: Expressions\UnaryPosition::Postfix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                endLine: 1,
+                            ),
+                            name: 'foo',
+                        ),
+                    ),
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testPrefixUnaryExpression(): void
