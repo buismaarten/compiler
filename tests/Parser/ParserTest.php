@@ -593,32 +593,38 @@ class ParserTest extends TestCase
     #[Test]
     public function testConstStatement(): void
     {
-        // $this->assertEquals(
-        //     actual: self::createParser('const foo: int = 123;')->parse(),
-        //     expected: [
-        //         new Statements\ConstStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             name: 'foo',
-        //             type: new Types\NamedType(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 name: 'int',
-        //             ),
-        //             expression: new Literals\IntegerLiteral(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 value: 123,
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('const foo: int = 123;')->parse(),
+            expected: [
+                new Statements\ConstStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 21,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 11,
+                            endLine: 1,
+                            endOffset: 14,
+                        ),
+                        name: 'int',
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 17,
+                            endLine: 1,
+                            endOffset: 20,
+                        ),
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
 
         // $this->assertEquals(
         //     actual: self::createParser('const foo: xyz = 123;')->parse(),
