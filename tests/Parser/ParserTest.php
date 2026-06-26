@@ -920,36 +920,42 @@ class ParserTest extends TestCase
         );
     }
 
-    // #[Test]
-    // public function testNamedType(): void
-    // {
-    //     $this->assertEquals(
-    //         actual: self::createParser('var foo: int = 123;')->parse(),
-    //         expected: [
-    //             new Statements\VarStatement(
-    //                 location: new Location(
-    //                     startLine: 1,
-    //                     endLine: 1,
-    //                 ),
-    //                 name: 'foo',
-    //                 type: new Types\NamedType(
-    //                     location: new Location(
-    //                         startLine: 1,
-    //                         endLine: 1,
-    //                     ),
-    //                     name: 'int',
-    //                 ),
-    //                 expression: new Literals\IntegerLiteral(
-    //                     location: new Location(
-    //                         startLine: 1,
-    //                         endLine: 1,
-    //                     ),
-    //                     value: 123,
-    //                 ),
-    //             ),
-    //         ],
-    //     );
-    // }
+    #[Test]
+    public function testNamedType(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('var foo: int = 123;')->parse(),
+            expected: [
+                new Statements\VarStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 19,
+                    ),
+                    name: 'foo',
+                    type: new Types\NamedType(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 9,
+                            endLine: 1,
+                            endOffset: 12,
+                        ),
+                        name: 'int',
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 15,
+                            endLine: 1,
+                            endOffset: 18,
+                        ),
+                        value: 123,
+                    ),
+                ),
+            ],
+        );
+    }
 
     // #[Test]
     // public function testNullableType(): void
