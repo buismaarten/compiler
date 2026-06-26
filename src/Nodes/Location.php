@@ -26,6 +26,14 @@ final class Location
 
     public static function fromToken(Token $startToken, Token $endToken): self
     {
+        if ($startToken->line > $endToken->line) {
+            throw new \InvalidArgumentException('Invalid token line');
+        }
+
+        if ($startToken->startOffset > $endToken->endOffset) {
+            throw new \InvalidArgumentException('Invalid token offset');
+        }
+
         return new self(
             startLine: $startToken->line,
             startOffset: $startToken->startOffset,
