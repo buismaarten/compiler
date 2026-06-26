@@ -755,49 +755,59 @@ class ParserTest extends TestCase
             ],
         );
 
-        // $this->assertEquals(
-        //     actual: self::createParser('foo(123, foo("bar"));')->parse(),
-        //     expected: [
-        //         new Statements\ExpressionStatement(
-        //             location: new Location(
-        //                 startLine: 1,
-        //                 endLine: 1,
-        //             ),
-        //             expression: new Expressions\FunctionCallExpression(
-        //                 location: new Location(
-        //                     startLine: 1,
-        //                     endLine: 1,
-        //                 ),
-        //                 name: 'foo',
-        //                 arguments: [
-        //                     new Literals\IntegerLiteral(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         value: 123,
-        //                     ),
-        //                     new Expressions\FunctionCallExpression(
-        //                         location: new Location(
-        //                             startLine: 1,
-        //                             endLine: 1,
-        //                         ),
-        //                         name: 'foo',
-        //                         arguments: [
-        //                             new Literals\StringLiteral(
-        //                                 location: new Location(
-        //                                     startLine: 1,
-        //                                     endLine: 1,
-        //                                 ),
-        //                                 value: 'bar',
-        //                             ),
-        //                         ],
-        //                     ),
-        //                 ],
-        //             ),
-        //         ),
-        //     ],
-        // );
+        $this->assertEquals(
+            actual: self::createParser('foo(123, foo("bar"));')->parse(),
+            expected: [
+                new Statements\ExpressionStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 21,
+                    ),
+                    expression: new Expressions\FunctionCallExpression(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 20,
+                        ),
+                        name: 'foo',
+                        arguments: [
+                            new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 4,
+                                    endLine: 1,
+                                    endOffset: 7,
+                                ),
+                                value: 123,
+                            ),
+                            new Expressions\FunctionCallExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 9,
+                                    endLine: 1,
+                                    endOffset: 19,
+                                ),
+                                name: 'foo',
+                                arguments: [
+                                    new Literals\StringLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 13,
+                                            endLine: 1,
+                                            endOffset: 18,
+                                        ),
+                                        value: 'bar',
+                                    ),
+                                ],
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
     }
 
     #[Test]
