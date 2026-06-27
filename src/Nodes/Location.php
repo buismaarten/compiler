@@ -7,8 +7,6 @@ declare(strict_types=1);
 
 namespace Package\Nodes;
 
-use Package\Tokenizer\Token;
-
 final class Location
 {
     public readonly int $startLine;
@@ -22,18 +20,5 @@ final class Location
         $this->startOffset = $startOffset;
         $this->endLine = $endLine;
         $this->endOffset = $endOffset;
-    }
-
-    public static function fromToken(Token $startToken, Token $endToken): self
-    {
-        assert($startToken->line <= $endToken->line);
-        assert($startToken->startOffset <= $endToken->endOffset);
-
-        return new self(
-            startLine: $startToken->line,
-            startOffset: $startToken->startOffset,
-            endLine: $endToken->line,
-            endOffset: $endToken->endOffset,
-        );
     }
 }
