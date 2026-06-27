@@ -373,14 +373,16 @@ final class Parser implements ParserInterface
         $operator = $this->current;
         $this->next();
 
+        $expression = new Expressions\IdentifierExpression(
+            location: Location::fromToken($token, $token),
+            name: $token->value,
+        );
+
         return new Expressions\UnaryExpression(
             location: Location::fromToken($token, $this->previous),
             operator: Expressions\UnaryOperator::fromTokenType($operator->type),
             position: Expressions\UnaryPosition::Postfix,
-            expression: new Expressions\IdentifierExpression(
-                location: Location::fromToken($token, $token),
-                name: $token->value,
-            ),
+            expression: $expression,
         );
     }
 
