@@ -387,7 +387,7 @@ final class Parser implements ParserInterface
         );
 
         return new Expressions\UnaryExpression(
-            location: $this->createLocation($token),
+            location: $this->createLocation($token, $operator),
             operator: Expressions\UnaryOperator::fromTokenType($operator->type),
             position: Expressions\UnaryPosition::Postfix,
             expression: $expression,
