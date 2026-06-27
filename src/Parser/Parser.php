@@ -336,9 +336,17 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseNamedType(): Types\NamedType
+    private function parseNamedType(): AbstractType
     {
         $token = $this->expect(TokenType::Identifier);
+        $type = Types\Type::tryFrom($token->value);
+
+        if ($type !== null) {
+            return new Types\BuiltinType(
+                location: Location::fromToken($token, $this->previous),
+                type: $type,
+            );
+        }
 
         return new Types\NamedType(
             location: Location::fromToken($token, $this->previous),

@@ -167,14 +167,14 @@ class ParserTest extends TestCase
                             endLine: 1,
                             endOffset: 14,
                         ),
-                        type: new Types\NamedType(
+                        type: new Types\BuiltinType(
                             location: new Location(
                                 startLine: 1,
                                 startOffset: 9,
                                 endLine: 1,
                                 endOffset: 12,
                             ),
-                            name: 'int',
+                            type: Types\Type::Integer,
                         ),
                     ),
                     expression: new Expressions\ArrayExpression(
@@ -234,14 +234,14 @@ class ParserTest extends TestCase
                                 endLine: 1,
                                 endOffset: 14,
                             ),
-                            type: new Types\NamedType(
+                            type: new Types\BuiltinType(
                                 location: new Location(
                                     startLine: 1,
                                     startOffset: 9,
                                     endLine: 1,
                                     endOffset: 12,
                                 ),
-                                name: 'int',
+                                type: Types\Type::Integer,
                             ),
                         ),
                     ),
@@ -312,14 +312,14 @@ class ParserTest extends TestCase
                                 endLine: 1,
                                 endOffset: 14,
                             ),
-                            type: new Types\NamedType(
+                            type: new Types\BuiltinType(
                                 location: new Location(
                                     startLine: 1,
                                     startOffset: 9,
                                     endLine: 1,
                                     endOffset: 12,
                                 ),
-                                name: 'int',
+                                type: Types\Type::Integer,
                             ),
                         ),
                     ),
@@ -374,14 +374,14 @@ class ParserTest extends TestCase
                                         endLine: 1,
                                         endOffset: 14,
                                     ),
-                                    type: new Types\NamedType(
+                                    type: new Types\BuiltinType(
                                         location: new Location(
                                             startLine: 1,
                                             startOffset: 9,
                                             endLine: 1,
                                             endOffset: 12,
                                         ),
-                                        name: 'int',
+                                        type: Types\Type::Integer,
                                     ),
                                 ),
                             ),
@@ -604,14 +604,14 @@ class ParserTest extends TestCase
                         endOffset: 21,
                     ),
                     name: 'foo',
-                    type: new Types\NamedType(
+                    type: new Types\BuiltinType(
                         location: new Location(
                             startLine: 1,
                             startOffset: 11,
                             endLine: 1,
                             endOffset: 14,
                         ),
-                        name: 'int',
+                        type: Types\Type::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: new Location(
@@ -824,14 +824,14 @@ class ParserTest extends TestCase
                         endOffset: 41,
                     ),
                     name: 'foo',
-                    type: new Types\NamedType(
+                    type: new Types\BuiltinType(
                         location: new Location(
                             startLine: 1,
                             startOffset: 10,
                             endLine: 1,
                             endOffset: 14,
                         ),
-                        name: 'void',
+                        type: Types\Type::Void,
                     ),
                     parameters: [],
                     statements: [
@@ -886,14 +886,14 @@ class ParserTest extends TestCase
                                 endOffset: 15,
                             ),
                             name: 'bar',
-                            type: new Types\NamedType(
+                            type: new Types\BuiltinType(
                                 location: new Location(
                                     startLine: 1,
                                     startOffset: 12,
                                     endLine: 1,
                                     endOffset: 15,
                                 ),
-                                name: 'int',
+                                type: Types\Type::Integer,
                             ),
                         ),
                         new Parameter(
@@ -1114,14 +1114,14 @@ class ParserTest extends TestCase
                         endOffset: 19,
                     ),
                     name: 'foo',
-                    type: new Types\NamedType(
+                    type: new Types\BuiltinType(
                         location: new Location(
                             startLine: 1,
                             startOffset: 9,
                             endLine: 1,
                             endOffset: 12,
                         ),
-                        name: 'int',
+                        type: Types\Type::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: new Location(
@@ -1158,14 +1158,14 @@ class ParserTest extends TestCase
                             endLine: 1,
                             endOffset: 13,
                         ),
-                        type: new Types\NamedType(
+                        type: new Types\BuiltinType(
                             location: new Location(
                                 startLine: 1,
                                 startOffset: 9,
                                 endLine: 1,
                                 endOffset: 12,
                             ),
-                            name: 'int',
+                            type: Types\Type::Integer,
                         ),
                     ),
                     expression: new Literals\NullLiteral(
@@ -1205,14 +1205,14 @@ class ParserTest extends TestCase
                                 endLine: 1,
                                 endOffset: 13,
                             ),
-                            type: new Types\NamedType(
+                            type: new Types\BuiltinType(
                                 location: new Location(
                                     startLine: 1,
                                     startOffset: 9,
                                     endLine: 1,
                                     endOffset: 12,
                                 ),
-                                name: 'int',
+                                type: Types\Type::Integer,
                             ),
                         ),
                     ),
@@ -1260,14 +1260,14 @@ class ParserTest extends TestCase
                                     endLine: 1,
                                     endOffset: 13,
                                 ),
-                                type: new Types\NamedType(
+                                type: new Types\BuiltinType(
                                     location: new Location(
                                         startLine: 1,
                                         startOffset: 9,
                                         endLine: 1,
                                         endOffset: 12,
                                     ),
-                                    name: 'int',
+                                    type: Types\Type::Integer,
                                 ),
                             ),
                         ),
@@ -1701,23 +1701,23 @@ class ParserTest extends TestCase
                             endOffset: 19,
                         ),
                         types: [
-                            new Types\NamedType(
+                            new Types\BuiltinType(
                                 location: new Location(
                                     startLine: 1,
                                     startOffset: 10,
                                     endLine: 1,
                                     endOffset: 13,
                                 ),
-                                name: 'int',
+                                type: Types\Type::Integer,
                             ),
-                            new Types\NamedType(
+                            new Types\BuiltinType(
                                 location: new Location(
                                     startLine: 1,
                                     startOffset: 15,
                                     endLine: 1,
                                     endOffset: 18,
                                 ),
-                                name: 'int',
+                                type: Types\Type::Integer,
                             ),
                         ],
                     ),
@@ -1772,23 +1772,23 @@ class ParserTest extends TestCase
                             endOffset: 19,
                         ),
                         types: [
-                            new Types\NamedType(
+                            new Types\BuiltinType(
                                 location: new Location(
                                     startLine: 1,
                                     startOffset: 10,
                                     endLine: 1,
                                     endOffset: 13,
                                 ),
-                                name: 'int',
+                                type: Types\Type::Integer,
                             ),
-                            new Types\NamedType(
+                            new Types\BuiltinType(
                                 location: new Location(
                                     startLine: 1,
                                     startOffset: 15,
                                     endLine: 1,
                                     endOffset: 18,
                                 ),
-                                name: 'int',
+                                type: Types\Type::Integer,
                             ),
                         ],
                     ),
@@ -1850,23 +1850,23 @@ class ParserTest extends TestCase
                                 endOffset: 19,
                             ),
                             types: [
-                                new Types\NamedType(
+                                new Types\BuiltinType(
                                     location: new Location(
                                         startLine: 1,
                                         startOffset: 10,
                                         endLine: 1,
                                         endOffset: 13,
                                     ),
-                                    name: 'int',
+                                    type: Types\Type::Integer,
                                 ),
-                                new Types\NamedType(
+                                new Types\BuiltinType(
                                     location: new Location(
                                         startLine: 1,
                                         startOffset: 15,
                                         endLine: 1,
                                         endOffset: 18,
                                     ),
-                                    name: 'int',
+                                    type: Types\Type::Integer,
                                 ),
                             ],
                         ),
@@ -1939,23 +1939,23 @@ class ParserTest extends TestCase
                                 endOffset: 19,
                             ),
                             types: [
-                                new Types\NamedType(
+                                new Types\BuiltinType(
                                     location: new Location(
                                         startLine: 1,
                                         startOffset: 10,
                                         endLine: 1,
                                         endOffset: 13,
                                     ),
-                                    name: 'int',
+                                    type: Types\Type::Integer,
                                 ),
-                                new Types\NamedType(
+                                new Types\BuiltinType(
                                     location: new Location(
                                         startLine: 1,
                                         startOffset: 15,
                                         endLine: 1,
                                         endOffset: 18,
                                     ),
-                                    name: 'int',
+                                    type: Types\Type::Integer,
                                 ),
                             ],
                         ),
@@ -2007,14 +2007,14 @@ class ParserTest extends TestCase
                         endOffset: 19,
                     ),
                     name: 'foo',
-                    type: new Types\NamedType(
+                    type: new Types\BuiltinType(
                         location: new Location(
                             startLine: 1,
                             startOffset: 9,
                             endLine: 1,
                             endOffset: 12,
                         ),
-                        name: 'int',
+                        type: Types\Type::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: new Location(
