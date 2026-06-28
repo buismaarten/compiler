@@ -447,10 +447,6 @@ final class Parser implements ParserInterface
             $this->next();
 
             if ($token->type === TokenType::QuestionMark) {
-                if ($type instanceof Types\NullableType) {
-                    throw new UnexpectedTokenException($token->line, $token->type->name);
-                }
-
                 $type = new Types\NullableType(
                     location: $this->createLocation($token),
                     type: $type,
