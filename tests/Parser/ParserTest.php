@@ -1074,6 +1074,25 @@ class ParserTest extends TestCase
     }
 
     #[Test]
+    public function testImportStatement(): void
+    {
+        $this->assertEquals(
+            actual: self::createParser('import "foo";')->parse(),
+            expected: [
+                new Statements\ImportStatement(
+                    location: new Location(
+                        startLine: 1,
+                        startOffset: 0,
+                        endLine: 1,
+                        endOffset: 13,
+                    ),
+                    path: 'foo',
+                ),
+            ],
+        );
+    }
+
+    #[Test]
     public function testIntegerLiteral(): void
     {
         $this->assertEquals(

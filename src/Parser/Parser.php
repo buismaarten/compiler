@@ -325,6 +325,19 @@ final class Parser implements ParserInterface
         );
     }
 
+    private function parseImportStatement(): Statements\ImportStatement
+    {
+        $token = $this->expect(TokenType::KeywordImport);
+        $path = $this->expect(TokenType::String);
+
+        $this->expect(TokenType::Semicolon);
+
+        return new Statements\ImportStatement(
+            location: $this->createLocation($token),
+            path: $path->value,
+        );
+    }
+
     private function parseIntegerLiteral(): Literals\IntegerLiteral
     {
         $token = $this->expect(TokenType::Integer);
@@ -511,6 +524,7 @@ final class Parser implements ParserInterface
             TokenType::KeywordContinue => $this->parseContinueStatement(),
             TokenType::KeywordFn       => $this->parseFunctionStatement(),
             TokenType::KeywordIf       => $this->parseIfStatement(),
+            TokenType::KeywordImport   => $this->parseImportStatement(),
             TokenType::KeywordPrint    => $this->parsePrintStatement(),
             TokenType::KeywordReturn   => $this->parseReturnStatement(),
             TokenType::KeywordVar      => $this->parseVarStatement(),

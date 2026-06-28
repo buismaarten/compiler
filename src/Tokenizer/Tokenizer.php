@@ -23,6 +23,7 @@ final class Tokenizer implements TokenizerInterface
         'false'    => TokenType::KeywordFalse,
         'fn'       => TokenType::KeywordFn,
         'if'       => TokenType::KeywordIf,
+        'import'   => TokenType::KeywordImport,
         'null'     => TokenType::KeywordNull,
         'print'    => TokenType::KeywordPrint,
         'return'   => TokenType::KeywordReturn,
