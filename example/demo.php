@@ -60,5 +60,5 @@ class ModuleResolver
 }
 
 
-print_r(Parser::parse('./test1.json'));
+print_r(new ModuleResolver(__DIR__)->resolve(Parser::parse('./test1.json')));
 exit;
