@@ -44,7 +44,5 @@ class Parser
 }
 
 
-$statements = Parser::parse('test1.json');
-
-print_r($statements);
+print_r(Parser::parse('test1.json'));
 exit;
