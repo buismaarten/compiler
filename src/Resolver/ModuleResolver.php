@@ -29,7 +29,6 @@ final class ModuleResolver
         $traverser->addVisitor($visitor = new ModuleCollector($this->rootPath));
         $traverser->traverse($statements);
 
-        // TODO
-        return [];
+        return $visitor->getModules();
     }
 }
