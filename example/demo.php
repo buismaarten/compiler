@@ -22,7 +22,7 @@ class PrintStatement
 
 class Parser
 {
-    public static function parse(string $path): array
+    public function parse(string $path): array
     {
         $nodes = json_decode(file_get_contents(__DIR__.'/'.$path), true);
         $statements = [];
@@ -45,10 +45,12 @@ class Parser
 
 class ModuleResolver
 {
+    private Parser $parser;
     private string $rootPath;
 
-    public function __construct(string $rootPath)
+    public function __construct(Parser $parser, string $rootPath)
     {
+        $this->parser = $parser;
         $this->rootPath = $rootPath;
     }
 
@@ -60,5 +62,8 @@ class ModuleResolver
 }
 
 
-print_r(new ModuleResolver(__DIR__)->resolve(Parser::parse('./test1.json')));
+$parser = new Parser;
+$resolver = new ModuleResolver($parser, __DIR__);
+
+print_r($resolver->resolve($parser->parse('./test1.json')));
 exit;
