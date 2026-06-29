@@ -43,6 +43,22 @@ class Parser
     }
 }
 
+class ModuleResolver
+{
+    private string $rootPath;
 
-print_r(Parser::parse('test1.json'));
+    public function __construct(string $rootPath)
+    {
+        $this->rootPath = $rootPath;
+    }
+
+    public function resolve(array $statements): array
+    {
+        // TODO
+        return [];
+    }
+}
+
+
+print_r(Parser::parse('./test1.json'));
 exit;
