@@ -12,6 +12,13 @@ use Package\NodeTraverser\NodeTraverser;
 
 final class ModuleResolver
 {
+    private string $rootPath;
+
+    public function __construct(string $rootPath)
+    {
+        $this->rootPath = $rootPath;
+    }
+
     /**
      * @param AbstractStatement[] $statements
      * @return array<string, AbstractStatement[]>
@@ -19,7 +26,7 @@ final class ModuleResolver
     public function resolve(array $statements): array
     {
         $traverser = new NodeTraverser;
-        $traverser->addVisitor($visitor = new ModuleCollector);
+        $traverser->addVisitor($visitor = new ModuleCollector($this->rootPath));
         $traverser->traverse($statements);
 
         // TODO

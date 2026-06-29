@@ -14,6 +14,13 @@ use Package\NodeTraverser\AbstractNodeVisitor;
 
 final class ModuleCollector extends AbstractNodeVisitor
 {
+    private string $rootPath;
+
+    public function __construct(string $rootPath)
+    {
+        $this->rootPath = $rootPath;
+    }
+
     #[Override]
     public function enterNode(AbstractNode $node)
     {
