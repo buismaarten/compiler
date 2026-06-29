@@ -25,8 +25,10 @@ final class ModuleResolver
      */
     public function resolve(array $statements): array
     {
+        $visitor = new ModuleCollector($this->rootPath);
+
         $traverser = new NodeTraverser;
-        $traverser->addVisitor($visitor = new ModuleCollector($this->rootPath));
+        $traverser->addVisitor($visitor);
         $traverser->traverse($statements);
 
         return $visitor->getModules();
