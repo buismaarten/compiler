@@ -22,9 +22,9 @@ class PrintStatement
 
 class Parser
 {
-    public static function parse(string $json): array
+    public static function parse(string $path): array
     {
-        $nodes = json_decode($json, true);
+        $nodes = json_decode(file_get_contents(__DIR__.'/'.$path), true);
         $statements = [];
 
         foreach ($nodes as $node) {
@@ -42,3 +42,9 @@ class Parser
         return $statements;
     }
 }
+
+
+$statements = Parser::parse('test1.json');
+
+print_r($statements);
+exit;
