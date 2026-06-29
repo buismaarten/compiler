@@ -1,0 +1,10 @@
+[
+    {
+        "type": "ImportStatement",
+        "path": "./test3.json"
+    },
+    {
+        "type": "PrintStatement",
+        "value": "test2"
+    }
+]
