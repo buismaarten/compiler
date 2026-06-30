@@ -1,6 +1,6 @@
 [
     {
         "type": "PrintStatement",
-        "value": "test1"
+        "value": "Hello, World!"
     }
 ]
