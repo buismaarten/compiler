@@ -32,5 +32,5 @@ class Parser
 
 $parser = new Parser;
 
-print_r($parser->parse(__DIR__.'/test1.json'));
+print_r($parser->parse(__DIR__.'/demo.json'));
 exit;
