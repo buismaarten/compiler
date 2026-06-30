@@ -1,6 +1,18 @@
 <?php
 
-class PrintStatement
+class DeclareVariable
+{
+    public string $name;
+    public string $value;
+
+    public function __construct(string $name, string $value)
+    {
+        $this->name = $name;
+        $this->value = $value;
+    }
+}
+
+class PrintVariable
 {
     public string $value;
 
@@ -18,9 +30,13 @@ class Parser
         $statements = [];
 
         foreach ($nodes as $node) {
-            switch ($node['type']) {
-                case 'PrintStatement':
-                    $statements[] = new PrintStatement($node['value']);
+            switch ($node['_type']) {
+                case 'DeclareVariable':
+                    $statements[] = new DeclareVariable($node['name'], $node['value']);
+                break;
+
+                case 'PrintVariable':
+                    $statements[] = new PrintVariable($node['name']);
                 break;
             }
         }

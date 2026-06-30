@@ -1,6 +1,11 @@
 [
     {
-        "type": "PrintStatement",
+        "_type": "DeclareVariable",
+        "name": "greeting",
         "value": "Hello, World!"
+    },
+    {
+        "_type": "PrintVariable",
+        "name": "greeting"
     }
 ]
