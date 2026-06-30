@@ -37,7 +37,6 @@ enum TokenType
     case KeywordFalse;
     case KeywordFn;
     case KeywordIf;
-    case KeywordImport;
     case KeywordNull;
     case KeywordPrint;
     case KeywordReturn;

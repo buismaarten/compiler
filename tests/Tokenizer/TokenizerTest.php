@@ -398,16 +398,6 @@ class TokenizerTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: self::createTokenizer('import')->next(),
-            expected: new Token(
-                type: TokenType::KeywordImport,
-                line: 1,
-                startOffset: 0,
-                endOffset: 6,
-            ),
-        );
-
-        $this->assertEquals(
             actual: self::createTokenizer('null')->next(),
             expected: new Token(
                 type: TokenType::KeywordNull,
