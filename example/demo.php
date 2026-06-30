@@ -24,7 +24,7 @@ class Parser
 {
     public function parse(string $path): array
     {
-        $nodes = json_decode(file_get_contents(__DIR__.'/'.$path), true);
+        $nodes = json_decode(file_get_contents($path), true);
         $statements = [];
 
         foreach ($nodes as $node) {
@@ -56,8 +56,23 @@ class ModuleResolver
 
     public function resolve(array $statements): array
     {
-        // TODO
-        return [];
+        return $this->resolveModule($statements);
+    }
+
+    private function resolveModule(array $statements): array
+    {
+        $resolvedStatements = [];
+
+        foreach ($statements as $statement) {
+            if ($statement instanceof ImportStatement) {
+                $importedStatements = $this->parser->parse("{$this->rootPath}/{$statement->path}");
+                $resolvedStatements = array_merge($resolvedStatements, $this->resolveModule($importedStatements));
+            } else {
+                $resolvedStatements[] = $statement;
+            }
+        }
+
+        return $resolvedStatements;
     }
 }
 
@@ -65,5 +80,5 @@ class ModuleResolver
 $parser = new Parser;
 $resolver = new ModuleResolver($parser, __DIR__);
 
-print_r($resolver->resolve($parser->parse('./test1.json')));
+print_r($resolver->resolve($parser->parse(__DIR__.'/test1.json')));
 exit;
