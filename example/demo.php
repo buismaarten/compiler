@@ -47,6 +47,7 @@ class ModuleResolver
 {
     private Parser $parser;
     private string $rootPath;
+    private array $resolvedModules = [];
 
     public function __construct(Parser $parser, string $rootPath)
     {
@@ -56,23 +57,22 @@ class ModuleResolver
 
     public function resolve(array $statements): array
     {
-        return $this->resolveModule($statements);
+        $this->resolvedModules[] = $statements;
+        $this->resolveModule($statements);
+
+        return $this->resolvedModules;
     }
 
-    private function resolveModule(array $statements): array
+    private function resolveModule(array $statements): void
     {
-        $resolvedStatements = [];
-
         foreach ($statements as $statement) {
             if ($statement instanceof ImportStatement) {
                 $importedStatements = $this->parser->parse("{$this->rootPath}/{$statement->path}");
-                $resolvedStatements = array_merge($resolvedStatements, $this->resolveModule($importedStatements));
-            } else {
-                $resolvedStatements[] = $statement;
+
+                $this->resolvedModules[$statement->path] = $importedStatements;
+                $this->resolveModule($importedStatements);
             }
         }
-
-        return $resolvedStatements;
     }
 }
 
