@@ -17,7 +17,12 @@ final class NodeTraverser
     private static array $cache = [];
 
     /** @var NodeVisitor[] */
-    private array $visitors = [];
+    private array $visitors;
+
+    public function __construct(NodeVisitor ...$visitors)
+    {
+        $this->visitors = $visitors;
+    }
 
     public function addVisitor(NodeVisitor $visitor): void
     {

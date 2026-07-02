@@ -35,8 +35,7 @@ class NodeTraverserTest extends TestCase
         $statement = new Statements\ReturnStatement($location, $expression);
 
         $visitor = new NodeVisitor;
-        $traverser = new NodeTraverser;
-        $traverser->addVisitor($visitor);
+        $traverser = new NodeTraverser($visitor);
 
         $this->assertSame(
             actual: $traverser->traverse([$statement]),
