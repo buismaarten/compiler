@@ -17,7 +17,12 @@ final class NodeTraverser
     private static array $cache = [];
 
     /** @var NodeVisitor[] */
-    private array $visitors = [];
+    private array $visitors;
+
+    public function __construct(NodeVisitor ...$visitors)
+    {
+        $this->visitors = $visitors;
+    }
 
     public function addVisitor(NodeVisitor $visitor): void
     {
@@ -36,6 +41,22 @@ final class NodeTraverser
             }
         }
 
+        $nodes = $this->traverseArray($nodes);
+
+        foreach ($this->visitors as $visitor) {
+            if (($return = $visitor->afterTraverse($nodes)) !== null) {
+                $nodes = $return;
+            }
+        }
+
+        return $nodes;
+    }
+    /**
+     * @param AbstractNode[] $nodes
+     * @return AbstractNode[]
+     */
+    private function traverseArray(array $nodes): array
+    {
         foreach ($nodes as $i => $node) {
             foreach ($this->visitors as $visitor) {
                 if (($return = $visitor->enterNode($node)) !== null) {
@@ -52,12 +73,6 @@ final class NodeTraverser
             }
         }
 
-        foreach ($this->visitors as $visitor) {
-            if (($return = $visitor->afterTraverse($nodes)) !== null) {
-                $nodes = $return;
-            }
-        }
-
         return $nodes;
     }
 
@@ -71,7 +86,7 @@ final class NodeTraverser
 
             if (is_array($subNode)) {
                 /** @var AbstractNode[] $subNode */
-                $node->{$name} = $this->traverse($subNode);
+                $node->{$name} = $this->traverseArray($subNode);
             }
 
             if ($subNode instanceof AbstractNode) {
