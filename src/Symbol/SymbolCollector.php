@@ -7,9 +7,20 @@ declare(strict_types=1);
 
 namespace Package\Symbol;
 
+use Override;
 use Package\NodeTraverser\AbstractNodeVisitor;
 
 final class SymbolCollector extends AbstractNodeVisitor
 {
-    //
+    #[Override]
+    public function beforeTraverse(array $nodes)
+    {
+        // TODO
+    }
+
+    #[Override]
+    public function afterTraverse(array $nodes)
+    {
+        // TODO
+    }
 }
