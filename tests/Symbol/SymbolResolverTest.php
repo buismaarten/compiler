@@ -48,7 +48,10 @@ class SymbolResolverTest extends TestCase
             ),
             new Statements\IfStatement(
                 location: $location,
-                condition: $identifier,
+                condition: new Literals\BooleanLiteral(
+                    location: $location,
+                    value: true,
+                ),
                 thenStatements: [
                     new Statements\PrintStatement(
                         location: $location,
@@ -58,7 +61,9 @@ class SymbolResolverTest extends TestCase
             ),
         ];
 
-        var_dump(new SymbolResolver($statements)->resolve($identifier));
-        exit;
+        $this->assertEquals(
+            actual: (new SymbolResolver($statements))->resolve($identifier),
+            expected: $statements[0],
+        );
     }
 }
