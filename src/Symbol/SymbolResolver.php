@@ -31,6 +31,7 @@ final class SymbolResolver
     {
         // @phpstan-ignore-next-line
         match ($node::class) {
+            Statements\ConstStatement::class    => $this->visitConstStatement($node),
             Statements\FunctionStatement::class => $this->visitFunctionStatement($node),
             Statements\IfStatement::class       => $this->visitIfStatement($node),
             Statements\VarStatement::class      => $this->visitVarStatement($node),
@@ -38,14 +39,20 @@ final class SymbolResolver
         };
     }
 
-    private function visitFunctionStatement(Statements\FunctionStatement $node): void
+    private function visitConstStatement(Statements\ConstStatement $node): void
     {
         // TODO
     }
 
+    private function visitFunctionStatement(Statements\FunctionStatement $node): void
+    {
+        $this->traverse($node->statements);
+    }
+
     private function visitIfStatement(Statements\IfStatement $node): void
     {
-        // TODO
+        $this->traverse($node->thenStatements);
+        $this->traverse($node->elseStatements);
     }
 
     private function visitVarStatement(Statements\VarStatement $node): void
@@ -55,6 +62,6 @@ final class SymbolResolver
 
     private function visitWhileStatement(Statements\WhileStatement $node): void
     {
-        // TODO
+        $this->traverse($node->statements);
     }
 }

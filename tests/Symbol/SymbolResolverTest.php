@@ -19,7 +19,7 @@ class SymbolResolverTest extends TestCase
     #[Test]
     public function testTodo(): void
     {
-        $statements = $this->createParser('var a: int = 1; if (a) { var b: int = 1; }')->parse();
+        $statements = $this->createParser('const a: int = 1; if (a) { var b: int = 1; }')->parse();
 
         $resolver = new SymbolResolver;
         $resolver->traverse($statements);
