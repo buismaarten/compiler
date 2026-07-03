@@ -7,29 +7,58 @@ declare(strict_types=1);
 
 namespace Package\Tests\Symbol;
 
-use Package\Parser\Parser;
-use Package\Parser\ParserInterface;
+use Package\Nodes\Expressions;
+use Package\Nodes\Literals;
+use Package\Nodes\Location;
+use Package\Nodes\Statements;
+use Package\Nodes\Types;
 use Package\Symbol\SymbolResolver;
-use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SymbolResolverTest extends TestCase
 {
     #[Test]
-    public function testTodo(): void
+    public function testResolve(): void
     {
-        $statements = $this->createParser('const a: int = 1; if (a) { var b: int = 1; }')->parse();
+        $location = new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
+        );
 
-        $resolver = new SymbolResolver;
-        $resolver->traverse($statements);
-    }
+        $identifier = new Expressions\IdentifierExpression(
+            location: $location,
+            name: 'a',
+        );
 
-    private static function createParser(string $input): ParserInterface
-    {
-        $tokenizer = new Tokenizer($input);
-        $parser = new Parser($tokenizer);
+        $statements = [
+            new Statements\ConstStatement(
+                location: $location,
+                name: 'a',
+                type: new Types\BuiltinType(
+                    location: $location,
+                    type: Types\Type::Integer,
+                ),
+                expression: new Literals\IntegerLiteral(
+                    location: $location,
+                    value: 1,
+                ),
+            ),
+            new Statements\IfStatement(
+                location: $location,
+                condition: $identifier,
+                thenStatements: [
+                    new Statements\PrintStatement(
+                        location: $location,
+                        expression: $identifier,
+                    ),
+                ],
+            ),
+        ];
 
-        return $parser;
+        var_dump(new SymbolResolver($statements)->resolve($identifier));
+        exit;
     }
 }

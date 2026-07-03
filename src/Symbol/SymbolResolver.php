@@ -15,8 +15,25 @@ final class SymbolResolver
     /** @var array<int, array<string>> */
     private array $scopeStack = [];
 
+    /** @var AbstractNode[] */
+    private array $nodes;
+
     /** @param AbstractNode[] $nodes */
-    public function traverse(array $nodes): void
+    public function __construct(array $nodes)
+    {
+        $this->nodes = $nodes;
+    }
+
+    public function resolve(AbstractNode $node): AbstractNode
+    {
+        $this->traverse($this->nodes);
+
+        // TODO
+        return $node;
+    }
+
+    /** @param AbstractNode[] $nodes */
+    private function traverse(array $nodes): void
     {
         $this->scopeStack[] = [];
 
@@ -29,24 +46,13 @@ final class SymbolResolver
 
     private function visit(AbstractNode $node): void
     {
-        // @phpstan-ignore-next-line
         match ($node::class) {
-            Statements\ConstStatement::class    => $this->visitConstStatement($node),
-            Statements\FunctionStatement::class => $this->visitFunctionStatement($node),
-            Statements\IfStatement::class       => $this->visitIfStatement($node),
-            Statements\VarStatement::class      => $this->visitVarStatement($node),
-            Statements\WhileStatement::class    => $this->visitWhileStatement($node),
+            Statements\VarStatement::class => $this->visitVarStatement($node),
+            Statements\IfStatement::class  => $this->visitIfStatement($node),
+
+            // Fallback
+            default => null,
         };
-    }
-
-    private function visitConstStatement(Statements\ConstStatement $node): void
-    {
-        // TODO
-    }
-
-    private function visitFunctionStatement(Statements\FunctionStatement $node): void
-    {
-        $this->traverse($node->statements);
     }
 
     private function visitIfStatement(Statements\IfStatement $node): void
@@ -58,10 +64,5 @@ final class SymbolResolver
     private function visitVarStatement(Statements\VarStatement $node): void
     {
         // TODO
-    }
-
-    private function visitWhileStatement(Statements\WhileStatement $node): void
-    {
-        $this->traverse($node->statements);
     }
 }
