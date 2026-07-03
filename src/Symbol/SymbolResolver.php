@@ -27,14 +27,34 @@ final class SymbolResolver
         array_pop($this->scopeStack);
     }
 
-    // TODO
     private function visit(AbstractNode $node): void
     {
         // @phpstan-ignore-next-line
         match ($node::class) {
-            Statements\FunctionStatement::class => $this->visit($node),
-            Statements\IfStatement::class       => $this->visit($node),
-            Statements\WhileStatement::class    => $this->visit($node),
+            Statements\FunctionStatement::class => $this->visitFunctionStatement($node),
+            Statements\IfStatement::class       => $this->visitIfStatement($node),
+            Statements\VarStatement::class      => $this->visitVarStatement($node),
+            Statements\WhileStatement::class    => $this->visitWhileStatement($node),
         };
+    }
+
+    private function visitFunctionStatement(Statements\FunctionStatement $node): void
+    {
+        // TODO
+    }
+
+    private function visitIfStatement(Statements\IfStatement $node): void
+    {
+        // TODO
+    }
+
+    private function visitVarStatement(Statements\VarStatement $node): void
+    {
+        // TODO
+    }
+
+    private function visitWhileStatement(Statements\WhileStatement $node): void
+    {
+        // TODO
     }
 }
