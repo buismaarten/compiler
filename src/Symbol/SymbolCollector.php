@@ -12,15 +12,5 @@ use Package\NodeTraverser\AbstractNodeVisitor;
 
 final class SymbolCollector extends AbstractNodeVisitor
 {
-    #[Override]
-    public function beforeTraverse(array $nodes)
-    {
-        // TODO
-    }
-
-    #[Override]
-    public function afterTraverse(array $nodes)
-    {
-        // TODO
-    }
+    //
 }
