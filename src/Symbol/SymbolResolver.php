@@ -8,12 +8,12 @@ declare(strict_types=1);
 namespace Package\Symbol;
 
 use Package\Nodes\AbstractNode;
-use Package\Nodes\Expressions;
 use Package\Nodes\Statements;
 
 final class SymbolResolver
 {
-    private ?Scope $scope = null;
+    /** @var array<int, array<string>> */
+    private array $stack = [];
 
     /** @var AbstractNode[] */
     private array $nodes;
@@ -26,42 +26,29 @@ final class SymbolResolver
 
     public function resolve(AbstractNode $node): AbstractNode
     {
-        $this->pushScope();
+        $this->traverse($this->nodes);
 
-        foreach ($this->nodes as $statement) {
-            $this->visit($statement);
-        }
-
-        if ($node instanceof Expressions\IdentifierExpression) {
-            $resolved = $this->scope?->find($node->name) ?? $node;
-            $this->popScope();
-
-            return $resolved;
-        }
-
-        $this->popScope();
-
+        // TODO
         return $node;
     }
 
     /** @param AbstractNode[] $nodes */
     private function traverse(array $nodes): void
     {
-        $this->pushScope();
+        $this->stack[] = [];
 
         foreach ($nodes as $node) {
             $this->visit($node);
         }
 
-        $this->popScope();
+        array_pop($this->stack);
     }
 
     private function visit(AbstractNode $node): void
     {
         match ($node::class) {
-            Statements\ConstStatement::class => $this->visitConstStatement($node),
-            Statements\IfStatement::class    => $this->visitIfStatement($node),
-            Statements\VarStatement::class   => $this->visitVarStatement($node),
+            Statements\VarStatement::class => $this->visitVarStatement($node),
+            Statements\IfStatement::class  => $this->visitIfStatement($node),
 
             // Fallback
             default => null,
@@ -76,21 +63,6 @@ final class SymbolResolver
 
     private function visitVarStatement(Statements\VarStatement $node): void
     {
-        $this->scope?->define($node->name, $node);
-    }
-
-    private function visitConstStatement(Statements\ConstStatement $node): void
-    {
-        $this->scope?->define($node->name, $node);
-    }
-
-    private function pushScope(): void
-    {
-        $this->scope = new Scope($this->scope);
-    }
-
-    private function popScope(): void
-    {
-        $this->scope = $this->scope?->parent;
+        // TODO
     }
 }
