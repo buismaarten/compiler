@@ -15,6 +15,12 @@ final class SymbolResolver
     /** @param AbstractNode[] $nodes */
     public function traverse(array $nodes): void
     {
+        $this->traverseArray($nodes);
+    }
+
+    /** @param AbstractNode[] $nodes */
+    private function traverseArray(array $nodes): void
+    {
         foreach ($nodes as $node) {
             $this->traverseNode($node);
         }
