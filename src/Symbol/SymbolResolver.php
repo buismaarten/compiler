@@ -12,18 +12,19 @@ use Package\Nodes\Statements;
 
 final class SymbolResolver
 {
+    /** @var array<int, array<string>> */
+    private array $scopeStack = [];
+
     /** @param AbstractNode[] $nodes */
     public function traverse(array $nodes): void
     {
-        $this->traverseArray($nodes);
-    }
+        $this->scopeStack[] = [];
 
-    /** @param AbstractNode[] $nodes */
-    private function traverseArray(array $nodes): void
-    {
         foreach ($nodes as $node) {
             $this->traverseNode($node);
         }
+
+        array_pop($this->scopeStack);
     }
 
     // TODO
