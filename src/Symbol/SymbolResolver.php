@@ -7,17 +7,26 @@ declare(strict_types=1);
 
 namespace Package\Symbol;
 
-use Package\Nodes\AbstractStatement;
-use Package\NodeTraverser\NodeTraverser;
+use Package\Nodes\AbstractNode;
 
 final class SymbolResolver
 {
-    /** @param AbstractStatement[] $statements */
-    public function resolve(array $statements): void
+    /** @param AbstractNode[] $nodes */
+    public function traverse(array $nodes): void
     {
-        $visitor = new SymbolCollector;
+        $this->traverseArray($nodes);
+    }
 
-        $traverser = new NodeTraverser($visitor);
-        $traverser->traverse($statements);
+    /** @param AbstractNode[] $nodes */
+    private function traverseArray(array $nodes): void
+    {
+        foreach ($nodes as $node) {
+            $this->traverseNode($node);
+        }
+    }
+
+    private function traverseNode(AbstractNode $node): void
+    {
+        //
     }
 }
