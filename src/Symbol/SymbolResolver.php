@@ -21,20 +21,20 @@ final class SymbolResolver
         $this->scopeStack[] = [];
 
         foreach ($nodes as $node) {
-            $this->traverseNode($node);
+            $this->visit($node);
         }
 
         array_pop($this->scopeStack);
     }
 
     // TODO
-    private function traverseNode(AbstractNode $node): void
+    private function visit(AbstractNode $node): void
     {
         // @phpstan-ignore-next-line
         match ($node::class) {
-            Statements\FunctionStatement::class => $this->traverseNode($node),
-            Statements\IfStatement::class       => $this->traverseNode($node),
-            Statements\WhileStatement::class    => $this->traverseNode($node),
+            Statements\FunctionStatement::class => $this->visit($node),
+            Statements\IfStatement::class       => $this->visit($node),
+            Statements\WhileStatement::class    => $this->visit($node),
         };
     }
 }
