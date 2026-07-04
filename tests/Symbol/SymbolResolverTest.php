@@ -34,7 +34,7 @@ class SymbolResolverTest extends TestCase
         );
 
         $statements = [
-            new Statements\VarStatement(
+            new Statements\ConstStatement(
                 location: $location,
                 name: 'a',
                 type: new Types\BuiltinType(

@@ -60,6 +60,7 @@ final class SymbolResolver
     {
         match ($node::class) {
             Expressions\IdentifierExpression::class => $this->visitIdentifierExpression($node),
+            Statements\ConstStatement::class        => $this->visitConstStatement($node),
             Statements\IfStatement::class           => $this->visitIfStatement($node),
             Statements\PrintStatement::class        => $this->visitPrintStatement($node),
             Statements\VarStatement::class          => $this->visitVarStatement($node),
@@ -67,6 +68,14 @@ final class SymbolResolver
             // Fallback
             default => null,
         };
+    }
+
+    // TODO
+    private function visitConstStatement(Statements\ConstStatement $node): void
+    {
+        if ($this->scope !== null) {
+            $this->scope->symbols[$node->name] = $node;
+        }
     }
 
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
@@ -89,6 +98,7 @@ final class SymbolResolver
         $this->visit($node->expression);
     }
 
+    // TODO
     private function visitVarStatement(Statements\VarStatement $node): void
     {
         if ($this->scope !== null) {
@@ -98,14 +108,11 @@ final class SymbolResolver
 
     private function findSymbol(string $name, AbstractNode $node): ?AbstractNode
     {
-        $scope = $this->scope;
-
-        while ($scope !== null) {
-            $symbol = ($scope->symbols[$name] ?? null);
-            $scope = $scope->parent;
+        for ($scope = $this->scope; $scope !== null; $scope = $scope->parent) {
+            $symbol = $scope->symbols[$name] ?? null;
 
             if ($this->table !== null && $symbol !== null) {
-                return $this->table[$node] = $symbol;
+                return $this->table[$node] ??= $symbol;
             }
         }
 
