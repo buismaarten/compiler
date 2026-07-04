@@ -7,10 +7,10 @@ declare(strict_types=1);
 
 namespace Package\Symbol;
 
+use Package\Exceptions\Symbol\UndefinedSymbolException;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Expressions;
 use Package\Nodes\Statements;
-use RuntimeException;
 use SplObjectStorage;
 
 final class SymbolResolver
@@ -71,7 +71,7 @@ final class SymbolResolver
         $symbol = $this->findSymbol($node->name, $node);
 
         if ($symbol === null) {
-            throw new RuntimeException(sprintf("Undefined symbol '%s' on line %d", $node->name, $node->getStartLine()));
+            throw new UndefinedSymbolException($node->getStartLine(), $node->name);
         }
     }
 
