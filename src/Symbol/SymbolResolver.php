@@ -71,7 +71,7 @@ final class SymbolResolver
         $symbol = $this->findSymbol($node->name, $node);
 
         if ($symbol === null) {
-            throw new RuntimeException(sprintf('Undefined symbol "%s"', $node->name));
+            throw new RuntimeException(sprintf('Undefined symbol "%s" on line %d.', $node->name, $node->getStartLine()));
         }
     }
 
