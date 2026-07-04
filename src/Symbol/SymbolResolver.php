@@ -65,7 +65,6 @@ final class SymbolResolver
         };
     }
 
-    // TODO
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
     {
         $symbol = $this->findSymbol($node->name, $node);
