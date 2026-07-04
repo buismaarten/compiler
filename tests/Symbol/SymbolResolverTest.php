@@ -34,7 +34,7 @@ class SymbolResolverTest extends TestCase
         );
 
         $statements = [
-            new Statements\ConstStatement(
+            new Statements\VarStatement(
                 location: $location,
                 name: 'a',
                 type: new Types\BuiltinType(
@@ -62,7 +62,7 @@ class SymbolResolverTest extends TestCase
         ];
 
         $this->assertEquals(
-            actual: (new SymbolResolver($statements))->resolve($identifier),
+            actual: new SymbolResolver($statements)->resolve($identifier),
             expected: $statements[0],
         );
     }

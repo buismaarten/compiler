@@ -7,11 +7,13 @@ declare(strict_types=1);
 
 namespace Package\Symbol;
 
+use Package\Nodes\AbstractNode;
+
 final class Scope
 {
     public ?self $parent = null;
 
-    /** @var array<int, string> */
+    /** @var array<string, AbstractNode> */
     public array $symbols = [];
 
     public function __construct(?self $parent = null)

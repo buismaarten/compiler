@@ -8,12 +8,16 @@ declare(strict_types=1);
 namespace Package\Symbol;
 
 use Package\Nodes\AbstractNode;
+use Package\Nodes\Expressions;
 use Package\Nodes\Statements;
+use SplObjectStorage;
 
 final class SymbolResolver
 {
-    /** @var array<int, array<string>> */
-    private array $stack = [];
+    private ?Scope $scope = null;
+
+    /** @var SplObjectStorage<AbstractNode, AbstractNode> */
+    private SplObjectStorage $declarations;
 
     /** @var AbstractNode[] */
     private array $nodes;
@@ -21,38 +25,57 @@ final class SymbolResolver
     /** @param AbstractNode[] $nodes */
     public function __construct(array $nodes)
     {
+        $this->declarations = new SplObjectStorage;
         $this->nodes = $nodes;
     }
 
     public function resolve(AbstractNode $node): AbstractNode
     {
-        $this->traverse($this->nodes);
+        if (count($this->declarations) === 0) {
+            $this->traverse($this->nodes);
+        }
 
-        // TODO
-        return $node;
+        return $this->declarations[$node];
     }
 
     /** @param AbstractNode[] $nodes */
     private function traverse(array $nodes): void
     {
-        $this->stack[] = [];
+        $this->pushScope();
 
         foreach ($nodes as $node) {
             $this->visit($node);
         }
 
-        array_pop($this->stack);
+        $this->popScope();
     }
 
     private function visit(AbstractNode $node): void
     {
         match ($node::class) {
-            Statements\VarStatement::class => $this->visitVarStatement($node),
-            Statements\IfStatement::class  => $this->visitIfStatement($node),
+            Expressions\IdentifierExpression::class => $this->visitIdentifierExpression($node),
+            Statements\IfStatement::class           => $this->visitIfStatement($node),
+            Statements\PrintStatement::class        => $this->visitPrintStatement($node),
+            Statements\VarStatement::class          => $this->visitVarStatement($node),
 
             // Fallback
             default => null,
         };
+    }
+
+    // TODO
+    private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
+    {
+        $scope = $this->scope;
+
+        while ($scope !== null) {
+            if (array_key_exists($node->name, $scope->symbols)) {
+                $this->declarations[$node] = $scope->symbols[$node->name];
+                return;
+            }
+
+            $scope = $scope->parent;
+        }
     }
 
     private function visitIfStatement(Statements\IfStatement $node): void
@@ -61,8 +84,25 @@ final class SymbolResolver
         $this->traverse($node->elseStatements);
     }
 
+    private function visitPrintStatement(Statements\PrintStatement $node): void
+    {
+        $this->visit($node->expression);
+    }
+
     private function visitVarStatement(Statements\VarStatement $node): void
     {
-        // TODO
+        if ($this->scope !== null) {
+            $this->scope->symbols[$node->name] = $node;
+        }
+    }
+
+    private function pushScope(): void
+    {
+        $this->scope = new Scope($this->scope);
+    }
+
+    private function popScope(): void
+    {
+        $this->scope = $this->scope?->parent;
     }
 }
