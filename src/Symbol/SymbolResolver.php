@@ -10,6 +10,7 @@ namespace Package\Symbol;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Expressions;
 use Package\Nodes\Statements;
+use RuntimeException;
 use SplObjectStorage;
 
 final class SymbolResolver
@@ -35,6 +36,7 @@ final class SymbolResolver
             $this->traverse($this->nodes);
         }
 
+        // TODO
         return $this->table[$node];
     }
 
@@ -63,18 +65,13 @@ final class SymbolResolver
         };
     }
 
+    // TODO
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
     {
-        $scope = $this->scope;
+        $symbol = $this->findSymbol($node->name, $node);
 
-        while ($scope !== null) {
-            $symbol = ($scope->symbols[$node->name] ?? null);
-            $scope = $scope->parent;
-
-            if ($symbol !== null) {
-                $this->table[$node] = $symbol;
-                return;
-            }
+        if ($symbol === null) {
+            throw new RuntimeException(sprintf('Undefined symbol "%s"', $node->name));
         }
     }
 
@@ -94,6 +91,23 @@ final class SymbolResolver
         if ($this->scope !== null) {
             $this->scope->symbols[$node->name] = $node;
         }
+    }
+
+    private function findSymbol(string $name, AbstractNode $node): ?AbstractNode
+    {
+        $scope = $this->scope;
+
+        while ($scope !== null) {
+            $symbol = ($scope->symbols[$name] ?? null);
+            $scope = $scope->parent;
+
+            if ($symbol !== null) {
+                return $this->table[$node] = $symbol;
+            }
+        }
+
+        // Fallback
+        return null;
     }
 
     private function pushScope(): void
