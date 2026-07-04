@@ -70,7 +70,6 @@ final class SymbolResolver
         };
     }
 
-    // TODO
     private function visitConstStatement(Statements\ConstStatement $node): void
     {
         if ($this->scope !== null) {
@@ -98,7 +97,6 @@ final class SymbolResolver
         $this->visit($node->expression);
     }
 
-    // TODO
     private function visitVarStatement(Statements\VarStatement $node): void
     {
         if ($this->scope !== null) {
