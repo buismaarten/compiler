@@ -53,9 +53,18 @@ class SymbolResolverTest extends TestCase
                     value: true,
                 ),
                 thenStatements: [
-                    new Statements\PrintStatement(
+                    new Statements\IfStatement(
                         location: $location,
-                        expression: $identifier,
+                        condition: new Literals\BooleanLiteral(
+                            location: $location,
+                            value: true,
+                        ),
+                        thenStatements: [
+                            new Statements\PrintStatement(
+                                location: $location,
+                                expression: $identifier,
+                            ),
+                        ],
                     ),
                 ],
             ),
