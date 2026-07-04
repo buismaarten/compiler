@@ -17,7 +17,7 @@ final class SymbolResolver
     private ?Scope $scope = null;
 
     /** @var SplObjectStorage<AbstractNode, AbstractNode> */
-    private SplObjectStorage $declarations;
+    private SplObjectStorage $table;
 
     /** @var AbstractNode[] */
     private array $nodes;
@@ -25,17 +25,17 @@ final class SymbolResolver
     /** @param AbstractNode[] $nodes */
     public function __construct(array $nodes)
     {
-        $this->declarations = new SplObjectStorage;
+        $this->table = new SplObjectStorage;
         $this->nodes = $nodes;
     }
 
     public function resolve(AbstractNode $node): AbstractNode
     {
-        if (count($this->declarations) === 0) {
+        if (count($this->table) === 0) {
             $this->traverse($this->nodes);
         }
 
-        return $this->declarations[$node];
+        return $this->table[$node];
     }
 
     /** @param AbstractNode[] $nodes */
@@ -63,14 +63,15 @@ final class SymbolResolver
         };
     }
 
-    // TODO
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
     {
         $scope = $this->scope;
 
         while ($scope !== null) {
-            if (array_key_exists($node->name, $scope->symbols)) {
-                $this->declarations[$node] = $scope->symbols[$node->name];
+            $symbol = ($scope->symbols[$node->name] ?? null);
+
+            if ($symbol !== null) {
+                $this->table[$node] = $symbol;
                 return;
             }
 
