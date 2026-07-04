@@ -69,13 +69,12 @@ final class SymbolResolver
 
         while ($scope !== null) {
             $symbol = ($scope->symbols[$node->name] ?? null);
+            $scope = $scope->parent;
 
             if ($symbol !== null) {
                 $this->table[$node] = $symbol;
                 return;
             }
-
-            $scope = $scope->parent;
         }
     }
 
