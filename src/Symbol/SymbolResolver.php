@@ -17,8 +17,8 @@ final class SymbolResolver
 {
     private ?Scope $scope = null;
 
-    /** @var SplObjectStorage<AbstractNode, AbstractNode> */
-    private SplObjectStorage $table;
+    /** @var SplObjectStorage<AbstractNode, AbstractNode>|null */
+    private ?SplObjectStorage $table = null;
 
     /** @var AbstractNode[] */
     private array $nodes;
@@ -26,18 +26,22 @@ final class SymbolResolver
     /** @param AbstractNode[] $nodes */
     public function __construct(array $nodes)
     {
-        $this->table = new SplObjectStorage;
         $this->nodes = $nodes;
     }
 
-    public function resolve(AbstractNode $node): AbstractNode
+    public function resolve(AbstractNode $node): ?AbstractNode
     {
-        if (count($this->table) === 0) {
+        if ($this->table === null) {
+            $this->table = new SplObjectStorage;
             $this->traverse($this->nodes);
         }
 
-        // TODO
-        return $this->table[$node];
+        if (isset($this->table[$node])) {
+            return $this->table[$node];
+        }
+
+        // Fallback
+        return null;
     }
 
     /** @param AbstractNode[] $nodes */
@@ -100,7 +104,7 @@ final class SymbolResolver
             $symbol = ($scope->symbols[$name] ?? null);
             $scope = $scope->parent;
 
-            if ($symbol !== null) {
+            if ($this->table !== null && $symbol !== null) {
                 return $this->table[$node] = $symbol;
             }
         }
