@@ -18,14 +18,14 @@ final class IfStatement extends AbstractStatement
     /** @var AbstractStatement[] */
     public array $thenStatements;
 
-    /** @var AbstractStatement[] */
-    public array $elseStatements;
+    /** @var AbstractStatement[]|null */
+    public ?array $elseStatements;
 
     /**
      * @param AbstractStatement[] $thenStatements
-     * @param AbstractStatement[] $elseStatements
+     * @param AbstractStatement[]|null $elseStatements
      */
-    public function __construct(Location $location, AbstractExpression $condition, array $thenStatements, array $elseStatements = [])
+    public function __construct(Location $location, AbstractExpression $condition, array $thenStatements, ?array $elseStatements = null)
     {
         parent::__construct($location);
 

@@ -295,7 +295,7 @@ final class Parser implements ParserInterface
 
         $condition = $this->parseExpression();
         $thenStatements = [];
-        $elseStatements = [];
+        $elseStatements = null;
 
         $this->expect(TokenType::RightParenthesis);
         $this->expect(TokenType::LeftBrace);
@@ -307,6 +307,8 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightBrace);
 
         if ($this->current->type === TokenType::KeywordElse) {
+            $elseStatements = [];
+
             $this->next();
             $this->expect(TokenType::LeftBrace);
 
