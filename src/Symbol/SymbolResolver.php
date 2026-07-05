@@ -89,7 +89,10 @@ final class SymbolResolver
     private function visitIfStatement(Statements\IfStatement $node): void
     {
         $this->traverse($node->thenStatements);
-        $this->traverse($node->elseStatements);
+
+        if ($node->elseStatements !== null) {
+            $this->traverse($node->elseStatements);
+        }
     }
 
     private function visitPrintStatement(Statements\PrintStatement $node): void
