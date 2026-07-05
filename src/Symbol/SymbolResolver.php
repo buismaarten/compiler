@@ -13,6 +13,7 @@ use Package\Nodes\Expressions;
 use Package\Nodes\Statements;
 use SplObjectStorage;
 
+// TODO: use `NodeTraverser`
 final class SymbolResolver
 {
     private ?Scope $scope = null;

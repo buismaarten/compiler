@@ -24,6 +24,7 @@ use Package\Tokenizer\Token;
 use Package\Tokenizer\TokenizerInterface;
 use Package\Tokenizer\TokenType;
 
+// TODO: Use `Block` instead of array of statements
 final class Parser implements ParserInterface
 {
     private TokenizerInterface $tokenizer;
