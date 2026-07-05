@@ -9,8 +9,8 @@ namespace Package\Parser;
 
 use Override;
 use Package\Exceptions\Parser\ExpectedTokenException;
+use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
-use Package\Exceptions\UnexpectedEndOfInputException;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
