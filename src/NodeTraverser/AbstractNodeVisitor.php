@@ -13,7 +13,7 @@ use Package\Nodes\AbstractNode;
 abstract class AbstractNodeVisitor implements NodeVisitor
 {
     #[Override]
-    public function beforeTraverse(AbstractNode $nodes)
+    public function beforeTraverse(AbstractNode $node)
     {
         return null;
     }
@@ -31,7 +31,7 @@ abstract class AbstractNodeVisitor implements NodeVisitor
     }
 
     #[Override]
-    public function afterTraverse(AbstractNode $nodes)
+    public function afterTraverse(AbstractNode $node)
     {
         return null;
     }

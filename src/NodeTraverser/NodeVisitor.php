@@ -12,7 +12,7 @@ use Package\Nodes\AbstractNode;
 interface NodeVisitor
 {
     /** @return AbstractNode|null|void */
-    public function beforeTraverse(AbstractNode $nodes);
+    public function beforeTraverse(AbstractNode $node);
 
     /** @return AbstractNode|null|void */
     public function enterNode(AbstractNode $node);
@@ -21,5 +21,5 @@ interface NodeVisitor
     public function leaveNode(AbstractNode $node);
 
     /** @return AbstractNode|null|void */
-    public function afterTraverse(AbstractNode $nodes);
+    public function afterTraverse(AbstractNode $node);
 }
