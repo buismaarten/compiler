@@ -36,7 +36,7 @@ final class SymbolCollector extends AbstractNodeVisitor
             $this->scope = new Scope($this->scope);
         }
 
-        if ($node instanceof Statements\ConstStatement || $node instanceof Statements\VarStatement) {
+        if ($node instanceof Statements\ConstStatement ) {
             $this->scope?->addSymbol($node->name, $node);
         }
 
@@ -46,6 +46,10 @@ final class SymbolCollector extends AbstractNodeVisitor
             if ($symbol === null) {
                 throw new UndefinedSymbolException($node->getStartLine(), $node->name);
             }
+        }
+
+        if ($node instanceof Statements\VarStatement) {
+            $this->scope?->addSymbol($node->name, $node);
         }
     }
 
