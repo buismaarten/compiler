@@ -65,8 +65,8 @@ final class SymbolResolver
 
     private function visitConstStatement(Statements\ConstStatement $node): void
     {
-        $this->visit($node->expression);
         $this->scope?->addSymbol($node->name, $node);
+        $this->visit($node->expression);
     }
 
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
@@ -94,8 +94,8 @@ final class SymbolResolver
 
     private function visitVarStatement(Statements\VarStatement $node): void
     {
-        $this->visit($node->expression);
         $this->scope?->addSymbol($node->name, $node);
+        $this->visit($node->expression);
     }
 
     private function findSymbol(string $name, AbstractNode $node): ?AbstractNode
