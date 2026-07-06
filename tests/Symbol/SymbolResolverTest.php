@@ -102,7 +102,7 @@ class SymbolResolverTest extends TestCase
                     statements: new Block(
                         location: self::createLocation(),
                         statements: [
-                            new Statements\PrintStatement(
+                            new Statements\ExpressionStatement(
                                 location: self::createLocation(),
                                 expression: $expression,
                             ),
