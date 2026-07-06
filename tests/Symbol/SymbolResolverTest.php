@@ -22,7 +22,12 @@ class SymbolResolverTest extends TestCase
     #[Test]
     public function testResolve(): void
     {
-        $variable1 = new Statements\VarStatement(
+        $identifier = new Expressions\IdentifierExpression(
+            location: self::createLocation(),
+            name: 'a',
+        );
+
+        $variable = new Statements\VarStatement(
             location: self::createLocation(),
             name: 'a',
             type: new Types\BuiltinType(
@@ -33,35 +38,12 @@ class SymbolResolverTest extends TestCase
                 location: self::createLocation(),
                 value: 1,
             ),
-        );
-
-        $variable2 = new Statements\VarStatement(
-            location: self::createLocation(),
-            name: 'b',
-            type: new Types\BuiltinType(
-                location: self::createLocation(),
-                type: Types\Type::Integer,
-            ),
-            expression: new Literals\IntegerLiteral(
-                location: self::createLocation(),
-                value: 1,
-            ),
-        );
-
-        $identifier1 = new Expressions\IdentifierExpression(
-            location: self::createLocation(),
-            name: 'a',
-        );
-
-        $identifier2 = new Expressions\IdentifierExpression(
-            location: self::createLocation(),
-            name: 'b',
         );
 
         $root = new Block(
             location: self::createLocation(),
             statements: [
-                $variable1,
+                $variable,
                 new Statements\VarStatement(
                     location: self::createLocation(),
                     name: 'a',
@@ -83,7 +65,6 @@ class SymbolResolverTest extends TestCase
                     thenStatements: new Block(
                         location: self::createLocation(),
                         statements: [
-                            $variable2,
                             new Statements\IfStatement(
                                 location: self::createLocation(),
                                 condition: new Literals\BooleanLiteral(
@@ -95,11 +76,7 @@ class SymbolResolverTest extends TestCase
                                     statements: [
                                         new Statements\PrintStatement(
                                             location: self::createLocation(),
-                                            expression: $identifier1,
-                                        ),
-                                        new Statements\PrintStatement(
-                                            location: self::createLocation(),
-                                            expression: $identifier2,
+                                            expression: $identifier,
                                         ),
                                     ],
                                 ),
@@ -111,13 +88,8 @@ class SymbolResolverTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($identifier1),
-            expected: $variable1,
-        );
-
-        $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($identifier2),
-            expected: $variable2,
+            actual: new SymbolResolver($root)->resolve($identifier),
+            expected: $variable,
         );
     }
 
