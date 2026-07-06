@@ -36,6 +36,14 @@ final class SymbolCollector extends AbstractNodeVisitor
             $this->scope = new Scope($this->scope);
         }
 
+        if ($node instanceof Expressions\AssignmentExpression) {
+            $symbol = $this->findSymbol($node->name, $node);
+
+            if ($symbol === null) {
+                throw new UndefinedSymbolException($node->getStartLine(), $node->name);
+            }
+        }
+
         if ($node instanceof Statements\ConstStatement) {
             $this->scope?->addSymbol($node->name, $node);
         }

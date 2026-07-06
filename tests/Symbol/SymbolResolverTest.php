@@ -20,61 +20,91 @@ use PHPUnit\Framework\TestCase;
 class SymbolResolverTest extends TestCase
 {
     #[Test]
-    public function testResolve(): void
+    public function testResolveAssignmentExpression(): void
     {
-        $location = new Location(
-            startLine: -1,
-            startOffset: -1,
-            endLine: -1,
-            endOffset: -1,
-        );
-
-        $identifier = new Expressions\IdentifierExpression(
-            location: $location,
+        $expression = new Expressions\AssignmentExpression(
+            location: self::createLocation(),
             name: 'a',
+            expression: new Literals\IntegerLiteral(
+                location: self::createLocation(),
+                value: 1,
+            ),
         );
 
-        $variable = new Statements\VarStatement(
-            location: $location,
+        $declaration = new Statements\VarStatement(
+            location: self::createLocation(),
             name: 'a',
             type: new Types\BuiltinType(
-                location: $location,
+                location: self::createLocation(),
                 type: Types\Type::Integer,
             ),
             expression: new Literals\IntegerLiteral(
-                location: $location,
+                location: self::createLocation(),
                 value: 1,
             ),
         );
 
         $root = new Block(
-            location: $location,
+            location: self::createLocation(),
             statements: [
-                $variable,
+                $declaration,
                 new Statements\IfStatement(
-                    location: $location,
+                    location: self::createLocation(),
                     condition: new Literals\BooleanLiteral(
-                        location: $location,
+                        location: self::createLocation(),
                         value: true,
                     ),
                     thenStatements: new Block(
-                        location: $location,
+                        location: self::createLocation(),
+                        statements: [$expression],
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: new SymbolResolver($root)->resolve($expression),
+            expected: $declaration,
+        );
+    }
+
+    #[Test]
+    public function testResolveIdentifierExpression(): void
+    {
+        $expression = new Expressions\IdentifierExpression(
+            location: self::createLocation(),
+            name: 'a',
+        );
+
+        $declaration = new Statements\VarStatement(
+            location: self::createLocation(),
+            name: 'a',
+            type: new Types\BuiltinType(
+                location: self::createLocation(),
+                type: Types\Type::Integer,
+            ),
+            expression: new Literals\IntegerLiteral(
+                location: self::createLocation(),
+                value: 1,
+            ),
+        );
+
+        $root = new Block(
+            location: self::createLocation(),
+            statements: [
+                $declaration,
+                new Statements\IfStatement(
+                    location: self::createLocation(),
+                    condition: new Literals\BooleanLiteral(
+                        location: self::createLocation(),
+                        value: true,
+                    ),
+                    thenStatements: new Block(
+                        location: self::createLocation(),
                         statements: [
-                            new Statements\IfStatement(
-                                location: $location,
-                                condition: new Literals\BooleanLiteral(
-                                    location: $location,
-                                    value: false,
-                                ),
-                                thenStatements: new Block(
-                                    location: $location,
-                                    statements: [
-                                        new Statements\PrintStatement(
-                                            location: $location,
-                                            expression: $identifier,
-                                        ),
-                                    ],
-                                ),
+                            new Statements\PrintStatement(
+                                location: self::createLocation(),
+                                expression: $expression,
                             ),
                         ],
                     ),
@@ -83,8 +113,18 @@ class SymbolResolverTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($identifier),
-            expected: $variable,
+            actual: new SymbolResolver($root)->resolve($expression),
+            expected: $declaration,
+        );
+    }
+
+    private static function createLocation(): Location
+    {
+        return new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
         );
     }
 }
