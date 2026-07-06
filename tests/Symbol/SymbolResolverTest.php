@@ -29,15 +29,47 @@ class SymbolResolverTest extends TestCase
             endOffset: -1,
         );
 
-        $identifier = new Expressions\IdentifierExpression(
+        $variable1 = new Statements\VarStatement(
             location: $location,
             name: 'a',
+            type: new Types\BuiltinType(
+                location: $location,
+                type: Types\Type::Integer,
+            ),
+            expression: new Literals\IntegerLiteral(
+                location: $location,
+                value: 1,
+            ),
+        );
+
+        $variable2 = new Statements\VarStatement(
+            location: $location,
+            name: 'b',
+            type: new Types\BuiltinType(
+                location: $location,
+                type: Types\Type::Integer,
+            ),
+            expression: new Literals\IntegerLiteral(
+                location: $location,
+                value: 1,
+            ),
+        );
+
+        $identifier1 = new Expressions\IdentifierExpression(
+            location: $location,
+            name: 'a',
+        );
+
+        $identifier2 = new Expressions\IdentifierExpression(
+            location: $location,
+            name: 'b',
         );
 
         $root = new Block(
             location: $location,
             statements: [
-                new Statements\ConstStatement(
+                $variable1,
+                new Statements\VarStatement(
                     location: $location,
                     name: 'a',
                     type: new Types\BuiltinType(
@@ -58,6 +90,7 @@ class SymbolResolverTest extends TestCase
                     thenStatements: new Block(
                         location: $location,
                         statements: [
+                            $variable2,
                             new Statements\IfStatement(
                                 location: $location,
                                 condition: new Literals\BooleanLiteral(
@@ -69,7 +102,11 @@ class SymbolResolverTest extends TestCase
                                     statements: [
                                         new Statements\PrintStatement(
                                             location: $location,
-                                            expression: $identifier,
+                                            expression: $identifier1,
+                                        ),
+                                        new Statements\PrintStatement(
+                                            location: $location,
+                                            expression: $identifier2,
                                         ),
                                     ],
                                 ),
@@ -81,8 +118,13 @@ class SymbolResolverTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($identifier),
-            expected: $root->statements[0],
+            actual: new SymbolResolver($root)->resolve($identifier1),
+            expected: $variable1,
+        );
+
+        $this->assertEquals(
+            actual: new SymbolResolver($root)->resolve($identifier2),
+            expected: $variable2,
         );
     }
 }
