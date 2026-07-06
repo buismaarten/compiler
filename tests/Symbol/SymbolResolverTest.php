@@ -128,7 +128,7 @@ class SymbolResolverTest extends TestCase
             name: 'a',
         );
 
-        $declaration = new Statements\VarStatement(
+        $declaration = new Statements\ConstStatement(
             location: self::createLocation(),
             name: 'a',
             type: new Types\BuiltinType(
