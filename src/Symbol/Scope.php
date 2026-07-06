@@ -20,4 +20,9 @@ final class Scope
     {
         $this->parent = $parent;
     }
+
+    public function addSymbol(string $name, AbstractNode $node): void
+    {
+        $this->symbols[$name] = $node;
+    }
 }
