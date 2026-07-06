@@ -36,7 +36,7 @@ final class SymbolCollector extends AbstractNodeVisitor
             $this->scope = new Scope($this->scope);
         }
 
-        if ($node instanceof Statements\ConstStatement ) {
+        if ($node instanceof Statements\ConstStatement) {
             $this->scope?->addSymbol($node->name, $node);
         }
 
