@@ -48,13 +48,13 @@ class SymbolResolverTest extends TestCase
             location: self::createLocation(),
             statements: [
                 $declaration,
-                new Statements\IfStatement(
+                new Statements\WhileStatement(
                     location: self::createLocation(),
                     condition: new Literals\BooleanLiteral(
                         location: self::createLocation(),
                         value: true,
                     ),
-                    thenStatements: new Block(
+                    statements: new Block(
                         location: self::createLocation(),
                         statements: [$expression],
                     ),
@@ -93,13 +93,13 @@ class SymbolResolverTest extends TestCase
             location: self::createLocation(),
             statements: [
                 $declaration,
-                new Statements\IfStatement(
+                new Statements\WhileStatement(
                     location: self::createLocation(),
                     condition: new Literals\BooleanLiteral(
                         location: self::createLocation(),
                         value: true,
                     ),
-                    thenStatements: new Block(
+                    statements: new Block(
                         location: self::createLocation(),
                         statements: [
                             new Statements\PrintStatement(
