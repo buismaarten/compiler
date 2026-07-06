@@ -44,10 +44,6 @@ final class SymbolCollector extends AbstractNodeVisitor
             }
         }
 
-        if ($node instanceof Statements\ConstStatement) {
-            $this->scope?->addSymbol($node->name, $node);
-        }
-
         if ($node instanceof Expressions\FunctionCallExpression) {
             $symbol = $this->findSymbol($node->name, $node);
 
@@ -56,16 +52,20 @@ final class SymbolCollector extends AbstractNodeVisitor
             }
         }
 
-        if ($node instanceof Statements\FunctionStatement) {
-            $this->scope?->addSymbol($node->name, $node);
-        }
-
         if ($node instanceof Expressions\IdentifierExpression) {
             $symbol = $this->findSymbol($node->name, $node);
 
             if ($symbol === null) {
                 throw new UndefinedSymbolException($node->getStartLine(), $node->name);
             }
+        }
+
+        if ($node instanceof Statements\ConstStatement) {
+            $this->scope?->addSymbol($node->name, $node);
+        }
+
+        if ($node instanceof Statements\FunctionStatement) {
+            $this->scope?->addSymbol($node->name, $node);
         }
 
         if ($node instanceof Statements\VarStatement) {
