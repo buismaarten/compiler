@@ -22,60 +22,55 @@ class SymbolResolverTest extends TestCase
     #[Test]
     public function testResolve(): void
     {
+        $location = new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
+        );
+
         $identifier = new Expressions\IdentifierExpression(
-            location: self::createLocation(),
+            location: $location,
             name: 'a',
         );
 
         $variable = new Statements\VarStatement(
-            location: self::createLocation(),
+            location: $location,
             name: 'a',
             type: new Types\BuiltinType(
-                location: self::createLocation(),
+                location: $location,
                 type: Types\Type::Integer,
             ),
             expression: new Literals\IntegerLiteral(
-                location: self::createLocation(),
+                location: $location,
                 value: 1,
             ),
         );
 
         $root = new Block(
-            location: self::createLocation(),
+            location: $location,
             statements: [
                 $variable,
-                new Statements\VarStatement(
-                    location: self::createLocation(),
-                    name: 'a',
-                    type: new Types\BuiltinType(
-                        location: self::createLocation(),
-                        type: Types\Type::Integer,
-                    ),
-                    expression: new Literals\IntegerLiteral(
-                        location: self::createLocation(),
-                        value: 1,
-                    ),
-                ),
                 new Statements\IfStatement(
-                    location: self::createLocation(),
+                    location: $location,
                     condition: new Literals\BooleanLiteral(
-                        location: self::createLocation(),
+                        location: $location,
                         value: true,
                     ),
                     thenStatements: new Block(
-                        location: self::createLocation(),
+                        location: $location,
                         statements: [
                             new Statements\IfStatement(
-                                location: self::createLocation(),
+                                location: $location,
                                 condition: new Literals\BooleanLiteral(
-                                    location: self::createLocation(),
+                                    location: $location,
                                     value: false,
                                 ),
                                 thenStatements: new Block(
-                                    location: self::createLocation(),
+                                    location: $location,
                                     statements: [
                                         new Statements\PrintStatement(
-                                            location: self::createLocation(),
+                                            location: $location,
                                             expression: $identifier,
                                         ),
                                     ],
@@ -90,16 +85,6 @@ class SymbolResolverTest extends TestCase
         $this->assertEquals(
             actual: new SymbolResolver($root)->resolve($identifier),
             expected: $variable,
-        );
-    }
-
-    private static function createLocation(): Location
-    {
-        return new Location(
-            startLine: -1,
-            startOffset: -1,
-            endLine: -1,
-            endOffset: -1,
         );
     }
 }

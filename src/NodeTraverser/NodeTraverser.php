@@ -29,28 +29,37 @@ final class NodeTraverser
         $this->visitors[] = $visitor;
     }
 
-    /**
-     * @param AbstractNode[] $nodes
-     * @return AbstractNode[]
-     */
-    public function traverse(array $nodes): array
+    public function traverse(AbstractNode $node): AbstractNode
     {
         foreach ($this->visitors as $visitor) {
-            if (($return = $visitor->beforeTraverse($nodes)) !== null) {
-                $nodes = $return;
+            if (($return = $visitor->beforeTraverse($node)) !== null) {
+                $node = $return;
             }
         }
-
-        $nodes = $this->traverseArray($nodes);
 
         foreach ($this->visitors as $visitor) {
-            if (($return = $visitor->afterTraverse($nodes)) !== null) {
-                $nodes = $return;
+            if (($return = $visitor->enterNode($node)) !== null) {
+                $node = $return;
             }
         }
 
-        return $nodes;
+        $this->traverseNode($node);
+
+        foreach ($this->visitors as $visitor) {
+            if (($return = $visitor->leaveNode($node)) !== null) {
+                $node = $return;
+            }
+        }
+
+        foreach ($this->visitors as $visitor) {
+            if (($return = $visitor->afterTraverse($node)) !== null) {
+                $node = $return;
+            }
+        }
+
+        return $node;
     }
+
     /**
      * @param AbstractNode[] $nodes
      * @return AbstractNode[]

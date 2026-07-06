@@ -9,6 +9,7 @@ namespace Package\Tests\NodeTraverser;
 
 use Override;
 use Package\Nodes\AbstractNode;
+use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Location;
@@ -33,26 +34,29 @@ class NodeTraverserTest extends TestCase
         $literal = new Literals\NullLiteral($location);
         $expression = new Expressions\ArrayExpression($location, [$literal]);
         $statement = new Statements\ReturnStatement($location, $expression);
+        $root = new Block($location, [$statement]);
 
         $visitor = new NodeVisitor;
         $traverser = new NodeTraverser($visitor);
 
         $this->assertSame(
-            actual: $traverser->traverse([$statement]),
-            expected: [$statement],
+            actual: $traverser->traverse($root),
+            expected: $root,
         );
 
         $this->assertSame(
             actual: $visitor->trace,
             expected: [
-                ['beforeTraverse', [$statement]],
+                ['beforeTraverse', $root],
+                ['enterNode', $root],
                 ['enterNode', $statement],
                 ['enterNode', $expression],
                 ['enterNode', $literal],
                 ['leaveNode', $literal],
                 ['leaveNode', $expression],
                 ['leaveNode', $statement],
-                ['afterTraverse', [$statement]],
+                ['leaveNode', $root],
+                ['afterTraverse', $root],
             ],
         );
     }
@@ -63,7 +67,7 @@ class NodeVisitor extends AbstractNodeVisitor
     public array $trace = [];
 
     #[Override]
-    public function beforeTraverse(array $nodes)
+    public function beforeTraverse(AbstractNode $nodes)
     {
         return $this->traceEvent('beforeTraverse', $nodes);
     }
@@ -81,7 +85,7 @@ class NodeVisitor extends AbstractNodeVisitor
     }
 
     #[Override]
-    public function afterTraverse(array $nodes)
+    public function afterTraverse(AbstractNode $nodes)
     {
         return $this->traceEvent('afterTraverse', $nodes);
     }

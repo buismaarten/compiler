@@ -11,27 +11,15 @@ use Package\Nodes\AbstractNode;
 
 interface NodeVisitor
 {
-    /**
-     * @param AbstractNode[] $nodes
-     * @return AbstractNode[]|null|void
-     */
-    public function beforeTraverse(array $nodes);
+    /** @return AbstractNode|null|void */
+    public function beforeTraverse(AbstractNode $nodes);
 
-    /**
-     * @param AbstractNode $node
-     * @return AbstractNode|null|void
-     */
+    /** @return AbstractNode|null|void */
     public function enterNode(AbstractNode $node);
 
-    /**
-     * @param AbstractNode $node
-     * @return AbstractNode|null|void
-     */
+    /** @return AbstractNode|null|void */
     public function leaveNode(AbstractNode $node);
 
-    /**
-     * @param AbstractNode[] $nodes
-     * @return AbstractNode[]|null|void
-     */
-    public function afterTraverse(array $nodes);
+    /** @return AbstractNode|null|void */
+    public function afterTraverse(AbstractNode $nodes);
 }
