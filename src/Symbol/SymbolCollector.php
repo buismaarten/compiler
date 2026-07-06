@@ -87,7 +87,7 @@ final class SymbolCollector extends AbstractNodeVisitor
             $symbol = $scope->symbols[$name] ?? null;
 
             if ($symbol !== null) {
-                return $this->table[$node] ??= $symbol;
+                return $this->table[$node] = $symbol;
             }
         }
 
