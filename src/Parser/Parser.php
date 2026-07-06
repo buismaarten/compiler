@@ -14,6 +14,7 @@ use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
+use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Location;
@@ -24,7 +25,6 @@ use Package\Tokenizer\Token;
 use Package\Tokenizer\TokenizerInterface;
 use Package\Tokenizer\TokenType;
 
-// TODO: Use `Block` instead of array of statements
 final class Parser implements ParserInterface
 {
     private TokenizerInterface $tokenizer;
@@ -39,15 +39,19 @@ final class Parser implements ParserInterface
     }
 
     #[Override]
-    public function parse(): array
+    public function parse(): Block
     {
+        $token = $this->current;
         $statements = [];
 
         while ($this->current->type !== TokenType::Eof) {
             $statements[] = $this->parseStatement();
         }
 
-        return $statements;
+        return new Block(
+            location: $this->createLocation($token, $this->previous),
+            statements: $statements,
+        );
     }
 
     private function parseArrayExpression(): Expressions\ArrayExpression
@@ -108,6 +112,23 @@ final class Parser implements ParserInterface
         }
 
         return $expression;
+    }
+
+    private function parseBlock(): Block
+    {
+        $token = $this->expect(TokenType::LeftBrace);
+        $statements = [];
+
+        while ($this->current->type !== TokenType::RightBrace) {
+            $statements[] = $this->parseStatement();
+        }
+
+        $this->expect(TokenType::RightBrace);
+
+        return new Block(
+            location: $this->createLocation($token),
+            statements: $statements,
+        );
     }
 
     private function parseBooleanLiteral(): Literals\BooleanLiteral
@@ -253,14 +274,7 @@ final class Parser implements ParserInterface
         $this->expect(TokenType::RightParenthesis);
 
         $type = $this->parseType();
-
-        $this->expect(TokenType::LeftBrace);
-
-        while ($this->current->type !== TokenType::RightBrace) {
-            $statements[] = $this->parseStatement();
-        }
-
-        $this->expect(TokenType::RightBrace);
+        $statements = $this->parseBlock();
 
         return new Statements\FunctionStatement(
             location: $this->createLocation($token),
@@ -299,25 +313,12 @@ final class Parser implements ParserInterface
         $elseStatements = null;
 
         $this->expect(TokenType::RightParenthesis);
-        $this->expect(TokenType::LeftBrace);
 
-        while ($this->current->type !== TokenType::RightBrace) {
-            $thenStatements[] = $this->parseStatement();
-        }
-
-        $this->expect(TokenType::RightBrace);
+        $thenStatements = $this->parseBlock();
 
         if ($this->current->type === TokenType::KeywordElse) {
-            $elseStatements = [];
-
             $this->next();
-            $this->expect(TokenType::LeftBrace);
-
-            while ($this->current->type !== TokenType::RightBrace) {
-                $elseStatements[] = $this->parseStatement();
-            }
-
-            $this->expect(TokenType::RightBrace);
+            $elseStatements = $this->parseBlock();
         }
 
         return new Statements\IfStatement(
@@ -620,13 +621,8 @@ final class Parser implements ParserInterface
         $statements = [];
 
         $this->expect(TokenType::RightParenthesis);
-        $this->expect(TokenType::LeftBrace);
 
-        while ($this->current->type !== TokenType::RightBrace) {
-            $statements[] = $this->parseStatement();
-        }
-
-        $this->expect(TokenType::RightBrace);
+        $statements = $this->parseBlock();
 
         return new Statements\WhileStatement(
             location: $this->createLocation($token),

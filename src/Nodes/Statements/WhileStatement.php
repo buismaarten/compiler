@@ -9,17 +9,15 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Block;
 use Package\Nodes\Location;
 
 final class WhileStatement extends AbstractStatement
 {
     public AbstractExpression $condition;
+    public Block $statements;
 
-    /** @var AbstractStatement[] */
-    public array $statements;
-
-    /** @param AbstractStatement[] $statements */
-    public function __construct(Location $location, AbstractExpression $condition, array $statements)
+    public function __construct(Location $location, AbstractExpression $condition, Block $statements)
     {
         parent::__construct($location);
 

@@ -9,23 +9,16 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
+use Package\Nodes\Block;
 use Package\Nodes\Location;
 
 final class IfStatement extends AbstractStatement
 {
     public AbstractExpression $condition;
+    public Block $thenStatements;
+    public ?Block $elseStatements;
 
-    /** @var AbstractStatement[] */
-    public array $thenStatements;
-
-    /** @var AbstractStatement[]|null */
-    public ?array $elseStatements;
-
-    /**
-     * @param AbstractStatement[] $thenStatements
-     * @param AbstractStatement[]|null $elseStatements
-     */
-    public function __construct(Location $location, AbstractExpression $condition, array $thenStatements, ?array $elseStatements = null)
+    public function __construct(Location $location, AbstractExpression $condition, Block $thenStatements, ?Block $elseStatements = null)
     {
         parent::__construct($location);
 

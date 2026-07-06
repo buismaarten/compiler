@@ -9,6 +9,7 @@ namespace Package\Symbol;
 
 use Package\Exceptions\Symbol\UndefinedSymbolException;
 use Package\Nodes\AbstractNode;
+use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Statements;
 use SplObjectStorage;
@@ -16,41 +17,32 @@ use SplObjectStorage;
 // TODO: use `NodeTraverser`
 final class SymbolResolver
 {
+    private Block $root;
     private ?Scope $scope = null;
 
     /** @var SplObjectStorage<AbstractNode, AbstractNode>|null */
     private ?SplObjectStorage $table = null;
 
-    /** @var AbstractNode[] */
-    private array $nodes;
-
-    /** @param AbstractNode[] $nodes */
-    public function __construct(array $nodes)
+    public function __construct(Block $root)
     {
-        $this->nodes = $nodes;
+        $this->root = $root;
     }
 
     public function resolve(AbstractNode $node): ?AbstractNode
     {
         if ($this->table === null) {
             $this->table = new SplObjectStorage;
-            $this->traverse($this->nodes);
+            $this->traverse($this->root);
         }
 
-        if (isset($this->table[$node])) {
-            return $this->table[$node];
-        }
-
-        // Fallback
-        return null;
+        return $this->table[$node] ?? null;
     }
 
-    /** @param AbstractNode[] $nodes */
-    private function traverse(array $nodes): void
+    private function traverse(Block $block): void
     {
         $this->pushScope();
 
-        foreach ($nodes as $node) {
+        foreach ($block->statements as $node) {
             $this->visit($node);
         }
 
@@ -73,6 +65,8 @@ final class SymbolResolver
 
     private function visitConstStatement(Statements\ConstStatement $node): void
     {
+        $this->visit($node->expression);
+
         if ($this->scope !== null) {
             $this->scope->symbols[$node->name] = $node;
         }
@@ -103,6 +97,8 @@ final class SymbolResolver
 
     private function visitVarStatement(Statements\VarStatement $node): void
     {
+        $this->visit($node->expression);
+
         if ($this->scope !== null) {
             $this->scope->symbols[$node->name] = $node;
         }

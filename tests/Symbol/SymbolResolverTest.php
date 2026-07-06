@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tests\Symbol;
 
+use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Location;
@@ -52,26 +53,37 @@ class SymbolResolverTest extends TestCase
                     location: $location,
                     value: true,
                 ),
-                thenStatements: [
-                    new Statements\IfStatement(
-                        location: $location,
-                        condition: new Literals\BooleanLiteral(
+                thenStatements: new Block(
+                    location: $location,
+                    statements: [
+                        new Statements\IfStatement(
                             location: $location,
-                            value: true,
-                        ),
-                        thenStatements: [
-                            new Statements\PrintStatement(
+                            condition: new Literals\BooleanLiteral(
                                 location: $location,
-                                expression: $identifier,
+                                value: true,
                             ),
-                        ],
-                    ),
-                ],
+                            thenStatements: new Block(
+                                location: $location,
+                                statements: [
+                                    new Statements\PrintStatement(
+                                        location: $location,
+                                        expression: $identifier,
+                                    ),
+                                ],
+                            ),
+                        ),
+                    ],
+                ),
             ),
         ];
 
+        $root = new Block(
+            location: $location,
+            statements: $statements,
+        );
+
         $this->assertEquals(
-            actual: new SymbolResolver($statements)->resolve($identifier),
+            actual: new SymbolResolver($root)->resolve($identifier),
             expected: $statements[0],
         );
     }

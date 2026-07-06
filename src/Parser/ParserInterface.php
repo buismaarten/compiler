@@ -7,10 +7,9 @@ declare(strict_types=1);
 
 namespace Package\Parser;
 
-use Package\Nodes\AbstractStatement;
+use Package\Nodes\Block;
 
 interface ParserInterface
 {
-    /** @return AbstractStatement[] */
-    public function parse(): array;
+    public function parse(): Block;
 }

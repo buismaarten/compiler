@@ -9,6 +9,7 @@ namespace Package\Nodes\Statements;
 
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
+use Package\Nodes\Block;
 use Package\Nodes\Location;
 use Package\Nodes\Parameter;
 
@@ -20,14 +21,10 @@ final class FunctionStatement extends AbstractStatement
     /** @var Parameter[] */
     public array $parameters;
 
-    /** @var AbstractStatement[] */
-    public array $statements;
+    public Block $statements;
 
-    /**
-     * @param Parameter[] $parameters
-     * @param AbstractStatement[] $statements
-     */
-    public function __construct(Location $location, string $name, AbstractType $type, array $parameters, array $statements)
+    /** @param Parameter[] $parameters */
+    public function __construct(Location $location, string $name, AbstractType $type, array $parameters, Block $statements)
     {
         parent::__construct($location);
 

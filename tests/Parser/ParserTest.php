@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tests\Parser;
 
+use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Location;
@@ -26,123 +27,139 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('[1, 2, 3];')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 10,
-                    ),
-                    expression: new Expressions\ArrayExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 10,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 9,
+                            endOffset: 10,
                         ),
-                        expressions: [
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 1,
-                                    endLine: 1,
-                                    endOffset: 2,
-                                ),
-                                value: 1,
+                        expression: new Expressions\ArrayExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 9,
                             ),
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 4,
-                                    endLine: 1,
-                                    endOffset: 5,
+                            expressions: [
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 1,
+                                        endLine: 1,
+                                        endOffset: 2,
+                                    ),
+                                    value: 1,
                                 ),
-                                value: 2,
-                            ),
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 7,
-                                    endLine: 1,
-                                    endOffset: 8,
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 4,
+                                        endLine: 1,
+                                        endOffset: 5,
+                                    ),
+                                    value: 2,
                                 ),
-                                value: 3,
-                            ),
-                        ],
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 7,
+                                        endLine: 1,
+                                        endOffset: 8,
+                                    ),
+                                    value: 3,
+                                ),
+                            ],
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('[1, 2, [3, 4]];')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 15,
-                    ),
-                    expression: new Expressions\ArrayExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 15,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 14,
+                            endOffset: 15,
                         ),
-                        expressions: [
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 1,
-                                    endLine: 1,
-                                    endOffset: 2,
-                                ),
-                                value: 1,
+                        expression: new Expressions\ArrayExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 14,
                             ),
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 4,
-                                    endLine: 1,
-                                    endOffset: 5,
-                                ),
-                                value: 2,
-                            ),
-                            new Expressions\ArrayExpression(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 7,
-                                    endLine: 1,
-                                    endOffset: 13,
-                                ),
-                                expressions: [
-                                    new Literals\IntegerLiteral(
-                                        location: new Location(
-                                            startLine: 1,
-                                            startOffset: 8,
-                                            endLine: 1,
-                                            endOffset: 9,
-                                        ),
-                                        value: 3,
+                            expressions: [
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 1,
+                                        endLine: 1,
+                                        endOffset: 2,
                                     ),
-                                    new Literals\IntegerLiteral(
-                                        location: new Location(
-                                            startLine: 1,
-                                            startOffset: 11,
-                                            endLine: 1,
-                                            endOffset: 12,
-                                        ),
-                                        value: 4,
+                                    value: 1,
+                                ),
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 4,
+                                        endLine: 1,
+                                        endOffset: 5,
                                     ),
-                                ],
-                            ),
-                        ],
+                                    value: 2,
+                                ),
+                                new Expressions\ArrayExpression(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 7,
+                                        endLine: 1,
+                                        endOffset: 13,
+                                    ),
+                                    expressions: [
+                                        new Literals\IntegerLiteral(
+                                            location: new Location(
+                                                startLine: 1,
+                                                startOffset: 8,
+                                                endLine: 1,
+                                                endOffset: 9,
+                                            ),
+                                            value: 3,
+                                        ),
+                                        new Literals\IntegerLiteral(
+                                            location: new Location(
+                                                startLine: 1,
+                                                startOffset: 11,
+                                                endLine: 1,
+                                                endOffset: 12,
+                                            ),
+                                            value: 4,
+                                        ),
+                                    ],
+                                ),
+                            ],
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -151,252 +168,284 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('var foo: int[] = [123, 456];')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 28,
-                    ),
-                    name: 'foo',
-                    type: new Types\ArrayType(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 28,
+                ),
+                statements: [
+                    new Statements\VarStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 12,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 14,
+                            endOffset: 28,
                         ),
-                        type: new Types\BuiltinType(
+                        name: 'foo',
+                        type: new Types\ArrayType(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 9,
+                                startOffset: 12,
                                 endLine: 1,
-                                endOffset: 12,
+                                endOffset: 14,
                             ),
-                            type: Types\Type::Integer,
-                        ),
-                    ),
-                    expression: new Expressions\ArrayExpression(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 17,
-                            endLine: 1,
-                            endOffset: 27,
-                        ),
-                        expressions: [
-                            new Literals\IntegerLiteral(
+                            type: new Types\BuiltinType(
                                 location: new Location(
                                     startLine: 1,
-                                    startOffset: 18,
+                                    startOffset: 9,
                                     endLine: 1,
-                                    endOffset: 21,
+                                    endOffset: 12,
                                 ),
-                                value: 123,
+                                type: Types\Type::Integer,
                             ),
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 23,
-                                    endLine: 1,
-                                    endOffset: 26,
+                        ),
+                        expression: new Expressions\ArrayExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 17,
+                                endLine: 1,
+                                endOffset: 27,
+                            ),
+                            expressions: [
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 18,
+                                        endLine: 1,
+                                        endOffset: 21,
+                                    ),
+                                    value: 123,
                                 ),
-                                value: 456,
-                            ),
-                        ],
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 23,
+                                        endLine: 1,
+                                        endOffset: 26,
+                                    ),
+                                    value: 456,
+                                ),
+                            ],
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('var foo: int[][] = [[123, 456]];')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 32,
-                    ),
-                    name: 'foo',
-                    type: new Types\ArrayType(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 32,
+                ),
+                statements: [
+                    new Statements\VarStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 14,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 16,
+                            endOffset: 32,
                         ),
+                        name: 'foo',
                         type: new Types\ArrayType(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 12,
+                                startOffset: 14,
                                 endLine: 1,
-                                endOffset: 14,
+                                endOffset: 16,
                             ),
-                            type: new Types\BuiltinType(
+                            type: new Types\ArrayType(
                                 location: new Location(
                                     startLine: 1,
-                                    startOffset: 9,
+                                    startOffset: 12,
                                     endLine: 1,
-                                    endOffset: 12,
+                                    endOffset: 14,
                                 ),
-                                type: Types\Type::Integer,
+                                type: new Types\BuiltinType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 9,
+                                        endLine: 1,
+                                        endOffset: 12,
+                                    ),
+                                    type: Types\Type::Integer,
+                                ),
                             ),
                         ),
-                    ),
-                    expression: new Expressions\ArrayExpression(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 19,
-                            endLine: 1,
-                            endOffset: 31,
-                        ),
-                        expressions: [
-                            new Expressions\ArrayExpression(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 20,
-                                    endLine: 1,
-                                    endOffset: 30,
-                                ),
-                                expressions: [
-                                    new Literals\IntegerLiteral(
-                                        location: new Location(
-                                            startLine: 1,
-                                            startOffset: 21,
-                                            endLine: 1,
-                                            endOffset: 24,
-                                        ),
-                                        value: 123,
-                                    ),
-                                    new Literals\IntegerLiteral(
-                                        location: new Location(
-                                            startLine: 1,
-                                            startOffset: 26,
-                                            endLine: 1,
-                                            endOffset: 29,
-                                        ),
-                                        value: 456,
-                                    ),
-                                ],
+                        expression: new Expressions\ArrayExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 19,
+                                endLine: 1,
+                                endOffset: 31,
                             ),
-                        ],
+                            expressions: [
+                                new Expressions\ArrayExpression(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 20,
+                                        endLine: 1,
+                                        endOffset: 30,
+                                    ),
+                                    expressions: [
+                                        new Literals\IntegerLiteral(
+                                            location: new Location(
+                                                startLine: 1,
+                                                startOffset: 21,
+                                                endLine: 1,
+                                                endOffset: 24,
+                                            ),
+                                            value: 123,
+                                        ),
+                                        new Literals\IntegerLiteral(
+                                            location: new Location(
+                                                startLine: 1,
+                                                startOffset: 26,
+                                                endLine: 1,
+                                                endOffset: 29,
+                                            ),
+                                            value: 456,
+                                        ),
+                                    ],
+                                ),
+                            ],
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('var foo: int[]? = null;')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 23,
-                    ),
-                    name: 'foo',
-                    type: new Types\NullableType(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 23,
+                ),
+                statements: [
+                    new Statements\VarStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 14,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 15,
+                            endOffset: 23,
                         ),
-                        type: new Types\ArrayType(
+                        name: 'foo',
+                        type: new Types\NullableType(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 12,
+                                startOffset: 14,
                                 endLine: 1,
-                                endOffset: 14,
+                                endOffset: 15,
                             ),
-                            type: new Types\BuiltinType(
+                            type: new Types\ArrayType(
                                 location: new Location(
                                     startLine: 1,
-                                    startOffset: 9,
+                                    startOffset: 12,
                                     endLine: 1,
-                                    endOffset: 12,
+                                    endOffset: 14,
                                 ),
-                                type: Types\Type::Integer,
+                                type: new Types\BuiltinType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 9,
+                                        endLine: 1,
+                                        endOffset: 12,
+                                    ),
+                                    type: Types\Type::Integer,
+                                ),
+                            ),
+                        ),
+                        expression: new Literals\NullLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 18,
+                                endLine: 1,
+                                endOffset: 22,
                             ),
                         ),
                     ),
-                    expression: new Literals\NullLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 18,
-                            endLine: 1,
-                            endOffset: 22,
-                        ),
-                    ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('var foo: int[]?[]? = null;')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 26,
-                    ),
-                    name: 'foo',
-                    type: new Types\NullableType(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 26,
+                ),
+                statements: [
+                    new Statements\VarStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 17,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 18,
+                            endOffset: 26,
                         ),
-                        type: new Types\ArrayType(
+                        name: 'foo',
+                        type: new Types\NullableType(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 15,
+                                startOffset: 17,
                                 endLine: 1,
-                                endOffset: 17,
+                                endOffset: 18,
                             ),
-                            type: new Types\NullableType(
+                            type: new Types\ArrayType(
                                 location: new Location(
                                     startLine: 1,
-                                    startOffset: 14,
+                                    startOffset: 15,
                                     endLine: 1,
-                                    endOffset: 15,
+                                    endOffset: 17,
                                 ),
-                                type: new Types\ArrayType(
+                                type: new Types\NullableType(
                                     location: new Location(
                                         startLine: 1,
-                                        startOffset: 12,
+                                        startOffset: 14,
                                         endLine: 1,
-                                        endOffset: 14,
+                                        endOffset: 15,
                                     ),
-                                    type: new Types\BuiltinType(
+                                    type: new Types\ArrayType(
                                         location: new Location(
                                             startLine: 1,
-                                            startOffset: 9,
+                                            startOffset: 12,
                                             endLine: 1,
-                                            endOffset: 12,
+                                            endOffset: 14,
                                         ),
-                                        type: Types\Type::Integer,
+                                        type: new Types\BuiltinType(
+                                            location: new Location(
+                                                startLine: 1,
+                                                startOffset: 9,
+                                                endLine: 1,
+                                                endOffset: 12,
+                                            ),
+                                            type: Types\Type::Integer,
+                                        ),
                                     ),
                                 ),
                             ),
                         ),
-                    ),
-                    expression: new Literals\NullLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 21,
-                            endLine: 1,
-                            endOffset: 25,
+                        expression: new Literals\NullLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 21,
+                                endLine: 1,
+                                endOffset: 25,
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -405,34 +454,42 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('foo = 123;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 10,
-                    ),
-                    expression: new Expressions\AssignmentExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 10,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 9,
+                            endOffset: 10,
                         ),
-                        name: 'foo',
-                        expression: new Literals\IntegerLiteral(
+                        expression: new Expressions\AssignmentExpression(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 6,
+                                startOffset: 0,
                                 endLine: 1,
                                 endOffset: 9,
                             ),
-                            value: 123,
+                            name: 'foo',
+                            expression: new Literals\IntegerLiteral(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 6,
+                                    endLine: 1,
+                                    endOffset: 9,
+                                ),
+                                value: 123,
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -441,61 +498,69 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('1 + 2 * 3;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 10,
-                    ),
-                    expression: new Expressions\BinaryExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 10,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 2,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 9,
+                            endOffset: 10,
                         ),
-                        operator: Expressions\BinaryOperator::Plus,
-                        left: new Literals\IntegerLiteral(
+                        expression: new Expressions\BinaryExpression(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 0,
-                                endLine: 1,
-                                endOffset: 1,
-                            ),
-                            value: 1,
-                        ),
-                        right: new Expressions\BinaryExpression(
-                            location: new Location(
-                                startLine: 1,
-                                startOffset: 6,
+                                startOffset: 2,
                                 endLine: 1,
                                 endOffset: 9,
                             ),
-                            operator: Expressions\BinaryOperator::Multiply,
+                            operator: Expressions\BinaryOperator::Plus,
                             left: new Literals\IntegerLiteral(
                                 location: new Location(
                                     startLine: 1,
-                                    startOffset: 4,
+                                    startOffset: 0,
                                     endLine: 1,
-                                    endOffset: 5,
+                                    endOffset: 1,
                                 ),
-                                value: 2,
+                                value: 1,
                             ),
-                            right: new Literals\IntegerLiteral(
+                            right: new Expressions\BinaryExpression(
                                 location: new Location(
                                     startLine: 1,
-                                    startOffset: 8,
+                                    startOffset: 6,
                                     endLine: 1,
                                     endOffset: 9,
                                 ),
-                                value: 3,
+                                operator: Expressions\BinaryOperator::Multiply,
+                                left: new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 4,
+                                        endLine: 1,
+                                        endOffset: 5,
+                                    ),
+                                    value: 2,
+                                ),
+                                right: new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 8,
+                                        endLine: 1,
+                                        endOffset: 9,
+                                    ),
+                                    value: 3,
+                                ),
                             ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -504,48 +569,64 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('false;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 6,
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 6,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 6,
+                        ),
+                        expression: new Literals\BooleanLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 5,
+                            ),
+                            value: false,
+                        ),
                     ),
-                    expression: new Literals\BooleanLiteral(
+                ],
+            ),
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('true;')->parse(),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
                             endOffset: 5,
                         ),
-                        value: false,
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('true;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 5,
-                    ),
-                    expression: new Literals\BooleanLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 0,
-                            endLine: 1,
-                            endOffset: 4,
+                        expression: new Literals\BooleanLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 4,
+                            ),
+                            value: true,
                         ),
-                        value: true,
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -554,39 +635,55 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('break;')->parse(),
-            expected: [
-                new Statements\BreakStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 6,
-                    ),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 6,
                 ),
-            ],
+                statements: [
+                    new Statements\BreakStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 6,
+                        ),
+                    ),
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('break 2;')->parse(),
-            expected: [
-                new Statements\BreakStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 8,
-                    ),
-                    level: new Literals\IntegerLiteral(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 8,
+                ),
+                statements: [
+                    new Statements\BreakStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 6,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 7,
+                            endOffset: 8,
                         ),
-                        value: 2,
+                        level: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 6,
+                                endLine: 1,
+                                endOffset: 7,
+                            ),
+                            value: 2,
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -595,68 +692,84 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('const foo: int = 123;')->parse(),
-            expected: [
-                new Statements\ConstStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 21,
-                    ),
-                    name: 'foo',
-                    type: new Types\BuiltinType(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 11,
-                            endLine: 1,
-                            endOffset: 14,
-                        ),
-                        type: Types\Type::Integer,
-                    ),
-                    expression: new Literals\IntegerLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 17,
-                            endLine: 1,
-                            endOffset: 20,
-                        ),
-                        value: 123,
-                    ),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 21,
                 ),
-            ],
+                statements: [
+                    new Statements\ConstStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 21,
+                        ),
+                        name: 'foo',
+                        type: new Types\BuiltinType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 11,
+                                endLine: 1,
+                                endOffset: 14,
+                            ),
+                            type: Types\Type::Integer,
+                        ),
+                        expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 17,
+                                endLine: 1,
+                                endOffset: 20,
+                            ),
+                            value: 123,
+                        ),
+                    ),
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('const foo: xyz = 123;')->parse(),
-            expected: [
-                new Statements\ConstStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 21,
-                    ),
-                    name: 'foo',
-                    type: new Types\NamedType(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 11,
-                            endLine: 1,
-                            endOffset: 14,
-                        ),
-                        name: 'xyz',
-                    ),
-                    expression: new Literals\IntegerLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 17,
-                            endLine: 1,
-                            endOffset: 20,
-                        ),
-                        value: 123,
-                    ),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 21,
                 ),
-            ],
+                statements: [
+                    new Statements\ConstStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 21,
+                        ),
+                        name: 'foo',
+                        type: new Types\NamedType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 11,
+                                endLine: 1,
+                                endOffset: 14,
+                            ),
+                            name: 'xyz',
+                        ),
+                        expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 17,
+                                endLine: 1,
+                                endOffset: 20,
+                            ),
+                            value: 123,
+                        ),
+                    ),
+                ],
+            ),
         );
     }
 
@@ -665,39 +778,55 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('continue;')->parse(),
-            expected: [
-                new Statements\ContinueStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 9,
-                    ),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 9,
                 ),
-            ],
+                statements: [
+                    new Statements\ContinueStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 9,
+                        ),
+                    ),
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('continue 2;')->parse(),
-            expected: [
-                new Statements\ContinueStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 11,
-                    ),
-                    level: new Literals\IntegerLiteral(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 11,
+                ),
+                statements: [
+                    new Statements\ContinueStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 9,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 10,
+                            endOffset: 11,
                         ),
-                        value: 2,
+                        level: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 9,
+                                endLine: 1,
+                                endOffset: 10,
+                            ),
+                            value: 2,
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -706,25 +835,33 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('3.14;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 5,
-                    ),
-                    expression: new Literals\FloatLiteral(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 4,
+                            endOffset: 5,
                         ),
-                        value: 3.14,
+                        expression: new Literals\FloatLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 4,
+                            ),
+                            value: 3.14,
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -733,80 +870,96 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('foo();')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 6,
-                    ),
-                    expression: new Expressions\FunctionCallExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 6,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 5,
+                            endOffset: 6,
                         ),
-                        name: 'foo',
-                        arguments: [],
+                        expression: new Expressions\FunctionCallExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 5,
+                            ),
+                            name: 'foo',
+                            arguments: [],
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('foo(123, foo("bar"));')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 21,
-                    ),
-                    expression: new Expressions\FunctionCallExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 21,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 20,
+                            endOffset: 21,
                         ),
-                        name: 'foo',
-                        arguments: [
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 4,
-                                    endLine: 1,
-                                    endOffset: 7,
-                                ),
-                                value: 123,
+                        expression: new Expressions\FunctionCallExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 20,
                             ),
-                            new Expressions\FunctionCallExpression(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 9,
-                                    endLine: 1,
-                                    endOffset: 19,
-                                ),
-                                name: 'foo',
-                                arguments: [
-                                    new Literals\StringLiteral(
-                                        location: new Location(
-                                            startLine: 1,
-                                            startOffset: 13,
-                                            endLine: 1,
-                                            endOffset: 18,
-                                        ),
-                                        value: 'bar',
+                            name: 'foo',
+                            arguments: [
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 4,
+                                        endLine: 1,
+                                        endOffset: 7,
                                     ),
-                                ],
-                            ),
-                        ],
+                                    value: 123,
+                                ),
+                                new Expressions\FunctionCallExpression(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 9,
+                                        endLine: 1,
+                                        endOffset: 19,
+                                    ),
+                                    name: 'foo',
+                                    arguments: [
+                                        new Literals\StringLiteral(
+                                            location: new Location(
+                                                startLine: 1,
+                                                startOffset: 13,
+                                                endLine: 1,
+                                                endOffset: 18,
+                                            ),
+                                            value: 'bar',
+                                        ),
+                                    ],
+                                ),
+                            ],
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -815,127 +968,159 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('fn foo(): void { print "Hello, World!"; }')->parse(),
-            expected: [
-                new Statements\FunctionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 41,
-                    ),
-                    name: 'foo',
-                    type: new Types\BuiltinType(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 41,
+                ),
+                statements: [
+                    new Statements\FunctionStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 10,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 14,
+                            endOffset: 41,
                         ),
-                        type: Types\Type::Void,
-                    ),
-                    parameters: [],
-                    statements: [
-                        new Statements\PrintStatement(
+                        name: 'foo',
+                        type: new Types\BuiltinType(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 17,
+                                startOffset: 10,
                                 endLine: 1,
-                                endOffset: 39,
+                                endOffset: 14,
                             ),
-                            expression: new Literals\StringLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 23,
-                                    endLine: 1,
-                                    endOffset: 38,
-                                ),
-                                value: 'Hello, World!',
-                            ),
+                            type: Types\Type::Void,
                         ),
-                    ],
-                ),
-            ],
+                        parameters: [],
+                        statements: new Block(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 15,
+                                endLine: 1,
+                                endOffset: 41,
+                            ),
+                            statements: [
+                                new Statements\PrintStatement(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 17,
+                                        endLine: 1,
+                                        endOffset: 39,
+                                    ),
+                                    expression: new Literals\StringLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 23,
+                                            endLine: 1,
+                                            endOffset: 38,
+                                        ),
+                                        value: 'Hello, World!',
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('fn foo(bar: int, baz: xyz): xyz { return baz; }')->parse(),
-            expected: [
-                new Statements\FunctionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 47,
-                    ),
-                    name: 'foo',
-                    type: new Types\NamedType(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 47,
+                ),
+                statements: [
+                    new Statements\FunctionStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 28,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 31,
+                            endOffset: 47,
                         ),
-                        name: 'xyz',
-                    ),
-                    parameters: [
-                        new Parameter(
+                        name: 'foo',
+                        type: new Types\NamedType(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 7,
+                                startOffset: 28,
                                 endLine: 1,
-                                endOffset: 15,
+                                endOffset: 31,
                             ),
-                            name: 'bar',
-                            type: new Types\BuiltinType(
+                            name: 'xyz',
+                        ),
+                        parameters: [
+                            new Parameter(
                                 location: new Location(
                                     startLine: 1,
-                                    startOffset: 12,
+                                    startOffset: 7,
                                     endLine: 1,
                                     endOffset: 15,
                                 ),
-                                type: Types\Type::Integer,
+                                name: 'bar',
+                                type: new Types\BuiltinType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 12,
+                                        endLine: 1,
+                                        endOffset: 15,
+                                    ),
+                                    type: Types\Type::Integer,
+                                ),
                             ),
-                        ),
-                        new Parameter(
-                            location: new Location(
-                                startLine: 1,
-                                startOffset: 17,
-                                endLine: 1,
-                                endOffset: 25,
-                            ),
-                            name: 'baz',
-                            type: new Types\NamedType(
+                            new Parameter(
                                 location: new Location(
                                     startLine: 1,
-                                    startOffset: 22,
+                                    startOffset: 17,
                                     endLine: 1,
                                     endOffset: 25,
                                 ),
-                                name: 'xyz',
+                                name: 'baz',
+                                type: new Types\NamedType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 22,
+                                        endLine: 1,
+                                        endOffset: 25,
+                                    ),
+                                    name: 'xyz',
+                                ),
                             ),
-                        ),
-                    ],
-                    statements: [
-                        new Statements\ReturnStatement(
+                        ],
+                        statements: new Block(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 34,
+                                startOffset: 32,
                                 endLine: 1,
-                                endOffset: 45,
+                                endOffset: 47,
                             ),
-                            expression: new Expressions\IdentifierExpression(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 41,
-                                    endLine: 1,
-                                    endOffset: 44,
+                            statements: [
+                                new Statements\ReturnStatement(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 34,
+                                        endLine: 1,
+                                        endOffset: 45,
+                                    ),
+                                    expression: new Expressions\IdentifierExpression(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 41,
+                                            endLine: 1,
+                                            endOffset: 44,
+                                        ),
+                                        name: 'baz',
+                                    ),
                                 ),
-                                name: 'baz',
-                            ),
+                            ],
                         ),
-                    ],
-                ),
-            ],
+                    ),
+                ],
+            ),
         );
     }
 
@@ -944,25 +1129,33 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 4,
-                    ),
-                    expression: new Expressions\IdentifierExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 3,
+                            endOffset: 4,
                         ),
-                        name: 'foo',
+                        expression: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 3,
+                            ),
+                            name: 'foo',
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -971,105 +1164,145 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('if (foo) { return 1; }')->parse(),
-            expected: [
-                new Statements\IfStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 22,
-                    ),
-                    condition: new Expressions\IdentifierExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 22,
+                ),
+                statements: [
+                    new Statements\IfStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 4,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 7,
+                            endOffset: 22,
                         ),
-                        name: 'foo',
-                    ),
-                    thenStatements: [
-                        new Statements\ReturnStatement(
+                        condition: new Expressions\IdentifierExpression(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 11,
+                                startOffset: 4,
                                 endLine: 1,
-                                endOffset: 20,
+                                endOffset: 7,
                             ),
-                            expression: new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 18,
-                                    endLine: 1,
-                                    endOffset: 19,
-                                ),
-                                value: 1,
-                            ),
+                            name: 'foo',
                         ),
-                    ],
-                ),
-            ],
+                        thenStatements: new Block(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 9,
+                                endLine: 1,
+                                endOffset: 22,
+                            ),
+                            statements: [
+                                new Statements\ReturnStatement(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 11,
+                                        endLine: 1,
+                                        endOffset: 20,
+                                    ),
+                                    expression: new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 18,
+                                            endLine: 1,
+                                            endOffset: 19,
+                                        ),
+                                        value: 1,
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('if (foo) { return 1; } else { return 2; }')->parse(),
-            expected: [
-                new Statements\IfStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 41,
-                    ),
-                    condition: new Expressions\IdentifierExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 41,
+                ),
+                statements: [
+                    new Statements\IfStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 4,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 7,
+                            endOffset: 41,
                         ),
-                        name: 'foo',
+                        condition: new Expressions\IdentifierExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 4,
+                                endLine: 1,
+                                endOffset: 7,
+                            ),
+                            name: 'foo',
+                        ),
+                        thenStatements: new Block(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 9,
+                                endLine: 1,
+                                endOffset: 22,
+                            ),
+                            statements: [
+                                new Statements\ReturnStatement(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 11,
+                                        endLine: 1,
+                                        endOffset: 20,
+                                    ),
+                                    expression: new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 18,
+                                            endLine: 1,
+                                            endOffset: 19,
+                                        ),
+                                        value: 1,
+                                    ),
+                                ),
+                            ],
+                        ),
+                        elseStatements: new Block(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 28,
+                                endLine: 1,
+                                endOffset: 41,
+                            ),
+                            statements: [
+                                new Statements\ReturnStatement(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 30,
+                                        endLine: 1,
+                                        endOffset: 39,
+                                    ),
+                                    expression: new Literals\IntegerLiteral(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 37,
+                                            endLine: 1,
+                                            endOffset: 38,
+                                        ),
+                                        value: 2,
+                                    ),
+                                ),
+                            ],
+                        ),
                     ),
-                    thenStatements: [
-                        new Statements\ReturnStatement(
-                            location: new Location(
-                                startLine: 1,
-                                startOffset: 11,
-                                endLine: 1,
-                                endOffset: 20,
-                            ),
-                            expression: new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 18,
-                                    endLine: 1,
-                                    endOffset: 19,
-                                ),
-                                value: 1,
-                            ),
-                        ),
-                    ],
-                    elseStatements: [
-                        new Statements\ReturnStatement(
-                            location: new Location(
-                                startLine: 1,
-                                startOffset: 30,
-                                endLine: 1,
-                                endOffset: 39,
-                            ),
-                            expression: new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 37,
-                                    endLine: 1,
-                                    endOffset: 38,
-                                ),
-                                value: 2,
-                            ),
-                        ),
-                    ],
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -1078,25 +1311,33 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('123;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 4,
-                    ),
-                    expression: new Literals\IntegerLiteral(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 3,
+                            endOffset: 4,
                         ),
-                        value: 123,
+                        expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 3,
+                            ),
+                            value: 123,
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -1105,59 +1346,22 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('var foo: int = 123;')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 19,
-                    ),
-                    name: 'foo',
-                    type: new Types\BuiltinType(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 9,
-                            endLine: 1,
-                            endOffset: 12,
-                        ),
-                        type: Types\Type::Integer,
-                    ),
-                    expression: new Literals\IntegerLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 15,
-                            endLine: 1,
-                            endOffset: 18,
-                        ),
-                        value: 123,
-                    ),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 19,
                 ),
-            ],
-        );
-    }
-
-    #[Test]
-    public function testNullableType(): void
-    {
-        $this->assertEquals(
-            actual: self::createParser('var foo: int? = null;')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 21,
-                    ),
-                    name: 'foo',
-                    type: new Types\NullableType(
+                statements: [
+                    new Statements\VarStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 12,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 13,
+                            endOffset: 19,
                         ),
+                        name: 'foo',
                         type: new Types\BuiltinType(
                             location: new Location(
                                 startLine: 1,
@@ -1167,37 +1371,42 @@ class ParserTest extends TestCase
                             ),
                             type: Types\Type::Integer,
                         ),
-                    ),
-                    expression: new Literals\NullLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 16,
-                            endLine: 1,
-                            endOffset: 20,
+                        expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 15,
+                                endLine: 1,
+                                endOffset: 18,
+                            ),
+                            value: 123,
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
+    }
 
+    #[Test]
+    public function testNullableType(): void
+    {
         $this->assertEquals(
-            actual: self::createParser('var foo: int?[] = null;')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 23,
-                    ),
-                    name: 'foo',
-                    type: new Types\ArrayType(
+            actual: self::createParser('var foo: int? = null;')->parse(),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 21,
+                ),
+                statements: [
+                    new Statements\VarStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 13,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 15,
+                            endOffset: 21,
                         ),
+                        name: 'foo',
                         type: new Types\NullableType(
                             location: new Location(
                                 startLine: 1,
@@ -1215,37 +1424,37 @@ class ParserTest extends TestCase
                                 type: Types\Type::Integer,
                             ),
                         ),
-                    ),
-                    expression: new Literals\NullLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 18,
-                            endLine: 1,
-                            endOffset: 22,
+                        expression: new Literals\NullLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 16,
+                                endLine: 1,
+                                endOffset: 20,
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
-            actual: self::createParser('var foo: int?[]? = null;')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 24,
-                    ),
-                    name: 'foo',
-                    type: new Types\NullableType(
+            actual: self::createParser('var foo: int?[] = null;')->parse(),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 23,
+                ),
+                statements: [
+                    new Statements\VarStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 15,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 16,
+                            endOffset: 23,
                         ),
+                        name: 'foo',
                         type: new Types\ArrayType(
                             location: new Location(
                                 startLine: 1,
@@ -1271,17 +1480,81 @@ class ParserTest extends TestCase
                                 ),
                             ),
                         ),
-                    ),
-                    expression: new Literals\NullLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 19,
-                            endLine: 1,
-                            endOffset: 23,
+                        expression: new Literals\NullLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 18,
+                                endLine: 1,
+                                endOffset: 22,
+                            ),
                         ),
                     ),
+                ],
+            ),
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('var foo: int?[]? = null;')->parse(),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 24,
                 ),
-            ],
+                statements: [
+                    new Statements\VarStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 24,
+                        ),
+                        name: 'foo',
+                        type: new Types\NullableType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 15,
+                                endLine: 1,
+                                endOffset: 16,
+                            ),
+                            type: new Types\ArrayType(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 13,
+                                    endLine: 1,
+                                    endOffset: 15,
+                                ),
+                                type: new Types\NullableType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 12,
+                                        endLine: 1,
+                                        endOffset: 13,
+                                    ),
+                                    type: new Types\BuiltinType(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 9,
+                                            endLine: 1,
+                                            endOffset: 12,
+                                        ),
+                                        type: Types\Type::Integer,
+                                    ),
+                                ),
+                            ),
+                        ),
+                        expression: new Literals\NullLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 19,
+                                endLine: 1,
+                                endOffset: 23,
+                            ),
+                        ),
+                    ),
+                ],
+            ),
         );
     }
 
@@ -1290,24 +1563,32 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('null;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 5,
-                    ),
-                    expression: new Literals\NullLiteral(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 4,
+                            endOffset: 5,
+                        ),
+                        expression: new Literals\NullLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 4,
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -1316,68 +1597,84 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('foo--;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 6,
-                    ),
-                    expression: new Expressions\UnaryExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 6,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 5,
+                            endOffset: 6,
                         ),
-                        operator: Expressions\UnaryOperator::Decrement,
-                        position: Expressions\UnaryPosition::Postfix,
-                        expression: new Expressions\IdentifierExpression(
+                        expression: new Expressions\UnaryExpression(
                             location: new Location(
                                 startLine: 1,
                                 startOffset: 0,
                                 endLine: 1,
-                                endOffset: 3,
+                                endOffset: 5,
                             ),
-                            name: 'foo',
+                            operator: Expressions\UnaryOperator::Decrement,
+                            position: Expressions\UnaryPosition::Postfix,
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 0,
+                                    endLine: 1,
+                                    endOffset: 3,
+                                ),
+                                name: 'foo',
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('foo++;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 6,
-                    ),
-                    expression: new Expressions\UnaryExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 6,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 5,
+                            endOffset: 6,
                         ),
-                        operator: Expressions\UnaryOperator::Increment,
-                        position: Expressions\UnaryPosition::Postfix,
-                        expression: new Expressions\IdentifierExpression(
+                        expression: new Expressions\UnaryExpression(
                             location: new Location(
                                 startLine: 1,
                                 startOffset: 0,
                                 endLine: 1,
-                                endOffset: 3,
+                                endOffset: 5,
                             ),
-                            name: 'foo',
+                            operator: Expressions\UnaryOperator::Increment,
+                            position: Expressions\UnaryPosition::Postfix,
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 0,
+                                    endLine: 1,
+                                    endOffset: 3,
+                                ),
+                                name: 'foo',
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -1386,200 +1683,248 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('~foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 5,
-                    ),
-                    expression: new Expressions\UnaryExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 4,
+                            endOffset: 5,
                         ),
-                        operator: Expressions\UnaryOperator::BitwiseNot,
-                        position: Expressions\UnaryPosition::Prefix,
-                        expression: new Expressions\IdentifierExpression(
+                        expression: new Expressions\UnaryExpression(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 1,
+                                startOffset: 0,
                                 endLine: 1,
                                 endOffset: 4,
                             ),
-                            name: 'foo',
+                            operator: Expressions\UnaryOperator::BitwiseNot,
+                            position: Expressions\UnaryPosition::Prefix,
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 1,
+                                    endLine: 1,
+                                    endOffset: 4,
+                                ),
+                                name: 'foo',
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('!foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 5,
-                    ),
-                    expression: new Expressions\UnaryExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 4,
+                            endOffset: 5,
                         ),
-                        operator: Expressions\UnaryOperator::BooleanNot,
-                        position: Expressions\UnaryPosition::Prefix,
-                        expression: new Expressions\IdentifierExpression(
+                        expression: new Expressions\UnaryExpression(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 1,
+                                startOffset: 0,
                                 endLine: 1,
                                 endOffset: 4,
                             ),
-                            name: 'foo',
+                            operator: Expressions\UnaryOperator::BooleanNot,
+                            position: Expressions\UnaryPosition::Prefix,
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 1,
+                                    endLine: 1,
+                                    endOffset: 4,
+                                ),
+                                name: 'foo',
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('--foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 6,
-                    ),
-                    expression: new Expressions\UnaryExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 6,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 5,
+                            endOffset: 6,
                         ),
-                        operator: Expressions\UnaryOperator::Decrement,
-                        position: Expressions\UnaryPosition::Prefix,
-                        expression: new Expressions\IdentifierExpression(
+                        expression: new Expressions\UnaryExpression(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 2,
+                                startOffset: 0,
                                 endLine: 1,
                                 endOffset: 5,
                             ),
-                            name: 'foo',
+                            operator: Expressions\UnaryOperator::Decrement,
+                            position: Expressions\UnaryPosition::Prefix,
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 2,
+                                    endLine: 1,
+                                    endOffset: 5,
+                                ),
+                                name: 'foo',
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('++foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 6,
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 6,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 6,
+                        ),
+                        expression: new Expressions\UnaryExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 5,
+                            ),
+                            operator: Expressions\UnaryOperator::Increment,
+                            position: Expressions\UnaryPosition::Prefix,
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 2,
+                                    endLine: 1,
+                                    endOffset: 5,
+                                ),
+                                name: 'foo',
+                            ),
+                        ),
                     ),
-                    expression: new Expressions\UnaryExpression(
+                ],
+            ),
+        );
+
+        $this->assertEquals(
+            actual: self::createParser('-foo;')->parse(),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
                             endOffset: 5,
                         ),
-                        operator: Expressions\UnaryOperator::Increment,
-                        position: Expressions\UnaryPosition::Prefix,
-                        expression: new Expressions\IdentifierExpression(
+                        expression: new Expressions\UnaryExpression(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 2,
-                                endLine: 1,
-                                endOffset: 5,
-                            ),
-                            name: 'foo',
-                        ),
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: self::createParser('-foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 5,
-                    ),
-                    expression: new Expressions\UnaryExpression(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 0,
-                            endLine: 1,
-                            endOffset: 4,
-                        ),
-                        operator: Expressions\UnaryOperator::Minus,
-                        position: Expressions\UnaryPosition::Prefix,
-                        expression: new Expressions\IdentifierExpression(
-                            location: new Location(
-                                startLine: 1,
-                                startOffset: 1,
+                                startOffset: 0,
                                 endLine: 1,
                                 endOffset: 4,
                             ),
-                            name: 'foo',
+                            operator: Expressions\UnaryOperator::Minus,
+                            position: Expressions\UnaryPosition::Prefix,
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 1,
+                                    endLine: 1,
+                                    endOffset: 4,
+                                ),
+                                name: 'foo',
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('+foo;')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 5,
-                    ),
-                    expression: new Expressions\UnaryExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 4,
+                            endOffset: 5,
                         ),
-                        operator: Expressions\UnaryOperator::Plus,
-                        position: Expressions\UnaryPosition::Prefix,
-                        expression: new Expressions\IdentifierExpression(
+                        expression: new Expressions\UnaryExpression(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 1,
+                                startOffset: 0,
                                 endLine: 1,
                                 endOffset: 4,
                             ),
-                            name: 'foo',
+                            operator: Expressions\UnaryOperator::Plus,
+                            position: Expressions\UnaryPosition::Prefix,
+                            expression: new Expressions\IdentifierExpression(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 1,
+                                    endLine: 1,
+                                    endOffset: 4,
+                                ),
+                                name: 'foo',
+                            ),
                         ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -1588,25 +1933,33 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('print 123;')->parse(),
-            expected: [
-                new Statements\PrintStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 10,
-                    ),
-                    expression: new Literals\IntegerLiteral(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 10,
+                ),
+                statements: [
+                    new Statements\PrintStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 6,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 9,
+                            endOffset: 10,
                         ),
-                        value: 123,
+                        expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 6,
+                                endLine: 1,
+                                endOffset: 9,
+                            ),
+                            value: 123,
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -1615,40 +1968,56 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('return;')->parse(),
-            expected: [
-                new Statements\ReturnStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 7,
-                    ),
-                    expression: null,
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 7,
                 ),
-            ],
+                statements: [
+                    new Statements\ReturnStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 7,
+                        ),
+                        expression: null,
+                    ),
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('return 123;')->parse(),
-            expected: [
-                new Statements\ReturnStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 11,
-                    ),
-                    expression: new Literals\IntegerLiteral(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 11,
+                ),
+                statements: [
+                    new Statements\ReturnStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 7,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 10,
+                            endOffset: 11,
                         ),
-                        value: 123,
+                        expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 7,
+                                endLine: 1,
+                                endOffset: 10,
+                            ),
+                            value: 123,
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -1657,25 +2026,33 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('"Hello, World!";')->parse(),
-            expected: [
-                new Statements\ExpressionStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 16,
-                    ),
-                    expression: new Literals\StringLiteral(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 16,
+                ),
+                statements: [
+                    new Statements\ExpressionStatement(
                         location: new Location(
                             startLine: 1,
                             startOffset: 0,
                             endLine: 1,
-                            endOffset: 15,
+                            endOffset: 16,
                         ),
-                        value: 'Hello, World!',
+                        expression: new Literals\StringLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 0,
+                                endLine: 1,
+                                endOffset: 15,
+                            ),
+                            value: 'Hello, World!',
+                        ),
                     ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -1684,312 +2061,344 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('var foo: (int, int) = (123, 456);')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 33,
-                    ),
-                    name: 'foo',
-                    type: new Types\TupleType(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 9,
-                            endLine: 1,
-                            endOffset: 19,
-                        ),
-                        types: [
-                            new Types\BuiltinType(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 10,
-                                    endLine: 1,
-                                    endOffset: 13,
-                                ),
-                                type: Types\Type::Integer,
-                            ),
-                            new Types\BuiltinType(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 15,
-                                    endLine: 1,
-                                    endOffset: 18,
-                                ),
-                                type: Types\Type::Integer,
-                            ),
-                        ],
-                    ),
-                    expression: new Expressions\TupleExpression(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 22,
-                            endLine: 1,
-                            endOffset: 32,
-                        ),
-                        expressions: [
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 23,
-                                    endLine: 1,
-                                    endOffset: 26,
-                                ),
-                                value: 123,
-                            ),
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 28,
-                                    endLine: 1,
-                                    endOffset: 31,
-                                ),
-                                value: 456,
-                            ),
-                        ],
-                    ),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 33,
                 ),
-            ],
+                statements: [
+                    new Statements\VarStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 33,
+                        ),
+                        name: 'foo',
+                        type: new Types\TupleType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 9,
+                                endLine: 1,
+                                endOffset: 19,
+                            ),
+                            types: [
+                                new Types\BuiltinType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 10,
+                                        endLine: 1,
+                                        endOffset: 13,
+                                    ),
+                                    type: Types\Type::Integer,
+                                ),
+                                new Types\BuiltinType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 15,
+                                        endLine: 1,
+                                        endOffset: 18,
+                                    ),
+                                    type: Types\Type::Integer,
+                                ),
+                            ],
+                        ),
+                        expression: new Expressions\TupleExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 22,
+                                endLine: 1,
+                                endOffset: 32,
+                            ),
+                            expressions: [
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 23,
+                                        endLine: 1,
+                                        endOffset: 26,
+                                    ),
+                                    value: 123,
+                                ),
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 28,
+                                        endLine: 1,
+                                        endOffset: 31,
+                                    ),
+                                    value: 456,
+                                ),
+                            ],
+                        ),
+                    ),
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('var foo: (int, int) = ((123, 456));')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 35,
-                    ),
-                    name: 'foo',
-                    type: new Types\TupleType(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 9,
-                            endLine: 1,
-                            endOffset: 19,
-                        ),
-                        types: [
-                            new Types\BuiltinType(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 10,
-                                    endLine: 1,
-                                    endOffset: 13,
-                                ),
-                                type: Types\Type::Integer,
-                            ),
-                            new Types\BuiltinType(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 15,
-                                    endLine: 1,
-                                    endOffset: 18,
-                                ),
-                                type: Types\Type::Integer,
-                            ),
-                        ],
-                    ),
-                    expression: new Expressions\TupleExpression(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 23,
-                            endLine: 1,
-                            endOffset: 33,
-                        ),
-                        expressions: [
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 24,
-                                    endLine: 1,
-                                    endOffset: 27,
-                                ),
-                                value: 123,
-                            ),
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 29,
-                                    endLine: 1,
-                                    endOffset: 32,
-                                ),
-                                value: 456,
-                            ),
-                        ],
-                    ),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 35,
                 ),
-            ],
+                statements: [
+                    new Statements\VarStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 35,
+                        ),
+                        name: 'foo',
+                        type: new Types\TupleType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 9,
+                                endLine: 1,
+                                endOffset: 19,
+                            ),
+                            types: [
+                                new Types\BuiltinType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 10,
+                                        endLine: 1,
+                                        endOffset: 13,
+                                    ),
+                                    type: Types\Type::Integer,
+                                ),
+                                new Types\BuiltinType(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 15,
+                                        endLine: 1,
+                                        endOffset: 18,
+                                    ),
+                                    type: Types\Type::Integer,
+                                ),
+                            ],
+                        ),
+                        expression: new Expressions\TupleExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 23,
+                                endLine: 1,
+                                endOffset: 33,
+                            ),
+                            expressions: [
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 24,
+                                        endLine: 1,
+                                        endOffset: 27,
+                                    ),
+                                    value: 123,
+                                ),
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 29,
+                                        endLine: 1,
+                                        endOffset: 32,
+                                    ),
+                                    value: 456,
+                                ),
+                            ],
+                        ),
+                    ),
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('var foo: (int, int)[] = [(123, 456)];')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 37,
-                    ),
-                    name: 'foo',
-                    type: new Types\ArrayType(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 37,
+                ),
+                statements: [
+                    new Statements\VarStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 19,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 21,
+                            endOffset: 37,
                         ),
-                        type: new Types\TupleType(
+                        name: 'foo',
+                        type: new Types\ArrayType(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 9,
+                                startOffset: 19,
                                 endLine: 1,
-                                endOffset: 19,
+                                endOffset: 21,
                             ),
-                            types: [
-                                new Types\BuiltinType(
-                                    location: new Location(
-                                        startLine: 1,
-                                        startOffset: 10,
-                                        endLine: 1,
-                                        endOffset: 13,
-                                    ),
-                                    type: Types\Type::Integer,
+                            type: new Types\TupleType(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 9,
+                                    endLine: 1,
+                                    endOffset: 19,
                                 ),
-                                new Types\BuiltinType(
+                                types: [
+                                    new Types\BuiltinType(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 10,
+                                            endLine: 1,
+                                            endOffset: 13,
+                                        ),
+                                        type: Types\Type::Integer,
+                                    ),
+                                    new Types\BuiltinType(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 15,
+                                            endLine: 1,
+                                            endOffset: 18,
+                                        ),
+                                        type: Types\Type::Integer,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        expression: new Expressions\ArrayExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 24,
+                                endLine: 1,
+                                endOffset: 36,
+                            ),
+                            expressions: [
+                                new Expressions\TupleExpression(
                                     location: new Location(
                                         startLine: 1,
-                                        startOffset: 15,
+                                        startOffset: 25,
                                         endLine: 1,
-                                        endOffset: 18,
+                                        endOffset: 35,
                                     ),
-                                    type: Types\Type::Integer,
+                                    expressions: [
+                                        new Literals\IntegerLiteral(
+                                            location: new Location(
+                                                startLine: 1,
+                                                startOffset: 26,
+                                                endLine: 1,
+                                                endOffset: 29,
+                                            ),
+                                            value: 123,
+                                        ),
+                                        new Literals\IntegerLiteral(
+                                            location: new Location(
+                                                startLine: 1,
+                                                startOffset: 31,
+                                                endLine: 1,
+                                                endOffset: 34,
+                                            ),
+                                            value: 456,
+                                        ),
+                                    ],
                                 ),
                             ],
                         ),
                     ),
-                    expression: new Expressions\ArrayExpression(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 24,
-                            endLine: 1,
-                            endOffset: 36,
-                        ),
-                        expressions: [
-                            new Expressions\TupleExpression(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 25,
-                                    endLine: 1,
-                                    endOffset: 35,
-                                ),
-                                expressions: [
-                                    new Literals\IntegerLiteral(
-                                        location: new Location(
-                                            startLine: 1,
-                                            startOffset: 26,
-                                            endLine: 1,
-                                            endOffset: 29,
-                                        ),
-                                        value: 123,
-                                    ),
-                                    new Literals\IntegerLiteral(
-                                        location: new Location(
-                                            startLine: 1,
-                                            startOffset: 31,
-                                            endLine: 1,
-                                            endOffset: 34,
-                                        ),
-                                        value: 456,
-                                    ),
-                                ],
-                            ),
-                        ],
-                    ),
-                ),
-            ],
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('var foo: (int, int)? = (123, 456);')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 34,
-                    ),
-                    name: 'foo',
-                    type: new Types\NullableType(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 34,
+                ),
+                statements: [
+                    new Statements\VarStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 19,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 20,
+                            endOffset: 34,
                         ),
-                        type: new Types\TupleType(
+                        name: 'foo',
+                        type: new Types\NullableType(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 9,
+                                startOffset: 19,
                                 endLine: 1,
-                                endOffset: 19,
+                                endOffset: 20,
                             ),
-                            types: [
-                                new Types\BuiltinType(
-                                    location: new Location(
-                                        startLine: 1,
-                                        startOffset: 10,
-                                        endLine: 1,
-                                        endOffset: 13,
-                                    ),
-                                    type: Types\Type::Integer,
+                            type: new Types\TupleType(
+                                location: new Location(
+                                    startLine: 1,
+                                    startOffset: 9,
+                                    endLine: 1,
+                                    endOffset: 19,
                                 ),
-                                new Types\BuiltinType(
+                                types: [
+                                    new Types\BuiltinType(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 10,
+                                            endLine: 1,
+                                            endOffset: 13,
+                                        ),
+                                        type: Types\Type::Integer,
+                                    ),
+                                    new Types\BuiltinType(
+                                        location: new Location(
+                                            startLine: 1,
+                                            startOffset: 15,
+                                            endLine: 1,
+                                            endOffset: 18,
+                                        ),
+                                        type: Types\Type::Integer,
+                                    ),
+                                ],
+                            ),
+                        ),
+                        expression: new Expressions\TupleExpression(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 23,
+                                endLine: 1,
+                                endOffset: 33,
+                            ),
+                            expressions: [
+                                new Literals\IntegerLiteral(
                                     location: new Location(
                                         startLine: 1,
-                                        startOffset: 15,
+                                        startOffset: 24,
                                         endLine: 1,
-                                        endOffset: 18,
+                                        endOffset: 27,
                                     ),
-                                    type: Types\Type::Integer,
+                                    value: 123,
+                                ),
+                                new Literals\IntegerLiteral(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 29,
+                                        endLine: 1,
+                                        endOffset: 32,
+                                    ),
+                                    value: 456,
                                 ),
                             ],
                         ),
                     ),
-                    expression: new Expressions\TupleExpression(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 23,
-                            endLine: 1,
-                            endOffset: 33,
-                        ),
-                        expressions: [
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 24,
-                                    endLine: 1,
-                                    endOffset: 27,
-                                ),
-                                value: 123,
-                            ),
-                            new Literals\IntegerLiteral(
-                                location: new Location(
-                                    startLine: 1,
-                                    startOffset: 29,
-                                    endLine: 1,
-                                    endOffset: 32,
-                                ),
-                                value: 456,
-                            ),
-                        ],
-                    ),
-                ),
-            ],
+                ],
+            ),
         );
     }
 
@@ -1998,68 +2407,84 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('var foo: int = 123;')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 19,
-                    ),
-                    name: 'foo',
-                    type: new Types\BuiltinType(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 9,
-                            endLine: 1,
-                            endOffset: 12,
-                        ),
-                        type: Types\Type::Integer,
-                    ),
-                    expression: new Literals\IntegerLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 15,
-                            endLine: 1,
-                            endOffset: 18,
-                        ),
-                        value: 123,
-                    ),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 19,
                 ),
-            ],
+                statements: [
+                    new Statements\VarStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 19,
+                        ),
+                        name: 'foo',
+                        type: new Types\BuiltinType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 9,
+                                endLine: 1,
+                                endOffset: 12,
+                            ),
+                            type: Types\Type::Integer,
+                        ),
+                        expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 15,
+                                endLine: 1,
+                                endOffset: 18,
+                            ),
+                            value: 123,
+                        ),
+                    ),
+                ],
+            ),
         );
 
         $this->assertEquals(
             actual: self::createParser('var foo: xyz = 123;')->parse(),
-            expected: [
-                new Statements\VarStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 19,
-                    ),
-                    name: 'foo',
-                    type: new Types\NamedType(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 9,
-                            endLine: 1,
-                            endOffset: 12,
-                        ),
-                        name: 'xyz',
-                    ),
-                    expression: new Literals\IntegerLiteral(
-                        location: new Location(
-                            startLine: 1,
-                            startOffset: 15,
-                            endLine: 1,
-                            endOffset: 18,
-                        ),
-                        value: 123,
-                    ),
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 19,
                 ),
-            ],
+                statements: [
+                    new Statements\VarStatement(
+                        location: new Location(
+                            startLine: 1,
+                            startOffset: 0,
+                            endLine: 1,
+                            endOffset: 19,
+                        ),
+                        name: 'foo',
+                        type: new Types\NamedType(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 9,
+                                endLine: 1,
+                                endOffset: 12,
+                            ),
+                            name: 'xyz',
+                        ),
+                        expression: new Literals\IntegerLiteral(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 15,
+                                endLine: 1,
+                                endOffset: 18,
+                            ),
+                            value: 123,
+                        ),
+                    ),
+                ],
+            ),
         );
     }
 
@@ -2068,35 +2493,51 @@ class ParserTest extends TestCase
     {
         $this->assertEquals(
             actual: self::createParser('while (foo) { break; }')->parse(),
-            expected: [
-                new Statements\WhileStatement(
-                    location: new Location(
-                        startLine: 1,
-                        startOffset: 0,
-                        endLine: 1,
-                        endOffset: 22,
-                    ),
-                    condition: new Expressions\IdentifierExpression(
+            expected: new Block(
+                location: new Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 22,
+                ),
+                statements: [
+                    new Statements\WhileStatement(
                         location: new Location(
                             startLine: 1,
-                            startOffset: 7,
+                            startOffset: 0,
                             endLine: 1,
-                            endOffset: 10,
+                            endOffset: 22,
                         ),
-                        name: 'foo',
-                    ),
-                    statements: [
-                        new Statements\BreakStatement(
+                        condition: new Expressions\IdentifierExpression(
                             location: new Location(
                                 startLine: 1,
-                                startOffset: 14,
+                                startOffset: 7,
                                 endLine: 1,
-                                endOffset: 20,
+                                endOffset: 10,
                             ),
+                            name: 'foo',
                         ),
-                    ],
-                ),
-            ],
+                        statements: new Block(
+                            location: new Location(
+                                startLine: 1,
+                                startOffset: 12,
+                                endLine: 1,
+                                endOffset: 22,
+                            ),
+                            statements: [
+                                new Statements\BreakStatement(
+                                    location: new Location(
+                                        startLine: 1,
+                                        startOffset: 14,
+                                        endLine: 1,
+                                        endOffset: 20,
+                                    ),
+                                ),
+                            ],
+                        )
+                    ),
+                ],
+            ),
         );
     }
 
