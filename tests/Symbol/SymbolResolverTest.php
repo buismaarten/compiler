@@ -34,57 +34,55 @@ class SymbolResolverTest extends TestCase
             name: 'a',
         );
 
-        $statements = [
-            new Statements\ConstStatement(
-                location: $location,
-                name: 'a',
-                type: new Types\BuiltinType(
-                    location: $location,
-                    type: Types\Type::Integer,
-                ),
-                expression: new Literals\IntegerLiteral(
-                    location: $location,
-                    value: 1,
-                ),
-            ),
-            new Statements\IfStatement(
-                location: $location,
-                condition: new Literals\BooleanLiteral(
-                    location: $location,
-                    value: true,
-                ),
-                thenStatements: new Block(
-                    location: $location,
-                    statements: [
-                        new Statements\IfStatement(
-                            location: $location,
-                            condition: new Literals\BooleanLiteral(
-                                location: $location,
-                                value: true,
-                            ),
-                            thenStatements: new Block(
-                                location: $location,
-                                statements: [
-                                    new Statements\PrintStatement(
-                                        location: $location,
-                                        expression: $identifier,
-                                    ),
-                                ],
-                            ),
-                        ),
-                    ],
-                ),
-            ),
-        ];
-
         $root = new Block(
             location: $location,
-            statements: $statements,
+            statements: [
+                new Statements\ConstStatement(
+                    location: $location,
+                    name: 'a',
+                    type: new Types\BuiltinType(
+                        location: $location,
+                        type: Types\Type::Integer,
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: $location,
+                        value: 1,
+                    ),
+                ),
+                new Statements\IfStatement(
+                    location: $location,
+                    condition: new Literals\BooleanLiteral(
+                        location: $location,
+                        value: true,
+                    ),
+                    thenStatements: new Block(
+                        location: $location,
+                        statements: [
+                            new Statements\IfStatement(
+                                location: $location,
+                                condition: new Literals\BooleanLiteral(
+                                    location: $location,
+                                    value: true,
+                                ),
+                                thenStatements: new Block(
+                                    location: $location,
+                                    statements: [
+                                        new Statements\PrintStatement(
+                                            location: $location,
+                                            expression: $identifier,
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ],
+                    ),
+                ),
+            ],
         );
 
         $this->assertEquals(
             actual: new SymbolResolver($root)->resolve($identifier),
-            expected: $statements[0],
+            expected: $root->statements[0],
         );
     }
 }
