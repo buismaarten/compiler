@@ -22,90 +22,183 @@ class SymbolResolverTest extends TestCase
     #[Test]
     public function testResolve(): void
     {
-        $location = new Location(
-            startLine: -1,
-            startOffset: -1,
-            endLine: -1,
-            endOffset: -1,
-        );
-
         $variable1 = new Statements\VarStatement(
-            location: $location,
+            location: new Location(
+                startLine: -1,
+                startOffset: -1,
+                endLine: -1,
+                endOffset: -1,
+            ),
             name: 'a',
             type: new Types\BuiltinType(
-                location: $location,
+                location: new Location(
+                    startLine: -1,
+                    startOffset: -1,
+                    endLine: -1,
+                    endOffset: -1,
+                ),
                 type: Types\Type::Integer,
             ),
             expression: new Literals\IntegerLiteral(
-                location: $location,
+                location: new Location(
+                    startLine: -1,
+                    startOffset: -1,
+                    endLine: -1,
+                    endOffset: -1,
+                ),
                 value: 1,
             ),
         );
 
         $variable2 = new Statements\VarStatement(
-            location: $location,
+            location: new Location(
+                startLine: -1,
+                startOffset: -1,
+                endLine: -1,
+                endOffset: -1,
+            ),
             name: 'b',
             type: new Types\BuiltinType(
-                location: $location,
+                location: new Location(
+                    startLine: -1,
+                    startOffset: -1,
+                    endLine: -1,
+                    endOffset: -1,
+                ),
                 type: Types\Type::Integer,
             ),
             expression: new Literals\IntegerLiteral(
-                location: $location,
+                location: new Location(
+                    startLine: -1,
+                    startOffset: -1,
+                    endLine: -1,
+                    endOffset: -1,
+                ),
                 value: 1,
             ),
         );
 
         $identifier1 = new Expressions\IdentifierExpression(
-            location: $location,
+            location: new Location(
+                startLine: -1,
+                startOffset: -1,
+                endLine: -1,
+                endOffset: -1,
+            ),
             name: 'a',
         );
 
         $identifier2 = new Expressions\IdentifierExpression(
-            location: $location,
+            location: new Location(
+                startLine: -1,
+                startOffset: -1,
+                endLine: -1,
+                endOffset: -1,
+            ),
             name: 'b',
         );
 
         $root = new Block(
-            location: $location,
+            location: new Location(
+                startLine: -1,
+                startOffset: -1,
+                endLine: -1,
+                endOffset: -1,
+            ),
             statements: [
                 $variable1,
                 new Statements\VarStatement(
-                    location: $location,
+                    location: new Location(
+                        startLine: -1,
+                        startOffset: -1,
+                        endLine: -1,
+                        endOffset: -1,
+                    ),
                     name: 'a',
                     type: new Types\BuiltinType(
-                        location: $location,
+                        location: new Location(
+                            startLine: -1,
+                            startOffset: -1,
+                            endLine: -1,
+                            endOffset: -1,
+                        ),
                         type: Types\Type::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
-                        location: $location,
+                        location: new Location(
+                            startLine: -1,
+                            startOffset: -1,
+                            endLine: -1,
+                            endOffset: -1,
+                        ),
                         value: 1,
                     ),
                 ),
                 new Statements\IfStatement(
-                    location: $location,
+                    location: new Location(
+                        startLine: -1,
+                        startOffset: -1,
+                        endLine: -1,
+                        endOffset: -1,
+                    ),
                     condition: new Literals\BooleanLiteral(
-                        location: $location,
+                        location: new Location(
+                            startLine: -1,
+                            startOffset: -1,
+                            endLine: -1,
+                            endOffset: -1,
+                        ),
                         value: true,
                     ),
                     thenStatements: new Block(
-                        location: $location,
+                        location: new Location(
+                            startLine: -1,
+                            startOffset: -1,
+                            endLine: -1,
+                            endOffset: -1,
+                        ),
                         statements: [
                             $variable2,
                             new Statements\IfStatement(
-                                location: $location,
+                                location: new Location(
+                                    startLine: -1,
+                                    startOffset: -1,
+                                    endLine: -1,
+                                    endOffset: -1,
+                                ),
                                 condition: new Literals\BooleanLiteral(
-                                    location: $location,
+                                    location: new Location(
+                                        startLine: -1,
+                                        startOffset: -1,
+                                        endLine: -1,
+                                        endOffset: -1,
+                                    ),
                                     value: false,
                                 ),
                                 thenStatements: new Block(
-                                    location: $location,
+                                    location: new Location(
+                                        startLine: -1,
+                                        startOffset: -1,
+                                        endLine: -1,
+                                        endOffset: -1,
+                                    ),
                                     statements: [
                                         new Statements\PrintStatement(
-                                            location: $location,
+                                            location: new Location(
+                                                startLine: -1,
+                                                startOffset: -1,
+                                                endLine: -1,
+                                                endOffset: -1,
+                                            ),
                                             expression: $identifier1,
                                         ),
                                         new Statements\PrintStatement(
-                                            location: $location,
+                                            location: new Location(
+                                                startLine: -1,
+                                                startOffset: -1,
+                                                endLine: -1,
+                                                endOffset: -1,
+                                            ),
                                             expression: $identifier2,
                                         ),
                                     ],
