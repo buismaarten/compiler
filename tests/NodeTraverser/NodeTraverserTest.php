@@ -9,7 +9,6 @@ namespace Package\Tests\NodeTraverser;
 
 use Override;
 use Package\Nodes\AbstractNode;
-use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Location;
@@ -34,29 +33,26 @@ class NodeTraverserTest extends TestCase
         $literal = new Literals\NullLiteral($location);
         $expression = new Expressions\ArrayExpression($location, [$literal]);
         $statement = new Statements\ReturnStatement($location, $expression);
-        $root = new Block($location, [$statement]);
 
         $visitor = new NodeVisitor;
         $traverser = new NodeTraverser($visitor);
 
         $this->assertSame(
-            actual: $traverser->traverse($root),
-            expected: $root,
+            actual: $traverser->traverse($statement),
+            expected: $statement,
         );
 
         $this->assertSame(
             actual: $visitor->trace,
             expected: [
-                ['beforeTraverse', $root],
-                ['enterNode', $root],
+                ['beforeTraverse', $statement],
                 ['enterNode', $statement],
                 ['enterNode', $expression],
                 ['enterNode', $literal],
                 ['leaveNode', $literal],
                 ['leaveNode', $expression],
                 ['leaveNode', $statement],
-                ['leaveNode', $root],
-                ['afterTraverse', $root],
+                ['afterTraverse', $statement],
             ],
         );
     }
