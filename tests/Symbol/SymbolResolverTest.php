@@ -50,13 +50,10 @@ class SymbolResolverTest extends TestCase
                 $declaration,
                 new Statements\WhileStatement(
                     location: self::createLocation(),
-                    condition: new Literals\BooleanLiteral(
-                        location: self::createLocation(),
-                        value: true,
-                    ),
+                    condition: $expression,
                     statements: new Block(
                         location: self::createLocation(),
-                        statements: [$expression],
+                        statements: [],
                     ),
                 ),
             ],
@@ -97,18 +94,10 @@ class SymbolResolverTest extends TestCase
                 $declaration,
                 new Statements\WhileStatement(
                     location: self::createLocation(),
-                    condition: new Literals\BooleanLiteral(
-                        location: self::createLocation(),
-                        value: true,
-                    ),
+                    condition: $expression,
                     statements: new Block(
                         location: self::createLocation(),
-                        statements: [
-                            new Statements\ExpressionStatement(
-                                location: self::createLocation(),
-                                expression: $expression,
-                            ),
-                        ],
+                        statements: [],
                     ),
                 ),
             ],
@@ -147,18 +136,10 @@ class SymbolResolverTest extends TestCase
                 $declaration,
                 new Statements\WhileStatement(
                     location: self::createLocation(),
-                    condition: new Literals\BooleanLiteral(
-                        location: self::createLocation(),
-                        value: true,
-                    ),
+                    condition: $expression,
                     statements: new Block(
                         location: self::createLocation(),
-                        statements: [
-                            new Statements\ExpressionStatement(
-                                location: self::createLocation(),
-                                expression: $expression,
-                            ),
-                        ],
+                        statements: [],
                     ),
                 ),
             ],
