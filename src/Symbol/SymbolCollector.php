@@ -16,6 +16,7 @@ use Package\Nodes\Statements;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use SplObjectStorage;
 
+// TODO: add support for functions
 final class SymbolCollector extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
