@@ -33,7 +33,7 @@ final class SymbolCollector extends AbstractNodeVisitor
     public function enterNode(AbstractNode $node)
     {
         if ($node instanceof Block) {
-            $this->pushScope();
+            $this->scope = new Scope($this->scope);
         }
 
         if ($node instanceof Statements\ConstStatement || $node instanceof Statements\VarStatement) {
@@ -53,7 +53,7 @@ final class SymbolCollector extends AbstractNodeVisitor
     public function leaveNode(AbstractNode $node)
     {
         if ($node instanceof Block) {
-            $this->popScope();
+            $this->scope = $this->scope?->parent;
         }
     }
 
@@ -69,15 +69,5 @@ final class SymbolCollector extends AbstractNodeVisitor
 
         // Fallback
         return null;
-    }
-
-    private function pushScope(): void
-    {
-        $this->scope = new Scope($this->scope);
-    }
-
-    private function popScope(): void
-    {
-        $this->scope = $this->scope?->parent;
     }
 }
