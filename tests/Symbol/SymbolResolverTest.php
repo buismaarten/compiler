@@ -23,182 +23,82 @@ class SymbolResolverTest extends TestCase
     public function testResolve(): void
     {
         $variable1 = new Statements\VarStatement(
-            location: new Location(
-                startLine: -1,
-                startOffset: -1,
-                endLine: -1,
-                endOffset: -1,
-            ),
+            location: self::createLocation(),
             name: 'a',
             type: new Types\BuiltinType(
-                location: new Location(
-                    startLine: -1,
-                    startOffset: -1,
-                    endLine: -1,
-                    endOffset: -1,
-                ),
+                location: self::createLocation(),
                 type: Types\Type::Integer,
             ),
             expression: new Literals\IntegerLiteral(
-                location: new Location(
-                    startLine: -1,
-                    startOffset: -1,
-                    endLine: -1,
-                    endOffset: -1,
-                ),
+                location: self::createLocation(),
                 value: 1,
             ),
         );
 
         $variable2 = new Statements\VarStatement(
-            location: new Location(
-                startLine: -1,
-                startOffset: -1,
-                endLine: -1,
-                endOffset: -1,
-            ),
+            location: self::createLocation(),
             name: 'b',
             type: new Types\BuiltinType(
-                location: new Location(
-                    startLine: -1,
-                    startOffset: -1,
-                    endLine: -1,
-                    endOffset: -1,
-                ),
+                location: self::createLocation(),
                 type: Types\Type::Integer,
             ),
             expression: new Literals\IntegerLiteral(
-                location: new Location(
-                    startLine: -1,
-                    startOffset: -1,
-                    endLine: -1,
-                    endOffset: -1,
-                ),
+                location: self::createLocation(),
                 value: 1,
             ),
         );
 
         $identifier1 = new Expressions\IdentifierExpression(
-            location: new Location(
-                startLine: -1,
-                startOffset: -1,
-                endLine: -1,
-                endOffset: -1,
-            ),
+            location: self::createLocation(),
             name: 'a',
         );
 
         $identifier2 = new Expressions\IdentifierExpression(
-            location: new Location(
-                startLine: -1,
-                startOffset: -1,
-                endLine: -1,
-                endOffset: -1,
-            ),
+            location: self::createLocation(),
             name: 'b',
         );
 
         $root = new Block(
-            location: new Location(
-                startLine: -1,
-                startOffset: -1,
-                endLine: -1,
-                endOffset: -1,
-            ),
+            location: self::createLocation(),
             statements: [
                 $variable1,
                 new Statements\VarStatement(
-                    location: new Location(
-                        startLine: -1,
-                        startOffset: -1,
-                        endLine: -1,
-                        endOffset: -1,
-                    ),
+                    location: self::createLocation(),
                     name: 'a',
                     type: new Types\BuiltinType(
-                        location: new Location(
-                            startLine: -1,
-                            startOffset: -1,
-                            endLine: -1,
-                            endOffset: -1,
-                        ),
+                        location: self::createLocation(),
                         type: Types\Type::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
-                        location: new Location(
-                            startLine: -1,
-                            startOffset: -1,
-                            endLine: -1,
-                            endOffset: -1,
-                        ),
+                        location: self::createLocation(),
                         value: 1,
                     ),
                 ),
                 new Statements\IfStatement(
-                    location: new Location(
-                        startLine: -1,
-                        startOffset: -1,
-                        endLine: -1,
-                        endOffset: -1,
-                    ),
+                    location: self::createLocation(),
                     condition: new Literals\BooleanLiteral(
-                        location: new Location(
-                            startLine: -1,
-                            startOffset: -1,
-                            endLine: -1,
-                            endOffset: -1,
-                        ),
+                        location: self::createLocation(),
                         value: true,
                     ),
                     thenStatements: new Block(
-                        location: new Location(
-                            startLine: -1,
-                            startOffset: -1,
-                            endLine: -1,
-                            endOffset: -1,
-                        ),
+                        location: self::createLocation(),
                         statements: [
                             $variable2,
                             new Statements\IfStatement(
-                                location: new Location(
-                                    startLine: -1,
-                                    startOffset: -1,
-                                    endLine: -1,
-                                    endOffset: -1,
-                                ),
+                                location: self::createLocation(),
                                 condition: new Literals\BooleanLiteral(
-                                    location: new Location(
-                                        startLine: -1,
-                                        startOffset: -1,
-                                        endLine: -1,
-                                        endOffset: -1,
-                                    ),
+                                    location: self::createLocation(),
                                     value: false,
                                 ),
                                 thenStatements: new Block(
-                                    location: new Location(
-                                        startLine: -1,
-                                        startOffset: -1,
-                                        endLine: -1,
-                                        endOffset: -1,
-                                    ),
+                                    location: self::createLocation(),
                                     statements: [
                                         new Statements\PrintStatement(
-                                            location: new Location(
-                                                startLine: -1,
-                                                startOffset: -1,
-                                                endLine: -1,
-                                                endOffset: -1,
-                                            ),
+                                            location: self::createLocation(),
                                             expression: $identifier1,
                                         ),
                                         new Statements\PrintStatement(
-                                            location: new Location(
-                                                startLine: -1,
-                                                startOffset: -1,
-                                                endLine: -1,
-                                                endOffset: -1,
-                                            ),
+                                            location: self::createLocation(),
                                             expression: $identifier2,
                                         ),
                                     ],
@@ -218,6 +118,16 @@ class SymbolResolverTest extends TestCase
         $this->assertEquals(
             actual: new SymbolResolver($root)->resolve($identifier2),
             expected: $variable2,
+        );
+    }
+
+    private static function createLocation(): Location
+    {
+        return new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
         );
     }
 }
