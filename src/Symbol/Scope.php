@@ -11,7 +11,7 @@ use Package\Nodes\AbstractNode;
 
 final class Scope
 {
-    public ?self $parent = null;
+    public ?self $parent;
 
     /** @var array<string, AbstractNode> */
     public array $symbols = [];
