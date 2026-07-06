@@ -62,7 +62,7 @@ class SymbolResolverTest extends TestCase
                                 location: $location,
                                 condition: new Literals\BooleanLiteral(
                                     location: $location,
-                                    value: true,
+                                    value: false,
                                 ),
                                 thenStatements: new Block(
                                     location: $location,
