@@ -16,7 +16,6 @@ use Package\Nodes\Statements;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use SplObjectStorage;
 
-// TODO: add support for functions
 final class SymbolCollector extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
@@ -46,6 +45,18 @@ final class SymbolCollector extends AbstractNodeVisitor
         }
 
         if ($node instanceof Statements\ConstStatement) {
+            $this->scope?->addSymbol($node->name, $node);
+        }
+
+        if ($node instanceof Expressions\FunctionCallExpression) {
+            $symbol = $this->findSymbol($node->name, $node);
+
+            if ($symbol === null) {
+                throw new UndefinedSymbolException($node->getStartLine(), $node->name);
+            }
+        }
+
+        if ($node instanceof Statements\FunctionStatement) {
             $this->scope?->addSymbol($node->name, $node);
         }
 

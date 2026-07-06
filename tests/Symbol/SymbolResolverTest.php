@@ -69,6 +69,58 @@ class SymbolResolverTest extends TestCase
     }
 
     #[Test]
+    public function testResolveFunctionCallExpression(): void
+    {
+        $expression = new Expressions\FunctionCallExpression(
+            location: self::createLocation(),
+            name: 'foo',
+            arguments: [],
+        );
+
+        $declaration = new Statements\FunctionStatement(
+            location: self::createLocation(),
+            name: 'foo',
+            parameters: [],
+            type: new Types\BuiltinType(
+                location: self::createLocation(),
+                type: Types\Type::Void,
+            ),
+            statements: new Block(
+                location: self::createLocation(),
+                statements: [],
+            ),
+        );
+
+        $root = new Block(
+            location: self::createLocation(),
+            statements: [
+                $declaration,
+                new Statements\WhileStatement(
+                    location: self::createLocation(),
+                    condition: new Literals\BooleanLiteral(
+                        location: self::createLocation(),
+                        value: true,
+                    ),
+                    statements: new Block(
+                        location: self::createLocation(),
+                        statements: [
+                            new Statements\ExpressionStatement(
+                                location: self::createLocation(),
+                                expression: $expression,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: new SymbolResolver($root)->resolve($expression),
+            expected: $declaration,
+        );
+    }
+
+    #[Test]
     public function testResolveIdentifierExpression(): void
     {
         $expression = new Expressions\IdentifierExpression(
