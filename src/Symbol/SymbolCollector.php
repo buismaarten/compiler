@@ -14,17 +14,17 @@ use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Statements;
 use Package\NodeTraverser\AbstractNodeVisitor;
-use SplObjectStorage;
+use WeakMap;
 
 final class SymbolCollector extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
 
-    /** @var SplObjectStorage<AbstractNode, AbstractNode> */
-    private SplObjectStorage $table;
+    /** @var WeakMap<AbstractNode, AbstractNode> */
+    private WeakMap $table;
 
-    /** @param SplObjectStorage<AbstractNode, AbstractNode> $table */
-    public function __construct(SplObjectStorage $table)
+    /** @param WeakMap<AbstractNode, AbstractNode> $table */
+    public function __construct(WeakMap $table)
     {
         $this->table = $table;
     }
