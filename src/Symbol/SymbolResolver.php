@@ -10,14 +10,14 @@ namespace Package\Symbol;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\NodeTraverser\NodeTraverser;
-use SplObjectStorage;
+use WeakMap;
 
 final class SymbolResolver
 {
     private Block $root;
 
-    /** @var SplObjectStorage<AbstractNode, AbstractNode>|null */
-    private ?SplObjectStorage $table = null;
+    /** @var WeakMap<AbstractNode, AbstractNode>|null */
+    private ?WeakMap $table = null;
 
     public function __construct(Block $root)
     {
@@ -27,7 +27,7 @@ final class SymbolResolver
     public function resolve(AbstractNode $node): ?AbstractNode
     {
         if ($this->table === null) {
-            $this->table = new SplObjectStorage;
+            $this->table = new WeakMap;
 
             $traverser = new NodeTraverser;
             $traverser->addVisitor(new SymbolCollector($this->table));
