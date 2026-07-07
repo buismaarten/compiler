@@ -30,7 +30,7 @@ final class SymbolCollector extends AbstractNodeVisitor
     }
 
     #[Override]
-    public function enterNode(AbstractNode $node)
+    public function enterNode(AbstractNode $node): void
     {
         if ($node instanceof Block) {
             $this->scope = new Scope($this->scope);
@@ -74,7 +74,7 @@ final class SymbolCollector extends AbstractNodeVisitor
     }
 
     #[Override]
-    public function leaveNode(AbstractNode $node)
+    public function leaveNode(AbstractNode $node): void
     {
         if ($node instanceof Block) {
             $this->scope = $this->scope?->parent;

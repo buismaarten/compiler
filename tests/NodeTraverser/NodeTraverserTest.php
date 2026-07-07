@@ -65,25 +65,25 @@ class NodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function beforeTraverse(AbstractNode $node)
     {
-        return $this->traceEvent('beforeTraverse', $node);
+        $this->traceEvent('beforeTraverse', $node);
     }
 
     #[Override]
-    public function enterNode(AbstractNode $node)
+    public function enterNode(AbstractNode $node): void
     {
-        return $this->traceEvent('enterNode', $node);
+        $this->traceEvent('enterNode', $node);
     }
 
     #[Override]
-    public function leaveNode(AbstractNode $node)
+    public function leaveNode(AbstractNode $node): void
     {
-        return $this->traceEvent('leaveNode', $node);
+        $this->traceEvent('leaveNode', $node);
     }
 
     #[Override]
-    public function afterTraverse(AbstractNode $node)
+    public function afterTraverse(AbstractNode $node): void
     {
-        return $this->traceEvent('afterTraverse', $node);
+        $this->traceEvent('afterTraverse', $node);
     }
 
     private function traceEvent(string $method, mixed $value)
