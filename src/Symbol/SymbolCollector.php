@@ -34,43 +34,20 @@ final class SymbolCollector extends AbstractNodeVisitor
     {
         if ($node instanceof Block) {
             $this->scope = new Scope($this->scope);
+            return;
         }
 
-        if ($node instanceof Expressions\AssignmentExpression) {
-            $symbol = $this->resolveSymbol($node->name, $node);
+        match ($node::class) {
+            Expressions\AssignmentExpression::class   => $this->visitAssignmentExpression($node),
+            Expressions\FunctionCallExpression::class => $this->visitFunctionCallExpression($node),
+            Expressions\IdentifierExpression::class   => $this->visitIdentifierExpression($node),
+            Statements\ConstStatement::class          => $this->visitConstStatement($node),
+            Statements\FunctionStatement::class       => $this->visitFunctionStatement($node),
+            Statements\VarStatement::class            => $this->visitVarStatement($node),
 
-            if ($symbol === null) {
-                throw new UndefinedSymbolException($node->getStartLine(), $node->name);
-            }
-        }
-
-        if ($node instanceof Expressions\FunctionCallExpression) {
-            $symbol = $this->resolveSymbol($node->name, $node);
-
-            if ($symbol === null) {
-                throw new UndefinedSymbolException($node->getStartLine(), $node->name);
-            }
-        }
-
-        if ($node instanceof Expressions\IdentifierExpression) {
-            $symbol = $this->resolveSymbol($node->name, $node);
-
-            if ($symbol === null) {
-                throw new UndefinedSymbolException($node->getStartLine(), $node->name);
-            }
-        }
-
-        if ($node instanceof Statements\ConstStatement) {
-            $this->scope?->addSymbol($node->name, $node);
-        }
-
-        if ($node instanceof Statements\FunctionStatement) {
-            $this->scope?->addSymbol($node->name, $node);
-        }
-
-        if ($node instanceof Statements\VarStatement) {
-            $this->scope?->addSymbol($node->name, $node);
-        }
+            // Fallback
+            default => null,
+        };
     }
 
     #[Override]
@@ -78,7 +55,50 @@ final class SymbolCollector extends AbstractNodeVisitor
     {
         if ($node instanceof Block) {
             $this->scope = $this->scope?->parent;
+            return;
         }
+    }
+
+    private function visitAssignmentExpression(Expressions\AssignmentExpression $node): void
+    {
+        $symbol = $this->resolveSymbol($node->name, $node);
+
+        if ($symbol === null) {
+            throw new UndefinedSymbolException($node->getStartLine(), $node->name);
+        }
+    }
+
+    private function visitConstStatement(Statements\ConstStatement $node): void
+    {
+        $this->scope?->addSymbol($node->name, $node);
+    }
+
+    private function visitFunctionCallExpression(Expressions\FunctionCallExpression $node): void
+    {
+        $symbol = $this->resolveSymbol($node->name, $node);
+
+        if ($symbol === null) {
+            throw new UndefinedSymbolException($node->getStartLine(), $node->name);
+        }
+    }
+
+    private function visitFunctionStatement(Statements\FunctionStatement $node): void
+    {
+        $this->scope?->addSymbol($node->name, $node);
+    }
+
+    private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
+    {
+        $symbol = $this->resolveSymbol($node->name, $node);
+
+        if ($symbol === null) {
+            throw new UndefinedSymbolException($node->getStartLine(), $node->name);
+        }
+    }
+
+    private function visitVarStatement(Statements\VarStatement $node): void
+    {
+        $this->scope?->addSymbol($node->name, $node);
     }
 
     private function resolveSymbol(string $name, AbstractNode $node): ?AbstractNode
