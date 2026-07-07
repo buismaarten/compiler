@@ -37,7 +37,7 @@ final class SymbolCollector extends AbstractNodeVisitor
         }
 
         if ($node instanceof Expressions\AssignmentExpression) {
-            $symbol = $this->findSymbol($node->name, $node);
+            $symbol = $this->resolveSymbol($node->name, $node);
 
             if ($symbol === null) {
                 throw new UndefinedSymbolException($node->getStartLine(), $node->name);
@@ -45,7 +45,7 @@ final class SymbolCollector extends AbstractNodeVisitor
         }
 
         if ($node instanceof Expressions\FunctionCallExpression) {
-            $symbol = $this->findSymbol($node->name, $node);
+            $symbol = $this->resolveSymbol($node->name, $node);
 
             if ($symbol === null) {
                 throw new UndefinedSymbolException($node->getStartLine(), $node->name);
@@ -53,7 +53,7 @@ final class SymbolCollector extends AbstractNodeVisitor
         }
 
         if ($node instanceof Expressions\IdentifierExpression) {
-            $symbol = $this->findSymbol($node->name, $node);
+            $symbol = $this->resolveSymbol($node->name, $node);
 
             if ($symbol === null) {
                 throw new UndefinedSymbolException($node->getStartLine(), $node->name);
@@ -81,7 +81,7 @@ final class SymbolCollector extends AbstractNodeVisitor
         }
     }
 
-    private function findSymbol(string $name, AbstractNode $node): ?AbstractNode
+    private function resolveSymbol(string $name, AbstractNode $node): ?AbstractNode
     {
         for ($scope = $this->scope; $scope !== null; $scope = $scope->parent) {
             $symbol = $scope->symbols[$name] ?? null;
