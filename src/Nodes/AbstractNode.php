@@ -44,7 +44,7 @@ abstract class AbstractNode implements JsonSerializable
         $type = explode('\\', static::class);
         $type = end($type);
 
-        $properties = (array) get_object_vars(...)->__invoke($this);
+        $properties = get_object_vars(...)($this);
         $properties = ['_type' => $type, '_location' => $this->location] + $properties;
 
         return $properties;
