@@ -25,6 +25,20 @@ final class Scope implements ArrayAccess
         $this->parent = $parent;
     }
 
+    public function resolve(string $name): ?AbstractNode
+    {
+        for ($scope = $this; $scope !== null; $scope = $scope->parent) {
+            $symbol = $scope->symbols[$name] ?? null;
+
+            if ($symbol !== null) {
+                return $symbol;
+            }
+        }
+
+        // Fallback
+        return null;
+    }
+
     #[Override]
     public function offsetExists(mixed $offset): bool
     {

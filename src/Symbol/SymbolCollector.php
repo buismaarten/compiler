@@ -62,7 +62,7 @@ final class SymbolCollector extends AbstractNodeVisitor
 
     private function visitAssignmentExpression(Expressions\AssignmentExpression $node): void
     {
-        $symbol = $this->resolveSymbol($node->name, $node);
+        $symbol = $this->resolve($node->name, $node);
 
         if ($symbol === null) {
             throw new UndefinedSymbolException($node->getStartLine(), $node->name);
@@ -80,7 +80,7 @@ final class SymbolCollector extends AbstractNodeVisitor
 
     private function visitFunctionCallExpression(Expressions\FunctionCallExpression $node): void
     {
-        $symbol = $this->resolveSymbol($node->name, $node);
+        $symbol = $this->resolve($node->name, $node);
 
         if ($symbol === null) {
             throw new UndefinedSymbolException($node->getStartLine(), $node->name);
@@ -98,7 +98,7 @@ final class SymbolCollector extends AbstractNodeVisitor
 
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
     {
-        $symbol = $this->resolveSymbol($node->name, $node);
+        $symbol = $this->resolve($node->name, $node);
 
         if ($symbol === null) {
             throw new UndefinedSymbolException($node->getStartLine(), $node->name);
@@ -114,14 +114,10 @@ final class SymbolCollector extends AbstractNodeVisitor
         $this->scope[$node->name] = $node;
     }
 
-    private function resolveSymbol(string $name, AbstractNode $node): ?AbstractNode
+    private function resolve(string $name, AbstractNode $node): ?AbstractNode
     {
-        for ($scope = $this->scope; $scope !== null; $scope = $scope->parent) {
-            $symbol = $scope->symbols[$name] ?? null;
-
-            if ($symbol !== null) {
-                return $this->table[$node] = $symbol;
-            }
+        if ($symbol = $this->scope?->resolve($name)) {
+            return $this->table[$node] = $symbol;
         }
 
         // Fallback
