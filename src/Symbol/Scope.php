@@ -20,7 +20,7 @@ final class Scope implements ArrayAccess
     /** @var array<string, AbstractNode> */
     public array $symbols = [];
 
-    public function __construct(?self $parent = null)
+    public function __construct(?self $parent)
     {
         $this->parent = $parent;
     }
