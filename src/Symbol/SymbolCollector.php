@@ -71,11 +71,11 @@ final class SymbolCollector extends AbstractNodeVisitor
 
     private function visitConstStatement(Statements\ConstStatement $node): void
     {
-        if ($this->scope?->exists($node->name)) {
+        if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        $this->scope?->set($node->name, $node);
+        $this->scope[$node->name] = $node;
     }
 
     private function visitFunctionCallExpression(Expressions\FunctionCallExpression $node): void
@@ -89,11 +89,11 @@ final class SymbolCollector extends AbstractNodeVisitor
 
     private function visitFunctionStatement(Statements\FunctionStatement $node): void
     {
-        if ($this->scope?->exists($node->name)) {
+        if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        $this->scope?->set($node->name, $node);
+        $this->scope[$node->name] = $node;
     }
 
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
@@ -107,11 +107,11 @@ final class SymbolCollector extends AbstractNodeVisitor
 
     private function visitVarStatement(Statements\VarStatement $node): void
     {
-        if ($this->scope?->exists($node->name)) {
+        if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        $this->scope?->set($node->name, $node);
+        $this->scope[$node->name] = $node;
     }
 
     private function resolveSymbol(string $name, AbstractNode $node): ?AbstractNode

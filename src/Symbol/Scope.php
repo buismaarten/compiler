@@ -7,9 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Symbol;
 
+use ArrayAccess;
+use Override;
 use Package\Nodes\AbstractNode;
 
-final class Scope
+/** @implements ArrayAccess<string, AbstractNode> */
+final class Scope implements ArrayAccess
 {
     public ?self $parent;
 
@@ -21,13 +24,31 @@ final class Scope
         $this->parent = $parent;
     }
 
-    public function exists(string $name): bool
+    #[Override]
+    public function offsetExists($offset): bool
     {
-        return isset($this->symbols[$name]);
+        return isset($this->symbols[$offset]);
     }
 
-    public function set(string $name, AbstractNode $node): void
+    #[Override]
+    public function offsetGet($offset): ?AbstractNode
     {
-        $this->symbols[$name] = $node;
+        return $this->symbols[$offset] ?? null;
+    }
+
+    #[Override]
+    public function offsetSet($offset, $value): void
+    {
+        if ($offset === null) {
+            throw new \InvalidArgumentException('Offset cannot be null');
+        }
+
+        $this->symbols[$offset] = $value;
+    }
+
+    #[Override]
+    public function offsetUnset($offset): void
+    {
+        unset($this->symbols[$offset]);
     }
 }
