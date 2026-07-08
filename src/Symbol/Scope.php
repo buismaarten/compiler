@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Symbol;
 
 use ArrayAccess;
+use InvalidArgumentException;
 use Override;
 use Package\Nodes\AbstractNode;
 
@@ -40,7 +41,7 @@ final class Scope implements ArrayAccess
     public function offsetSet($offset, $value): void
     {
         if ($offset === null) {
-            throw new \InvalidArgumentException('Offset cannot be null');
+            throw new InvalidArgumentException('Offset cannot be null');
         }
 
         $this->symbols[$offset] = $value;
