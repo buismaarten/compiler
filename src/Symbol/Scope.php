@@ -26,19 +26,19 @@ final class Scope implements ArrayAccess
     }
 
     #[Override]
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->symbols[$offset]);
     }
 
     #[Override]
-    public function offsetGet($offset): ?AbstractNode
+    public function offsetGet(mixed $offset): ?AbstractNode
     {
         return $this->symbols[$offset] ?? null;
     }
 
     #[Override]
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         if ($offset === null) {
             throw new InvalidArgumentException('Offset cannot be null');
@@ -48,7 +48,7 @@ final class Scope implements ArrayAccess
     }
 
     #[Override]
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->symbols[$offset]);
     }
