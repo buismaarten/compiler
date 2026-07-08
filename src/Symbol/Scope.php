@@ -21,7 +21,12 @@ final class Scope
         $this->parent = $parent;
     }
 
-    public function addSymbol(string $name, AbstractNode $node): void
+    public function exists(string $name): bool
+    {
+        return isset($this->symbols[$name]);
+    }
+
+    public function set(string $name, AbstractNode $node): void
     {
         $this->symbols[$name] = $node;
     }

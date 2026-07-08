@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Symbol;
 
 use Override;
+use Package\Exceptions\Symbol\DuplicateSymbolException;
 use Package\Exceptions\Symbol\UndefinedSymbolException;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
@@ -70,7 +71,11 @@ final class SymbolCollector extends AbstractNodeVisitor
 
     private function visitConstStatement(Statements\ConstStatement $node): void
     {
-        $this->scope?->addSymbol($node->name, $node);
+        if ($this->scope?->exists($node->name)) {
+            throw new DuplicateSymbolException($node->getStartLine(), $node->name);
+        }
+
+        $this->scope?->set($node->name, $node);
     }
 
     private function visitFunctionCallExpression(Expressions\FunctionCallExpression $node): void
@@ -84,7 +89,11 @@ final class SymbolCollector extends AbstractNodeVisitor
 
     private function visitFunctionStatement(Statements\FunctionStatement $node): void
     {
-        $this->scope?->addSymbol($node->name, $node);
+        if ($this->scope?->exists($node->name)) {
+            throw new DuplicateSymbolException($node->getStartLine(), $node->name);
+        }
+
+        $this->scope?->set($node->name, $node);
     }
 
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
@@ -98,7 +107,11 @@ final class SymbolCollector extends AbstractNodeVisitor
 
     private function visitVarStatement(Statements\VarStatement $node): void
     {
-        $this->scope?->addSymbol($node->name, $node);
+        if ($this->scope?->exists($node->name)) {
+            throw new DuplicateSymbolException($node->getStartLine(), $node->name);
+        }
+
+        $this->scope?->set($node->name, $node);
     }
 
     private function resolveSymbol(string $name, AbstractNode $node): ?AbstractNode
