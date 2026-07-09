@@ -22,37 +22,39 @@ class SymbolResolverTest extends TestCase
     #[Test]
     public function testResolveAssignmentExpression(): void
     {
+        $location = self::createLocation();
+
         $expression = new Expressions\AssignmentExpression(
-            location: self::createLocation(),
+            location: $location,
             name: 'a',
             expression: new Literals\IntegerLiteral(
-                location: self::createLocation(),
+                location: $location,
                 value: 1,
             ),
         );
 
         $declaration = new Statements\VarStatement(
-            location: self::createLocation(),
+            location: $location,
             name: 'a',
             type: new Types\BuiltinType(
-                location: self::createLocation(),
+                location: $location,
                 type: Types\Type::Integer,
             ),
             expression: new Literals\IntegerLiteral(
-                location: self::createLocation(),
+                location: $location,
                 value: 1,
             ),
         );
 
         $root = new Block(
-            location: self::createLocation(),
+            location: $location,
             statements: [
                 $declaration,
                 new Statements\WhileStatement(
-                    location: self::createLocation(),
+                    location: $location,
                     condition: $expression,
                     statements: new Block(
-                        location: self::createLocation(),
+                        location: $location,
                         statements: [],
                     ),
                 ),
@@ -68,35 +70,37 @@ class SymbolResolverTest extends TestCase
     #[Test]
     public function testResolveFunctionCallExpression(): void
     {
+        $location = self::createLocation();
+
         $expression = new Expressions\FunctionCallExpression(
-            location: self::createLocation(),
+            location: $location,
             name: 'foo',
             arguments: [],
         );
 
         $declaration = new Statements\FunctionStatement(
-            location: self::createLocation(),
+            location: $location,
             name: 'foo',
             parameters: [],
             type: new Types\BuiltinType(
-                location: self::createLocation(),
+                location: $location,
                 type: Types\Type::Void,
             ),
             statements: new Block(
-                location: self::createLocation(),
+                location: $location,
                 statements: [],
             ),
         );
 
         $root = new Block(
-            location: self::createLocation(),
+            location: $location,
             statements: [
                 $declaration,
                 new Statements\WhileStatement(
-                    location: self::createLocation(),
+                    location: $location,
                     condition: $expression,
                     statements: new Block(
-                        location: self::createLocation(),
+                        location: $location,
                         statements: [],
                     ),
                 ),
@@ -112,33 +116,35 @@ class SymbolResolverTest extends TestCase
     #[Test]
     public function testResolveIdentifierExpression(): void
     {
+        $location = self::createLocation();
+
         $expression = new Expressions\IdentifierExpression(
-            location: self::createLocation(),
+            location: $location,
             name: 'a',
         );
 
         $declaration = new Statements\ConstStatement(
-            location: self::createLocation(),
+            location: $location,
             name: 'a',
             type: new Types\BuiltinType(
-                location: self::createLocation(),
+                location: $location,
                 type: Types\Type::Integer,
             ),
             expression: new Literals\IntegerLiteral(
-                location: self::createLocation(),
+                location: $location,
                 value: 1,
             ),
         );
 
         $root = new Block(
-            location: self::createLocation(),
+            location: $location,
             statements: [
                 $declaration,
                 new Statements\WhileStatement(
-                    location: self::createLocation(),
+                    location: $location,
                     condition: $expression,
                     statements: new Block(
-                        location: self::createLocation(),
+                        location: $location,
                         statements: [],
                     ),
                 ),
