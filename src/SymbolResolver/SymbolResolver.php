@@ -8,18 +8,17 @@ declare(strict_types=1);
 namespace Package\SymbolResolver;
 
 use Package\Nodes\AbstractNode;
-use Package\Nodes\Block;
 use Package\NodeTraverser\NodeTraverser;
 use WeakMap;
 
 final class SymbolResolver
 {
-    private Block $root;
+    private AbstractNode $root;
 
     /** @var WeakMap<AbstractNode, AbstractNode>|null */
     private ?WeakMap $table = null;
 
-    public function __construct(Block $root)
+    public function __construct(AbstractNode $root)
     {
         $this->root = $root;
     }
