@@ -15,10 +15,10 @@ use Package\Nodes\AbstractNode;
 /** @implements ArrayAccess<string, AbstractNode> */
 final class Scope implements ArrayAccess
 {
-    public ?self $parent;
+    private ?self $parent;
 
     /** @var array<string, AbstractNode> */
-    public array $symbols = [];
+    private array $symbols = [];
 
     public function __construct(?self $parent)
     {
