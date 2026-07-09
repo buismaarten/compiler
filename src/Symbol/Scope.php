@@ -15,7 +15,7 @@ use Package\Nodes\AbstractNode;
 /** @implements ArrayAccess<string, AbstractNode> */
 final class Scope implements ArrayAccess
 {
-    private ?self $parent;
+    public ?self $parent;
 
     /** @var array<string, AbstractNode> */
     private array $symbols = [];
