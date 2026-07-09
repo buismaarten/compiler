@@ -51,6 +51,7 @@ final class NodeTraverser
 
         return $nodes;
     }
+
     /**
      * @param AbstractNode[] $nodes
      * @return AbstractNode[]
