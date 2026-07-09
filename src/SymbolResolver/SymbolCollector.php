@@ -5,11 +5,11 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-namespace Package\Symbol;
+namespace Package\SymbolResolver;
 
 use Override;
-use Package\Exceptions\Symbol\DuplicateSymbolException;
-use Package\Exceptions\Symbol\UndefinedSymbolException;
+use Package\Exceptions\SymbolResolver\DuplicateSymbolException;
+use Package\Exceptions\SymbolResolver\UndefinedSymbolException;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
