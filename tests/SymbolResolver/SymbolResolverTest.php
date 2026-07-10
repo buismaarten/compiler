@@ -11,6 +11,7 @@ use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
 use Package\Nodes\Location;
+use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;
 use Package\SymbolResolver\SymbolResolver;
@@ -102,6 +103,59 @@ class SymbolResolverTest extends TestCase
                     statements: new Block(
                         location: $location,
                         statements: [],
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: new SymbolResolver($root)->resolve($expression),
+            expected: $declaration,
+        );
+    }
+
+    #[Test]
+    public function testResolveFunctionParameter(): void
+    {
+        $location = self::createLocation();
+
+        $expression = new Expressions\IdentifierExpression(
+            location: $location,
+            name: 'a',
+        );
+
+        $declaration = new Parameter(
+            location: $location,
+            name: 'a',
+            type: new Types\BuiltinType(
+                location: $location,
+                type: Types\Type::Integer,
+            ),
+        );
+
+        $root = new Block(
+            location: $location,
+            statements: [
+                new Statements\FunctionStatement(
+                    location: $location,
+                    name: 'foo',
+                    parameters: [$declaration],
+                    type: new Types\BuiltinType(
+                        location: $location,
+                        type: Types\Type::Void,
+                    ),
+                    statements: new Block(
+                        location: $location,
+                        statements: [
+                            new Statements\WhileStatement(
+                                location: $location,
+                                condition: $expression,
+                                statements: new Block(
+                                    location: $location,
+                                    statements: [],
+                                ),
+                            ),
+                        ],
                     ),
                 ),
             ],

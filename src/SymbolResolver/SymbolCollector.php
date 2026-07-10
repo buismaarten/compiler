@@ -13,6 +13,7 @@ use Package\Exceptions\SymbolResolver\UndefinedSymbolException;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
+use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use WeakMap;
@@ -45,6 +46,7 @@ final class SymbolCollector extends AbstractNodeVisitor
             Statements\ConstStatement::class          => $this->visitConstStatement($node),
             Statements\FunctionStatement::class       => $this->visitFunctionStatement($node),
             Statements\VarStatement::class            => $this->visitVarStatement($node),
+            Parameter::class                          => $this->visitParameter($node),
 
             // Fallback
             default => null,
@@ -56,6 +58,13 @@ final class SymbolCollector extends AbstractNodeVisitor
     {
         if ($node instanceof Block) {
             $this->scope = $this->scope?->parent;
+            return;
+        }
+
+        if ($node instanceof Statements\FunctionStatement) {
+            if (count($node->parameters) > 0) {
+                $this->scope = $this->scope?->parent;
+            }
             return;
         }
     }
@@ -94,6 +103,10 @@ final class SymbolCollector extends AbstractNodeVisitor
         }
 
         $this->scope[$node->name] = $node;
+
+        if (count($node->parameters) > 0) {
+            $this->scope = new Scope($this->scope);
+        }
     }
 
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
@@ -103,6 +116,15 @@ final class SymbolCollector extends AbstractNodeVisitor
         if ($symbol === null) {
             throw new UndefinedSymbolException($node->getStartLine(), $node->name);
         }
+    }
+
+    private function visitParameter(Parameter $node): void
+    {
+        if (isset($this->scope[$node->name])) {
+            throw new DuplicateSymbolException($node->getStartLine(), $node->name);
+        }
+
+        $this->scope[$node->name] = $node;
     }
 
     private function visitVarStatement(Statements\VarStatement $node): void
