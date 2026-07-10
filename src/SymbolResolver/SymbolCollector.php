@@ -10,8 +10,11 @@ namespace Package\SymbolResolver;
 use Override;
 use Package\Exceptions\SymbolResolver\DuplicateSymbolException;
 use Package\Exceptions\SymbolResolver\UndefinedSymbolException;
-use Package\Nodes;
 use Package\Nodes\AbstractNode;
+use Package\Nodes\Block;
+use Package\Nodes\Expressions;
+use Package\Nodes\Parameter;
+use Package\Nodes\Statements;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use WeakMap;
 
@@ -31,26 +34,62 @@ final class SymbolCollector extends AbstractNodeVisitor
     #[Override]
     public function enterNode(AbstractNode $node): void
     {
-        if ($node instanceof Nodes\Block) {
+        if ($node instanceof Block) {
             $this->scope = new Scope($this->scope);
             return;
         }
 
-        match ($node::class) {
-            Nodes\Parameter::class                          => $this->enterParameter($node),
-            Nodes\Expressions\AssignmentExpression::class   => $this->enterAssignmentExpression($node),
-            Nodes\Expressions\FunctionCallExpression::class => $this->enterFunctionCallExpression($node),
-            Nodes\Expressions\IdentifierExpression::class   => $this->enterIdentifierExpression($node),
-            Nodes\Statements\ConstStatement::class          => $this->enterConstStatement($node),
-            Nodes\Statements\FunctionStatement::class       => $this->enterFunctionStatement($node),
-            Nodes\Statements\VarStatement::class            => $this->enterVarStatement($node),
+        if ($node instanceof Parameter) {
+            $this->visitParameter($node);
+            return;
+        }
 
-            // Fallback
-            default => null,
-        };
+        if ($node instanceof Expressions\AssignmentExpression) {
+            $this->visitAssignmentExpression($node);
+            return;
+        }
+
+        if ($node instanceof Expressions\FunctionCallExpression) {
+            $this->visitFunctionCallExpression($node);
+            return;
+        }
+
+        if ($node instanceof Expressions\IdentifierExpression) {
+            $this->visitIdentifierExpression($node);
+            return;
+        }
+
+        if ($node instanceof Statements\ConstStatement) {
+            $this->visitConstStatement($node);
+            return;
+        }
+
+        if ($node instanceof Statements\FunctionStatement) {
+            $this->visitFunctionStatement($node);
+            return;
+        }
+
+        if ($node instanceof Statements\VarStatement) {
+            $this->visitVarStatement($node);
+            return;
+        }
     }
 
-    private function enterAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
+    #[Override]
+    public function leaveNode(AbstractNode $node): void
+    {
+        if ($node instanceof Block) {
+            $this->scope = $this->scope?->parent;
+            return;
+        }
+
+        if ($node instanceof Statements\FunctionStatement) {
+            $this->scope = $this->scope?->parent;
+            return;
+        }
+    }
+
+    private function visitAssignmentExpression(Expressions\AssignmentExpression $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -59,7 +98,7 @@ final class SymbolCollector extends AbstractNodeVisitor
         }
     }
 
-    private function enterConstStatement(Nodes\Statements\ConstStatement $node): void
+    private function visitConstStatement(Statements\ConstStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -68,7 +107,7 @@ final class SymbolCollector extends AbstractNodeVisitor
         $this->scope[$node->name] = $node;
     }
 
-    private function enterFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
+    private function visitFunctionCallExpression(Expressions\FunctionCallExpression $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -77,7 +116,7 @@ final class SymbolCollector extends AbstractNodeVisitor
         }
     }
 
-    private function enterFunctionStatement(Nodes\Statements\FunctionStatement $node): void
+    private function visitFunctionStatement(Statements\FunctionStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -87,7 +126,7 @@ final class SymbolCollector extends AbstractNodeVisitor
         $this->scope = new Scope($this->scope);
     }
 
-    private function enterIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void
+    private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -96,7 +135,7 @@ final class SymbolCollector extends AbstractNodeVisitor
         }
     }
 
-    private function enterParameter(Nodes\Parameter $node): void
+    private function visitParameter(Parameter $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -105,27 +144,13 @@ final class SymbolCollector extends AbstractNodeVisitor
         $this->scope[$node->name] = $node;
     }
 
-    private function enterVarStatement(Nodes\Statements\VarStatement $node): void
+    private function visitVarStatement(Statements\VarStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
         $this->scope[$node->name] = $node;
-    }
-
-    #[Override]
-    public function leaveNode(AbstractNode $node): void
-    {
-        if ($node instanceof Nodes\Block) {
-            $this->scope = $this->scope?->parent;
-            return;
-        }
-
-        if ($node instanceof Nodes\Statements\FunctionStatement) {
-            $this->scope = $this->scope?->parent;
-            return;
-        }
     }
 
     private function resolve(string $name, AbstractNode $node): ?AbstractNode
