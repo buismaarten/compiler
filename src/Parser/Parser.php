@@ -280,7 +280,6 @@ final class Parser implements ParserInterface
             TokenType::Increment       => $this->parsePostfixUnaryExpression($token),
             TokenType::LeftParenthesis => $this->parseFunctionCallExpression($token),
 
-            // Fallback
             default => new Expressions\IdentifierExpression(
                 location: $this->createLocation($token),
                 name: $token->value,
@@ -436,7 +435,6 @@ final class Parser implements ParserInterface
             TokenType::Plus            => $this->parsePrefixUnaryExpression(),
             TokenType::String          => $this->parseStringLiteral(),
 
-            // Fallback
             default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
         };
     }
@@ -446,7 +444,6 @@ final class Parser implements ParserInterface
         $type = match ($this->current->type) {
             TokenType::LeftParenthesis => $this->parseTupleType(),
 
-            // Fallback
             default => $this->parseNamedType(),
         };
 
@@ -518,7 +515,6 @@ final class Parser implements ParserInterface
             TokenType::KeywordVar      => $this->parseVarStatement(),
             TokenType::KeywordWhile    => $this->parseWhileStatement(),
 
-            // Fallback
             default => $this->parseExpressionStatement(),
         };
     }
@@ -698,7 +694,6 @@ final class Parser implements ParserInterface
             TokenType::ShiftRight       => Expressions\BinaryOperator::ShiftRight,
             TokenType::Spaceship        => Expressions\BinaryOperator::Spaceship,
 
-            // Fallback
             default => null,
         };
     }
@@ -713,7 +708,6 @@ final class Parser implements ParserInterface
             TokenType::Minus      => Expressions\UnaryOperator::Minus,
             TokenType::Plus       => Expressions\UnaryOperator::Plus,
 
-            // Fallback
             default => null,
         };
     }

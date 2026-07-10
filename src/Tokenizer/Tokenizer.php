@@ -92,7 +92,6 @@ final class Tokenizer implements TokenizerInterface
                     ctype_alpha($current) => $this->tokenizeIdentifier(),
                     ctype_digit($current) => $this->tokenizeNumber(),
 
-                    // Fallback
                     default => throw new UnexpectedCharacterException($this->line, $current),
                 },
             };
@@ -361,7 +360,6 @@ final class Tokenizer implements TokenizerInterface
                                 't'  => "\t",
                                 'v'  => "\v",
 
-                                // Fallback
                                 default => '\\'.$current,
                             };
 
