@@ -115,7 +115,51 @@ class SymbolResolverTest extends TestCase
     }
 
     #[Test]
-    public function testResolveFunctionParameter(): void
+    public function testResolveIdentifierExpression(): void
+    {
+        $location = self::createLocation();
+
+        $expression = new Expressions\IdentifierExpression(
+            location: $location,
+            name: 'a',
+        );
+
+        $declaration = new Statements\ConstStatement(
+            location: $location,
+            name: 'a',
+            type: new Types\BuiltinType(
+                location: $location,
+                type: Types\Type::Integer,
+            ),
+            expression: new Literals\IntegerLiteral(
+                location: $location,
+                value: 1,
+            ),
+        );
+
+        $root = new Block(
+            location: $location,
+            statements: [
+                $declaration,
+                new Statements\WhileStatement(
+                    location: $location,
+                    condition: $expression,
+                    statements: new Block(
+                        location: $location,
+                        statements: [],
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertEquals(
+            actual: new SymbolResolver($root)->resolve($expression),
+            expected: $declaration,
+        );
+    }
+
+    #[Test]
+    public function testResolveParameter(): void
     {
         $location = self::createLocation();
 
@@ -156,50 +200,6 @@ class SymbolResolverTest extends TestCase
                                 ),
                             ),
                         ],
-                    ),
-                ),
-            ],
-        );
-
-        $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($expression),
-            expected: $declaration,
-        );
-    }
-
-    #[Test]
-    public function testResolveIdentifierExpression(): void
-    {
-        $location = self::createLocation();
-
-        $expression = new Expressions\IdentifierExpression(
-            location: $location,
-            name: 'a',
-        );
-
-        $declaration = new Statements\ConstStatement(
-            location: $location,
-            name: 'a',
-            type: new Types\BuiltinType(
-                location: $location,
-                type: Types\Type::Integer,
-            ),
-            expression: new Literals\IntegerLiteral(
-                location: $location,
-                value: 1,
-            ),
-        );
-
-        $root = new Block(
-            location: $location,
-            statements: [
-                $declaration,
-                new Statements\WhileStatement(
-                    location: $location,
-                    condition: $expression,
-                    statements: new Block(
-                        location: $location,
-                        statements: [],
                     ),
                 ),
             ],
