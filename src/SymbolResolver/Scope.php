@@ -35,7 +35,6 @@ final class Scope implements ArrayAccess
             }
         }
 
-        // Fallback
         return null;
     }
 

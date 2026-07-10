@@ -159,7 +159,6 @@ final class SymbolCollector extends AbstractNodeVisitor
             return $this->table[$node] = $symbol;
         }
 
-        // Fallback
         return null;
     }
 }
