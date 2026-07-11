@@ -29,7 +29,7 @@ final class SymbolResolver
             $this->table = new WeakMap;
 
             $traverser = new NodeTraverser;
-            $traverser->addVisitor(new SymbolCollector($this->table));
+            $traverser->addVisitor(new SymbolNodeVisitor($this->table));
             $traverser->traverse($this->root);
         }
 

@@ -19,7 +19,7 @@ use Package\Nodes\Types;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use WeakMap;
 
-final class SymbolCollector extends AbstractNodeVisitor
+final class SymbolNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
 
