@@ -15,6 +15,7 @@ use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
+use Package\Nodes\Types;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use WeakMap;
 
@@ -73,6 +74,11 @@ final class SymbolCollector extends AbstractNodeVisitor
             $this->visitVarStatement($node);
             return;
         }
+
+        if ($node instanceof Types\NamedType) {
+            $this->visitNamedType($node);
+            return;
+        }
     }
 
     #[Override]
@@ -127,6 +133,15 @@ final class SymbolCollector extends AbstractNodeVisitor
     }
 
     private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
+    {
+        $symbol = $this->resolve($node->name, $node);
+
+        if ($symbol === null) {
+            throw new UndefinedSymbolException($node->getStartLine(), $node->name);
+        }
+    }
+
+    private function visitNamedType(Types\NamedType $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
