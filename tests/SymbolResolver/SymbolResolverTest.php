@@ -25,7 +25,7 @@ class SymbolResolverTest extends TestCase
     {
         $location = self::createLocation();
 
-        $reference = new Expressions\AssignmentExpression(
+        $input = new Expressions\AssignmentExpression(
             location: $location,
             name: 'a',
             expression: new Literals\IntegerLiteral(
@@ -34,7 +34,7 @@ class SymbolResolverTest extends TestCase
             ),
         );
 
-        $resolved = new Statements\VarStatement(
+        $output = new Statements\VarStatement(
             location: $location,
             name: 'a',
             type: new Types\BuiltinType(
@@ -50,10 +50,10 @@ class SymbolResolverTest extends TestCase
         $root = new Block(
             location: $location,
             statements: [
-                $resolved,
+                $output,
                 new Statements\WhileStatement(
                     location: $location,
-                    condition: $reference,
+                    condition: $input,
                     statements: new Block(
                         location: $location,
                         statements: [],
@@ -63,8 +63,8 @@ class SymbolResolverTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($reference),
-            expected: $resolved,
+            actual: new SymbolResolver($root)->resolve($input),
+            expected: $output,
         );
     }
 
@@ -73,13 +73,13 @@ class SymbolResolverTest extends TestCase
     {
         $location = self::createLocation();
 
-        $reference = new Expressions\FunctionCallExpression(
+        $input = new Expressions\FunctionCallExpression(
             location: $location,
             name: 'foo',
             arguments: [],
         );
 
-        $resolved = new Statements\FunctionStatement(
+        $output = new Statements\FunctionStatement(
             location: $location,
             name: 'foo',
             parameters: [],
@@ -96,10 +96,10 @@ class SymbolResolverTest extends TestCase
         $root = new Block(
             location: $location,
             statements: [
-                $resolved,
+                $output,
                 new Statements\WhileStatement(
                     location: $location,
-                    condition: $reference,
+                    condition: $input,
                     statements: new Block(
                         location: $location,
                         statements: [],
@@ -109,8 +109,8 @@ class SymbolResolverTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($reference),
-            expected: $resolved,
+            actual: new SymbolResolver($root)->resolve($input),
+            expected: $output,
         );
     }
 
@@ -119,12 +119,12 @@ class SymbolResolverTest extends TestCase
     {
         $location = self::createLocation();
 
-        $reference = new Expressions\IdentifierExpression(
+        $input = new Expressions\IdentifierExpression(
             location: $location,
             name: 'a',
         );
 
-        $resolved = new Parameter(
+        $output = new Parameter(
             location: $location,
             name: 'a',
             type: new Types\BuiltinType(
@@ -139,7 +139,7 @@ class SymbolResolverTest extends TestCase
                 new Statements\FunctionStatement(
                     location: $location,
                     name: 'foo',
-                    parameters: [$resolved],
+                    parameters: [$output],
                     type: new Types\BuiltinType(
                         location: $location,
                         type: Types\Type::Void,
@@ -149,7 +149,7 @@ class SymbolResolverTest extends TestCase
                         statements: [
                             new Statements\WhileStatement(
                                 location: $location,
-                                condition: $reference,
+                                condition: $input,
                                 statements: new Block(
                                     location: $location,
                                     statements: [],
@@ -162,8 +162,8 @@ class SymbolResolverTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($reference),
-            expected: $resolved,
+            actual: new SymbolResolver($root)->resolve($input),
+            expected: $output,
         );
     }
 
@@ -172,12 +172,12 @@ class SymbolResolverTest extends TestCase
     {
         $location = self::createLocation();
 
-        $reference = new Expressions\IdentifierExpression(
+        $input = new Expressions\IdentifierExpression(
             location: $location,
             name: 'a',
         );
 
-        $resolved = new Statements\ConstStatement(
+        $output = new Statements\ConstStatement(
             location: $location,
             name: 'a',
             type: new Types\BuiltinType(
@@ -193,10 +193,10 @@ class SymbolResolverTest extends TestCase
         $root = new Block(
             location: $location,
             statements: [
-                $resolved,
+                $output,
                 new Statements\WhileStatement(
                     location: $location,
-                    condition: $reference,
+                    condition: $input,
                     statements: new Block(
                         location: $location,
                         statements: [],
@@ -206,8 +206,8 @@ class SymbolResolverTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($reference),
-            expected: $resolved,
+            actual: new SymbolResolver($root)->resolve($input),
+            expected: $output,
         );
     }
 
@@ -216,12 +216,12 @@ class SymbolResolverTest extends TestCase
     {
         $location = self::createLocation();
 
-        $reference = new Types\NamedType(
+        $input = new Types\NamedType(
             location: $location,
             name: 'xyz',
         );
 
-        $resolved = new Statements\ConstStatement(
+        $output = new Statements\ConstStatement(
             location: $location,
             name: 'xyz',
             type: new Types\BuiltinType(
@@ -237,7 +237,7 @@ class SymbolResolverTest extends TestCase
         $root = new Block(
             location: $location,
             statements: [
-                $resolved,
+                $output,
                 new Statements\WhileStatement(
                     location: $location,
                     condition: new Literals\BooleanLiteral(
@@ -251,7 +251,7 @@ class SymbolResolverTest extends TestCase
                                 location: $location,
                                 name: 'foo',
                                 parameters: [],
-                                type: $reference,
+                                type: $input,
                                 statements: new Block(
                                     location: $location,
                                     statements: [],
@@ -264,8 +264,8 @@ class SymbolResolverTest extends TestCase
         );
 
         $this->assertEquals(
-            actual: new SymbolResolver($root)->resolve($reference),
-            expected: $resolved,
+            actual: new SymbolResolver($root)->resolve($input),
+            expected: $output,
         );
     }
 
