@@ -69,7 +69,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertResolvedSnapshot($root, $node);
+        $this->assertSnapshot($root, $node);
     }
 
     #[Test]
@@ -115,7 +115,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertResolvedSnapshot($root, $node);
+        $this->assertSnapshot($root, $node);
     }
 
     #[Test]
@@ -170,7 +170,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertResolvedSnapshot($root, $node);
+        $this->assertSnapshot($root, $node);
     }
 
     #[Test]
@@ -214,7 +214,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertResolvedSnapshot($root, $node);
+        $this->assertSnapshot($root, $node);
     }
 
     #[Test]
@@ -272,10 +272,10 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertResolvedSnapshot($root, $node);
+        $this->assertSnapshot($root, $node);
     }
 
-    private function assertResolvedSnapshot(AbstractNode $root, AbstractNode $node): void
+    private function assertSnapshot(AbstractNode $root, AbstractNode $node): void
     {
         $resolver = new SymbolResolver($root);
 
