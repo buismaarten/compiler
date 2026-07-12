@@ -1,0 +1,36 @@
+\Package\Nodes\Block::__set_state(array(
+   'location' => 
+  \Package\Nodes\Location::__set_state(array(
+     'startLine' => 1,
+     'startOffset' => 0,
+     'endLine' => 1,
+     'endOffset' => 6,
+  )),
+   'statements' => 
+  array (
+    0 => 
+    \Package\Nodes\Statements\ExpressionStatement::__set_state(array(
+       'location' => 
+      \Package\Nodes\Location::__set_state(array(
+         'startLine' => 1,
+         'startOffset' => 0,
+         'endLine' => 1,
+         'endOffset' => 6,
+      )),
+       'expression' => 
+      \Package\Nodes\Expressions\FunctionCallExpression::__set_state(array(
+         'location' => 
+        \Package\Nodes\Location::__set_state(array(
+           'startLine' => 1,
+           'startOffset' => 0,
+           'endLine' => 1,
+           'endOffset' => 5,
+        )),
+         'name' => 'foo',
+         'arguments' => 
+        array (
+        ),
+      )),
+    )),
+  ),
+))

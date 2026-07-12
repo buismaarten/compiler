@@ -23,7 +23,12 @@ class NodeTraverserTest extends TestCase
     #[Test]
     public function testTraverse(): void
     {
-        $location = self::createLocation();
+        $location = new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
+        );
 
         $literal = new Literals\NullLiteral($location);
         $expression = new Expressions\ArrayExpression($location, [$literal]);
@@ -49,16 +54,6 @@ class NodeTraverserTest extends TestCase
                 ['leaveNode', $statement],
                 ['afterTraverse', $statement],
             ],
-        );
-    }
-
-    private static function createLocation(): Location
-    {
-        return new Location(
-            startLine: -1,
-            startOffset: -1,
-            endLine: -1,
-            endOffset: -1,
         );
     }
 }

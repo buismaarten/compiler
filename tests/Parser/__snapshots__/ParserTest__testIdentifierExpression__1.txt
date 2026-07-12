@@ -1,0 +1,33 @@
+\Package\Nodes\Block::__set_state(array(
+   'location' => 
+  \Package\Nodes\Location::__set_state(array(
+     'startLine' => 1,
+     'startOffset' => 0,
+     'endLine' => 1,
+     'endOffset' => 4,
+  )),
+   'statements' => 
+  array (
+    0 => 
+    \Package\Nodes\Statements\ExpressionStatement::__set_state(array(
+       'location' => 
+      \Package\Nodes\Location::__set_state(array(
+         'startLine' => 1,
+         'startOffset' => 0,
+         'endLine' => 1,
+         'endOffset' => 4,
+      )),
+       'expression' => 
+      \Package\Nodes\Expressions\IdentifierExpression::__set_state(array(
+         'location' => 
+        \Package\Nodes\Location::__set_state(array(
+           'startLine' => 1,
+           'startOffset' => 0,
+           'endLine' => 1,
+           'endOffset' => 3,
+        )),
+         'name' => 'foo',
+      )),
+    )),
+  ),
+))

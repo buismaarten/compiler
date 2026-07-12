@@ -1,0 +1,66 @@
+\Package\Nodes\Block::__set_state(array(
+   'location' => 
+  \Package\Nodes\Location::__set_state(array(
+     'startLine' => 1,
+     'startOffset' => 0,
+     'endLine' => 1,
+     'endOffset' => 23,
+  )),
+   'statements' => 
+  array (
+    0 => 
+    \Package\Nodes\Statements\VarStatement::__set_state(array(
+       'location' => 
+      \Package\Nodes\Location::__set_state(array(
+         'startLine' => 1,
+         'startOffset' => 0,
+         'endLine' => 1,
+         'endOffset' => 23,
+      )),
+       'name' => 'foo',
+       'type' => 
+      \Package\Nodes\Types\ArrayType::__set_state(array(
+         'location' => 
+        \Package\Nodes\Location::__set_state(array(
+           'startLine' => 1,
+           'startOffset' => 13,
+           'endLine' => 1,
+           'endOffset' => 15,
+        )),
+         'type' => 
+        \Package\Nodes\Types\NullableType::__set_state(array(
+           'location' => 
+          \Package\Nodes\Location::__set_state(array(
+             'startLine' => 1,
+             'startOffset' => 12,
+             'endLine' => 1,
+             'endOffset' => 13,
+          )),
+           'type' => 
+          \Package\Nodes\Types\BuiltinType::__set_state(array(
+             'location' => 
+            \Package\Nodes\Location::__set_state(array(
+               'startLine' => 1,
+               'startOffset' => 9,
+               'endLine' => 1,
+               'endOffset' => 12,
+            )),
+             'type' => 
+            \Package\Nodes\Types\Type::Integer,
+          )),
+        )),
+      )),
+       'expression' => 
+      \Package\Nodes\Literals\NullLiteral::__set_state(array(
+         'location' => 
+        \Package\Nodes\Location::__set_state(array(
+           'startLine' => 1,
+           'startOffset' => 18,
+           'endLine' => 1,
+           'endOffset' => 22,
+        )),
+         'value' => NULL,
+      )),
+    )),
+  ),
+))

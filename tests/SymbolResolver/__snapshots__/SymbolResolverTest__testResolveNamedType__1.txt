@@ -1,0 +1,33 @@
+\Package\Nodes\Statements\ConstStatement::__set_state(array(
+   'location' => 
+  \Package\Nodes\Location::__set_state(array(
+     'startLine' => -1,
+     'startOffset' => -1,
+     'endLine' => -1,
+     'endOffset' => -1,
+  )),
+   'name' => 'xyz',
+   'type' => 
+  \Package\Nodes\Types\BuiltinType::__set_state(array(
+     'location' => 
+    \Package\Nodes\Location::__set_state(array(
+       'startLine' => -1,
+       'startOffset' => -1,
+       'endLine' => -1,
+       'endOffset' => -1,
+    )),
+     'type' => 
+    \Package\Nodes\Types\Type::Integer,
+  )),
+   'expression' => 
+  \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
+     'location' => 
+    \Package\Nodes\Location::__set_state(array(
+       'startLine' => -1,
+       'startOffset' => -1,
+       'endLine' => -1,
+       'endOffset' => -1,
+    )),
+     'value' => 1,
+  )),
+))

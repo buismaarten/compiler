@@ -1,0 +1,58 @@
+\Package\Nodes\Block::__set_state(array(
+   'location' => 
+  \Package\Nodes\Location::__set_state(array(
+     'startLine' => 1,
+     'startOffset' => 0,
+     'endLine' => 1,
+     'endOffset' => 16,
+  )),
+   'statements' => 
+  array (
+    0 => 
+    \Package\Nodes\Statements\ExpressionStatement::__set_state(array(
+       'location' => 
+      \Package\Nodes\Location::__set_state(array(
+         'startLine' => 1,
+         'startOffset' => 0,
+         'endLine' => 1,
+         'endOffset' => 16,
+      )),
+       'expression' => 
+      \Package\Nodes\Expressions\FunctionCallExpression::__set_state(array(
+         'location' => 
+        \Package\Nodes\Location::__set_state(array(
+           'startLine' => 1,
+           'startOffset' => 0,
+           'endLine' => 1,
+           'endOffset' => 15,
+        )),
+         'name' => 'foo',
+         'arguments' => 
+        array (
+          0 => 
+          \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
+             'location' => 
+            \Package\Nodes\Location::__set_state(array(
+               'startLine' => 1,
+               'startOffset' => 4,
+               'endLine' => 1,
+               'endOffset' => 7,
+            )),
+             'value' => 123,
+          )),
+          1 => 
+          \Package\Nodes\Literals\StringLiteral::__set_state(array(
+             'location' => 
+            \Package\Nodes\Location::__set_state(array(
+               'startLine' => 1,
+               'startOffset' => 9,
+               'endLine' => 1,
+               'endOffset' => 14,
+            )),
+             'value' => 'bar',
+          )),
+        ),
+      )),
+    )),
+  ),
+))

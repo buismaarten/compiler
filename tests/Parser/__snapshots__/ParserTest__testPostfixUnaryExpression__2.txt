@@ -1,0 +1,47 @@
+\Package\Nodes\Block::__set_state(array(
+   'location' => 
+  \Package\Nodes\Location::__set_state(array(
+     'startLine' => 1,
+     'startOffset' => 0,
+     'endLine' => 1,
+     'endOffset' => 6,
+  )),
+   'statements' => 
+  array (
+    0 => 
+    \Package\Nodes\Statements\ExpressionStatement::__set_state(array(
+       'location' => 
+      \Package\Nodes\Location::__set_state(array(
+         'startLine' => 1,
+         'startOffset' => 0,
+         'endLine' => 1,
+         'endOffset' => 6,
+      )),
+       'expression' => 
+      \Package\Nodes\Expressions\UnaryExpression::__set_state(array(
+         'location' => 
+        \Package\Nodes\Location::__set_state(array(
+           'startLine' => 1,
+           'startOffset' => 0,
+           'endLine' => 1,
+           'endOffset' => 5,
+        )),
+         'operator' => 
+        \Package\Nodes\Expressions\UnaryOperator::Increment,
+         'position' => 
+        \Package\Nodes\Expressions\UnaryPosition::Postfix,
+         'expression' => 
+        \Package\Nodes\Expressions\IdentifierExpression::__set_state(array(
+           'location' => 
+          \Package\Nodes\Location::__set_state(array(
+             'startLine' => 1,
+             'startOffset' => 0,
+             'endLine' => 1,
+             'endOffset' => 3,
+          )),
+           'name' => 'foo',
+        )),
+      )),
+    )),
+  ),
+))

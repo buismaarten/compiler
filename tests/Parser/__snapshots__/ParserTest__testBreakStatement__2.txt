@@ -1,0 +1,33 @@
+\Package\Nodes\Block::__set_state(array(
+   'location' => 
+  \Package\Nodes\Location::__set_state(array(
+     'startLine' => 1,
+     'startOffset' => 0,
+     'endLine' => 1,
+     'endOffset' => 8,
+  )),
+   'statements' => 
+  array (
+    0 => 
+    \Package\Nodes\Statements\BreakStatement::__set_state(array(
+       'location' => 
+      \Package\Nodes\Location::__set_state(array(
+         'startLine' => 1,
+         'startOffset' => 0,
+         'endLine' => 1,
+         'endOffset' => 8,
+      )),
+       'level' => 
+      \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
+         'location' => 
+        \Package\Nodes\Location::__set_state(array(
+           'startLine' => 1,
+           'startOffset' => 6,
+           'endLine' => 1,
+           'endOffset' => 7,
+        )),
+         'value' => 2,
+      )),
+    )),
+  ),
+))

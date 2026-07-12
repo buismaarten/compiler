@@ -1,0 +1,45 @@
+\Package\Nodes\Block::__set_state(array(
+   'location' => 
+  \Package\Nodes\Location::__set_state(array(
+     'startLine' => 1,
+     'startOffset' => 0,
+     'endLine' => 1,
+     'endOffset' => 21,
+  )),
+   'statements' => 
+  array (
+    0 => 
+    \Package\Nodes\Statements\ConstStatement::__set_state(array(
+       'location' => 
+      \Package\Nodes\Location::__set_state(array(
+         'startLine' => 1,
+         'startOffset' => 0,
+         'endLine' => 1,
+         'endOffset' => 21,
+      )),
+       'name' => 'foo',
+       'type' => 
+      \Package\Nodes\Types\NamedType::__set_state(array(
+         'location' => 
+        \Package\Nodes\Location::__set_state(array(
+           'startLine' => 1,
+           'startOffset' => 11,
+           'endLine' => 1,
+           'endOffset' => 14,
+        )),
+         'name' => 'xyz',
+      )),
+       'expression' => 
+      \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
+         'location' => 
+        \Package\Nodes\Location::__set_state(array(
+           'startLine' => 1,
+           'startOffset' => 17,
+           'endLine' => 1,
+           'endOffset' => 20,
+        )),
+         'value' => 123,
+      )),
+    )),
+  ),
+))
