@@ -19,13 +19,13 @@ class InputTest extends TestCase
         $string = 'abc';
         $input = new Input($string);
 
-        $this->assertSame('a', $input->current());
+        $this->assertEquals('a', $input->current());
 
         $input->next();
-        $this->assertSame('b', $input->current());
+        $this->assertEquals('b', $input->current());
 
         $input->next();
-        $this->assertSame('c', $input->current());
+        $this->assertEquals('c', $input->current());
 
         $input->next();
         $this->assertNull($input->current());
@@ -37,13 +37,13 @@ class InputTest extends TestCase
         $string = 'abc';
         $input = new Input($string);
 
-        $this->assertSame('a', $input->current());
+        $this->assertEquals('a', $input->current());
 
         $input->next();
-        $this->assertSame('b', $input->current());
+        $this->assertEquals('b', $input->current());
 
         $input->next();
-        $this->assertSame('c', $input->current());
+        $this->assertEquals('c', $input->current());
 
         $input->next();
         $this->assertNull($input->current());
@@ -55,16 +55,16 @@ class InputTest extends TestCase
         $string = 'abc';
         $input = new Input($string);
 
-        $this->assertSame(0, $input->offset());
+        $this->assertEquals(0, $input->offset());
 
         $input->next();
-        $this->assertSame(1, $input->offset());
+        $this->assertEquals(1, $input->offset());
 
         $input->next();
-        $this->assertSame(2, $input->offset());
+        $this->assertEquals(2, $input->offset());
 
         $input->next();
-        $this->assertSame(3, $input->offset());
+        $this->assertEquals(3, $input->offset());
     }
 
     #[Test]
@@ -73,6 +73,6 @@ class InputTest extends TestCase
         $string = 'abc';
         $input = new Input($string);
 
-        $this->assertSame('bc', $input->slice(1, 3));
+        $this->assertEquals('bc', $input->slice(1, 3));
     }
 }

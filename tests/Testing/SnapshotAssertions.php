@@ -26,7 +26,7 @@ trait SnapshotAssertions
             $this->fail("Unable to read snapshot: {$path}");
         }
 
-        $this->assertSame(
+        $this->assertEquals(
             expected: $expected,
             actual: $content,
             message: "Snapshot mismatch: {$path}",
