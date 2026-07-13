@@ -1,68 +1,82 @@
-\Package\Nodes\Block::__set_state(array(
-   'location' => 
-  \Package\Nodes\Location::__set_state(array(
-     'startLine' => 1,
-     'startOffset' => 0,
-     'endLine' => 1,
-     'endOffset' => 22,
-  )),
-   'statements' => 
-  array (
-    0 => 
-    \Package\Nodes\Statements\IfStatement::__set_state(array(
-       'location' => 
-      \Package\Nodes\Location::__set_state(array(
-         'startLine' => 1,
-         'startOffset' => 0,
-         'endLine' => 1,
-         'endOffset' => 22,
-      )),
-       'condition' => 
-      \Package\Nodes\Expressions\IdentifierExpression::__set_state(array(
-         'location' => 
-        \Package\Nodes\Location::__set_state(array(
-           'startLine' => 1,
-           'startOffset' => 4,
-           'endLine' => 1,
-           'endOffset' => 7,
-        )),
-         'name' => 'foo',
-      )),
-       'thenStatements' => 
-      \Package\Nodes\Block::__set_state(array(
-         'location' => 
-        \Package\Nodes\Location::__set_state(array(
-           'startLine' => 1,
-           'startOffset' => 9,
-           'endLine' => 1,
-           'endOffset' => 22,
-        )),
-         'statements' => 
-        array (
-          0 => 
-          \Package\Nodes\Statements\ReturnStatement::__set_state(array(
-             'location' => 
-            \Package\Nodes\Location::__set_state(array(
-               'startLine' => 1,
-               'startOffset' => 11,
-               'endLine' => 1,
-               'endOffset' => 20,
-            )),
-             'expression' => 
-            \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
-               'location' => 
-              \Package\Nodes\Location::__set_state(array(
-                 'startLine' => 1,
-                 'startOffset' => 18,
-                 'endLine' => 1,
-                 'endOffset' => 19,
-              )),
-               'value' => 1,
-            )),
-          )),
-        ),
-      )),
-       'elseStatements' => NULL,
-    )),
-  ),
-))
+Package\Nodes\Block Object
+(
+    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+        (
+            [startLine] => 1
+            [startOffset] => 0
+            [endLine] => 1
+            [endOffset] => 22
+        )
+
+    [statements] => Array
+        (
+            [0] => Package\Nodes\Statements\IfStatement Object
+                (
+                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                        (
+                            [startLine] => 1
+                            [startOffset] => 0
+                            [endLine] => 1
+                            [endOffset] => 22
+                        )
+
+                    [condition] => Package\Nodes\Expressions\IdentifierExpression Object
+                        (
+                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 4
+                                    [endLine] => 1
+                                    [endOffset] => 7
+                                )
+
+                            [name] => foo
+                        )
+
+                    [thenStatements] => Package\Nodes\Block Object
+                        (
+                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 9
+                                    [endLine] => 1
+                                    [endOffset] => 22
+                                )
+
+                            [statements] => Array
+                                (
+                                    [0] => Package\Nodes\Statements\ReturnStatement Object
+                                        (
+                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 11
+                                                    [endLine] => 1
+                                                    [endOffset] => 20
+                                                )
+
+                                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 18
+                                                            [endLine] => 1
+                                                            [endOffset] => 19
+                                                        )
+
+                                                    [value] => 1
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [elseStatements] => 
+                )
+
+        )
+
+)

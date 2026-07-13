@@ -1,80 +1,100 @@
-\Package\Nodes\Block::__set_state(array(
-   'location' => 
-  \Package\Nodes\Location::__set_state(array(
-     'startLine' => 1,
-     'startOffset' => 0,
-     'endLine' => 1,
-     'endOffset' => 28,
-  )),
-   'statements' => 
-  array (
-    0 => 
-    \Package\Nodes\Statements\VarStatement::__set_state(array(
-       'location' => 
-      \Package\Nodes\Location::__set_state(array(
-         'startLine' => 1,
-         'startOffset' => 0,
-         'endLine' => 1,
-         'endOffset' => 28,
-      )),
-       'name' => 'foo',
-       'type' => 
-      \Package\Nodes\Types\ArrayType::__set_state(array(
-         'location' => 
-        \Package\Nodes\Location::__set_state(array(
-           'startLine' => 1,
-           'startOffset' => 12,
-           'endLine' => 1,
-           'endOffset' => 14,
-        )),
-         'type' => 
-        \Package\Nodes\Types\BuiltinType::__set_state(array(
-           'location' => 
-          \Package\Nodes\Location::__set_state(array(
-             'startLine' => 1,
-             'startOffset' => 9,
-             'endLine' => 1,
-             'endOffset' => 12,
-          )),
-           'type' => 
-          \Package\Nodes\Types\Type::Integer,
-        )),
-      )),
-       'expression' => 
-      \Package\Nodes\Expressions\ArrayExpression::__set_state(array(
-         'location' => 
-        \Package\Nodes\Location::__set_state(array(
-           'startLine' => 1,
-           'startOffset' => 17,
-           'endLine' => 1,
-           'endOffset' => 27,
-        )),
-         'expressions' => 
-        array (
-          0 => 
-          \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
-             'location' => 
-            \Package\Nodes\Location::__set_state(array(
-               'startLine' => 1,
-               'startOffset' => 18,
-               'endLine' => 1,
-               'endOffset' => 21,
-            )),
-             'value' => 123,
-          )),
-          1 => 
-          \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
-             'location' => 
-            \Package\Nodes\Location::__set_state(array(
-               'startLine' => 1,
-               'startOffset' => 23,
-               'endLine' => 1,
-               'endOffset' => 26,
-            )),
-             'value' => 456,
-          )),
-        ),
-      )),
-    )),
-  ),
-))
+Package\Nodes\Block Object
+(
+    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+        (
+            [startLine] => 1
+            [startOffset] => 0
+            [endLine] => 1
+            [endOffset] => 28
+        )
+
+    [statements] => Array
+        (
+            [0] => Package\Nodes\Statements\VarStatement Object
+                (
+                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                        (
+                            [startLine] => 1
+                            [startOffset] => 0
+                            [endLine] => 1
+                            [endOffset] => 28
+                        )
+
+                    [name] => foo
+                    [type] => Package\Nodes\Types\ArrayType Object
+                        (
+                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 12
+                                    [endLine] => 1
+                                    [endOffset] => 14
+                                )
+
+                            [type] => Package\Nodes\Types\BuiltinType Object
+                                (
+                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 9
+                                            [endLine] => 1
+                                            [endOffset] => 12
+                                        )
+
+                                    [type] => Package\Nodes\Types\Type Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
+                    [expression] => Package\Nodes\Expressions\ArrayExpression Object
+                        (
+                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 17
+                                    [endLine] => 1
+                                    [endOffset] => 27
+                                )
+
+                            [expressions] => Array
+                                (
+                                    [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                        (
+                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 18
+                                                    [endLine] => 1
+                                                    [endOffset] => 21
+                                                )
+
+                                            [value] => 123
+                                        )
+
+                                    [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                        (
+                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 23
+                                                    [endLine] => 1
+                                                    [endOffset] => 26
+                                                )
+
+                                            [value] => 456
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

@@ -1,47 +1,62 @@
-\Package\Nodes\Block::__set_state(array(
-   'location' => 
-  \Package\Nodes\Location::__set_state(array(
-     'startLine' => 1,
-     'startOffset' => 0,
-     'endLine' => 1,
-     'endOffset' => 5,
-  )),
-   'statements' => 
-  array (
-    0 => 
-    \Package\Nodes\Statements\ExpressionStatement::__set_state(array(
-       'location' => 
-      \Package\Nodes\Location::__set_state(array(
-         'startLine' => 1,
-         'startOffset' => 0,
-         'endLine' => 1,
-         'endOffset' => 5,
-      )),
-       'expression' => 
-      \Package\Nodes\Expressions\UnaryExpression::__set_state(array(
-         'location' => 
-        \Package\Nodes\Location::__set_state(array(
-           'startLine' => 1,
-           'startOffset' => 0,
-           'endLine' => 1,
-           'endOffset' => 4,
-        )),
-         'operator' => 
-        \Package\Nodes\Expressions\UnaryOperator::BitwiseNot,
-         'position' => 
-        \Package\Nodes\Expressions\UnaryPosition::Prefix,
-         'expression' => 
-        \Package\Nodes\Expressions\IdentifierExpression::__set_state(array(
-           'location' => 
-          \Package\Nodes\Location::__set_state(array(
-             'startLine' => 1,
-             'startOffset' => 1,
-             'endLine' => 1,
-             'endOffset' => 4,
-          )),
-           'name' => 'foo',
-        )),
-      )),
-    )),
-  ),
-))
+Package\Nodes\Block Object
+(
+    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+        (
+            [startLine] => 1
+            [startOffset] => 0
+            [endLine] => 1
+            [endOffset] => 5
+        )
+
+    [statements] => Array
+        (
+            [0] => Package\Nodes\Statements\ExpressionStatement Object
+                (
+                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                        (
+                            [startLine] => 1
+                            [startOffset] => 0
+                            [endLine] => 1
+                            [endOffset] => 5
+                        )
+
+                    [expression] => Package\Nodes\Expressions\UnaryExpression Object
+                        (
+                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 4
+                                )
+
+                            [operator] => Package\Nodes\Expressions\UnaryOperator Enum
+                                (
+                                    [name] => BitwiseNot
+                                )
+
+                            [position] => Package\Nodes\Expressions\UnaryPosition Enum
+                                (
+                                    [name] => Prefix
+                                )
+
+                            [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                                (
+                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 1
+                                            [endLine] => 1
+                                            [endOffset] => 4
+                                        )
+
+                                    [name] => foo
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

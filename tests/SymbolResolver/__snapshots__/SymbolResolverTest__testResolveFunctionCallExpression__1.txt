@@ -1,38 +1,50 @@
-\Package\Nodes\Statements\FunctionStatement::__set_state(array(
-   'location' => 
-  \Package\Nodes\Location::__set_state(array(
-     'startLine' => -1,
-     'startOffset' => -1,
-     'endLine' => -1,
-     'endOffset' => -1,
-  )),
-   'name' => 'foo',
-   'type' => 
-  \Package\Nodes\Types\BuiltinType::__set_state(array(
-     'location' => 
-    \Package\Nodes\Location::__set_state(array(
-       'startLine' => -1,
-       'startOffset' => -1,
-       'endLine' => -1,
-       'endOffset' => -1,
-    )),
-     'type' => 
-    \Package\Nodes\Types\Type::Void,
-  )),
-   'parameters' => 
-  array (
-  ),
-   'statements' => 
-  \Package\Nodes\Block::__set_state(array(
-     'location' => 
-    \Package\Nodes\Location::__set_state(array(
-       'startLine' => -1,
-       'startOffset' => -1,
-       'endLine' => -1,
-       'endOffset' => -1,
-    )),
-     'statements' => 
-    array (
-    ),
-  )),
-))
+Package\Nodes\Statements\FunctionStatement Object
+(
+    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+        (
+            [startLine] => -1
+            [startOffset] => -1
+            [endLine] => -1
+            [endOffset] => -1
+        )
+
+    [name] => foo
+    [type] => Package\Nodes\Types\BuiltinType Object
+        (
+            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                (
+                    [startLine] => -1
+                    [startOffset] => -1
+                    [endLine] => -1
+                    [endOffset] => -1
+                )
+
+            [type] => Package\Nodes\Types\Type Enum:string
+                (
+                    [name] => Void
+                    [value] => void
+                )
+
+        )
+
+    [parameters] => Array
+        (
+        )
+
+    [statements] => Package\Nodes\Block Object
+        (
+            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                (
+                    [startLine] => -1
+                    [startOffset] => -1
+                    [endLine] => -1
+                    [endOffset] => -1
+                )
+
+            [statements] => Array
+                (
+                )
+
+        )
+
+)

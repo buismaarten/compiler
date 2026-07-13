@@ -63,7 +63,7 @@ trait SnapshotAssertions
             return rtrim($actual, "\n")."\n";
         }
 
-        return var_export($actual, true)."\n";
+        return print_r($actual, true);
     }
 
     private function writeSnapshot(string $path, string $content): void

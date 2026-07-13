@@ -1,118 +1,150 @@
-\Package\Nodes\Block::__set_state(array(
-   'location' => 
-  \Package\Nodes\Location::__set_state(array(
-     'startLine' => 1,
-     'startOffset' => 0,
-     'endLine' => 1,
-     'endOffset' => 37,
-  )),
-   'statements' => 
-  array (
-    0 => 
-    \Package\Nodes\Statements\VarStatement::__set_state(array(
-       'location' => 
-      \Package\Nodes\Location::__set_state(array(
-         'startLine' => 1,
-         'startOffset' => 0,
-         'endLine' => 1,
-         'endOffset' => 37,
-      )),
-       'name' => 'foo',
-       'type' => 
-      \Package\Nodes\Types\ArrayType::__set_state(array(
-         'location' => 
-        \Package\Nodes\Location::__set_state(array(
-           'startLine' => 1,
-           'startOffset' => 19,
-           'endLine' => 1,
-           'endOffset' => 21,
-        )),
-         'type' => 
-        \Package\Nodes\Types\TupleType::__set_state(array(
-           'location' => 
-          \Package\Nodes\Location::__set_state(array(
-             'startLine' => 1,
-             'startOffset' => 9,
-             'endLine' => 1,
-             'endOffset' => 19,
-          )),
-           'types' => 
-          array (
-            0 => 
-            \Package\Nodes\Types\BuiltinType::__set_state(array(
-               'location' => 
-              \Package\Nodes\Location::__set_state(array(
-                 'startLine' => 1,
-                 'startOffset' => 10,
-                 'endLine' => 1,
-                 'endOffset' => 13,
-              )),
-               'type' => 
-              \Package\Nodes\Types\Type::Integer,
-            )),
-            1 => 
-            \Package\Nodes\Types\BuiltinType::__set_state(array(
-               'location' => 
-              \Package\Nodes\Location::__set_state(array(
-                 'startLine' => 1,
-                 'startOffset' => 15,
-                 'endLine' => 1,
-                 'endOffset' => 18,
-              )),
-               'type' => 
-              \Package\Nodes\Types\Type::Integer,
-            )),
-          ),
-        )),
-      )),
-       'expression' => 
-      \Package\Nodes\Expressions\ArrayExpression::__set_state(array(
-         'location' => 
-        \Package\Nodes\Location::__set_state(array(
-           'startLine' => 1,
-           'startOffset' => 24,
-           'endLine' => 1,
-           'endOffset' => 36,
-        )),
-         'expressions' => 
-        array (
-          0 => 
-          \Package\Nodes\Expressions\TupleExpression::__set_state(array(
-             'location' => 
-            \Package\Nodes\Location::__set_state(array(
-               'startLine' => 1,
-               'startOffset' => 25,
-               'endLine' => 1,
-               'endOffset' => 35,
-            )),
-             'expressions' => 
-            array (
-              0 => 
-              \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
-                 'location' => 
-                \Package\Nodes\Location::__set_state(array(
-                   'startLine' => 1,
-                   'startOffset' => 26,
-                   'endLine' => 1,
-                   'endOffset' => 29,
-                )),
-                 'value' => 123,
-              )),
-              1 => 
-              \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
-                 'location' => 
-                \Package\Nodes\Location::__set_state(array(
-                   'startLine' => 1,
-                   'startOffset' => 31,
-                   'endLine' => 1,
-                   'endOffset' => 34,
-                )),
-                 'value' => 456,
-              )),
-            ),
-          )),
-        ),
-      )),
-    )),
-  ),
-))
+Package\Nodes\Block Object
+(
+    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+        (
+            [startLine] => 1
+            [startOffset] => 0
+            [endLine] => 1
+            [endOffset] => 37
+        )
+
+    [statements] => Array
+        (
+            [0] => Package\Nodes\Statements\VarStatement Object
+                (
+                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                        (
+                            [startLine] => 1
+                            [startOffset] => 0
+                            [endLine] => 1
+                            [endOffset] => 37
+                        )
+
+                    [name] => foo
+                    [type] => Package\Nodes\Types\ArrayType Object
+                        (
+                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 19
+                                    [endLine] => 1
+                                    [endOffset] => 21
+                                )
+
+                            [type] => Package\Nodes\Types\TupleType Object
+                                (
+                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 9
+                                            [endLine] => 1
+                                            [endOffset] => 19
+                                        )
+
+                                    [types] => Array
+                                        (
+                                            [0] => Package\Nodes\Types\BuiltinType Object
+                                                (
+                                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 10
+                                                            [endLine] => 1
+                                                            [endOffset] => 13
+                                                        )
+
+                                                    [type] => Package\Nodes\Types\Type Enum:string
+                                                        (
+                                                            [name] => Integer
+                                                            [value] => int
+                                                        )
+
+                                                )
+
+                                            [1] => Package\Nodes\Types\BuiltinType Object
+                                                (
+                                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 15
+                                                            [endLine] => 1
+                                                            [endOffset] => 18
+                                                        )
+
+                                                    [type] => Package\Nodes\Types\Type Enum:string
+                                                        (
+                                                            [name] => Integer
+                                                            [value] => int
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [expression] => Package\Nodes\Expressions\ArrayExpression Object
+                        (
+                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 24
+                                    [endLine] => 1
+                                    [endOffset] => 36
+                                )
+
+                            [expressions] => Array
+                                (
+                                    [0] => Package\Nodes\Expressions\TupleExpression Object
+                                        (
+                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 25
+                                                    [endLine] => 1
+                                                    [endOffset] => 35
+                                                )
+
+                                            [expressions] => Array
+                                                (
+                                                    [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                                        (
+                                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                                (
+                                                                    [startLine] => 1
+                                                                    [startOffset] => 26
+                                                                    [endLine] => 1
+                                                                    [endOffset] => 29
+                                                                )
+
+                                                            [value] => 123
+                                                        )
+
+                                                    [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                                        (
+                                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                                (
+                                                                    [startLine] => 1
+                                                                    [startOffset] => 31
+                                                                    [endLine] => 1
+                                                                    [endOffset] => 34
+                                                                )
+
+                                                            [value] => 456
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

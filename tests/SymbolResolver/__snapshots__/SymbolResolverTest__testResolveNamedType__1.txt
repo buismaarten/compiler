@@ -1,33 +1,43 @@
-\Package\Nodes\Statements\ConstStatement::__set_state(array(
-   'location' => 
-  \Package\Nodes\Location::__set_state(array(
-     'startLine' => -1,
-     'startOffset' => -1,
-     'endLine' => -1,
-     'endOffset' => -1,
-  )),
-   'name' => 'xyz',
-   'type' => 
-  \Package\Nodes\Types\BuiltinType::__set_state(array(
-     'location' => 
-    \Package\Nodes\Location::__set_state(array(
-       'startLine' => -1,
-       'startOffset' => -1,
-       'endLine' => -1,
-       'endOffset' => -1,
-    )),
-     'type' => 
-    \Package\Nodes\Types\Type::Integer,
-  )),
-   'expression' => 
-  \Package\Nodes\Literals\IntegerLiteral::__set_state(array(
-     'location' => 
-    \Package\Nodes\Location::__set_state(array(
-       'startLine' => -1,
-       'startOffset' => -1,
-       'endLine' => -1,
-       'endOffset' => -1,
-    )),
-     'value' => 1,
-  )),
-))
+Package\Nodes\Statements\ConstStatement Object
+(
+    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+        (
+            [startLine] => -1
+            [startOffset] => -1
+            [endLine] => -1
+            [endOffset] => -1
+        )
+
+    [name] => xyz
+    [type] => Package\Nodes\Types\BuiltinType Object
+        (
+            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                (
+                    [startLine] => -1
+                    [startOffset] => -1
+                    [endLine] => -1
+                    [endOffset] => -1
+                )
+
+            [type] => Package\Nodes\Types\Type Enum:string
+                (
+                    [name] => Integer
+                    [value] => int
+                )
+
+        )
+
+    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+        (
+            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                (
+                    [startLine] => -1
+                    [startOffset] => -1
+                    [endLine] => -1
+                    [endOffset] => -1
+                )
+
+            [value] => 1
+        )
+
+)

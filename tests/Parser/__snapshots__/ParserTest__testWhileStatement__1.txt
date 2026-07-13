@@ -1,57 +1,69 @@
-\Package\Nodes\Block::__set_state(array(
-   'location' => 
-  \Package\Nodes\Location::__set_state(array(
-     'startLine' => 1,
-     'startOffset' => 0,
-     'endLine' => 1,
-     'endOffset' => 22,
-  )),
-   'statements' => 
-  array (
-    0 => 
-    \Package\Nodes\Statements\WhileStatement::__set_state(array(
-       'location' => 
-      \Package\Nodes\Location::__set_state(array(
-         'startLine' => 1,
-         'startOffset' => 0,
-         'endLine' => 1,
-         'endOffset' => 22,
-      )),
-       'condition' => 
-      \Package\Nodes\Expressions\IdentifierExpression::__set_state(array(
-         'location' => 
-        \Package\Nodes\Location::__set_state(array(
-           'startLine' => 1,
-           'startOffset' => 7,
-           'endLine' => 1,
-           'endOffset' => 10,
-        )),
-         'name' => 'foo',
-      )),
-       'statements' => 
-      \Package\Nodes\Block::__set_state(array(
-         'location' => 
-        \Package\Nodes\Location::__set_state(array(
-           'startLine' => 1,
-           'startOffset' => 12,
-           'endLine' => 1,
-           'endOffset' => 22,
-        )),
-         'statements' => 
-        array (
-          0 => 
-          \Package\Nodes\Statements\BreakStatement::__set_state(array(
-             'location' => 
-            \Package\Nodes\Location::__set_state(array(
-               'startLine' => 1,
-               'startOffset' => 14,
-               'endLine' => 1,
-               'endOffset' => 20,
-            )),
-             'level' => NULL,
-          )),
-        ),
-      )),
-    )),
-  ),
-))
+Package\Nodes\Block Object
+(
+    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+        (
+            [startLine] => 1
+            [startOffset] => 0
+            [endLine] => 1
+            [endOffset] => 22
+        )
+
+    [statements] => Array
+        (
+            [0] => Package\Nodes\Statements\WhileStatement Object
+                (
+                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                        (
+                            [startLine] => 1
+                            [startOffset] => 0
+                            [endLine] => 1
+                            [endOffset] => 22
+                        )
+
+                    [condition] => Package\Nodes\Expressions\IdentifierExpression Object
+                        (
+                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 7
+                                    [endLine] => 1
+                                    [endOffset] => 10
+                                )
+
+                            [name] => foo
+                        )
+
+                    [statements] => Package\Nodes\Block Object
+                        (
+                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 12
+                                    [endLine] => 1
+                                    [endOffset] => 22
+                                )
+
+                            [statements] => Array
+                                (
+                                    [0] => Package\Nodes\Statements\BreakStatement Object
+                                        (
+                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 14
+                                                    [endLine] => 1
+                                                    [endOffset] => 20
+                                                )
+
+                                            [level] => 
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
