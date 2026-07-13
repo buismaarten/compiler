@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tests\SymbolResolver;
 
+use Package\Exceptions\SymbolResolver as Exceptions;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
@@ -23,6 +24,169 @@ use PHPUnit\Framework\TestCase;
 class SymbolResolverTest extends TestCase
 {
     use SnapshotAssertions;
+
+    #[Test]
+    public function testUndefinedSymbolAssignmentExpression(): void
+    {
+        $this->expectException(Exceptions\UndefinedSymbolException::class);
+        $this->expectExceptionMessageIs("Undefined symbol 'a' on line -1");
+
+        $location = new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
+        );
+
+        $node = new Expressions\AssignmentExpression(
+            location: $location,
+            name: 'a',
+            expression: new Literals\IntegerLiteral(
+                location: $location,
+                value: 1,
+            ),
+        );
+
+        $root = new Block(
+            location: $location,
+            statements: [
+                new Statements\WhileStatement(
+                    location: $location,
+                    condition: $node,
+                    statements: new Block(
+                        location: $location,
+                        statements: [],
+                    ),
+                ),
+            ],
+        );
+
+        $resolver = new SymbolResolver($root);
+        $resolver->resolve($node);
+    }
+
+    #[Test]
+    public function testUndefinedSymbolFunctionCallExpression(): void
+    {
+        $this->expectException(Exceptions\UndefinedSymbolException::class);
+        $this->expectExceptionMessageIs("Undefined symbol 'foo' on line -1");
+
+        $location = new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
+        );
+
+        $node = new Expressions\FunctionCallExpression(
+            location: $location,
+            name: 'foo',
+            arguments: [],
+        );
+
+        $root = new Block(
+            location: $location,
+            statements: [
+                new Statements\WhileStatement(
+                    location: $location,
+                    condition: $node,
+                    statements: new Block(
+                        location: $location,
+                        statements: [],
+                    ),
+                ),
+            ],
+        );
+
+        $resolver = new SymbolResolver($root);
+        $resolver->resolve($node);
+    }
+
+    #[Test]
+    public function testUndefinedSymbolIdentifierExpression(): void
+    {
+        $this->expectException(Exceptions\UndefinedSymbolException::class);
+        $this->expectExceptionMessageIs("Undefined symbol 'a' on line -1");
+
+        $location = new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
+        );
+
+        $node = new Expressions\IdentifierExpression(
+            location: $location,
+            name: 'a',
+        );
+
+        $root = new Block(
+            location: $location,
+            statements: [
+                new Statements\WhileStatement(
+                    location: $location,
+                    condition: $node,
+                    statements: new Block(
+                        location: $location,
+                        statements: [],
+                    ),
+                ),
+            ],
+        );
+
+        $resolver = new SymbolResolver($root);
+        $resolver->resolve($node);
+    }
+
+    #[Test]
+    public function testUndefinedSymbolNamedType(): void
+    {
+        $this->expectException(Exceptions\UndefinedSymbolException::class);
+        $this->expectExceptionMessageIs("Undefined symbol 'xyz' on line -1");
+
+        $location = new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
+        );
+
+        $node = new Types\NamedType(
+            location: $location,
+            name: 'xyz',
+        );
+
+        $root = new Block(
+            location: $location,
+            statements: [
+                new Statements\WhileStatement(
+                    location: $location,
+                    condition: new Literals\BooleanLiteral(
+                        location: $location,
+                        value: true,
+                    ),
+                    statements: new Block(
+                        location: $location,
+                        statements: [
+                            new Statements\FunctionStatement(
+                                location: $location,
+                                name: 'foo',
+                                parameters: [],
+                                type: $node,
+                                statements: new Block(
+                                    location: $location,
+                                    statements: [],
+                                ),
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+
+        $resolver = new SymbolResolver($root);
+        $resolver->resolve($node);
+    }
 
     #[Test]
     public function testResolveAssignmentExpression(): void
