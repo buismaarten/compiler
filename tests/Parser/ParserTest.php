@@ -18,14 +18,14 @@ class ParserTest extends TestCase
     use SnapshotAssertions;
 
     #[Test]
-    public function testArrayExpression(): void
+    public function testParseArrayExpression(): void
     {
         $this->assertSnapshot('[1, 2, 3];');
         $this->assertSnapshot('[1, 2, [3, 4]];');
     }
 
     #[Test]
-    public function testArrayType(): void
+    public function testParseArrayType(): void
     {
         $this->assertSnapshot('var foo: int[] = [123, 456];');
         $this->assertSnapshot('var foo: int[][] = [[123, 456]];');
@@ -34,93 +34,93 @@ class ParserTest extends TestCase
     }
 
     #[Test]
-    public function testAssignmentExpression(): void
+    public function testParseAssignmentExpression(): void
     {
         $this->assertSnapshot('foo = 123;');
     }
 
     #[Test]
-    public function testBinaryExpression(): void
+    public function testParseBinaryExpression(): void
     {
         $this->assertSnapshot('1 + 2 * 3;');
     }
 
     #[Test]
-    public function testBooleanLiteral(): void
+    public function testParseBooleanLiteral(): void
     {
         $this->assertSnapshot('false;');
         $this->assertSnapshot('true;');
     }
 
     #[Test]
-    public function testBreakStatement(): void
+    public function testParseBreakStatement(): void
     {
         $this->assertSnapshot('break;');
         $this->assertSnapshot('break 2;');
     }
 
     #[Test]
-    public function testConstStatement(): void
+    public function testParseConstStatement(): void
     {
         $this->assertSnapshot('const foo: int = 123;');
         $this->assertSnapshot('const foo: xyz = 123;');
     }
 
     #[Test]
-    public function testContinueStatement(): void
+    public function testParseContinueStatement(): void
     {
         $this->assertSnapshot('continue;');
         $this->assertSnapshot('continue 2;');
     }
 
     #[Test]
-    public function testFloatLiteral(): void
+    public function testParseFloatLiteral(): void
     {
         $this->assertSnapshot('3.14;');
     }
 
     #[Test]
-    public function testFunctionCallExpression(): void
+    public function testParseFunctionCallExpression(): void
     {
         $this->assertSnapshot('foo();');
         $this->assertSnapshot('foo(123, "bar");');
     }
 
     #[Test]
-    public function testFunctionStatement(): void
+    public function testParseFunctionStatement(): void
     {
         $this->assertSnapshot('fn foo(): void { print "Hello, World!"; }');
         $this->assertSnapshot('fn foo(bar: int, baz: xyz): xyz { return baz; }');
     }
 
     #[Test]
-    public function testIdentifierExpression(): void
+    public function testParseIdentifierExpression(): void
     {
         $this->assertSnapshot('foo;');
     }
 
     #[Test]
-    public function testIfStatement(): void
+    public function testParseIfStatement(): void
     {
         $this->assertSnapshot('if (foo) { return 1; }');
         $this->assertSnapshot('if (foo) { return 1; } else { return 2; }');
     }
 
     #[Test]
-    public function testIntegerLiteral(): void
+    public function testParseIntegerLiteral(): void
     {
         $this->assertSnapshot('123;');
     }
 
     #[Test]
-    public function testNamedType(): void
+    public function testParseNamedType(): void
     {
         $this->assertSnapshot('var foo: xyz = 123;');
         $this->assertSnapshot('fn foo(bar: xyz): xyz { return bar; }');
     }
 
     #[Test]
-    public function testNullableType(): void
+    public function testParseNullableType(): void
     {
         $this->assertSnapshot('var foo: int? = null;');
         $this->assertSnapshot('var foo: int?[] = null;');
@@ -128,20 +128,20 @@ class ParserTest extends TestCase
     }
 
     #[Test]
-    public function testNullLiteral(): void
+    public function testParseNullLiteral(): void
     {
         $this->assertSnapshot('null;');
     }
 
     #[Test]
-    public function testPostfixUnaryExpression(): void
+    public function testParsePostfixUnaryExpression(): void
     {
         $this->assertSnapshot('foo--;');
         $this->assertSnapshot('foo++;');
     }
 
     #[Test]
-    public function testPrefixUnaryExpression(): void
+    public function testParsePrefixUnaryExpression(): void
     {
         $this->assertSnapshot('~foo;');
         $this->assertSnapshot('!foo;');
@@ -152,26 +152,26 @@ class ParserTest extends TestCase
     }
 
     #[Test]
-    public function testPrintStatement(): void
+    public function testParsePrintStatement(): void
     {
         $this->assertSnapshot('print 123;');
     }
 
     #[Test]
-    public function testReturnStatement(): void
+    public function testParseReturnStatement(): void
     {
         $this->assertSnapshot('return;');
         $this->assertSnapshot('return 123;');
     }
 
     #[Test]
-    public function testStringLiteral(): void
+    public function testParseStringLiteral(): void
     {
         $this->assertSnapshot('"Hello, World!";');
     }
 
     #[Test]
-    public function testTupleType(): void
+    public function testParseTupleType(): void
     {
         $this->assertSnapshot('var foo: (int, int) = (123, 456);');
         $this->assertSnapshot('var foo: (int, int)[] = [(123, 456)];');
@@ -179,14 +179,14 @@ class ParserTest extends TestCase
     }
 
     #[Test]
-    public function testVarStatement(): void
+    public function testParseVarStatement(): void
     {
         $this->assertSnapshot('var foo: int = 123;');
         $this->assertSnapshot('var foo: xyz = 123;');
     }
 
     #[Test]
-    public function testWhileStatement(): void
+    public function testParseWhileStatement(): void
     {
         $this->assertSnapshot('while (foo) { break; }');
     }
