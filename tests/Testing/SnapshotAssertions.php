@@ -18,7 +18,7 @@ trait SnapshotAssertions
         $path = $this->snapshotPath($snapshotName);
         $content = $this->snapshotContent($actual);
 
-        if (!is_file($path)) {
+        if (self::shouldUpdateSnapshots() || !is_file($path)) {
             $this->writeSnapshot($path, $content);
         }
 
@@ -33,18 +33,18 @@ trait SnapshotAssertions
         );
     }
 
-    private function snapshotPath(?string $snapshotName = null): string
+    private function snapshotPath(?string $snapshotName): string
     {
         $reflection = new ReflectionClass(static::class);
 
-        $name = $this->snapshotName($snapshotName);
-        $name = preg_replace('/[^A-Za-z0-9._-]+/', '_', $name);
+        $snapshotName = preg_replace('/[^A-Za-z0-9._-]+/', '_', $this->snapshotName($snapshotName));
+        $snapshotName = trim($snapshotName, '_');
 
         return sprintf(
             '%s/__snapshots__/%s__%s.txt',
             dirname($reflection->getFileName()),
             $reflection->getShortName(),
-            trim($name, '_'),
+            $snapshotName,
         );
     }
 
@@ -77,5 +77,14 @@ trait SnapshotAssertions
         if (file_put_contents($path, $content) === false) {
             $this->fail("Unable to write snapshot: {$path}");
         }
+    }
+
+    private static function shouldUpdateSnapshots(): bool
+    {
+        if (($value = getenv('UPDATE_SNAPSHOTS')) !== false) {
+            return preg_match('/^(1|true)$/i', $value) === 1;
+        }
+
+        return false;
     }
 }
