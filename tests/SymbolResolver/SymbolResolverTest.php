@@ -21,6 +21,7 @@ use Package\Tests\Testing\SnapshotAssertions;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+// TODO: add tests for duplicate symbol
 class SymbolResolverTest extends TestCase
 {
     use SnapshotAssertions;
