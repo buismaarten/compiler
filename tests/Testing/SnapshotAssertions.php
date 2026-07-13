@@ -51,7 +51,7 @@ trait SnapshotAssertions
     private function snapshotName(?string $snapshotName): string
     {
         if ($snapshotName === null) {
-            $snapshotName = $this->name();
+            $snapshotName = $this->nameWithDataSet();
         }
 
         return sprintf('%s__%d', $snapshotName, ++$this->snapshotAssertionIndex);
