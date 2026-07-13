@@ -253,6 +253,56 @@ class SymbolResolverTest extends TestCase
     }
 
     #[Test]
+    public function testResolveFunctionParameterUndefinedSymbol(): void
+    {
+        $this->expectException(Exceptions\UndefinedSymbolException::class);
+        $this->expectExceptionMessageIs("Undefined symbol 'a' on line -1");
+
+        $location = new Location(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
+        );
+
+        $node = new Expressions\IdentifierExpression(
+            location: $location,
+            name: 'a',
+        );
+
+        $root = new Block(
+            location: $location,
+            statements: [
+                new Statements\FunctionStatement(
+                    location: $location,
+                    name: 'foo',
+                    parameters: [],
+                    type: new Types\BuiltinType(
+                        location: $location,
+                        type: Types\Type::Void,
+                    ),
+                    statements: new Block(
+                        location: $location,
+                        statements: [
+                            new Statements\WhileStatement(
+                                location: $location,
+                                condition: $node,
+                                statements: new Block(
+                                    location: $location,
+                                    statements: [],
+                                ),
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+
+        $resolver = new SymbolResolver($root);
+        $resolver->resolve($node);
+    }
+
+    #[Test]
     public function testResolveIdentifierExpression(): void
     {
         $location = new Location(
