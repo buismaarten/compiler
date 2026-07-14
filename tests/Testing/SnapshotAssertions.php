@@ -25,15 +25,11 @@ trait SnapshotAssertions
             $this->writeSnapshot($path, $content);
         }
 
-        if (($expected = file_get_contents($path)) === false) {
+        if (($snapshot = file_get_contents($path)) === false) {
             $this->fail("Unable to read snapshot: {$path}");
         }
 
-        $this->assertEquals(
-            expected: $expected,
-            actual: $content,
-            message: "Snapshot mismatch: {$path}",
-        );
+        $this->assertEquals($snapshot, $content, "Snapshot mismatch: {$path}");
     }
 
     private function snapshotPath(?string $snapshotName): string
