@@ -42,14 +42,11 @@ trait SnapshotAssertions
         $reflectionFilename = $reflection->getFileName();
         $reflectionShortName = $reflection->getShortName();
 
-        $snapshotName = preg_replace('/[^A-Za-z0-9._-]+/', '_', $this->snapshotName($snapshotName));
-        $snapshotName = trim($snapshotName, '_');
-
         return sprintf(
             '%s/__snapshots__/%s__%s.txt',
             dirname($reflectionFilename),
             $reflectionShortName,
-            $snapshotName,
+            $this->snapshotName($snapshotName),
         );
     }
 
