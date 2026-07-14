@@ -13,6 +13,9 @@ trait SnapshotAssertions
 {
     private int $snapshotAssertionIndex = 0;
 
+    /** @return array<class-string, ReflectionClass> */
+    private static array $reflectionCache = [];
+
     protected function assertMatchesSnapshot(mixed $actual, ?string $snapshotName = null): void
     {
         $path = $this->snapshotPath($snapshotName);
@@ -35,15 +38,17 @@ trait SnapshotAssertions
 
     private function snapshotPath(?string $snapshotName): string
     {
-        $reflection = new ReflectionClass(static::class);
+        $reflection = self::$reflectionCache[static::class] ??= new ReflectionClass(static::class);
+        $reflectionFilename = $reflection->getFileName();
+        $reflectionShortName = $reflection->getShortName();
 
         $snapshotName = preg_replace('/[^A-Za-z0-9._-]+/', '_', $this->snapshotName($snapshotName));
         $snapshotName = trim($snapshotName, '_');
 
         return sprintf(
             '%s/__snapshots__/%s__%s.txt',
-            dirname($reflection->getFileName()),
-            $reflection->getShortName(),
+            dirname($reflectionFilename),
+            $reflectionShortName,
             $snapshotName,
         );
     }

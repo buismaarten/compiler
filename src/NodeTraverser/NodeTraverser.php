@@ -14,7 +14,7 @@ use ReflectionProperty;
 final class NodeTraverser
 {
     /** @var array<class-string<AbstractNode>, ReflectionProperty[]> */
-    private static array $cache = [];
+    private static array $propertiesCache = [];
 
     /** @var NodeVisitor[] */
     private array $visitors;
@@ -87,9 +87,9 @@ final class NodeTraverser
 
     private function traverseNode(AbstractNode $node): void
     {
-        self::$cache[$node::class] ??= new ReflectionClass($node)->getProperties(ReflectionProperty::IS_PUBLIC);
+        self::$propertiesCache[$node::class] ??= new ReflectionClass($node)->getProperties(ReflectionProperty::IS_PUBLIC);
 
-        foreach (self::$cache[$node::class] as $property) {
+        foreach (self::$propertiesCache[$node::class] as $property) {
             $name = $property->getName();
             $subNode = $node->{$name};
 
