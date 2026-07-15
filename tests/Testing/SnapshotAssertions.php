@@ -13,7 +13,7 @@ trait SnapshotAssertions
 {
     private int $snapshotAssertionIndex = 0;
 
-    /** @return array<class-string, ReflectionClass> */
+    /** @var array<class-string, ReflectionClass> */
     private static array $reflectionCache = [];
 
     protected function assertMatchesSnapshot(mixed $actual, ?string $snapshotName = null): void
