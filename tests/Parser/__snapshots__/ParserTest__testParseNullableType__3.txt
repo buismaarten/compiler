@@ -61,7 +61,7 @@ Package\Nodes\Block Object
                                                             [endOffset] => 12
                                                         )
 
-                                                    [type] => Package\Nodes\Types\Type Enum:string
+                                                    [name] => Package\Language\BuiltinTypeName Enum:string
                                                         (
                                                             [name] => Integer
                                                             [value] => int

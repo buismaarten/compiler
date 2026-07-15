@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Expressions;
 
+use Package\Language\BinaryOperator;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\Location;
 

@@ -30,12 +30,12 @@ Package\Nodes\Block Object
                                     [endOffset] => 4
                                 )
 
-                            [operator] => Package\Nodes\Expressions\UnaryOperator Enum
+                            [operator] => Package\Language\UnaryOperator Enum
                                 (
                                     [name] => BitwiseNot
                                 )
 
-                            [position] => Package\Nodes\Expressions\UnaryPosition Enum
+                            [position] => Package\Language\UnaryPosition Enum
                                 (
                                     [name] => Prefix
                                 )
