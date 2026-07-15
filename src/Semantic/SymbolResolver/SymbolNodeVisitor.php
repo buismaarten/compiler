@@ -19,6 +19,7 @@ use Package\Nodes\Types;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use WeakMap;
 
+// TODO: convert AST types to semantic types
 final class SymbolNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
