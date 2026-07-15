@@ -52,6 +52,9 @@ trait SnapshotAssertions
             $snapshotName = $this->nameWithDataSet();
         }
 
+        $snapshotName = preg_replace('/[^a-zA-Z0-9_]/', '_', $snapshotName);
+        $snapshotName = trim($snapshotName, '_');
+
         return sprintf('%s__%d', $snapshotName, ++$this->snapshotAssertionIndex);
     }
 
