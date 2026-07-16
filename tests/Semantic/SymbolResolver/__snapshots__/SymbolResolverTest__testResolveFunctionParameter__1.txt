@@ -9,4 +9,25 @@ Package\Semantic\Symbols\ParameterSymbol Object
         )
 
     [name] => a
+<<<<<<< HEAD
+=======
+    [type] => Package\Nodes\Types\BuiltinType Object
+        (
+            [location] => Package\Core\Location Object
+                (
+                    [startLine] => -1
+                    [startOffset] => -1
+                    [endLine] => -1
+                    [endOffset] => -1
+                )
+
+            [name] => Package\Language\BuiltinTypeName Enum:string
+                (
+                    [name] => Integer
+                    [value] => int
+                )
+
+        )
+
+>>>>>>> main
 )
