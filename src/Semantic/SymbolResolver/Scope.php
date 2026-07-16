@@ -10,14 +10,14 @@ namespace Package\Semantic\SymbolResolver;
 use ArrayAccess;
 use InvalidArgumentException;
 use Override;
-use Package\Nodes\AbstractNode;
+use Package\Semantic\Symbols\AbstractSymbol;
 
-/** @implements ArrayAccess<string, AbstractNode> */
+/** @implements ArrayAccess<string, AbstractSymbol> */
 final class Scope implements ArrayAccess
 {
     public ?self $parent;
 
-    /** @var array<string, AbstractNode> */
+    /** @var array<string, AbstractSymbol> */
     private array $symbols = [];
 
     public function __construct(?self $parent)
@@ -25,7 +25,7 @@ final class Scope implements ArrayAccess
         $this->parent = $parent;
     }
 
-    public function resolve(string $name): ?AbstractNode
+    public function resolve(string $name): ?AbstractSymbol
     {
         for ($scope = $this; $scope !== null; $scope = $scope->parent) {
             $symbol = $scope->symbols[$name] ?? null;
@@ -45,7 +45,7 @@ final class Scope implements ArrayAccess
     }
 
     #[Override]
-    public function offsetGet(mixed $offset): ?AbstractNode
+    public function offsetGet(mixed $offset): ?AbstractSymbol
     {
         return $this->symbols[$offset] ?? null;
     }

@@ -1,6 +1,6 @@
-Package\Nodes\Statements\ConstStatement Object
+Package\Semantic\Symbols\ConstantSymbol Object
 (
-    [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
+    [location] => Package\Core\Location Object
         (
             [startLine] => -1
             [startOffset] => -1
@@ -9,35 +9,4 @@ Package\Nodes\Statements\ConstStatement Object
         )
 
     [name] => a
-    [type] => Package\Nodes\Types\BuiltinType Object
-        (
-            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [name] => Package\Language\BuiltinTypeName Enum:string
-                (
-                    [name] => Integer
-                    [value] => int
-                )
-
-        )
-
-    [expression] => Package\Nodes\Literals\IntegerLiteral Object
-        (
-            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [value] => 1
-        )
-
 )

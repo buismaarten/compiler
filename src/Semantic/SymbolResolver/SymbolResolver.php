@@ -9,13 +9,14 @@ namespace Package\Semantic\SymbolResolver;
 
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\NodeTraverser;
+use Package\Semantic\Symbols\AbstractSymbol;
 use WeakMap;
 
 final class SymbolResolver
 {
     private AbstractNode $root;
 
-    /** @var WeakMap<AbstractNode, AbstractNode>|null */
+    /** @var WeakMap<AbstractNode, AbstractSymbol>|null */
     private ?WeakMap $table = null;
 
     public function __construct(AbstractNode $root)
@@ -23,7 +24,7 @@ final class SymbolResolver
         $this->root = $root;
     }
 
-    public function resolve(AbstractNode $node): ?AbstractNode
+    public function resolve(AbstractNode $node): ?AbstractSymbol
     {
         if ($this->table === null) {
             $this->table = new WeakMap;

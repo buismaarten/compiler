@@ -1,6 +1,6 @@
-Package\Nodes\Statements\FunctionStatement Object
+Package\Semantic\Symbols\FunctionSymbol Object
 (
-    [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
+    [location] => Package\Core\Location Object
         (
             [startLine] => -1
             [startOffset] => -1
@@ -9,42 +9,4 @@ Package\Nodes\Statements\FunctionStatement Object
         )
 
     [name] => foo
-    [type] => Package\Nodes\Types\BuiltinType Object
-        (
-            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [name] => Package\Language\BuiltinTypeName Enum:string
-                (
-                    [name] => Void
-                    [value] => void
-                )
-
-        )
-
-    [parameters] => Array
-        (
-        )
-
-    [statements] => Package\Nodes\Block Object
-        (
-            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [statements] => Array
-                (
-                )
-
-        )
-
 )
