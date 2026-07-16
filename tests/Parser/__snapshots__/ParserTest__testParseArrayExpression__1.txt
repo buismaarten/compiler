@@ -1,6 +1,6 @@
 Package\Nodes\Block Object
 (
-    [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
+    [location] => Package\Core\Location Object
         (
             [startLine] => 1
             [startOffset] => 0
@@ -12,7 +12,7 @@ Package\Nodes\Block Object
         (
             [0] => Package\Nodes\Statements\ExpressionStatement Object
                 (
-                    [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
+                    [location] => Package\Core\Location Object
                         (
                             [startLine] => 1
                             [startOffset] => 0
@@ -22,7 +22,7 @@ Package\Nodes\Block Object
 
                     [expression] => Package\Nodes\Expressions\ArrayExpression Object
                         (
-                            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
+                            [location] => Package\Core\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 0
@@ -34,7 +34,7 @@ Package\Nodes\Block Object
                                 (
                                     [0] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
+                                            [location] => Package\Core\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 1
@@ -47,7 +47,7 @@ Package\Nodes\Block Object
 
                                     [1] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
+                                            [location] => Package\Core\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 4
@@ -60,7 +60,7 @@ Package\Nodes\Block Object
 
                                     [2] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
+                                            [location] => Package\Core\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 7

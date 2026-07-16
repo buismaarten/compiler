@@ -12,16 +12,11 @@ use Package\Core\Location;
 
 abstract class AbstractNode implements JsonSerializable
 {
-    private Location $location;
+    public readonly Location $location;
 
     public function __construct(Location $location)
     {
         $this->location = $location;
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
     }
 
     public function getStartLine(): int
@@ -50,9 +45,6 @@ abstract class AbstractNode implements JsonSerializable
         $type = explode('\\', static::class);
         $type = end($type);
 
-        $array = (array) get_object_vars(...)->__invoke($this);
-        $array = ['_type' => $type, '_location' => $this->location] + $array;
-
-        return $array;
+        return ['_type' => $type] + get_object_vars($this);
     }
 }

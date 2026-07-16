@@ -114,7 +114,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
 
         // TODO
-        $this->scope[$node->name] = new Symbols\ConstantSymbol($node->getLocation(), $node->name);
+        $this->scope[$node->name] = new Symbols\ConstantSymbol($node->location, $node->name);
     }
 
     private function visitFunctionCallExpression(Expressions\FunctionCallExpression $node): void
@@ -133,7 +133,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
 
         // TODO
-        $this->scope[$node->name] = new Symbols\FunctionSymbol($node->getLocation(), $node->name);
+        $this->scope[$node->name] = new Symbols\FunctionSymbol($node->location, $node->name);
         $this->scope = new Scope($this->scope);
     }
 
@@ -162,7 +162,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
 
         // TODO
-        $this->scope[$node->name] = new Symbols\ParameterSymbol($node->getLocation(), $node->name);
+        $this->scope[$node->name] = new Symbols\ParameterSymbol($node->location, $node->name);
     }
 
     private function visitVarStatement(Statements\VarStatement $node): void
@@ -172,7 +172,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
 
         // TODO
-        $this->scope[$node->name] = new Symbols\VariableSymbol($node->getLocation(), $node->name);
+        $this->scope[$node->name] = new Symbols\VariableSymbol($node->location, $node->name);
     }
 
     private function resolve(string $name, AbstractNode $node): ?AbstractSymbol
