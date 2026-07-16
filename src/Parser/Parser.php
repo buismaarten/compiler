@@ -164,7 +164,7 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseConstStatement(): Statements\ConstStatement
+    private function parseConstantStatement(): Statements\ConstantStatement
     {
         $token = $this->expect(TokenType::KeywordConst);
         $identifier = $this->expect(TokenType::Identifier);
@@ -176,7 +176,7 @@ final class Parser implements ParserInterface
 
         $this->expect(TokenType::Semicolon);
 
-        return new Statements\ConstStatement(
+        return new Statements\ConstantStatement(
             location: $this->createLocation($token),
             name: $identifier->value,
             type: $type,
@@ -512,7 +512,7 @@ final class Parser implements ParserInterface
     {
         return match ($this->current->type) {
             TokenType::KeywordBreak    => $this->parseBreakStatement(),
-            TokenType::KeywordConst    => $this->parseConstStatement(),
+            TokenType::KeywordConst    => $this->parseConstantStatement(),
             TokenType::KeywordContinue => $this->parseContinueStatement(),
             TokenType::KeywordFn       => $this->parseFunctionStatement(),
             TokenType::KeywordIf       => $this->parseIfStatement(),

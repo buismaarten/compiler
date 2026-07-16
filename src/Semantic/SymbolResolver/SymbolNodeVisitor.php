@@ -63,8 +63,8 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
-        if ($node instanceof Statements\ConstStatement) {
-            $this->visitConstStatement($node);
+        if ($node instanceof Statements\ConstantStatement) {
+            $this->visitConstantStatement($node);
             return;
         }
 
@@ -107,7 +107,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitConstStatement(Statements\ConstStatement $node): void
+    private function visitConstantStatement(Statements\ConstantStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);

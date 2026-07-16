@@ -60,7 +60,7 @@ class ParserTest extends TestCase
     }
 
     #[Test]
-    public function testParseConstStatement(): void
+    public function testParseConstantStatement(): void
     {
         $this->assertSnapshot('const foo: int = 123;');
         $this->assertSnapshot('const foo: xyz = 123;');

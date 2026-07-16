@@ -192,7 +192,7 @@ class SymbolResolverTest extends TestCase
         $root = new Block(
             location: $location,
             statements: [
-                new Statements\ConstStatement(
+                new Statements\ConstantStatement(
                     location: $location,
                     name: 'a',
                     type: new Types\BuiltinType(
@@ -236,7 +236,7 @@ class SymbolResolverTest extends TestCase
         $root = new Block(
             location: $location,
             statements: [
-                new Statements\ConstStatement(
+                new Statements\ConstantStatement(
                     location: $location,
                     name: 'xyz',
                     type: new Types\BuiltinType(

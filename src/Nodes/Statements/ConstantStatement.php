@@ -12,7 +12,7 @@ use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
 
-final class ConstStatement extends AbstractStatement
+final class ConstantStatement extends AbstractStatement
 {
     public string $name;
     public AbstractType $type;
