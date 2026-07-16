@@ -1,6 +1,6 @@
 Package\Nodes\Block Object
 (
-    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+    [location] => Package\Core\Location Object
         (
             [startLine] => 1
             [startOffset] => 0
@@ -12,7 +12,7 @@ Package\Nodes\Block Object
         (
             [0] => Package\Nodes\Statements\FunctionStatement Object
                 (
-                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                    [location] => Package\Core\Location Object
                         (
                             [startLine] => 1
                             [startOffset] => 0
@@ -23,7 +23,7 @@ Package\Nodes\Block Object
                     [name] => foo
                     [type] => Package\Nodes\Types\BuiltinType Object
                         (
-                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                            [location] => Package\Core\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 10
@@ -31,7 +31,7 @@ Package\Nodes\Block Object
                                     [endOffset] => 14
                                 )
 
-                            [type] => Package\Nodes\Types\Type Enum:string
+                            [name] => Package\Language\BuiltinTypeName Enum:string
                                 (
                                     [name] => Void
                                     [value] => void
@@ -45,7 +45,7 @@ Package\Nodes\Block Object
 
                     [statements] => Package\Nodes\Block Object
                         (
-                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                            [location] => Package\Core\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 15
@@ -57,7 +57,7 @@ Package\Nodes\Block Object
                                 (
                                     [0] => Package\Nodes\Statements\PrintStatement Object
                                         (
-                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                            [location] => Package\Core\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 17
@@ -67,7 +67,7 @@ Package\Nodes\Block Object
 
                                             [expression] => Package\Nodes\Literals\StringLiteral Object
                                                 (
-                                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                    [location] => Package\Core\Location Object
                                                         (
                                                             [startLine] => 1
                                                             [startOffset] => 23

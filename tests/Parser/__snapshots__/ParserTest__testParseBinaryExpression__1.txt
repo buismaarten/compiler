@@ -1,6 +1,6 @@
 Package\Nodes\Block Object
 (
-    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+    [location] => Package\Core\Location Object
         (
             [startLine] => 1
             [startOffset] => 0
@@ -12,7 +12,7 @@ Package\Nodes\Block Object
         (
             [0] => Package\Nodes\Statements\ExpressionStatement Object
                 (
-                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                    [location] => Package\Core\Location Object
                         (
                             [startLine] => 1
                             [startOffset] => 0
@@ -22,7 +22,7 @@ Package\Nodes\Block Object
 
                     [expression] => Package\Nodes\Expressions\BinaryExpression Object
                         (
-                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                            [location] => Package\Core\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 2
@@ -30,14 +30,14 @@ Package\Nodes\Block Object
                                     [endOffset] => 9
                                 )
 
-                            [operator] => Package\Nodes\Expressions\BinaryOperator Enum
+                            [operator] => Package\Language\BinaryOperator Enum
                                 (
                                     [name] => Plus
                                 )
 
                             [left] => Package\Nodes\Literals\IntegerLiteral Object
                                 (
-                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                    [location] => Package\Core\Location Object
                                         (
                                             [startLine] => 1
                                             [startOffset] => 0
@@ -50,7 +50,7 @@ Package\Nodes\Block Object
 
                             [right] => Package\Nodes\Expressions\BinaryExpression Object
                                 (
-                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                    [location] => Package\Core\Location Object
                                         (
                                             [startLine] => 1
                                             [startOffset] => 6
@@ -58,14 +58,14 @@ Package\Nodes\Block Object
                                             [endOffset] => 9
                                         )
 
-                                    [operator] => Package\Nodes\Expressions\BinaryOperator Enum
+                                    [operator] => Package\Language\BinaryOperator Enum
                                         (
                                             [name] => Multiply
                                         )
 
                                     [left] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                            [location] => Package\Core\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 4
@@ -78,7 +78,7 @@ Package\Nodes\Block Object
 
                                     [right] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                            [location] => Package\Core\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 8

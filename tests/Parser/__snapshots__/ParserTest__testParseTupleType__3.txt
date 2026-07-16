@@ -1,6 +1,6 @@
 Package\Nodes\Block Object
 (
-    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+    [location] => Package\Core\Location Object
         (
             [startLine] => 1
             [startOffset] => 0
@@ -10,9 +10,9 @@ Package\Nodes\Block Object
 
     [statements] => Array
         (
-            [0] => Package\Nodes\Statements\VarStatement Object
+            [0] => Package\Nodes\Statements\VariableStatement Object
                 (
-                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                    [location] => Package\Core\Location Object
                         (
                             [startLine] => 1
                             [startOffset] => 0
@@ -23,7 +23,7 @@ Package\Nodes\Block Object
                     [name] => foo
                     [type] => Package\Nodes\Types\NullableType Object
                         (
-                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                            [location] => Package\Core\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 19
@@ -33,7 +33,7 @@ Package\Nodes\Block Object
 
                             [type] => Package\Nodes\Types\TupleType Object
                                 (
-                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                    [location] => Package\Core\Location Object
                                         (
                                             [startLine] => 1
                                             [startOffset] => 9
@@ -45,7 +45,7 @@ Package\Nodes\Block Object
                                         (
                                             [0] => Package\Nodes\Types\BuiltinType Object
                                                 (
-                                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                    [location] => Package\Core\Location Object
                                                         (
                                                             [startLine] => 1
                                                             [startOffset] => 10
@@ -53,7 +53,7 @@ Package\Nodes\Block Object
                                                             [endOffset] => 13
                                                         )
 
-                                                    [type] => Package\Nodes\Types\Type Enum:string
+                                                    [name] => Package\Language\BuiltinTypeName Enum:string
                                                         (
                                                             [name] => Integer
                                                             [value] => int
@@ -63,7 +63,7 @@ Package\Nodes\Block Object
 
                                             [1] => Package\Nodes\Types\BuiltinType Object
                                                 (
-                                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                                    [location] => Package\Core\Location Object
                                                         (
                                                             [startLine] => 1
                                                             [startOffset] => 15
@@ -71,7 +71,7 @@ Package\Nodes\Block Object
                                                             [endOffset] => 18
                                                         )
 
-                                                    [type] => Package\Nodes\Types\Type Enum:string
+                                                    [name] => Package\Language\BuiltinTypeName Enum:string
                                                         (
                                                             [name] => Integer
                                                             [value] => int
@@ -87,7 +87,7 @@ Package\Nodes\Block Object
 
                     [expression] => Package\Nodes\Expressions\TupleExpression Object
                         (
-                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                            [location] => Package\Core\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 23
@@ -99,7 +99,7 @@ Package\Nodes\Block Object
                                 (
                                     [0] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                            [location] => Package\Core\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 24
@@ -112,7 +112,7 @@ Package\Nodes\Block Object
 
                                     [1] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                            [location] => Package\Core\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 29

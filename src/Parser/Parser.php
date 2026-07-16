@@ -8,16 +8,20 @@ declare(strict_types=1);
 namespace Package\Parser;
 
 use Override;
+use Package\Core\Location;
 use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
+use Package\Language\BinaryOperator;
+use Package\Language\BuiltinTypeName;
+use Package\Language\UnaryOperator;
+use Package\Language\UnaryPosition;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
-use Package\Nodes\Location;
 use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;
@@ -160,7 +164,7 @@ final class Parser implements ParserInterface
         );
     }
 
-    private function parseConstStatement(): Statements\ConstStatement
+    private function parseConstantStatement(): Statements\ConstantStatement
     {
         $token = $this->expect(TokenType::KeywordConst);
         $identifier = $this->expect(TokenType::Identifier);
@@ -172,7 +176,7 @@ final class Parser implements ParserInterface
 
         $this->expect(TokenType::Semicolon);
 
-        return new Statements\ConstStatement(
+        return new Statements\ConstantStatement(
             location: $this->createLocation($token),
             name: $identifier->value,
             type: $type,
@@ -342,12 +346,12 @@ final class Parser implements ParserInterface
     private function parseNamedType(): AbstractType
     {
         $token = $this->expect(TokenType::Identifier);
-        $type = Types\Type::tryFrom($token->value);
+        $name = BuiltinTypeName::tryFrom($token->value);
 
-        if ($type !== null) {
+        if ($name !== null) {
             return new Types\BuiltinType(
                 location: $this->createLocation($token),
-                type: $type,
+                name: $name,
             );
         }
 
@@ -391,7 +395,7 @@ final class Parser implements ParserInterface
         return new Expressions\UnaryExpression(
             location: $this->createLocation($identifier, $token),
             operator: $operator,
-            position: Expressions\UnaryPosition::Postfix,
+            position: UnaryPosition::Postfix,
             expression: new Expressions\IdentifierExpression(
                 location: $this->createLocation($identifier, $identifier),
                 name: $identifier->value,
@@ -413,7 +417,7 @@ final class Parser implements ParserInterface
         return new Expressions\UnaryExpression(
             location: $this->createLocation($token),
             operator: $operator,
-            position: Expressions\UnaryPosition::Prefix,
+            position: UnaryPosition::Prefix,
             expression: $expression,
         );
     }
@@ -508,13 +512,13 @@ final class Parser implements ParserInterface
     {
         return match ($this->current->type) {
             TokenType::KeywordBreak    => $this->parseBreakStatement(),
-            TokenType::KeywordConst    => $this->parseConstStatement(),
+            TokenType::KeywordConst    => $this->parseConstantStatement(),
             TokenType::KeywordContinue => $this->parseContinueStatement(),
             TokenType::KeywordFn       => $this->parseFunctionStatement(),
             TokenType::KeywordIf       => $this->parseIfStatement(),
             TokenType::KeywordPrint    => $this->parsePrintStatement(),
             TokenType::KeywordReturn   => $this->parseReturnStatement(),
-            TokenType::KeywordVar      => $this->parseVarStatement(),
+            TokenType::KeywordVar      => $this->parseVariableStatement(),
             TokenType::KeywordWhile    => $this->parseWhileStatement(),
 
             default => $this->parseExpressionStatement(),
@@ -588,7 +592,7 @@ final class Parser implements ParserInterface
         return $this->parsePrimaryType();
     }
 
-    private function parseVarStatement(): Statements\VarStatement
+    private function parseVariableStatement(): Statements\VariableStatement
     {
         $token = $this->expect(TokenType::KeywordVar);
         $identifier = $this->expect(TokenType::Identifier);
@@ -600,7 +604,7 @@ final class Parser implements ParserInterface
 
         $this->expect(TokenType::Semicolon);
 
-        return new Statements\VarStatement(
+        return new Statements\VariableStatement(
             location: $this->createLocation($token),
             name: $identifier->value,
             type: $type,
@@ -666,44 +670,44 @@ final class Parser implements ParserInterface
         $this->current = $this->tokenizer->next();
     }
 
-    private static function resolveBinaryOperator(TokenType $tokenType): ?Expressions\BinaryOperator
+    private static function resolveBinaryOperator(TokenType $tokenType): ?BinaryOperator
     {
         return match ($tokenType) {
-            TokenType::BitwiseAnd       => Expressions\BinaryOperator::BitwiseAnd,
-            TokenType::BitwiseOr        => Expressions\BinaryOperator::BitwiseOr,
-            TokenType::BitwiseXor       => Expressions\BinaryOperator::BitwiseXor,
-            TokenType::BooleanAnd       => Expressions\BinaryOperator::BooleanAnd,
-            TokenType::BooleanOr        => Expressions\BinaryOperator::BooleanOr,
-            TokenType::Divide           => Expressions\BinaryOperator::Divide,
-            TokenType::Equal            => Expressions\BinaryOperator::Equal,
-            TokenType::GreaterThan      => Expressions\BinaryOperator::GreaterThan,
-            TokenType::GreaterThanEqual => Expressions\BinaryOperator::GreaterThanEqual,
-            TokenType::Identical        => Expressions\BinaryOperator::Identical,
-            TokenType::LessThan         => Expressions\BinaryOperator::LessThan,
-            TokenType::LessThanEqual    => Expressions\BinaryOperator::LessThanEqual,
-            TokenType::Minus            => Expressions\BinaryOperator::Minus,
-            TokenType::Modulo           => Expressions\BinaryOperator::Modulo,
-            TokenType::Multiply         => Expressions\BinaryOperator::Multiply,
-            TokenType::NotEqual         => Expressions\BinaryOperator::NotEqual,
-            TokenType::NotIdentical     => Expressions\BinaryOperator::NotIdentical,
-            TokenType::Plus             => Expressions\BinaryOperator::Plus,
-            TokenType::ShiftLeft        => Expressions\BinaryOperator::ShiftLeft,
-            TokenType::ShiftRight       => Expressions\BinaryOperator::ShiftRight,
-            TokenType::Spaceship        => Expressions\BinaryOperator::Spaceship,
+            TokenType::BitwiseAnd       => BinaryOperator::BitwiseAnd,
+            TokenType::BitwiseOr        => BinaryOperator::BitwiseOr,
+            TokenType::BitwiseXor       => BinaryOperator::BitwiseXor,
+            TokenType::BooleanAnd       => BinaryOperator::BooleanAnd,
+            TokenType::BooleanOr        => BinaryOperator::BooleanOr,
+            TokenType::Divide           => BinaryOperator::Divide,
+            TokenType::Equal            => BinaryOperator::Equal,
+            TokenType::GreaterThan      => BinaryOperator::GreaterThan,
+            TokenType::GreaterThanEqual => BinaryOperator::GreaterThanEqual,
+            TokenType::Identical        => BinaryOperator::Identical,
+            TokenType::LessThan         => BinaryOperator::LessThan,
+            TokenType::LessThanEqual    => BinaryOperator::LessThanEqual,
+            TokenType::Minus            => BinaryOperator::Minus,
+            TokenType::Modulo           => BinaryOperator::Modulo,
+            TokenType::Multiply         => BinaryOperator::Multiply,
+            TokenType::NotEqual         => BinaryOperator::NotEqual,
+            TokenType::NotIdentical     => BinaryOperator::NotIdentical,
+            TokenType::Plus             => BinaryOperator::Plus,
+            TokenType::ShiftLeft        => BinaryOperator::ShiftLeft,
+            TokenType::ShiftRight       => BinaryOperator::ShiftRight,
+            TokenType::Spaceship        => BinaryOperator::Spaceship,
 
             default => null,
         };
     }
 
-    private static function resolveUnaryOperator(TokenType $tokenType): ?Expressions\UnaryOperator
+    private static function resolveUnaryOperator(TokenType $tokenType): ?UnaryOperator
     {
         return match ($tokenType) {
-            TokenType::BitwiseNot => Expressions\UnaryOperator::BitwiseNot,
-            TokenType::BooleanNot => Expressions\UnaryOperator::BooleanNot,
-            TokenType::Decrement  => Expressions\UnaryOperator::Decrement,
-            TokenType::Increment  => Expressions\UnaryOperator::Increment,
-            TokenType::Minus      => Expressions\UnaryOperator::Minus,
-            TokenType::Plus       => Expressions\UnaryOperator::Plus,
+            TokenType::BitwiseNot => UnaryOperator::BitwiseNot,
+            TokenType::BooleanNot => UnaryOperator::BooleanNot,
+            TokenType::Decrement  => UnaryOperator::Decrement,
+            TokenType::Increment  => UnaryOperator::Increment,
+            TokenType::Minus      => UnaryOperator::Minus,
+            TokenType::Plus       => UnaryOperator::Plus,
 
             default => null,
         };

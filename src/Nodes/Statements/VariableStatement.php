@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Statements;
 
+use Package\Core\Location;
 use Package\Nodes\AbstractExpression;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
-use Package\Nodes\Location;
 
-final class ConstStatement extends AbstractStatement
+final class VariableStatement extends AbstractStatement
 {
     public string $name;
     public AbstractType $type;

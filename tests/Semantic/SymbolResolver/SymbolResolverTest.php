@@ -7,11 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Tests\Semantic\SymbolResolver;
 
+use Package\Core\Location;
+use Package\Language\BuiltinTypeName;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
-use Package\Nodes\Location;
 use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;
@@ -46,12 +47,12 @@ class SymbolResolverTest extends TestCase
         $root = new Block(
             location: $location,
             statements: [
-                new Statements\VarStatement(
+                new Statements\VariableStatement(
                     location: $location,
                     name: 'a',
                     type: new Types\BuiltinType(
                         location: $location,
-                        type: Types\Type::Integer,
+                        name: BuiltinTypeName::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: $location,
@@ -97,7 +98,7 @@ class SymbolResolverTest extends TestCase
                     parameters: [],
                     type: new Types\BuiltinType(
                         location: $location,
-                        type: Types\Type::Void,
+                        name: BuiltinTypeName::Void,
                     ),
                     statements: new Block(
                         location: $location,
@@ -145,13 +146,13 @@ class SymbolResolverTest extends TestCase
                             name: 'a',
                             type: new Types\BuiltinType(
                                 location: $location,
-                                type: Types\Type::Integer,
+                                name: BuiltinTypeName::Integer,
                             ),
                         ),
                     ],
                     type: new Types\BuiltinType(
                         location: $location,
-                        type: Types\Type::Void,
+                        name: BuiltinTypeName::Void,
                     ),
                     statements: new Block(
                         location: $location,
@@ -191,12 +192,12 @@ class SymbolResolverTest extends TestCase
         $root = new Block(
             location: $location,
             statements: [
-                new Statements\ConstStatement(
+                new Statements\ConstantStatement(
                     location: $location,
                     name: 'a',
                     type: new Types\BuiltinType(
                         location: $location,
-                        type: Types\Type::Integer,
+                        name: BuiltinTypeName::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: $location,
@@ -235,12 +236,12 @@ class SymbolResolverTest extends TestCase
         $root = new Block(
             location: $location,
             statements: [
-                new Statements\ConstStatement(
+                new Statements\ConstantStatement(
                     location: $location,
                     name: 'xyz',
                     type: new Types\BuiltinType(
                         location: $location,
-                        type: Types\Type::Integer,
+                        name: BuiltinTypeName::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: $location,

@@ -60,8 +60,8 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
-        if ($node instanceof Statements\ConstStatement) {
-            $this->visitConstStatement($node);
+        if ($node instanceof Statements\ConstantStatement) {
+            $this->visitConstantStatement($node);
             return;
         }
 
@@ -70,8 +70,8 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
-        if ($node instanceof Statements\VarStatement) {
-            $this->visitVarStatement($node);
+        if ($node instanceof Statements\VariableStatement) {
+            $this->visitVariableStatement($node);
             return;
         }
 
@@ -104,7 +104,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitConstStatement(Statements\ConstStatement $node): void
+    private function visitConstantStatement(Statements\ConstantStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -159,7 +159,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope[$node->name] = $node;
     }
 
-    private function visitVarStatement(Statements\VarStatement $node): void
+    private function visitVariableStatement(Statements\VariableStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);

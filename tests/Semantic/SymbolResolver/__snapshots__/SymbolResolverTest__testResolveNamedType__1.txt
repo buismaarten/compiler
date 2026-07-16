@@ -1,6 +1,6 @@
-Package\Nodes\Statements\ConstStatement Object
+Package\Nodes\Statements\ConstantStatement Object
 (
-    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+    [location] => Package\Core\Location Object
         (
             [startLine] => -1
             [startOffset] => -1
@@ -11,7 +11,7 @@ Package\Nodes\Statements\ConstStatement Object
     [name] => xyz
     [type] => Package\Nodes\Types\BuiltinType Object
         (
-            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+            [location] => Package\Core\Location Object
                 (
                     [startLine] => -1
                     [startOffset] => -1
@@ -19,7 +19,7 @@ Package\Nodes\Statements\ConstStatement Object
                     [endOffset] => -1
                 )
 
-            [type] => Package\Nodes\Types\Type Enum:string
+            [name] => Package\Language\BuiltinTypeName Enum:string
                 (
                     [name] => Integer
                     [value] => int
@@ -29,7 +29,7 @@ Package\Nodes\Statements\ConstStatement Object
 
     [expression] => Package\Nodes\Literals\IntegerLiteral Object
         (
-            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+            [location] => Package\Core\Location Object
                 (
                     [startLine] => -1
                     [startOffset] => -1
