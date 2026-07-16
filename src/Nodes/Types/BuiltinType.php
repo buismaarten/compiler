@@ -7,9 +7,9 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Types;
 
+use Package\Core\Location;
 use Package\Language\BuiltinTypeName;
 use Package\Nodes\AbstractType;
-use Package\Nodes\Location;
 
 final class BuiltinType extends AbstractType
 {

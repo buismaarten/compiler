@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Literals;
 
+use Package\Core\Location;
 use Package\Nodes\AbstractLiteral;
-use Package\Nodes\Location;
 
 final class BooleanLiteral extends AbstractLiteral
 {

@@ -7,10 +7,10 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Statements;
 
+use Package\Core\Location;
 use Package\Nodes\AbstractStatement;
 use Package\Nodes\AbstractType;
 use Package\Nodes\Block;
-use Package\Nodes\Location;
 use Package\Nodes\Parameter;
 
 final class FunctionStatement extends AbstractStatement

@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes;
 
 use JsonSerializable;
+use Package\Core\Location;
 
 abstract class AbstractNode implements JsonSerializable
 {

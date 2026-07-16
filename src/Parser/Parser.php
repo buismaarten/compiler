@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Parser;
 
 use Override;
+use Package\Core\Location;
 use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
@@ -21,7 +22,6 @@ use Package\Nodes\AbstractType;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
-use Package\Nodes\Location;
 use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;

@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Nodes;
 
+use Package\Core\Location;
+
 final class Parameter extends AbstractNode
 {
     public string $name;

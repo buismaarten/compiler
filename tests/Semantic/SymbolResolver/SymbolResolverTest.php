@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Tests\Semantic\SymbolResolver;
 
+use Package\Core\Location;
 use Package\Language\BuiltinTypeName;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
-use Package\Nodes\Location;
 use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;

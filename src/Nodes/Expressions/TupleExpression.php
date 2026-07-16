@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Expressions;
 
+use Package\Core\Location;
 use Package\Nodes\AbstractExpression;
-use Package\Nodes\Location;
 
 final class TupleExpression extends AbstractExpression
 {

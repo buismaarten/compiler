@@ -1,6 +1,6 @@
 Package\Nodes\Block Object
 (
-    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+    [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
         (
             [startLine] => 1
             [startOffset] => 0
@@ -12,7 +12,7 @@ Package\Nodes\Block Object
         (
             [0] => Package\Nodes\Statements\ExpressionStatement Object
                 (
-                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                    [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
                         (
                             [startLine] => 1
                             [startOffset] => 0
@@ -22,7 +22,7 @@ Package\Nodes\Block Object
 
                     [expression] => Package\Nodes\Expressions\UnaryExpression Object
                         (
-                            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 0
@@ -42,7 +42,7 @@ Package\Nodes\Block Object
 
                             [expression] => Package\Nodes\Expressions\IdentifierExpression Object
                                 (
-                                    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+                                    [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
                                         (
                                             [startLine] => 1
                                             [startOffset] => 0

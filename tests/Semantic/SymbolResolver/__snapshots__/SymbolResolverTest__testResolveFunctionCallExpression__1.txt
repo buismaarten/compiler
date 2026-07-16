@@ -1,6 +1,6 @@
 Package\Nodes\Statements\FunctionStatement Object
 (
-    [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+    [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
         (
             [startLine] => -1
             [startOffset] => -1
@@ -11,7 +11,7 @@ Package\Nodes\Statements\FunctionStatement Object
     [name] => foo
     [type] => Package\Nodes\Types\BuiltinType Object
         (
-            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
                 (
                     [startLine] => -1
                     [startOffset] => -1
@@ -33,7 +33,7 @@ Package\Nodes\Statements\FunctionStatement Object
 
     [statements] => Package\Nodes\Block Object
         (
-            [location:Package\Nodes\AbstractNode:private] => Package\Nodes\Location Object
+            [location:Package\Nodes\AbstractNode:private] => Package\Core\Location Object
                 (
                     [startLine] => -1
                     [startOffset] => -1
