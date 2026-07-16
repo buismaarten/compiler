@@ -389,7 +389,7 @@ final class Parser implements ParserInterface
         $this->next();
 
         if (($operator = self::resolveUnaryOperator($token->type)) === null) {
-            throw new UnexpectedTokenException($token->line, $token->type->name);
+            throw new UnexpectedTokenException($token->location->startLine, $token->type->name);
         }
 
         return new Expressions\UnaryExpression(
@@ -409,7 +409,7 @@ final class Parser implements ParserInterface
         $this->next();
 
         if (($operator = self::resolveUnaryOperator($token->type)) === null) {
-            throw new UnexpectedTokenException($token->line, $token->type->name);
+            throw new UnexpectedTokenException($token->location->startLine, $token->type->name);
         }
 
         $expression = $this->parseExpression();
@@ -441,7 +441,7 @@ final class Parser implements ParserInterface
             TokenType::Plus            => $this->parsePrefixUnaryExpression(),
             TokenType::String          => $this->parseStringLiteral(),
 
-            default => throw new UnexpectedTokenException($this->current->line, $this->current->type->name),
+            default => throw new UnexpectedTokenException($this->current->location->startLine, $this->current->type->name),
         };
     }
 
@@ -638,10 +638,10 @@ final class Parser implements ParserInterface
         }
 
         return new Location(
-            startLine: $startToken->line,
-            startOffset: $startToken->startOffset,
-            endLine: $endToken->line,
-            endOffset: $endToken->endOffset,
+            startLine: $startToken->location->startLine,
+            startOffset: $startToken->location->startOffset,
+            endLine: $endToken->location->endLine,
+            endOffset: $endToken->location->endOffset,
         );
     }
 
@@ -651,11 +651,11 @@ final class Parser implements ParserInterface
         $token = $this->current;
 
         if ($token->type === TokenType::Eof) {
-            throw new UnexpectedEndOfInputException($token->line);
+            throw new UnexpectedEndOfInputException($token->location->startLine);
         }
 
         if ($token->type !== $type) {
-            throw new ExpectedTokenException($token->line, $type->name, $token->type->name);
+            throw new ExpectedTokenException($token->location->startLine, $type->name, $token->type->name);
         }
 
         $this->next();

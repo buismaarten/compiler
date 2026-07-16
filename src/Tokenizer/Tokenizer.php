@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Tokenizer;
 
 use Override;
+use Package\Core\Location;
 use Package\Exceptions\Tokenizer\UnexpectedCharacterException;
 use Package\Exceptions\Tokenizer\UnexpectedEndOfInputException;
 use Package\Input\Input;
@@ -386,11 +387,16 @@ final class Tokenizer implements TokenizerInterface
 
     private function createToken(TokenType $type, int $startOffset, string $value = ''): Token
     {
-        return new Token(
-            type: $type,
-            line: $this->line,
+        $location = new Location(
+            startLine: $this->line,
             startOffset: $startOffset,
+            endLine: $this->line,
             endOffset: $this->input->offset(),
+        );
+
+        return new Token(
+            location: $location,
+            type: $type,
             value: $value,
         );
     }

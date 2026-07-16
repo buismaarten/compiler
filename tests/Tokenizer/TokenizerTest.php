@@ -22,10 +22,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('=')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::Assign,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -36,10 +39,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('&')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::BitwiseAnd,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -50,10 +56,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('~')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::BitwiseNot,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -64,10 +73,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('|')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::BitwiseOr,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -78,10 +90,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('^')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::BitwiseXor,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -92,10 +107,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('&&')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::BooleanAnd,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -106,10 +124,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('!')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::BooleanNot,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -120,10 +141,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('||')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::BooleanOr,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -134,10 +158,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer(':')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::Colon,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -148,10 +175,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer(',')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::Comma,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -162,10 +192,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('// This is a comment')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 20,
+                    endLine: 1,
+                    endOffset: 20,
+                ),
                 type: TokenType::Eof,
-                line: 1,
-                startOffset: 20,
-                endOffset: 20,
             ),
         );
     }
@@ -176,10 +209,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('--')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::Decrement,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -190,10 +226,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('/')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::Divide,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -204,10 +243,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('==')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::Equal,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -218,10 +260,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('3.14')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::Float,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: '3.14',
             ),
         );
@@ -233,10 +278,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('>')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::GreaterThan,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -247,10 +295,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('>=')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::GreaterThanEqual,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -261,10 +312,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('===')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 3,
+                ),
                 type: TokenType::Identical,
-                line: 1,
-                startOffset: 0,
-                endOffset: 3,
             ),
         );
     }
@@ -275,10 +329,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('foo_123')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 7,
+                ),
                 type: TokenType::Identifier,
-                line: 1,
-                startOffset: 0,
-                endOffset: 7,
                 value: 'foo_123',
             ),
         );
@@ -286,10 +343,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('_foo123')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 7,
+                ),
                 type: TokenType::Identifier,
-                line: 1,
-                startOffset: 0,
-                endOffset: 7,
                 value: '_foo123',
             ),
         );
@@ -301,10 +361,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('++')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::Increment,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -315,10 +378,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('123')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 3,
+                ),
                 type: TokenType::Integer,
-                line: 1,
-                startOffset: 0,
-                endOffset: 3,
                 value: '123',
             ),
         );
@@ -330,120 +396,156 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('break')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
                 type: TokenType::KeywordBreak,
-                line: 1,
-                startOffset: 0,
-                endOffset: 5,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('const')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
                 type: TokenType::KeywordConst,
-                line: 1,
-                startOffset: 0,
-                endOffset: 5,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('continue')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 8,
+                ),
                 type: TokenType::KeywordContinue,
-                line: 1,
-                startOffset: 0,
-                endOffset: 8,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('else')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::KeywordElse,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('false')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
                 type: TokenType::KeywordFalse,
-                line: 1,
-                startOffset: 0,
-                endOffset: 5,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('fn')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::KeywordFn,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('if')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::KeywordIf,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('null')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::KeywordNull,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('print')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 5,
+                ),
                 type: TokenType::KeywordPrint,
-                line: 1,
-                startOffset: 0,
-                endOffset: 5,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('return')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 6,
+                ),
                 type: TokenType::KeywordReturn,
-                line: 1,
-                startOffset: 0,
-                endOffset: 6,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('true')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::KeywordTrue,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
             ),
         );
 
         $this->assertEquals(
             actual: self::createTokenizer('var')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 3,
+                ),
                 type: TokenType::KeywordVar,
-                line: 1,
-                startOffset: 0,
-                endOffset: 3,
             ),
         );
     }
@@ -454,10 +556,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('{')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::LeftBrace,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -468,10 +573,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('[')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::LeftBracket,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -482,10 +590,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('(')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::LeftParenthesis,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -496,10 +607,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('<')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::LessThan,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -510,10 +624,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('<=')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::LessThanEqual,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -524,10 +641,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('-')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::Minus,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -538,10 +658,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('%')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::Modulo,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -552,10 +675,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('*')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::Multiply,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -566,10 +692,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('!=')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::NotEqual,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -580,10 +709,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('!==')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 3,
+                ),
                 type: TokenType::NotIdentical,
-                line: 1,
-                startOffset: 0,
-                endOffset: 3,
             ),
         );
     }
@@ -594,10 +726,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('+')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::Plus,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -608,10 +743,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('?')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::QuestionMark,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -622,10 +760,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('}')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::RightBrace,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -636,10 +777,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer(']')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::RightBracket,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -650,10 +794,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer(')')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::RightParenthesis,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -664,10 +811,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer(';')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 1,
+                ),
                 type: TokenType::Semicolon,
-                line: 1,
-                startOffset: 0,
-                endOffset: 1,
             ),
         );
     }
@@ -678,10 +828,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('<<')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::ShiftLeft,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -692,10 +845,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('>>')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 2,
+                ),
                 type: TokenType::ShiftRight,
-                line: 1,
-                startOffset: 0,
-                endOffset: 2,
             ),
         );
     }
@@ -706,10 +862,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('<=>')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 3,
+                ),
                 type: TokenType::Spaceship,
-                line: 1,
-                startOffset: 0,
-                endOffset: 3,
             ),
         );
     }
@@ -720,10 +879,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"Hello, World!"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 15,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 15,
                 value: 'Hello, World!',
             ),
         );
@@ -731,10 +893,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\'"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 3,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 3,
                 value: "'",
             ),
         );
@@ -742,10 +907,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\""')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: '"',
             ),
         );
@@ -753,10 +921,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\\\\"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: '\\',
             ),
         );
@@ -764,10 +935,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\0"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: "\0",
             ),
         );
@@ -775,10 +949,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\f"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: "\f",
             ),
         );
@@ -786,10 +963,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\n"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: "\n",
             ),
         );
@@ -797,10 +977,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\r"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: "\r",
             ),
         );
@@ -808,10 +991,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\t"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: "\t",
             ),
         );
@@ -819,10 +1005,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\u1F600"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 9,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 9,
                 value: '😀',
             ),
         );
@@ -830,10 +1019,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\v"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: "\v",
             ),
         );
@@ -841,10 +1033,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer('"\p"')->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 1,
+                    startOffset: 0,
+                    endLine: 1,
+                    endOffset: 4,
+                ),
                 type: TokenType::String,
-                line: 1,
-                startOffset: 0,
-                endOffset: 4,
                 value: '\p',
             ),
         );
@@ -856,10 +1051,13 @@ class TokenizerTest extends TestCase
         $this->assertEquals(
             actual: self::createTokenizer(" \t\nfoo")->next(),
             expected: new Token(
+                location: new \Package\Core\Location(
+                    startLine: 2,
+                    startOffset: 3,
+                    endLine: 2,
+                    endOffset: 6,
+                ),
                 type: TokenType::Identifier,
-                line: 2,
-                startOffset: 3,
-                endOffset: 6,
                 value: 'foo',
             ),
         );
