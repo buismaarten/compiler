@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Package\Semantic\Symbols\VariableSymbol Object
-=======
-Package\Nodes\Statements\VariableStatement Object
->>>>>>> main
 (
     [location] => Package\Core\Location Object
         (
@@ -13,38 +9,4 @@ Package\Nodes\Statements\VariableStatement Object
         )
 
     [name] => a
-<<<<<<< HEAD
-=======
-    [type] => Package\Nodes\Types\BuiltinType Object
-        (
-            [location] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [name] => Package\Language\BuiltinTypeName Enum:string
-                (
-                    [name] => Integer
-                    [value] => int
-                )
-
-        )
-
-    [expression] => Package\Nodes\Literals\IntegerLiteral Object
-        (
-            [location] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [value] => 1
-        )
-
->>>>>>> main
 )

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Package\Semantic\Symbols\ConstantSymbol Object
-=======
-Package\Nodes\Statements\ConstantStatement Object
->>>>>>> main
 (
     [location] => Package\Core\Location Object
         (
@@ -13,38 +9,4 @@ Package\Nodes\Statements\ConstantStatement Object
         )
 
     [name] => a
-<<<<<<< HEAD
-=======
-    [type] => Package\Nodes\Types\BuiltinType Object
-        (
-            [location] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [name] => Package\Language\BuiltinTypeName Enum:string
-                (
-                    [name] => Integer
-                    [value] => int
-                )
-
-        )
-
-    [expression] => Package\Nodes\Literals\IntegerLiteral Object
-        (
-            [location] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [value] => 1
-        )
-
->>>>>>> main
 )
