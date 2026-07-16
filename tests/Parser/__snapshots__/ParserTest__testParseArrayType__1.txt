@@ -10,7 +10,7 @@ Package\Nodes\Block Object
 
     [statements] => Array
         (
-            [0] => Package\Nodes\Statements\VarStatement Object
+            [0] => Package\Nodes\Statements\VariableStatement Object
                 (
                     [location] => Package\Core\Location Object
                         (

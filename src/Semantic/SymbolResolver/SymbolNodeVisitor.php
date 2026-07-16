@@ -73,8 +73,8 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
-        if ($node instanceof Statements\VarStatement) {
-            $this->visitVarStatement($node);
+        if ($node instanceof Statements\VariableStatement) {
+            $this->visitVariableStatement($node);
             return;
         }
 
@@ -165,7 +165,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope[$node->name] = new Symbols\ParameterSymbol($node->location, $node->name);
     }
 
-    private function visitVarStatement(Statements\VarStatement $node): void
+    private function visitVariableStatement(Statements\VariableStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);

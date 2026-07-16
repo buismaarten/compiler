@@ -10,7 +10,7 @@ Package\Nodes\Block Object
 
     [statements] => Array
         (
-            [0] => Package\Nodes\Statements\VarStatement Object
+            [0] => Package\Nodes\Statements\VariableStatement Object
                 (
                     [location] => Package\Core\Location Object
                         (
@@ -21,7 +21,7 @@ Package\Nodes\Block Object
                         )
 
                     [name] => foo
-                    [type] => Package\Nodes\Types\BuiltinType Object
+                    [type] => Package\Nodes\Types\NamedType Object
                         (
                             [location] => Package\Core\Location Object
                                 (
@@ -31,12 +31,7 @@ Package\Nodes\Block Object
                                     [endOffset] => 12
                                 )
 
-                            [name] => Package\Language\BuiltinTypeName Enum:string
-                                (
-                                    [name] => Integer
-                                    [value] => int
-                                )
-
+                            [name] => xyz
                         )
 
                     [expression] => Package\Nodes\Literals\IntegerLiteral Object

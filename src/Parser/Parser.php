@@ -518,7 +518,7 @@ final class Parser implements ParserInterface
             TokenType::KeywordIf       => $this->parseIfStatement(),
             TokenType::KeywordPrint    => $this->parsePrintStatement(),
             TokenType::KeywordReturn   => $this->parseReturnStatement(),
-            TokenType::KeywordVar      => $this->parseVarStatement(),
+            TokenType::KeywordVar      => $this->parseVariableStatement(),
             TokenType::KeywordWhile    => $this->parseWhileStatement(),
 
             default => $this->parseExpressionStatement(),
@@ -592,7 +592,7 @@ final class Parser implements ParserInterface
         return $this->parsePrimaryType();
     }
 
-    private function parseVarStatement(): Statements\VarStatement
+    private function parseVariableStatement(): Statements\VariableStatement
     {
         $token = $this->expect(TokenType::KeywordVar);
         $identifier = $this->expect(TokenType::Identifier);
@@ -604,7 +604,7 @@ final class Parser implements ParserInterface
 
         $this->expect(TokenType::Semicolon);
 
-        return new Statements\VarStatement(
+        return new Statements\VariableStatement(
             location: $this->createLocation($token),
             name: $identifier->value,
             type: $type,

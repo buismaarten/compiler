@@ -179,7 +179,7 @@ class ParserTest extends TestCase
     }
 
     #[Test]
-    public function testParseVarStatement(): void
+    public function testParseVariableStatement(): void
     {
         $this->assertSnapshot('var foo: int = 123;');
         $this->assertSnapshot('var foo: xyz = 123;');
