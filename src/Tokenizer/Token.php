@@ -7,20 +7,18 @@ declare(strict_types=1);
 
 namespace Package\Tokenizer;
 
+use Package\Core\Location;
+
 final class Token
 {
+    public readonly Location $location;
     public readonly TokenType $type;
-    public readonly int $line;
-    public readonly int $startOffset;
-    public readonly int $endOffset;
     public readonly string $value;
 
-    public function __construct(TokenType $type, int $line, int $startOffset, int $endOffset, string $value = '')
+    public function __construct(Location $location, TokenType $type, string $value = '')
     {
+        $this->location = $location;
         $this->type = $type;
-        $this->line = $line;
-        $this->startOffset = $startOffset;
-        $this->endOffset = $endOffset;
         $this->value = $value;
     }
 }
