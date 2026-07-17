@@ -424,7 +424,9 @@ final class Parser implements ParserInterface
 
     private function parsePrimaryExpression(): AbstractExpression
     {
-        return match ($this->current->type) {
+        $token = $this->current;
+
+        return match ($token->type) {
             TokenType::BitwiseNot      => $this->parsePrefixUnaryExpression(),
             TokenType::BooleanNot      => $this->parsePrefixUnaryExpression(),
             TokenType::Decrement       => $this->parsePrefixUnaryExpression(),
@@ -441,7 +443,7 @@ final class Parser implements ParserInterface
             TokenType::Plus            => $this->parsePrefixUnaryExpression(),
             TokenType::String          => $this->parseStringLiteral(),
 
-            default => throw new UnexpectedTokenException($this->current->location->startLine, $this->current->type->name),
+            default => throw new UnexpectedTokenException($token->location->startLine, $token->type->name),
         };
     }
 
