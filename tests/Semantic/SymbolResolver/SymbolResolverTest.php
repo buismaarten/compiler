@@ -95,7 +95,16 @@ class SymbolResolverTest extends TestCase
                 new Statements\FunctionStatement(
                     location: $location,
                     name: 'foo',
-                    parameters: [],
+                    parameters: [
+                        new Parameter(
+                            location: $location,
+                            name: 'a',
+                            type: new Types\BuiltinType(
+                                location: $location,
+                                name: BuiltinTypeName::Integer,
+                            ),
+                        ),
+                    ],
                     type: new Types\BuiltinType(
                         location: $location,
                         name: BuiltinTypeName::Void,
