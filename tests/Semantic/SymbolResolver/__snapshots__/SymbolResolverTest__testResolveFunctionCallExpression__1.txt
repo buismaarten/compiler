@@ -9,4 +9,26 @@ Package\Semantic\Symbols\FunctionSymbol Object
         )
 
     [name] => foo
+    [parameters] => Array
+        (
+            [0] => Package\Semantic\Symbols\ValueSymbol Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => a
+                    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                        (
+                            [name] => Parameter
+                        )
+
+                )
+
+        )
+
 )

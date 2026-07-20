@@ -9,5 +9,6 @@ namespace Package\Semantic\Symbols;
 
 final class FunctionSymbol extends AbstractSymbol
 {
-    // TODO
+    /** @var ValueSymbol[] */
+    public array $parameters = [];
 }

@@ -25,6 +25,7 @@ use WeakMap;
 final class SymbolNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
+    private ?Symbols\FunctionSymbol $currentFunction = null;
 
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
     private WeakMap $table;
@@ -104,6 +105,8 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
 
         if ($node instanceof Statements\FunctionStatement) {
             $this->scope = $this->scope?->parent;
+            $this->currentFunction = null;
+
             return;
         }
     }
@@ -123,8 +126,11 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        // TODO
-        $this->scope[$node->name] = new Symbols\ConstantSymbol($node->location, $node->name);
+        $this->scope[$node->name] = new Symbols\ValueSymbol(
+            location: $node->location,
+            name: $node->name,
+            kind: Symbols\ValueSymbolKind::Constant,
+        );
     }
 
     private function visitFunctionCallExpression(Expressions\FunctionCallExpression $node): void
@@ -142,8 +148,12 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        // TODO
-        $this->scope[$node->name] = new Symbols\FunctionSymbol($node->location, $node->name);
+        $this->scope[$node->name] = new Symbols\FunctionSymbol(
+            location: $node->location,
+            name: $node->name,
+        );
+
+        $this->currentFunction = $this->scope[$node->name];
         $this->scope = new Scope($this->scope);
     }
 
@@ -171,8 +181,15 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        // TODO
-        $this->scope[$node->name] = new Symbols\ParameterSymbol($node->location, $node->name);
+        $this->scope[$node->name] = new Symbols\ValueSymbol(
+            location: $node->location,
+            name: $node->name,
+            kind: Symbols\ValueSymbolKind::Parameter,
+        );
+
+        if ($this->currentFunction !== null) {
+            $this->currentFunction->parameters[] = $this->scope[$node->name];
+        }
     }
 
     private function visitVariableStatement(Statements\VariableStatement $node): void
@@ -181,8 +198,11 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        // TODO
-        $this->scope[$node->name] = new Symbols\VariableSymbol($node->location, $node->name);
+        $this->scope[$node->name] = new Symbols\ValueSymbol(
+            location: $node->location,
+            name: $node->name,
+            kind: Symbols\ValueSymbolKind::Variable,
+        );
     }
 
     private function resolve(string $name, AbstractNode $node): ?AbstractSymbol

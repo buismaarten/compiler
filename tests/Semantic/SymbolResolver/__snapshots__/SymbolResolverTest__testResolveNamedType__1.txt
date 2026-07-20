@@ -1,4 +1,4 @@
-Package\Semantic\Symbols\ConstantSymbol Object
+Package\Semantic\Symbols\ValueSymbol Object
 (
     [location] => Package\Core\Location Object
         (
@@ -9,4 +9,9 @@ Package\Semantic\Symbols\ConstantSymbol Object
         )
 
     [name] => xyz
+    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+        (
+            [name] => Constant
+        )
+
 )

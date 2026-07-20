@@ -1,4 +1,4 @@
-Package\Semantic\Symbols\VariableSymbol Object
+Package\Semantic\Symbols\ValueSymbol Object
 (
     [location] => Package\Core\Location Object
         (
@@ -9,4 +9,9 @@ Package\Semantic\Symbols\VariableSymbol Object
         )
 
     [name] => a
+    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+        (
+            [name] => Variable
+        )
+
 )

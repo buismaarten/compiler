@@ -7,7 +7,9 @@ declare(strict_types=1);
 
 namespace Package\Semantic\Symbols;
 
-final class ConstantSymbol extends AbstractSymbol
+enum ValueSymbolKind
 {
-    // TODO
+    case Constant;
+    case Parameter;
+    case Variable;
 }
