@@ -13,7 +13,7 @@ use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Language\BinaryOperator;
-use Package\Language\BuiltinTypeName;
+use Package\Language\BuiltinTypeKind;
 use Package\Language\UnaryOperator;
 use Package\Language\UnaryPosition;
 use Package\Nodes\AbstractExpression;
@@ -346,12 +346,12 @@ final class Parser implements ParserInterface
     private function parseNamedType(): AbstractType
     {
         $token = $this->expect(TokenType::Identifier);
-        $name = BuiltinTypeName::tryFrom($token->value);
+        $kind = BuiltinTypeKind::tryFrom($token->value);
 
-        if ($name !== null) {
+        if ($kind !== null) {
             return new Types\BuiltinType(
                 location: $this->createLocation($token),
-                name: $name,
+                kind: $kind,
             );
         }
 

@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Language;
 
-enum BuiltinTypeName: string
+enum BuiltinTypeKind: string
 {
     case Bool = 'bool';
     case Float = 'float';

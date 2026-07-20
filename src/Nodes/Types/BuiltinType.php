@@ -8,17 +8,17 @@ declare(strict_types=1);
 namespace Package\Nodes\Types;
 
 use Package\Core\Location;
-use Package\Language\BuiltinTypeName;
+use Package\Language\BuiltinTypeKind;
 use Package\Nodes\AbstractType;
 
 final class BuiltinType extends AbstractType
 {
-    public BuiltinTypeName $name;
+    public BuiltinTypeKind $kind;
 
-    public function __construct(Location $location, BuiltinTypeName $name)
+    public function __construct(Location $location, BuiltinTypeKind $kind)
     {
         parent::__construct($location);
 
-        $this->name = $name;
+        $this->kind = $kind;
     }
 }
