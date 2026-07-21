@@ -35,7 +35,7 @@ class SymbolResolverTest extends TestCase
             endOffset: -1,
         );
 
-        $root = new Block(
+        $node = new Block(
             location: $location,
             statements: [
                 new Statements\VariableStatement(
@@ -68,7 +68,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root);
+        $this->assertSnapshot($node);
     }
 
     #[Test]
@@ -81,7 +81,7 @@ class SymbolResolverTest extends TestCase
             endOffset: -1,
         );
 
-        $root = new Block(
+        $node = new Block(
             location: $location,
             statements: [
                 new Statements\FunctionStatement(
@@ -121,7 +121,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root);
+        $this->assertSnapshot($node);
     }
 
     #[Test]
@@ -134,7 +134,7 @@ class SymbolResolverTest extends TestCase
             endOffset: -1,
         );
 
-        $root = new Block(
+        $node = new Block(
             location: $location,
             statements: [
                 new Statements\FunctionStatement(
@@ -174,7 +174,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root);
+        $this->assertSnapshot($node);
     }
 
     #[Test]
@@ -187,7 +187,7 @@ class SymbolResolverTest extends TestCase
             endOffset: -1,
         );
 
-        $root = new Block(
+        $node = new Block(
             location: $location,
             statements: [
                 new Statements\ConstantStatement(
@@ -216,7 +216,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root);
+        $this->assertSnapshot($node);
     }
 
     #[Test]
@@ -229,7 +229,7 @@ class SymbolResolverTest extends TestCase
             endOffset: -1,
         );
 
-        $root = new Block(
+        $node = new Block(
             location: $location,
             statements: [
                 new Statements\ConstantStatement(
@@ -272,12 +272,12 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root);
+        $this->assertSnapshot($node);
     }
 
-    private function assertSnapshot(AbstractNode $root): void
+    private function assertSnapshot(AbstractNode $node): void
     {
-        $resolver = new SymbolResolver($root);
+        $resolver = new SymbolResolver($node);
 
         $this->assertMatchesSnapshot($resolver->getTable());
     }
