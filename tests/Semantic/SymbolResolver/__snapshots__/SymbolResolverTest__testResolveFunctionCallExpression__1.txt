@@ -14,26 +14,6 @@ WeakMap Object
 
                     [name] => foo
                     [arguments] => Array
-<<<<<<< HEAD
-=======
-                        (
-                        )
-
-                )
-
-            [value] => Package\Nodes\Statements\FunctionStatement Object
-                (
-                    [location] => Package\Core\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [name] => foo
-                    [type] => Package\Nodes\Types\BuiltinType Object
->>>>>>> main
                         (
                         )
 
@@ -54,19 +34,6 @@ WeakMap Object
                         (
                             [0] => Package\Semantic\Symbols\ValueSymbol Object
                                 (
-<<<<<<< HEAD
-=======
-                                    [name] => Void
-                                    [value] => void
-                                )
-
-                        )
-
-                    [parameters] => Array
-                        (
-                            [0] => Package\Nodes\Parameter Object
-                                (
->>>>>>> main
                                     [location] => Package\Core\Location Object
                                         (
                                             [startLine] => -1
@@ -76,48 +43,11 @@ WeakMap Object
                                         )
 
                                     [name] => a
-<<<<<<< HEAD
                                     [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
                                         (
                                             [name] => Parameter
                                         )
 
-=======
-                                    [type] => Package\Nodes\Types\BuiltinType Object
-                                        (
-                                            [location] => Package\Core\Location Object
-                                                (
-                                                    [startLine] => -1
-                                                    [startOffset] => -1
-                                                    [endLine] => -1
-                                                    [endOffset] => -1
-                                                )
-
-                                            [kind] => Package\Language\BuiltinTypeKind Enum:string
-                                                (
-                                                    [name] => Integer
-                                                    [value] => int
-                                                )
-
-                                        )
-
-                                )
-
-                        )
-
-                    [statements] => Package\Nodes\Block Object
-                        (
-                            [location] => Package\Core\Location Object
-                                (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
-                                )
-
-                            [statements] => Array
-                                (
->>>>>>> main
                                 )
 
                         )
