@@ -24,7 +24,11 @@ final class SymbolResolver
         $this->root = $root;
     }
 
+<<<<<<< HEAD
     /** @return WeakMap<AbstractNode, AbstractSymbol> */
+=======
+    /** @return WeakMap<AbstractNode, AbstractNode> */
+>>>>>>> main
     public function getTable(): WeakMap
     {
         if ($this->table === null) {
@@ -38,7 +42,11 @@ final class SymbolResolver
         return $this->table;
     }
 
+<<<<<<< HEAD
     public function resolve(AbstractNode $node): ?AbstractSymbol
+=======
+    public function resolve(AbstractNode $node): ?AbstractNode
+>>>>>>> main
     {
         return $this->getTable()[$node] ?? null;
     }
