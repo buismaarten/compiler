@@ -9,68 +9,9 @@ Package\Semantic\Symbols\FunctionSymbol Object
         )
 
     [name] => foo
-<<<<<<< HEAD
     [parameters] => Array
         (
             [0] => Package\Semantic\Symbols\ValueSymbol Object
-=======
-    [type] => Package\Nodes\Types\BuiltinType Object
-        (
-            [location] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [kind] => Package\Language\BuiltinTypeKind Enum:string
-                (
-                    [name] => Void
-                    [value] => void
-                )
-
-        )
-
-    [parameters] => Array
-        (
-            [0] => Package\Nodes\Parameter Object
-                (
-                    [location] => Package\Core\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [name] => a
-                    [type] => Package\Nodes\Types\BuiltinType Object
-                        (
-                            [location] => Package\Core\Location Object
-                                (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
-                                )
-
-                            [kind] => Package\Language\BuiltinTypeKind Enum:string
-                                (
-                                    [name] => Integer
-                                    [value] => int
-                                )
-
-                        )
-
-                )
-
-        )
-
-    [statements] => Package\Nodes\Block Object
-        (
-            [location] => Package\Core\Location Object
->>>>>>> main
                 (
                     [location] => Package\Core\Location Object
                         (
