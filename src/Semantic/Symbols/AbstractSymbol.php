@@ -11,8 +11,8 @@ use Package\Core\Location;
 
 abstract class AbstractSymbol
 {
-    public readonly Location $location;
-    public readonly string $name;
+    public Location $location;
+    public string $name;
 
     public function __construct(Location $location, string $name)
     {

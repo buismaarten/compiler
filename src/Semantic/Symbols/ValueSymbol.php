@@ -11,7 +11,7 @@ use Package\Core\Location;
 
 final class ValueSymbol extends AbstractSymbol
 {
-    public readonly ValueSymbolKind $kind;
+    public ValueSymbolKind $kind;
 
     public function __construct(Location $location, string $name, ValueSymbolKind $kind)
     {
