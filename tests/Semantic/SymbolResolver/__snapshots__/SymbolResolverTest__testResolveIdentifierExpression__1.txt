@@ -1,43 +1,64 @@
-Package\Nodes\Statements\ConstantStatement Object
+WeakMap Object
 (
-    [location] => Package\Core\Location Object
+    [0] => Array
         (
-            [startLine] => -1
-            [startOffset] => -1
-            [endLine] => -1
-            [endOffset] => -1
-        )
-
-    [name] => a
-    [type] => Package\Nodes\Types\BuiltinType Object
-        (
-            [location] => Package\Core\Location Object
+            [key] => Package\Nodes\Expressions\IdentifierExpression Object
                 (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => a
                 )
 
-            [kind] => Package\Language\BuiltinTypeKind Enum:string
+            [value] => Package\Nodes\Statements\ConstantStatement Object
                 (
-                    [name] => Integer
-                    [value] => int
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => a
+                    [type] => Package\Nodes\Types\BuiltinType Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => Integer
+                                    [value] => int
+                                )
+
+                        )
+
+                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [value] => 1
+                        )
+
                 )
 
-        )
-
-    [expression] => Package\Nodes\Literals\IntegerLiteral Object
-        (
-            [location] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [value] => 1
         )
 
 )

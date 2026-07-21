@@ -1,35 +1,8 @@
-Package\Nodes\Statements\FunctionStatement Object
+WeakMap Object
 (
-    [location] => Package\Core\Location Object
+    [0] => Array
         (
-            [startLine] => -1
-            [startOffset] => -1
-            [endLine] => -1
-            [endOffset] => -1
-        )
-
-    [name] => foo
-    [type] => Package\Nodes\Types\BuiltinType Object
-        (
-            [location] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
-
-            [kind] => Package\Language\BuiltinTypeKind Enum:string
-                (
-                    [name] => Void
-                    [value] => void
-                )
-
-        )
-
-    [parameters] => Array
-        (
-            [0] => Package\Nodes\Parameter Object
+            [key] => Package\Nodes\Expressions\FunctionCallExpression Object
                 (
                     [location] => Package\Core\Location Object
                         (
@@ -39,7 +12,24 @@ Package\Nodes\Statements\FunctionStatement Object
                             [endOffset] => -1
                         )
 
-                    [name] => a
+                    [name] => foo
+                    [arguments] => Array
+                        (
+                        )
+
+                )
+
+            [value] => Package\Nodes\Statements\FunctionStatement Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => foo
                     [type] => Package\Nodes\Types\BuiltinType Object
                         (
                             [location] => Package\Core\Location Object
@@ -52,28 +42,63 @@ Package\Nodes\Statements\FunctionStatement Object
 
                             [kind] => Package\Language\BuiltinTypeKind Enum:string
                                 (
-                                    [name] => Integer
-                                    [value] => int
+                                    [name] => Void
+                                    [value] => void
                                 )
 
                         )
 
-                )
+                    [parameters] => Array
+                        (
+                            [0] => Package\Nodes\Parameter Object
+                                (
+                                    [location] => Package\Core\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
 
-        )
+                                    [name] => a
+                                    [type] => Package\Nodes\Types\BuiltinType Object
+                                        (
+                                            [location] => Package\Core\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
 
-    [statements] => Package\Nodes\Block Object
-        (
-            [location] => Package\Core\Location Object
-                (
-                    [startLine] => -1
-                    [startOffset] => -1
-                    [endLine] => -1
-                    [endOffset] => -1
-                )
+                                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
 
-            [statements] => Array
-                (
+                                        )
+
+                                )
+
+                        )
+
+                    [statements] => Package\Nodes\Block Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [statements] => Array
+                                (
+                                )
+
+                        )
+
                 )
 
         )
