@@ -11,7 +11,24 @@ Package\Semantic\Symbols\ValueSymbol Object
     [name] => a
     [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
         (
+<<<<<<< HEAD
             [name] => Parameter
+=======
+            [location] => Package\Core\Location Object
+                (
+                    [startLine] => -1
+                    [startOffset] => -1
+                    [endLine] => -1
+                    [endOffset] => -1
+                )
+
+            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                (
+                    [name] => Integer
+                    [value] => int
+                )
+
+>>>>>>> main
         )
 
 )
