@@ -35,15 +35,6 @@ class SymbolResolverTest extends TestCase
             endOffset: -1,
         );
 
-        $node = new Expressions\AssignmentExpression(
-            location: $location,
-            name: 'a',
-            expression: new Literals\IntegerLiteral(
-                location: $location,
-                value: 1,
-            ),
-        );
-
         $root = new Block(
             location: $location,
             statements: [
@@ -61,7 +52,14 @@ class SymbolResolverTest extends TestCase
                 ),
                 new Statements\WhileStatement(
                     location: $location,
-                    condition: $node,
+                    condition: new Expressions\AssignmentExpression(
+                        location: $location,
+                        name: 'a',
+                        expression: new Literals\IntegerLiteral(
+                            location: $location,
+                            value: 1,
+                        ),
+                    ),
                     statements: new Block(
                         location: $location,
                         statements: [],
@@ -70,7 +68,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root, $node);
+        $this->assertSnapshot($root);
     }
 
     #[Test]
@@ -81,12 +79,6 @@ class SymbolResolverTest extends TestCase
             startOffset: -1,
             endLine: -1,
             endOffset: -1,
-        );
-
-        $node = new Expressions\FunctionCallExpression(
-            location: $location,
-            name: 'foo',
-            arguments: [],
         );
 
         $root = new Block(
@@ -116,7 +108,11 @@ class SymbolResolverTest extends TestCase
                 ),
                 new Statements\WhileStatement(
                     location: $location,
-                    condition: $node,
+                    condition: new Expressions\FunctionCallExpression(
+                        location: $location,
+                        name: 'foo',
+                        arguments: [],
+                    ),
                     statements: new Block(
                         location: $location,
                         statements: [],
@@ -125,7 +121,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root, $node);
+        $this->assertSnapshot($root);
     }
 
     #[Test]
@@ -136,11 +132,6 @@ class SymbolResolverTest extends TestCase
             startOffset: -1,
             endLine: -1,
             endOffset: -1,
-        );
-
-        $node = new Expressions\IdentifierExpression(
-            location: $location,
-            name: 'a',
         );
 
         $root = new Block(
@@ -168,7 +159,10 @@ class SymbolResolverTest extends TestCase
                         statements: [
                             new Statements\WhileStatement(
                                 location: $location,
-                                condition: $node,
+                                condition: new Expressions\IdentifierExpression(
+                                    location: $location,
+                                    name: 'a',
+                                ),
                                 statements: new Block(
                                     location: $location,
                                     statements: [],
@@ -180,7 +174,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root, $node);
+        $this->assertSnapshot($root);
     }
 
     #[Test]
@@ -191,11 +185,6 @@ class SymbolResolverTest extends TestCase
             startOffset: -1,
             endLine: -1,
             endOffset: -1,
-        );
-
-        $node = new Expressions\IdentifierExpression(
-            location: $location,
-            name: 'a',
         );
 
         $root = new Block(
@@ -215,7 +204,10 @@ class SymbolResolverTest extends TestCase
                 ),
                 new Statements\WhileStatement(
                     location: $location,
-                    condition: $node,
+                    condition: new Expressions\IdentifierExpression(
+                        location: $location,
+                        name: 'a',
+                    ),
                     statements: new Block(
                         location: $location,
                         statements: [],
@@ -224,7 +216,7 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root, $node);
+        $this->assertSnapshot($root);
     }
 
     #[Test]
@@ -235,11 +227,6 @@ class SymbolResolverTest extends TestCase
             startOffset: -1,
             endLine: -1,
             endOffset: -1,
-        );
-
-        $node = new Types\NamedType(
-            location: $location,
-            name: 'xyz',
         );
 
         $root = new Block(
@@ -270,7 +257,10 @@ class SymbolResolverTest extends TestCase
                                 location: $location,
                                 name: 'foo',
                                 parameters: [],
-                                type: $node,
+                                type: new Types\NamedType(
+                                    location: $location,
+                                    name: 'xyz',
+                                ),
                                 statements: new Block(
                                     location: $location,
                                     statements: [],
@@ -282,13 +272,13 @@ class SymbolResolverTest extends TestCase
             ],
         );
 
-        $this->assertSnapshot($root, $node);
+        $this->assertSnapshot($root);
     }
 
-    private function assertSnapshot(AbstractNode $root, AbstractNode $node): void
+    private function assertSnapshot(AbstractNode $root): void
     {
         $resolver = new SymbolResolver($root);
 
-        $this->assertMatchesSnapshot($resolver->resolve($node));
+        $this->assertMatchesSnapshot($resolver->getTable());
     }
 }

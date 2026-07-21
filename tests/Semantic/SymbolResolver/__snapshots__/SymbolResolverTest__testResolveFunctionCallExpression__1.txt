@@ -1,17 +1,8 @@
-Package\Semantic\Symbols\FunctionSymbol Object
+WeakMap Object
 (
-    [location] => Package\Core\Location Object
+    [0] => Array
         (
-            [startLine] => -1
-            [startOffset] => -1
-            [endLine] => -1
-            [endOffset] => -1
-        )
-
-    [name] => foo
-    [parameters] => Array
-        (
-            [0] => Package\Semantic\Symbols\ValueSymbol Object
+            [key] => Package\Nodes\Expressions\FunctionCallExpression Object
                 (
                     [location] => Package\Core\Location Object
                         (
@@ -21,10 +12,44 @@ Package\Semantic\Symbols\FunctionSymbol Object
                             [endOffset] => -1
                         )
 
-                    [name] => a
-                    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                    [name] => foo
+                    [arguments] => Array
                         (
-                            [name] => Parameter
+                        )
+
+                )
+
+            [value] => Package\Semantic\Symbols\FunctionSymbol Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => foo
+                    [parameters] => Array
+                        (
+                            [0] => Package\Semantic\Symbols\ValueSymbol Object
+                                (
+                                    [location] => Package\Core\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [name] => a
+                                    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                                        (
+                                            [name] => Parameter
+                                        )
+
+                                )
+
                         )
 
                 )

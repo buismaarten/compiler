@@ -1,17 +1,38 @@
-Package\Semantic\Symbols\ValueSymbol Object
+WeakMap Object
 (
-    [location] => Package\Core\Location Object
+    [0] => Array
         (
-            [startLine] => -1
-            [startOffset] => -1
-            [endLine] => -1
-            [endOffset] => -1
-        )
+            [key] => Package\Nodes\Types\NamedType Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
 
-    [name] => xyz
-    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
-        (
-            [name] => Constant
+                    [name] => xyz
+                )
+
+            [value] => Package\Semantic\Symbols\ValueSymbol Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => xyz
+                    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                        (
+                            [name] => Constant
+                        )
+
+                )
+
         )
 
 )
