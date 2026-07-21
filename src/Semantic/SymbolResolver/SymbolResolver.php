@@ -14,14 +14,14 @@ use WeakMap;
 
 final class SymbolResolver
 {
-    private AbstractNode $root;
+    private AbstractNode $node;
 
     /** @var WeakMap<AbstractNode, AbstractSymbol>|null */
     private ?WeakMap $table = null;
 
-    public function __construct(AbstractNode $root)
+    public function __construct(AbstractNode $node)
     {
-        $this->root = $root;
+        $this->node = $node;
     }
 
     /** @return WeakMap<AbstractNode, AbstractSymbol> */
@@ -32,7 +32,7 @@ final class SymbolResolver
 
             $traverser = new NodeTraverser;
             $traverser->addVisitor(new SymbolNodeVisitor($this->table));
-            $traverser->traverse($this->root);
+            $traverser->traverse($this->node);
         }
 
         return $this->table;
