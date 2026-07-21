@@ -19,7 +19,7 @@ Package\Nodes\Statements\VariableStatement Object
                     [endOffset] => -1
                 )
 
-            [name] => Package\Language\BuiltinTypeName Enum:string
+            [kind] => Package\Language\BuiltinTypeKind Enum:string
                 (
                     [name] => Integer
                     [value] => int

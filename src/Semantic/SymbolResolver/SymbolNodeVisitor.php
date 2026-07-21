@@ -37,46 +37,55 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     {
         if ($node instanceof Block) {
             $this->scope = new Scope($this->scope);
+
             return;
         }
 
         if ($node instanceof Parameter) {
             $this->visitParameter($node);
+
             return;
         }
 
         if ($node instanceof Expressions\AssignmentExpression) {
             $this->visitAssignmentExpression($node);
+
             return;
         }
 
         if ($node instanceof Expressions\FunctionCallExpression) {
             $this->visitFunctionCallExpression($node);
+
             return;
         }
 
         if ($node instanceof Expressions\IdentifierExpression) {
             $this->visitIdentifierExpression($node);
+
             return;
         }
 
         if ($node instanceof Statements\ConstantStatement) {
             $this->visitConstantStatement($node);
+
             return;
         }
 
         if ($node instanceof Statements\FunctionStatement) {
             $this->visitFunctionStatement($node);
+
             return;
         }
 
         if ($node instanceof Statements\VariableStatement) {
             $this->visitVariableStatement($node);
+
             return;
         }
 
         if ($node instanceof Types\NamedType) {
             $this->visitNamedType($node);
+
             return;
         }
     }
@@ -86,11 +95,13 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     {
         if ($node instanceof Block) {
             $this->scope = $this->scope?->parent;
+
             return;
         }
 
         if ($node instanceof Statements\FunctionStatement) {
             $this->scope = $this->scope?->parent;
+
             return;
         }
     }

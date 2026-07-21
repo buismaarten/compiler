@@ -19,7 +19,7 @@ Package\Nodes\Statements\FunctionStatement Object
                     [endOffset] => -1
                 )
 
-            [name] => Package\Language\BuiltinTypeName Enum:string
+            [kind] => Package\Language\BuiltinTypeKind Enum:string
                 (
                     [name] => Void
                     [value] => void
@@ -29,6 +29,37 @@ Package\Nodes\Statements\FunctionStatement Object
 
     [parameters] => Array
         (
+            [0] => Package\Nodes\Parameter Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => a
+                    [type] => Package\Nodes\Types\BuiltinType Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => Integer
+                                    [value] => int
+                                )
+
+                        )
+
+                )
+
         )
 
     [statements] => Package\Nodes\Block Object
