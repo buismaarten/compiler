@@ -30,6 +30,16 @@ WeakMap Object
                         )
 
                     [name] => foo
+                    [type] => Package\Semantic\Types\BuiltinType Object
+                        (
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => Void
+                                    [value] => void
+                                )
+
+                        )
+
                     [parameters] => Array
                         (
                             [0] => Package\Semantic\Symbols\ValueSymbol Object
@@ -43,6 +53,16 @@ WeakMap Object
                                         )
 
                                     [name] => a
+                                    [type] => Package\Semantic\Types\BuiltinType Object
+                                        (
+                                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
+                                        )
+
                                     [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
                                         (
                                             [name] => Parameter

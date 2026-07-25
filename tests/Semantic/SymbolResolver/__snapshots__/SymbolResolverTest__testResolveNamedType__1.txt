@@ -26,6 +26,16 @@ WeakMap Object
                         )
 
                     [name] => xyz
+                    [type] => Package\Semantic\Types\BuiltinType Object
+                        (
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => Integer
+                                    [value] => int
+                                )
+
+                        )
+
                     [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
                         (
                             [name] => Constant

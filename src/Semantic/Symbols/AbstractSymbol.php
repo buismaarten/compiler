@@ -16,9 +16,10 @@ abstract class AbstractSymbol
     public string $name;
     public AbstractType $type;
 
-    public function __construct(Location $location, string $name)
+    public function __construct(Location $location, string $name, AbstractType $type)
     {
         $this->location = $location;
         $this->name = $name;
+        $this->type = $type;
     }
 }

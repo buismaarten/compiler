@@ -8,14 +8,15 @@ declare(strict_types=1);
 namespace Package\Semantic\Symbols;
 
 use Package\Core\Location;
+use Package\Semantic\Types\AbstractType;
 
 final class ValueSymbol extends AbstractSymbol
 {
     public ValueSymbolKind $kind;
 
-    public function __construct(Location $location, string $name, ValueSymbolKind $kind)
+    public function __construct(Location $location, string $name, AbstractType $type, ValueSymbolKind $kind)
     {
-        parent::__construct($location, $name);
+        parent::__construct($location, $name, $type);
 
         $this->kind = $kind;
     }

@@ -10,18 +10,14 @@ namespace Package\Semantic\SymbolResolver;
 use Override;
 use Package\Exceptions\SymbolResolver\DuplicateSymbolException;
 use Package\Exceptions\SymbolResolver\UndefinedSymbolException;
+use Package\Nodes;
 use Package\Nodes\AbstractNode;
-use Package\Nodes\Block;
-use Package\Nodes\Expressions;
-use Package\Nodes\Parameter;
-use Package\Nodes\Statements;
-use Package\Nodes\Types;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\Symbols;
 use Package\Semantic\Symbols\AbstractSymbol;
+use Package\Semantic\Types;
 use WeakMap;
 
-// TODO: convert AST types to semantic types
 final class SymbolNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
@@ -39,55 +35,55 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function enterNode(AbstractNode $node): void
     {
-        if ($node instanceof Block) {
+        if ($node instanceof Nodes\Block) {
             $this->scope = new Scope($this->scope);
 
             return;
         }
 
-        if ($node instanceof Parameter) {
+        if ($node instanceof Nodes\Parameter) {
             $this->visitParameter($node);
 
             return;
         }
 
-        if ($node instanceof Expressions\AssignmentExpression) {
+        if ($node instanceof Nodes\Expressions\AssignmentExpression) {
             $this->visitAssignmentExpression($node);
 
             return;
         }
 
-        if ($node instanceof Expressions\FunctionCallExpression) {
+        if ($node instanceof Nodes\Expressions\FunctionCallExpression) {
             $this->visitFunctionCallExpression($node);
 
             return;
         }
 
-        if ($node instanceof Expressions\IdentifierExpression) {
+        if ($node instanceof Nodes\Expressions\IdentifierExpression) {
             $this->visitIdentifierExpression($node);
 
             return;
         }
 
-        if ($node instanceof Statements\ConstantStatement) {
+        if ($node instanceof Nodes\Statements\ConstantStatement) {
             $this->visitConstantStatement($node);
 
             return;
         }
 
-        if ($node instanceof Statements\FunctionStatement) {
+        if ($node instanceof Nodes\Statements\FunctionStatement) {
             $this->visitFunctionStatement($node);
 
             return;
         }
 
-        if ($node instanceof Statements\VariableStatement) {
+        if ($node instanceof Nodes\Statements\VariableStatement) {
             $this->visitVariableStatement($node);
 
             return;
         }
 
-        if ($node instanceof Types\NamedType) {
+        if ($node instanceof Nodes\Types\NamedType) {
             $this->visitNamedType($node);
 
             return;
@@ -97,13 +93,13 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function leaveNode(AbstractNode $node): void
     {
-        if ($node instanceof Block) {
+        if ($node instanceof Nodes\Block) {
             $this->scope = $this->scope?->parent;
 
             return;
         }
 
-        if ($node instanceof Statements\FunctionStatement) {
+        if ($node instanceof Nodes\Statements\FunctionStatement) {
             $this->scope = $this->scope?->parent;
             $this->currentFunction = null;
 
@@ -111,7 +107,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitAssignmentExpression(Expressions\AssignmentExpression $node): void
+    private function visitAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -120,7 +116,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitConstantStatement(Statements\ConstantStatement $node): void
+    private function visitConstantStatement(Nodes\Statements\ConstantStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -129,11 +125,12 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope[$node->name] = new Symbols\ValueSymbol(
             location: $node->location,
             name: $node->name,
+            type: self::resolveType($node->type),
             kind: Symbols\ValueSymbolKind::Constant,
         );
     }
 
-    private function visitFunctionCallExpression(Expressions\FunctionCallExpression $node): void
+    private function visitFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -142,7 +139,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitFunctionStatement(Statements\FunctionStatement $node): void
+    private function visitFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -151,13 +148,14 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope[$node->name] = new Symbols\FunctionSymbol(
             location: $node->location,
             name: $node->name,
+            type: self::resolveType($node->type),
         );
 
         $this->currentFunction = $this->scope[$node->name];
         $this->scope = new Scope($this->scope);
     }
 
-    private function visitIdentifierExpression(Expressions\IdentifierExpression $node): void
+    private function visitIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -166,7 +164,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitNamedType(Types\NamedType $node): void
+    private function visitNamedType(Nodes\Types\NamedType $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -175,7 +173,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitParameter(Parameter $node): void
+    private function visitParameter(Nodes\Parameter $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -184,6 +182,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope[$node->name] = new Symbols\ValueSymbol(
             location: $node->location,
             name: $node->name,
+            type: self::resolveType($node->type),
             kind: Symbols\ValueSymbolKind::Parameter,
         );
 
@@ -192,7 +191,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitVariableStatement(Statements\VariableStatement $node): void
+    private function visitVariableStatement(Nodes\Statements\VariableStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -201,6 +200,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope[$node->name] = new Symbols\ValueSymbol(
             location: $node->location,
             name: $node->name,
+            type: self::resolveType($node->type),
             kind: Symbols\ValueSymbolKind::Variable,
         );
     }
@@ -212,5 +212,34 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
 
         return null;
+    }
+
+    // TODO
+    private static function resolveType(AbstractNode $node): Types\AbstractType
+    {
+        if ($node instanceof Nodes\Types\ArrayType) {
+            return new Types\ArrayType(self::resolveType($node->type));
+        }
+
+        if ($node instanceof Nodes\Types\BuiltinType) {
+            return new Types\BuiltinType($node->kind);
+        }
+
+        if ($node instanceof Nodes\Types\NamedType) {
+            return new Types\NamedType($node->name);
+        }
+
+        if ($node instanceof Nodes\Types\NullableType) {
+            return new Types\NullableType(self::resolveType($node->type));
+        }
+
+        if ($node instanceof Nodes\Types\TupleType) {
+            return new Types\TupleType(array_map(
+                callback: fn (Nodes\Types\AbstractType $type): Types\AbstractType => self::resolveType($type),
+                array: $node->types,
+            ));
+        }
+
+        throw new \LogicException('Unsupported node type: ' . get_class($node));
     }
 }
