@@ -8,10 +8,9 @@ declare(strict_types=1);
 namespace Package\Nodes\Statements;
 
 use Package\Core\Location;
-use Package\Nodes\AbstractStatement;
-use Package\Nodes\AbstractType;
 use Package\Nodes\Block;
 use Package\Nodes\Parameter;
+use Package\Nodes\Types\AbstractType;
 
 final class FunctionStatement extends AbstractStatement
 {

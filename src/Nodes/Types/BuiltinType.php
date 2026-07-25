@@ -9,7 +9,6 @@ namespace Package\Nodes\Types;
 
 use Package\Core\Location;
 use Package\Language\BuiltinTypeKind;
-use Package\Nodes\AbstractType;
 
 final class BuiltinType extends AbstractType
 {

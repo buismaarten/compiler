@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes;
 
 use Package\Core\Location;
+use Package\Nodes\Types\AbstractType;
 
 final class Parameter extends AbstractNode
 {

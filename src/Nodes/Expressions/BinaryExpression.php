@@ -9,7 +9,6 @@ namespace Package\Nodes\Expressions;
 
 use Package\Core\Location;
 use Package\Language\BinaryOperator;
-use Package\Nodes\AbstractExpression;
 
 final class BinaryExpression extends AbstractExpression
 {
