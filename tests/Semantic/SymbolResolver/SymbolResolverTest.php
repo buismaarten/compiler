@@ -99,7 +99,7 @@ class SymbolResolverTest extends TestCase
                     ],
                     type: new Types\BuiltinType(
                         location: $location,
-                        kind: BuiltinTypeKind::Void,
+                        kind: BuiltinTypeKind::Integer,
                     ),
                     statements: new Block(
                         location: $location,
@@ -111,7 +111,12 @@ class SymbolResolverTest extends TestCase
                     condition: new Expressions\FunctionCallExpression(
                         location: $location,
                         name: 'foo',
-                        arguments: [],
+                        arguments: [
+                            new Literals\IntegerLiteral(
+                                location: $location,
+                                value: 1,
+                            ),
+                        ],
                     ),
                     statements: new Block(
                         location: $location,
