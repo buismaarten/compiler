@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Semantic\SymbolResolver;
 
+use LogicException;
 use Override;
 use Package\Exceptions\SymbolResolver\DuplicateSymbolException;
 use Package\Exceptions\SymbolResolver\UndefinedSymbolException;
@@ -214,8 +215,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         return null;
     }
 
-    // TODO
-    private static function resolveType(AbstractNode $node): Types\AbstractType
+    private static function resolveType(Nodes\Types\AbstractType $node): Types\AbstractType
     {
         if ($node instanceof Nodes\Types\ArrayType) {
             return new Types\ArrayType(self::resolveType($node->type));
@@ -243,6 +243,6 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             return new Types\TupleType($types);
         }
 
-        throw new \LogicException('Unsupported node type: '.get_class($node));
+        throw new LogicException;
     }
 }
