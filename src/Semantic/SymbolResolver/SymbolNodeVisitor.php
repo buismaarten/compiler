@@ -234,12 +234,15 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
 
         if ($node instanceof Nodes\Types\TupleType) {
-            return new Types\TupleType(array_map(
-                callback: fn (Nodes\Types\AbstractType $type): Types\AbstractType => self::resolveType($type),
-                array: $node->types,
-            ));
+            $types = [];
+
+            foreach ($node->types as $type) {
+                $types[] = self::resolveType($type);
+            }
+
+            return new Types\TupleType($types);
         }
 
-        throw new \LogicException('Unsupported node type: ' . get_class($node));
+        throw new \LogicException('Unsupported node type: '.get_class($node));
     }
 }
