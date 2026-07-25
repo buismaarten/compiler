@@ -8,11 +8,13 @@ declare(strict_types=1);
 namespace Package\Semantic\Symbols;
 
 use Package\Core\Location;
+use Package\Semantic\Types\AbstractType;
 
 abstract class AbstractSymbol
 {
     public Location $location;
     public string $name;
+    public AbstractType $type;
 
     public function __construct(Location $location, string $name)
     {
