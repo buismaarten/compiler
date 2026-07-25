@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Package\Nodes\Types;
 
 use Package\Core\Location;
-use Package\Nodes\AbstractType;
 
 final class NamedType extends AbstractType
 {

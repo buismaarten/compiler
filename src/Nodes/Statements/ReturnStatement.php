@@ -8,8 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes\Statements;
 
 use Package\Core\Location;
-use Package\Nodes\AbstractExpression;
-use Package\Nodes\AbstractStatement;
+use Package\Nodes\Expressions\AbstractExpression;
 
 final class ReturnStatement extends AbstractStatement
 {

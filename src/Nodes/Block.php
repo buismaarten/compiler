@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes;
 
 use Package\Core\Location;
+use Package\Nodes\Statements\AbstractStatement;
 
 final class Block extends AbstractNode
 {

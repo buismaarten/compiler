@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Package\Nodes\Literals;
 
 use Package\Core\Location;
-use Package\Nodes\AbstractLiteral;
 
 final class FloatLiteral extends AbstractLiteral
 {
