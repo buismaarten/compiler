@@ -234,10 +234,10 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
 
         if ($node instanceof Nodes\Types\TupleType) {
-            $types = [];
+            $types = $node->types;
 
-            foreach ($node->types as $type) {
-                $types[] = self::resolveType($type);
+            foreach ($types as $key => $value) {
+                $types[$key] = self::resolveType($value);
             }
 
             return new Types\TupleType($types);
