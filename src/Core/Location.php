@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Core;
 
-final class Location
+final readonly class Location
 {
-    public readonly int $startLine;
-    public readonly int $startOffset;
-    public readonly int $endLine;
-    public readonly int $endOffset;
+    public int $startLine;
+    public int $startOffset;
+    public int $endLine;
+    public int $endOffset;
 
     public function __construct(int $startLine, int $startOffset, int $endLine, int $endOffset)
     {

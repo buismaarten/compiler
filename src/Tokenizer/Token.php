@@ -9,11 +9,11 @@ namespace Package\Tokenizer;
 
 use Package\Core\Location;
 
-final class Token
+final readonly class Token
 {
-    public readonly Location $location;
-    public readonly TokenType $type;
-    public readonly string $value;
+    public Location $location;
+    public TokenType $type;
+    public string $value;
 
     public function __construct(Location $location, TokenType $type, string $value = '')
     {
