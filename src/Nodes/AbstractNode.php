@@ -12,7 +12,7 @@ use Package\Core\Location;
 
 abstract class AbstractNode implements JsonSerializable
 {
-    public readonly Location $location;
+    public Location $location;
 
     public function __construct(Location $location)
     {
