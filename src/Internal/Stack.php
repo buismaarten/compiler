@@ -24,24 +24,20 @@ final class Stack
     /** @return T */
     public function pop(): mixed
     {
-        $element = array_pop($this->elements);
-
-        if ($element === null) {
+        if (empty($this->elements)) {
             throw new UnderflowException('Stack is empty');
         }
 
-        return $element;
+        return array_pop($this->elements);
     }
 
     /** @return T */
     public function peek(): mixed
     {
-        $element = end($this->elements);
-
-        if ($element === false) {
+        if (empty($this->elements)) {
             throw new UnderflowException('Stack is empty');
         }
 
-        return $element;
+        return end($this->elements);
     }
 }
