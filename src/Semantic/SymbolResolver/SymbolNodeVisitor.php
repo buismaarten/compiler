@@ -25,7 +25,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     private ?Scope $scope = null;
 
     /** @var Stack<Symbols\FunctionSymbol> */
-    private Stack $activeFunctionStack;
+    private Stack $currentFunctionStack;
 
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
     private WeakMap $table;
@@ -33,7 +33,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     /** @param WeakMap<AbstractNode, AbstractSymbol> $table */
     public function __construct(WeakMap $table)
     {
-        $this->activeFunctionStack = new Stack;
+        $this->currentFunctionStack = new Stack;
         $this->table = $table;
     }
 
@@ -106,7 +106,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
 
         if ($node instanceof Nodes\Statements\FunctionStatement) {
             $this->scope = $this->scope?->parent;
-            $this->activeFunctionStack->pop();
+            $this->currentFunctionStack->pop();
 
             return;
         }
@@ -156,7 +156,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             type: self::resolveType($node->type),
         );
 
-        $this->activeFunctionStack->push($symbol);
+        $this->currentFunctionStack->push($symbol);
         $this->scope[$node->name] = $symbol;
         $this->scope = new Scope($this->scope);
     }
@@ -192,8 +192,8 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             kind: Symbols\ValueSymbolKind::Parameter,
         );
 
-        if (!$this->activeFunctionStack->isEmpty()) {
-            $currentFunction = $this->activeFunctionStack->peek();
+        if (!$this->currentFunctionStack->isEmpty()) {
+            $currentFunction = $this->currentFunctionStack->peek();
             $currentFunction->parameters[] = $symbol;
         }
 
