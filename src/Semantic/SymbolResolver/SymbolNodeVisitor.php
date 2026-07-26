@@ -11,6 +11,7 @@ use LogicException;
 use Override;
 use Package\Exceptions\SymbolResolver\DuplicateSymbolException;
 use Package\Exceptions\SymbolResolver\UndefinedSymbolException;
+use Package\Internal\Stack;
 use Package\Nodes;
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\AbstractNodeVisitor;
@@ -23,8 +24,8 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
 
-    /** @var Symbols\FunctionSymbol[] */
-    private array $currentFunctionStack = [];
+    /** @var Stack<Symbols\FunctionSymbol> */
+    private Stack $currentFunctionStack;
 
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
     private WeakMap $table;
@@ -32,6 +33,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     /** @param WeakMap<AbstractNode, AbstractSymbol> $table */
     public function __construct(WeakMap $table)
     {
+        $this->currentFunctionStack = new Stack;
         $this->table = $table;
     }
 
@@ -104,7 +106,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
 
         if ($node instanceof Nodes\Statements\FunctionStatement) {
             $this->scope = $this->scope?->parent;
-            array_pop($this->currentFunctionStack);
+            $this->currentFunctionStack->pop();
 
             return;
         }
@@ -154,7 +156,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             type: self::resolveType($node->type),
         );
 
-        $this->currentFunctionStack[] = $this->scope[$node->name];
+        $this->currentFunctionStack->push($this->scope[$node->name]);
         $this->scope = new Scope($this->scope);
     }
 
@@ -189,10 +191,8 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             kind: Symbols\ValueSymbolKind::Parameter,
         );
 
-        if (!empty($this->currentFunctionStack)) {
-            $currentFunction = end($this->currentFunctionStack);
-            $currentFunction->parameters[] = $this->scope[$node->name];
-        }
+        $currentFunction = $this->currentFunctionStack->peek();
+        $currentFunction->parameters[] = $this->scope[$node->name];
     }
 
     private function visitVariableStatement(Nodes\Statements\VariableStatement $node): void
