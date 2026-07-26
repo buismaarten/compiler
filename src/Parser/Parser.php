@@ -29,7 +29,7 @@ use Package\Tokenizer\Token;
 use Package\Tokenizer\TokenizerInterface;
 use Package\Tokenizer\TokenType;
 
-final class Parser implements ParserInterface
+final class Parser
 {
     private TokenizerInterface $tokenizer;
     private Token $previous;
@@ -42,7 +42,6 @@ final class Parser implements ParserInterface
         $this->current = $this->previous;
     }
 
-    #[Override]
     public function parse(): Block
     {
         $token = $this->current;
