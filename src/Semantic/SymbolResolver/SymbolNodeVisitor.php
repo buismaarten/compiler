@@ -22,7 +22,9 @@ use WeakMap;
 final class SymbolNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
-    private ?Symbols\FunctionSymbol $currentFunction = null;
+
+    /** @var Symbols\FunctionSymbol[] */
+    private array $currentFunctionStack = [];
 
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
     private WeakMap $table;
@@ -102,7 +104,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
 
         if ($node instanceof Nodes\Statements\FunctionStatement) {
             $this->scope = $this->scope?->parent;
-            $this->currentFunction = null;
+            array_pop($this->currentFunctionStack);
 
             return;
         }
@@ -152,7 +154,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             type: self::resolveType($node->type),
         );
 
-        $this->currentFunction = $this->scope[$node->name];
+        $this->currentFunctionStack[] = $this->scope[$node->name];
         $this->scope = new Scope($this->scope);
     }
 
@@ -187,8 +189,9 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             kind: Symbols\ValueSymbolKind::Parameter,
         );
 
-        if ($this->currentFunction !== null) {
-            $this->currentFunction->parameters[] = $this->scope[$node->name];
+        if (!empty($this->currentFunctionStack)) {
+            $currentFunction = end($this->currentFunctionStack);
+            $currentFunction->parameters[] = $this->scope[$node->name];
         }
     }
 
