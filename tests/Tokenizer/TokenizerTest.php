@@ -10,7 +10,6 @@ namespace Package\Tests\Tokenizer;
 use Package\Core\Location;
 use Package\Tokenizer\Token;
 use Package\Tokenizer\Tokenizer;
-use Package\Tokenizer\TokenizerInterface;
 use Package\Tokenizer\TokenType;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -1064,7 +1063,7 @@ class TokenizerTest extends TestCase
         );
     }
 
-    private static function createTokenizer(string $input): TokenizerInterface
+    private static function createTokenizer(string $input): Tokenizer
     {
         return new Tokenizer($input);
     }
