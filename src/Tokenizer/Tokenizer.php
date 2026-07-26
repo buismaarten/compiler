@@ -14,7 +14,7 @@ use Package\Exceptions\Tokenizer\UnexpectedEndOfInputException;
 use Package\Input\Input;
 use Package\Input\InputInterface;
 
-final class Tokenizer implements TokenizerInterface
+final class Tokenizer
 {
     private const KEYWORDS = [
         'break'    => TokenType::KeywordBreak,
@@ -44,7 +44,6 @@ final class Tokenizer implements TokenizerInterface
         $this->input = $input;
     }
 
-    #[Override]
     public function next(): Token
     {
         while (true) {

@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Package\Parser;
 
-use Override;
 use Package\Core\Location;
 use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedEndOfInputException;
@@ -26,16 +25,16 @@ use Package\Nodes\Statements\AbstractStatement;
 use Package\Nodes\Types;
 use Package\Nodes\Types\AbstractType;
 use Package\Tokenizer\Token;
-use Package\Tokenizer\TokenizerInterface;
+use Package\Tokenizer\Tokenizer;
 use Package\Tokenizer\TokenType;
 
 final class Parser
 {
-    private TokenizerInterface $tokenizer;
+    private Tokenizer $tokenizer;
     private Token $previous;
     private Token $current;
 
-    public function __construct(TokenizerInterface $tokenizer)
+    public function __construct(Tokenizer $tokenizer)
     {
         $this->tokenizer = $tokenizer;
         $this->previous = $this->tokenizer->next();
