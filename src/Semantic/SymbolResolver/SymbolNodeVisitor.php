@@ -150,13 +150,14 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        $this->scope[$node->name] = new Symbols\FunctionSymbol(
+        $symbol = new Symbols\FunctionSymbol(
             location: $node->location,
             name: $node->name,
             type: self::resolveType($node->type),
         );
 
-        $this->currentFunctionStack->push($this->scope[$node->name]);
+        $this->currentFunctionStack->push($symbol);
+        $this->scope[$node->name] = $symbol;
         $this->scope = new Scope($this->scope);
     }
 
@@ -184,15 +185,19 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        $this->scope[$node->name] = new Symbols\ValueSymbol(
+        $symbol = new Symbols\ValueSymbol(
             location: $node->location,
             name: $node->name,
             type: self::resolveType($node->type),
             kind: Symbols\ValueSymbolKind::Parameter,
         );
 
-        $currentFunction = $this->currentFunctionStack->peek();
-        $currentFunction->parameters[] = $this->scope[$node->name];
+        if (!$this->currentFunctionStack->isEmpty()) {
+            $currentFunction = $this->currentFunctionStack->peek();
+            $currentFunction->parameters[] = $symbol;
+        }
+
+        $this->scope[$node->name] = $symbol;
     }
 
     private function visitVariableStatement(Nodes\Statements\VariableStatement $node): void

@@ -15,10 +15,19 @@ final class Stack
     /** @var array<T> */
     private array $elements = [];
 
-    /** @param T $element */
-    public function push(mixed $element): void
+    public function isEmpty(): bool
     {
-        $this->elements[] = $element;
+        return empty($this->elements);
+    }
+
+    /** @return T */
+    public function peek(): mixed
+    {
+        if (empty($this->elements)) {
+            throw new UnderflowException('Stack is empty');
+        }
+
+        return end($this->elements);
     }
 
     /** @return T */
@@ -31,13 +40,9 @@ final class Stack
         return array_pop($this->elements);
     }
 
-    /** @return T */
-    public function peek(): mixed
+    /** @param T $element */
+    public function push(mixed $element): void
     {
-        if (empty($this->elements)) {
-            throw new UnderflowException('Stack is empty');
-        }
-
-        return end($this->elements);
+        $this->elements[] = $element;
     }
 }
