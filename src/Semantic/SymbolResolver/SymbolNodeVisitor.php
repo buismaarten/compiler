@@ -11,21 +11,21 @@ use LogicException;
 use Override;
 use Package\Exceptions\SymbolResolver\DuplicateSymbolException;
 use Package\Exceptions\SymbolResolver\UndefinedSymbolException;
-use Package\Internal\Stack;
 use Package\Nodes;
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\Symbols;
 use Package\Semantic\Symbols\AbstractSymbol;
 use Package\Semantic\Types;
+use SplStack;
 use WeakMap;
 
 final class SymbolNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
 
-    /** @var Stack<Symbols\FunctionSymbol> */
-    private Stack $functionSymbolStack;
+    /** @var SplStack<Symbols\FunctionSymbol> */
+    private SplStack $functionSymbolStack;
 
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
     private WeakMap $table;
@@ -33,7 +33,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     /** @param WeakMap<AbstractNode, AbstractSymbol> $table */
     public function __construct(WeakMap $table)
     {
-        $this->functionSymbolStack = new Stack;
+        $this->functionSymbolStack = new SplStack;
         $this->table = $table;
     }
 
@@ -193,7 +193,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         );
 
         if (!$this->functionSymbolStack->isEmpty()) {
-            $currentFunction = $this->functionSymbolStack->peek();
+            $currentFunction = $this->functionSymbolStack->top();
             $currentFunction->parameters[] = $symbol;
         }
 
