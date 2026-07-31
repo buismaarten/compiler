@@ -13,6 +13,7 @@ enum BinaryOperator
         [self::Divide, self::Modulo, self::Multiply],
         [self::Minus, self::Plus],
         [self::ShiftLeft
+
         ,
          self::ShiftRight],
         [self::GreaterThan, self::GreaterThanEqual, self::LessThan, self::LessThanEqual],
