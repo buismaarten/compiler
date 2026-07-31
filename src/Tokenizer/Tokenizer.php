@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Package\Tokenizer;
 
-use Override;
 use Package\Core\Location;
 use Package\Exceptions\Tokenizer\UnexpectedCharacterException;
 use Package\Exceptions\Tokenizer\UnexpectedEndOfInputException;
@@ -346,7 +345,7 @@ final class Tokenizer
                             }
 
                             $value .= mb_chr(intval($hex, 16), 'UTF-8');
-                        break;
+                            break;
 
                         default:
                             $value .= match ($current) {
@@ -364,7 +363,7 @@ final class Tokenizer
                             };
 
                             $this->input->next();
-                        break;
+                            break;
                     }
                 }
             } else {
