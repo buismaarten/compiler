@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
 set -e
 cd $(git rev-parse --show-toplevel 2>/dev/null || pwd)
 
