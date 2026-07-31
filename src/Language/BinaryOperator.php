@@ -12,10 +12,7 @@ enum BinaryOperator
     private const PRECEDENCE = [
         [self::Divide, self::Modulo, self::Multiply],
         [self::Minus, self::Plus],
-          [self::ShiftLeft
-
-        ,
-         self::ShiftRight],
+        [self::ShiftLeft, self::ShiftRight],
         [self::GreaterThan, self::GreaterThanEqual, self::LessThan, self::LessThanEqual],
         [self::Equal, self::Identical, self::NotEqual, self::NotIdentical, self::Spaceship],
         [self::BitwiseAnd],
