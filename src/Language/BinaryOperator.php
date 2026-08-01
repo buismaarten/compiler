@@ -9,7 +9,7 @@ namespace Package\Language;
 
 enum BinaryOperator
 {
-    private const   PRECEDENCE = [
+    private const PRECEDENCE = [
         [self::Divide, self::Modulo, self::Multiply],
         [self::Minus, self::Plus],
         [self::ShiftLeft, self::ShiftRight],
