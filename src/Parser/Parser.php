@@ -51,7 +51,7 @@ final class Parser
         }
 
         return new Block(
-            location: $this->createLocation($token, $this->previous),
+            location: $this->createLocation($token),
             statements: $statements,
         );
     }
