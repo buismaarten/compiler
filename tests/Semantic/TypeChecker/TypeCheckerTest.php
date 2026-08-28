@@ -52,6 +52,6 @@ class TypeCheckerTest extends TestCase
         $mapping[$node] = $symbol;
 
         $typeChecker = new TypeChecker($mapping);
-        $typeChecker->validate();
+        $typeChecker->check();
     }
 }

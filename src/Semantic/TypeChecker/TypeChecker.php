@@ -22,7 +22,7 @@ final class TypeChecker
         $this->mapping = $mapping;
     }
 
-    public function validate(): void
+    public function check(): void
     {
         foreach ($this->mapping as $node => $symbol) {
             //
