@@ -25,7 +25,7 @@ final class TypeChecker
     public function validate(): void
     {
         foreach ($this->mapping as $node => $symbol) {
-            // TODO
+            //
         }
     }
 }
