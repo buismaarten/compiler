@@ -18,10 +18,11 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use WeakMap;
 
+// TODO
 class TypeCheckerTest extends TestCase
 {
     #[Test]
-    public function testTodo(): void
+    public function test(): void
     {
         $this->expectNotToPerformAssertions();
 
