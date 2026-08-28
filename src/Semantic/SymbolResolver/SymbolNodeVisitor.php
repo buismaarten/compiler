@@ -9,8 +9,8 @@ namespace Package\Semantic\SymbolResolver;
 
 use LogicException;
 use Override;
-use Package\Exceptions\SymbolResolver\DuplicateSymbolException;
-use Package\Exceptions\SymbolResolver\UndefinedSymbolException;
+use Package\Exceptions\Semantic\SymbolResolver\DuplicateSymbolException;
+use Package\Exceptions\Semantic\SymbolResolver\UndefinedSymbolException;
 use Package\Nodes;
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\AbstractNodeVisitor;
