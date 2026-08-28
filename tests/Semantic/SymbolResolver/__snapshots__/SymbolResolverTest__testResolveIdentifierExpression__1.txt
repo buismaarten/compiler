@@ -12,7 +12,7 @@ WeakMap Object
                             [endOffset] => -1
                         )
 
-                    [name] => a
+                    [name] => foo
                 )
 
             [value] => Package\Semantic\Symbols\ValueSymbol Object
@@ -25,7 +25,7 @@ WeakMap Object
                             [endOffset] => -1
                         )
 
-                    [name] => a
+                    [name] => foo
                     [type] => Package\Semantic\Types\BuiltinType Object
                         (
                             [kind] => Package\Language\BuiltinTypeKind Enum:string

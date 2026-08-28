@@ -40,7 +40,7 @@ class SymbolResolverTest extends TestCase
             statements: [
                 new Statements\VariableStatement(
                     location: $location,
-                    name: 'a',
+                    name: 'foo',
                     type: new Types\BuiltinType(
                         location: $location,
                         kind: BuiltinTypeKind::Integer,
@@ -54,7 +54,7 @@ class SymbolResolverTest extends TestCase
                     location: $location,
                     condition: new Expressions\AssignmentExpression(
                         location: $location,
-                        name: 'a',
+                        name: 'foo',
                         expression: new Literals\IntegerLiteral(
                             location: $location,
                             value: 1,
@@ -90,7 +90,7 @@ class SymbolResolverTest extends TestCase
                     parameters: [
                         new Parameter(
                             location: $location,
-                            name: 'a',
+                            name: 'foo',
                             type: new Types\BuiltinType(
                                 location: $location,
                                 kind: BuiltinTypeKind::Integer,
@@ -148,7 +148,7 @@ class SymbolResolverTest extends TestCase
                     parameters: [
                         new Parameter(
                             location: $location,
-                            name: 'a',
+                            name: 'foo',
                             type: new Types\BuiltinType(
                                 location: $location,
                                 kind: BuiltinTypeKind::Integer,
@@ -166,7 +166,7 @@ class SymbolResolverTest extends TestCase
                                 location: $location,
                                 condition: new Expressions\IdentifierExpression(
                                     location: $location,
-                                    name: 'a',
+                                    name: 'foo',
                                 ),
                                 statements: new Block(
                                     location: $location,
@@ -197,7 +197,7 @@ class SymbolResolverTest extends TestCase
             statements: [
                 new Statements\ConstantStatement(
                     location: $location,
-                    name: 'a',
+                    name: 'foo',
                     type: new Types\BuiltinType(
                         location: $location,
                         kind: BuiltinTypeKind::Integer,
@@ -211,7 +211,7 @@ class SymbolResolverTest extends TestCase
                     location: $location,
                     condition: new Expressions\IdentifierExpression(
                         location: $location,
-                        name: 'a',
+                        name: 'foo',
                     ),
                     statements: new Block(
                         location: $location,
