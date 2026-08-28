@@ -35,7 +35,7 @@ class TypeCheckerTest extends TestCase
 
         $node = new Expressions\AssignmentExpression(
             location: $location,
-            name: 'a',
+            name: 'foo',
             expression: new Literals\IntegerLiteral(
                 location: $location,
                 value: 42,
@@ -44,7 +44,7 @@ class TypeCheckerTest extends TestCase
 
         $symbol = new Symbols\ValueSymbol(
             location: $location,
-            name: 'a',
+            name: 'foo',
             type: new Types\BuiltinType(BuiltinTypeKind::Integer),
             kind: Symbols\ValueSymbolKind::Variable,
         );
