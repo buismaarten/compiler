@@ -14,7 +14,7 @@ use WeakMap;
 final class TypeChecker
 {
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
-    private readonly WeakMap $mapping;
+    private WeakMap $mapping;
 
     /** @param WeakMap<AbstractNode, AbstractSymbol> $mapping */
     public function __construct(WeakMap $mapping)
