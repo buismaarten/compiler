@@ -71,7 +71,7 @@ trait SnapshotAssertions
     {
         $directory = dirname($path);
 
-        if (!is_dir($directory) && !mkdir($directory, 0777, true) && !is_dir($directory)) {
+        if (!is_dir($directory) && !mkdir($directory)) {
             $this->fail("Unable to create snapshot directory: {$directory}");
         }
 
