@@ -282,8 +282,8 @@ class SymbolResolverTest extends TestCase
 
     private function assertSnapshot(AbstractNode $node): void
     {
-        $resolver = new SymbolResolver($node);
+        $symbolResolver = new SymbolResolver($node);
 
-        $this->assertMatchesSnapshot($resolver->getTable());
+        $this->assertMatchesSnapshot($symbolResolver->getTable());
     }
 }
