@@ -23,12 +23,7 @@ class NodeTraverserTest extends TestCase
     #[Test]
     public function testTraverse(): void
     {
-        $location = new Location(
-            startLine: -1,
-            startOffset: -1,
-            endLine: -1,
-            endOffset: -1,
-        );
+        $location = Location::dummy();
 
         $literal = new Literals\NullLiteral($location);
         $expression = new Expressions\ArrayExpression($location, [$literal]);

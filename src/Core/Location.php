@@ -21,4 +21,15 @@ final readonly class Location
         $this->endLine = $endLine;
         $this->endOffset = $endOffset;
     }
+
+    /** @internal */
+    public static function dummy(): self
+    {
+        return new self(
+            startLine: -1,
+            startOffset: -1,
+            endLine: -1,
+            endOffset: -1,
+        );
+    }
 }
