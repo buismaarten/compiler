@@ -26,24 +26,17 @@ class TypeCheckerTest extends TestCase
     {
         $this->expectNotToPerformAssertions();
 
-        $location = new Location(
-            startLine: -1,
-            startOffset: -1,
-            endLine: -1,
-            endOffset: -1,
-        );
-
         $node = new Expressions\AssignmentExpression(
-            location: $location,
+            location: Location::dummy(),
             name: 'foo',
             expression: new Literals\IntegerLiteral(
-                location: $location,
+                location: Location::dummy(),
                 value: 42,
             ),
         );
 
         $symbol = new Symbols\ValueSymbol(
-            location: $location,
+            location: Location::dummy(),
             name: 'foo',
             type: new Types\BuiltinType(BuiltinTypeKind::Integer),
             kind: Symbols\ValueSymbolKind::Variable,
