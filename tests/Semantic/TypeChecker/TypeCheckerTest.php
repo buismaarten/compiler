@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Tests\Semantic\TypeChecker;
 
 use Package\Core\Location;
+use Package\Exceptions\Semantic\TypeChecker\TypeMismatchException;
 use Package\Language\BuiltinTypeKind;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
@@ -24,7 +25,8 @@ class TypeCheckerTest extends TestCase
     #[Test]
     public function test(): void
     {
-        $this->expectNotToPerformAssertions();
+        $this->expectException(TypeMismatchException::class);
+        $this->expectExceptionMessageIsOrContains('Type mismatch on line -1');
 
         $node = new Expressions\AssignmentExpression(
             location: Location::dummy(),

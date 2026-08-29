@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Semantic\TypeChecker;
 
+use Package\Exceptions\Semantic\TypeChecker\TypeMismatchException;
 use Package\Nodes\AbstractNode;
 use Package\Semantic\Symbols\AbstractSymbol;
 
@@ -24,7 +25,7 @@ final class TypeChecker
     public function check(): void
     {
         foreach ($this->mapping as $node => $symbol) {
-            //
+            throw new TypeMismatchException($node->location->startLine);
         }
     }
 }
