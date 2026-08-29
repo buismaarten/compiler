@@ -26,7 +26,7 @@ class TypeCheckerTest extends TestCase
     public function test(): void
     {
         $this->expectException(TypeMismatchException::class);
-        $this->expectExceptionMessageIsOrContains('Type mismatch on line -1');
+        $this->expectExceptionMessageIs('Type mismatch on line -1');
 
         $node = new Expressions\AssignmentExpression(
             location: Location::dummy(),
