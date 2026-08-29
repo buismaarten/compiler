@@ -14,17 +14,17 @@ use Package\Semantic\Symbols\AbstractSymbol;
 final class TypeChecker
 {
     /** @var iterable<AbstractNode, AbstractSymbol> */
-    private iterable $mapping;
+    private iterable $table;
 
-    /** @param iterable<AbstractNode, AbstractSymbol> $mapping */
-    public function __construct(iterable $mapping)
+    /** @param iterable<AbstractNode, AbstractSymbol> $table */
+    public function __construct(iterable $table)
     {
-        $this->mapping = $mapping;
+        $this->table = $table;
     }
 
     public function check(): void
     {
-        foreach ($this->mapping as $node => $symbol) {
+        foreach ($this->table as $node => $symbol) {
             throw new TypeMismatchException($node->location->startLine);
         }
     }

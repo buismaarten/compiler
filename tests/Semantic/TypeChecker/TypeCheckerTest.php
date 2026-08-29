@@ -44,10 +44,10 @@ class TypeCheckerTest extends TestCase
             kind: Symbols\ValueSymbolKind::Variable,
         );
 
-        $mapping = new WeakMap;
-        $mapping[$node] = $symbol;
+        $table = new WeakMap;
+        $table[$node] = $symbol;
 
-        $typeChecker = new TypeChecker($mapping);
+        $typeChecker = new TypeChecker($table);
         $typeChecker->check();
     }
 }
