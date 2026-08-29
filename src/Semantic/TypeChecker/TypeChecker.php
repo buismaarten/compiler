@@ -9,15 +9,14 @@ namespace Package\Semantic\TypeChecker;
 
 use Package\Nodes\AbstractNode;
 use Package\Semantic\Symbols\AbstractSymbol;
-use WeakMap;
 
 final class TypeChecker
 {
-    /** @var WeakMap<AbstractNode, AbstractSymbol> */
-    private WeakMap $mapping;
+    /** @var iterable<AbstractNode, AbstractSymbol> */
+    private iterable $mapping;
 
-    /** @param WeakMap<AbstractNode, AbstractSymbol> $mapping */
-    public function __construct(WeakMap $mapping)
+    /** @param iterable<AbstractNode, AbstractSymbol> $mapping */
+    public function __construct(iterable $mapping)
     {
         $this->mapping = $mapping;
     }
