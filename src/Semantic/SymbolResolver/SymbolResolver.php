@@ -38,8 +38,8 @@ final class SymbolResolver
         return $this->table;
     }
 
-    public function resolve(AbstractNode $node): ?AbstractSymbol
+    public function resolve(AbstractNode $node): AbstractSymbol
     {
-        return $this->getTable()[$node] ?? null;
+        return $this->getTable()[$node];
     }
 }
