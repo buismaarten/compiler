@@ -10,9 +10,9 @@ namespace Package\Tests\Semantic\TypeResolver;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+// TODO
 class TypeResolverTest extends TestCase
 {
-    // TODO
     #[Test]
     public function test(): void
     {

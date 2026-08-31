@@ -7,7 +7,15 @@ declare(strict_types=1);
 
 namespace Package\Semantic\TypeResolver;
 
+use Package\Nodes\AbstractNode;
+
+// TODO
 final class TypeResolver
 {
-    // TODO
+    private AbstractNode $node;
+
+    public function __construct(AbstractNode $node)
+    {
+        $this->node = $node;
+    }
 }
