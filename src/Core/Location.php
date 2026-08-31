@@ -25,7 +25,10 @@ final readonly class Location
     /** @internal */
     public static function dummy(): self
     {
-        return new self(
+        static $instance;
+
+        // @phpstan-ignore-next-line
+        return $instance ??= new self(
             startLine: -1,
             startOffset: -1,
             endLine: -1,
