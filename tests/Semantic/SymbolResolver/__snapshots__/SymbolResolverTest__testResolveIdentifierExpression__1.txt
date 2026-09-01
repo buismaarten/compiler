@@ -2,6 +2,82 @@ WeakMap Object
 (
     [0] => Array
         (
+            [key] => Package\Nodes\Statements\ConstantStatement Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => foo
+                    [type] => Package\Nodes\Types\BuiltinType Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => Integer
+                                    [value] => int
+                                )
+
+                        )
+
+                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [value] => 1
+                        )
+
+                )
+
+            [value] => Package\Semantic\Symbols\ValueSymbol Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => foo
+                    [type] => Package\Semantic\Types\BuiltinType Object
+                        (
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => Integer
+                                    [value] => int
+                                )
+
+                        )
+
+                    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                        (
+                            [name] => Constant
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
             [key] => Package\Nodes\Expressions\IdentifierExpression Object
                 (
                     [location] => Package\Core\Location Object

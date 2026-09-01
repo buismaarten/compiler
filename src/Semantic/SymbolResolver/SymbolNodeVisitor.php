@@ -127,12 +127,15 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        $this->scope[$node->name] = new Symbols\ValueSymbol(
+        $symbol = new Symbols\ValueSymbol(
             location: $node->location,
             name: $node->name,
             type: self::resolveType($node->type),
             kind: Symbols\ValueSymbolKind::Constant,
         );
+
+        $this->table[$node] = $symbol;
+        $this->scope[$node->name] = $symbol;
     }
 
     private function visitFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
@@ -157,6 +160,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         );
 
         $this->functionSymbolStack->push($symbol);
+        $this->table[$node] = $symbol;
         $this->scope[$node->name] = $symbol;
         $this->scope = new Scope($this->scope);
     }
@@ -192,11 +196,10 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             kind: Symbols\ValueSymbolKind::Parameter,
         );
 
-        if (!$this->functionSymbolStack->isEmpty()) {
-            $currentFunction = $this->functionSymbolStack->top();
-            $currentFunction->parameters[] = $symbol;
-        }
+        $currentFunction = $this->functionSymbolStack->top();
+        $currentFunction->parameters[] = $symbol;
 
+        $this->table[$node] = $symbol;
         $this->scope[$node->name] = $symbol;
     }
 
@@ -206,12 +209,15 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
         }
 
-        $this->scope[$node->name] = new Symbols\ValueSymbol(
+        $symbol = new Symbols\ValueSymbol(
             location: $node->location,
             name: $node->name,
             type: self::resolveType($node->type),
             kind: Symbols\ValueSymbolKind::Variable,
         );
+
+        $this->table[$node] = $symbol;
+        $this->scope[$node->name] = $symbol;
     }
 
     private function resolve(string $name, AbstractNode $node): ?AbstractSymbol
