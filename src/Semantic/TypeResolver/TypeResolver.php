@@ -13,7 +13,6 @@ use Package\Semantic\SymbolResolver\SymbolResolver;
 use Package\Semantic\Types\AbstractType;
 use WeakMap;
 
-// TODO
 final class TypeResolver
 {
     private AbstractNode $node;
