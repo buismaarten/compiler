@@ -35,6 +35,7 @@ final class TypeResolver
             $this->table = new WeakMap;
 
             $traverser = new NodeTraverser;
+            $traverser->addVisitor(new TypeNodeVisitor($this->symbolResolver, $this->table));
             $traverser->traverse($this->node);
         }
 
