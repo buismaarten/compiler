@@ -32,6 +32,12 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function enterNode(AbstractNode $node): void
     {
+        if ($node instanceof Nodes\Expressions\AssignmentExpression) {
+            $this->visitAssignmentExpression($node);
+
+            return;
+        }
+
         if ($node instanceof Nodes\Expressions\IdentifierExpression) {
             $this->visitIdentifierExpression($node);
 
@@ -49,6 +55,13 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
             return;
         }
+    }
+
+    private function visitAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
+    {
+        $symbol = $this->symbolResolver->resolve($node);
+
+        $this->table[$node] = $symbol->type;
     }
 
     private function visitConstantStatement(Nodes\Statements\ConstantStatement $node): void
