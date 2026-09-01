@@ -8,14 +8,22 @@ declare(strict_types=1);
 namespace Package\Semantic\TypeResolver;
 
 use Package\Nodes\AbstractNode;
+use Package\Semantic\SymbolResolver\SymbolResolver;
+use Package\Semantic\Types\AbstractType;
+use WeakMap;
 
 // TODO
 final class TypeResolver
 {
     private AbstractNode $node;
+    private SymbolResolver $symbolResolver;
 
-    public function __construct(AbstractNode $node)
+    /** @var WeakMap<AbstractNode, AbstractType> */
+    private WeakMap $table;
+
+    public function __construct(AbstractNode $node, SymbolResolver $symbolResolver)
     {
         $this->node = $node;
+        $this->symbolResolver = $symbolResolver;
     }
 }
