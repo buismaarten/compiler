@@ -24,17 +24,17 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
 
-    /** @var SplStack<Symbols\FunctionSymbol> */
-    private SplStack $functionSymbolStack;
-
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
     private WeakMap $table;
+
+    /** @var SplStack<Symbols\FunctionSymbol> */
+    private SplStack $functionSymbolStack;
 
     /** @param WeakMap<AbstractNode, AbstractSymbol> $table */
     public function __construct(WeakMap $table)
     {
-        $this->functionSymbolStack = new SplStack;
         $this->table = $table;
+        $this->functionSymbolStack = new SplStack;
     }
 
     #[Override]
