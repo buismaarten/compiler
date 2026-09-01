@@ -26,7 +26,7 @@ class TypeResolverTest extends TestCase
     use SnapshotAssertions;
 
     #[Test]
-    public function testConstantStatement(): void
+    public function testResolveConstantStatement(): void
     {
         $node = new Block(
             location: Location::dummy(),
@@ -57,7 +57,38 @@ class TypeResolverTest extends TestCase
     }
 
     #[Test]
-    public function testVariableStatement(): void
+    public function testResolveIdentifierExpression(): void
+    {
+        $node = new Block(
+            location: Location::dummy(),
+            statements: [
+                new Statements\VariableStatement(
+                    location: Location::dummy(),
+                    name: 'foo',
+                    type: new Types\BuiltinType(
+                        location: Location::dummy(),
+                        kind: BuiltinTypeKind::Integer,
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: Location::dummy(),
+                        value: 1,
+                    ),
+                ),
+                new Statements\ExpressionStatement(
+                    location: Location::dummy(),
+                    expression: new Expressions\IdentifierExpression(
+                        location: Location::dummy(),
+                        name: 'foo',
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertSnapshot($node);
+    }
+
+    #[Test]
+    public function testResolveVariableStatement(): void
     {
         $node = new Block(
             location: Location::dummy(),

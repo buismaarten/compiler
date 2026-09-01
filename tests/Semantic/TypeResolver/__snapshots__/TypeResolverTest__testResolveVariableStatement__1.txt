@@ -58,4 +58,31 @@ WeakMap Object
 
         )
 
+    [1] => Array
+        (
+            [key] => Package\Nodes\Expressions\IdentifierExpression Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => foo
+                )
+
+            [value] => Package\Semantic\Types\BuiltinType Object
+                (
+                    [kind] => Package\Language\BuiltinTypeKind Enum:string
+                        (
+                            [name] => Integer
+                            [value] => int
+                        )
+
+                )
+
+        )
+
 )
