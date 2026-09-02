@@ -133,6 +133,16 @@ final class Parser
         );
     }
 
+    private function parseBlockStatement(): Statements\BlockStatement
+    {
+        $block = $this->parseBlock();
+
+        return new Statements\BlockStatement(
+            location: $block->location,
+            block: $block,
+        );
+    }
+
     private function parseBooleanLiteral(): Literals\BooleanLiteral
     {
         $token = $this->current;
@@ -520,6 +530,7 @@ final class Parser
             TokenType::KeywordReturn   => $this->parseReturnStatement(),
             TokenType::KeywordVar      => $this->parseVariableStatement(),
             TokenType::KeywordWhile    => $this->parseWhileStatement(),
+            TokenType::LeftBrace       => $this->parseBlockStatement(),
 
             default => $this->parseExpressionStatement(),
         };

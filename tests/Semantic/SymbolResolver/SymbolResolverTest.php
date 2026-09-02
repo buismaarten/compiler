@@ -43,19 +43,23 @@ class SymbolResolverTest extends TestCase
                         value: 1,
                     ),
                 ),
-                new Statements\WhileStatement(
+                new Statements\BlockStatement(
                     location: Location::dummy(),
-                    condition: new Expressions\AssignmentExpression(
+                    block: new Block(
                         location: Location::dummy(),
-                        name: 'foo',
-                        expression: new Literals\IntegerLiteral(
-                            location: Location::dummy(),
-                            value: 1,
-                        ),
-                    ),
-                    statements: new Block(
-                        location: Location::dummy(),
-                        statements: [],
+                        statements: [
+                            new Statements\ExpressionStatement(
+                                location: Location::dummy(),
+                                expression: new Expressions\AssignmentExpression(
+                                    location: Location::dummy(),
+                                    name: 'foo',
+                                    expression: new Literals\IntegerLiteral(
+                                        location: Location::dummy(),
+                                        value: 1,
+                                    ),
+                                ),
+                            ),
+                        ],
                     ),
                 ),
             ],
@@ -92,21 +96,25 @@ class SymbolResolverTest extends TestCase
                         statements: [],
                     ),
                 ),
-                new Statements\WhileStatement(
+                new Statements\BlockStatement(
                     location: Location::dummy(),
-                    condition: new Expressions\FunctionCallExpression(
+                    block: new Block(
                         location: Location::dummy(),
-                        name: 'foo',
-                        arguments: [
-                            new Literals\IntegerLiteral(
+                        statements: [
+                            new Statements\ExpressionStatement(
                                 location: Location::dummy(),
-                                value: 1,
+                                expression: new Expressions\FunctionCallExpression(
+                                    location: Location::dummy(),
+                                    name: 'foo',
+                                    arguments: [
+                                        new Literals\IntegerLiteral(
+                                            location: Location::dummy(),
+                                            value: 1,
+                                        ),
+                                    ],
+                                ),
                             ),
                         ],
-                    ),
-                    statements: new Block(
-                        location: Location::dummy(),
-                        statements: [],
                     ),
                 ),
             ],
@@ -141,15 +149,19 @@ class SymbolResolverTest extends TestCase
                     statements: new Block(
                         location: Location::dummy(),
                         statements: [
-                            new Statements\WhileStatement(
+                            new Statements\BlockStatement(
                                 location: Location::dummy(),
-                                condition: new Expressions\IdentifierExpression(
+                                block: new Block(
                                     location: Location::dummy(),
-                                    name: 'foo',
-                                ),
-                                statements: new Block(
-                                    location: Location::dummy(),
-                                    statements: [],
+                                    statements: [
+                                        new Statements\ExpressionStatement(
+                                            location: Location::dummy(),
+                                            expression: new Expressions\IdentifierExpression(
+                                                location: Location::dummy(),
+                                                name: 'foo',
+                                            ),
+                                        ),
+                                    ],
                                 ),
                             ),
                         ],
@@ -179,15 +191,19 @@ class SymbolResolverTest extends TestCase
                         value: 1,
                     ),
                 ),
-                new Statements\WhileStatement(
+                new Statements\BlockStatement(
                     location: Location::dummy(),
-                    condition: new Expressions\IdentifierExpression(
+                    block: new Block(
                         location: Location::dummy(),
-                        name: 'foo',
-                    ),
-                    statements: new Block(
-                        location: Location::dummy(),
-                        statements: [],
+                        statements: [
+                            new Statements\ExpressionStatement(
+                                location: Location::dummy(),
+                                expression: new Expressions\IdentifierExpression(
+                                    location: Location::dummy(),
+                                    name: 'foo',
+                                ),
+                            ),
+                        ],
                     ),
                 ),
             ],
@@ -214,13 +230,9 @@ class SymbolResolverTest extends TestCase
                         value: 1,
                     ),
                 ),
-                new Statements\WhileStatement(
+                new Statements\BlockStatement(
                     location: Location::dummy(),
-                    condition: new Literals\BooleanLiteral(
-                        location: Location::dummy(),
-                        value: true,
-                    ),
-                    statements: new Block(
+                    block: new Block(
                         location: Location::dummy(),
                         statements: [
                             new Statements\FunctionStatement(
