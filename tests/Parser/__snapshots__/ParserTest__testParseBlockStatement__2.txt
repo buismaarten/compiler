@@ -1,0 +1,96 @@
+Package\Nodes\Block Object
+(
+    [location] => Package\Core\Location Object
+        (
+            [startLine] => 1
+            [startOffset] => 0
+            [endLine] => 1
+            [endOffset] => 18
+        )
+
+    [statements] => Array
+        (
+            [0] => Package\Nodes\Statements\BlockStatement Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => 1
+                            [startOffset] => 0
+                            [endLine] => 1
+                            [endOffset] => 18
+                        )
+
+                    [block] => Package\Nodes\Block Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 18
+                                )
+
+                            [statements] => Array
+                                (
+                                    [0] => Package\Nodes\Statements\BlockStatement Object
+                                        (
+                                            [location] => Package\Core\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 2
+                                                    [endLine] => 1
+                                                    [endOffset] => 16
+                                                )
+
+                                            [block] => Package\Nodes\Block Object
+                                                (
+                                                    [location] => Package\Core\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 2
+                                                            [endLine] => 1
+                                                            [endOffset] => 16
+                                                        )
+
+                                                    [statements] => Array
+                                                        (
+                                                            [0] => Package\Nodes\Statements\PrintStatement Object
+                                                                (
+                                                                    [location] => Package\Core\Location Object
+                                                                        (
+                                                                            [startLine] => 1
+                                                                            [startOffset] => 4
+                                                                            [endLine] => 1
+                                                                            [endOffset] => 14
+                                                                        )
+
+                                                                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                                                        (
+                                                                            [location] => Package\Core\Location Object
+                                                                                (
+                                                                                    [startLine] => 1
+                                                                                    [startOffset] => 10
+                                                                                    [endLine] => 1
+                                                                                    [endOffset] => 13
+                                                                                )
+
+                                                                            [value] => 123
+                                                                        )
+
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

@@ -46,6 +46,13 @@ class ParserTest extends TestCase
     }
 
     #[Test]
+    public function testParseBlockStatement(): void
+    {
+        $this->assertSnapshot('{ print 123; }');
+        $this->assertSnapshot('{ { print 123; } }');
+    }
+
+    #[Test]
     public function testParseBooleanLiteral(): void
     {
         $this->assertSnapshot('false;');

@@ -78,7 +78,7 @@ WeakMap Object
 
                             [statements] => Array
                                 (
-                                    [0] => Package\Nodes\Statements\WhileStatement Object
+                                    [0] => Package\Nodes\Statements\BlockStatement Object
                                         (
                                             [location] => Package\Core\Location Object
                                                 (
@@ -88,20 +88,7 @@ WeakMap Object
                                                     [endOffset] => -1
                                                 )
 
-                                            [condition] => Package\Nodes\Expressions\IdentifierExpression Object
-                                                (
-                                                    [location] => Package\Core\Location Object
-                                                        (
-                                                            [startLine] => -1
-                                                            [startOffset] => -1
-                                                            [endLine] => -1
-                                                            [endOffset] => -1
-                                                        )
-
-                                                    [name] => foo
-                                                )
-
-                                            [statements] => Package\Nodes\Block Object
+                                            [block] => Package\Nodes\Block Object
                                                 (
                                                     [location] => Package\Core\Location Object
                                                         (
@@ -113,6 +100,31 @@ WeakMap Object
 
                                                     [statements] => Array
                                                         (
+                                                            [0] => Package\Nodes\Statements\ExpressionStatement Object
+                                                                (
+                                                                    [location] => Package\Core\Location Object
+                                                                        (
+                                                                            [startLine] => -1
+                                                                            [startOffset] => -1
+                                                                            [endLine] => -1
+                                                                            [endOffset] => -1
+                                                                        )
+
+                                                                    [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                                                                        (
+                                                                            [location] => Package\Core\Location Object
+                                                                                (
+                                                                                    [startLine] => -1
+                                                                                    [startOffset] => -1
+                                                                                    [endLine] => -1
+                                                                                    [endOffset] => -1
+                                                                                )
+
+                                                                            [name] => foo
+                                                                        )
+
+                                                                )
+
                                                         )
 
                                                 )
