@@ -38,6 +38,12 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
+        if ($node instanceof Nodes\Expressions\FunctionCallExpression) {
+            $this->visitFunctionCallExpression($node);
+
+            return;
+        }
+
         if ($node instanceof Nodes\Expressions\IdentifierExpression) {
             $this->visitIdentifierExpression($node);
 
@@ -46,6 +52,12 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
         if ($node instanceof Nodes\Statements\ConstantStatement) {
             $this->visitConstantStatement($node);
+
+            return;
+        }
+
+        if ($node instanceof Nodes\Statements\FunctionStatement) {
+            $this->visitFunctionStatement($node);
 
             return;
         }
@@ -65,6 +77,20 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     }
 
     private function visitConstantStatement(Nodes\Statements\ConstantStatement $node): void
+    {
+        $symbol = $this->symbolResolver->resolve($node);
+
+        $this->table[$node] = $symbol->type;
+    }
+
+    private function visitFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
+    {
+        $symbol = $this->symbolResolver->resolve($node);
+
+        $this->table[$node] = $symbol->type;
+    }
+
+    private function visitFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
         $symbol = $this->symbolResolver->resolve($node);
 

@@ -92,6 +92,47 @@ class TypeResolverTest extends TestCase
     }
 
     #[Test]
+    public function testResolveFunctionCallExpression(): void
+    {
+        $node = new Block(
+            location: Location::dummy(),
+            statements: [
+                new Statements\FunctionStatement(
+                    location: Location::dummy(),
+                    name: 'foo',
+                    type: new Types\BuiltinType(
+                        location: Location::dummy(),
+                        kind: BuiltinTypeKind::String,
+                    ),
+                    parameters: [],
+                    statements: new Block(
+                        location: Location::dummy(),
+                        statements: [
+                            new Statements\ReturnStatement(
+                                location: Location::dummy(),
+                                expression: new Literals\StringLiteral(
+                                    location: Location::dummy(),
+                                    value: 'Hello, World!',
+                                ),
+                            ),
+                        ],
+                    ),
+                ),
+                new Statements\ExpressionStatement(
+                    location: Location::dummy(),
+                    expression: new Expressions\FunctionCallExpression(
+                        location: Location::dummy(),
+                        name: 'foo',
+                        arguments: [],
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertSnapshot($node);
+    }
+
+    #[Test]
     public function testResolveIdentifierExpression(): void
     {
         $node = new Block(
