@@ -122,6 +122,10 @@ class ParserTest extends TestCase
     #[Test]
     public function testParseNamedType(): void
     {
+        $this->assertSnapshot('var foo: bool = true;');
+        $this->assertSnapshot('var foo: float = 3.14;');
+        $this->assertSnapshot('var foo: int = 42;');
+        $this->assertSnapshot('var foo: string = "Hello, World!";');
         $this->assertSnapshot('var foo: xyz = 123;');
         $this->assertSnapshot('fn foo(bar: xyz): xyz { return bar; }');
     }
