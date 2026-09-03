@@ -7,9 +7,10 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Literals;
 
+use Package\Language\BuiltinTypeKind;
 use Package\Nodes\Expressions\AbstractExpression;
 
 abstract class AbstractLiteral extends AbstractExpression
 {
-    //
+    abstract public function getBuiltinTypeKind(): BuiltinTypeKind;
 }

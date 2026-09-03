@@ -5,7 +5,7 @@ Package\Nodes\Block Object
             [startLine] => 1
             [startOffset] => 0
             [endLine] => 1
-            [endOffset] => 19
+            [endOffset] => 21
         )
 
     [statements] => Array
@@ -17,34 +17,39 @@ Package\Nodes\Block Object
                             [startLine] => 1
                             [startOffset] => 0
                             [endLine] => 1
-                            [endOffset] => 19
+                            [endOffset] => 21
                         )
 
                     [name] => foo
-                    [type] => Package\Nodes\Types\NamedType Object
+                    [type] => Package\Nodes\Types\BuiltinType Object
                         (
                             [location] => Package\Core\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 9
                                     [endLine] => 1
-                                    [endOffset] => 12
+                                    [endOffset] => 13
                                 )
 
-                            [name] => xyz
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => Boolean
+                                    [value] => bool
+                                )
+
                         )
 
-                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                    [expression] => Package\Nodes\Literals\BooleanLiteral Object
                         (
                             [location] => Package\Core\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 15
+                                    [startOffset] => 16
                                     [endLine] => 1
-                                    [endOffset] => 18
+                                    [endOffset] => 20
                                 )
 
-                            [value] => 123
+                            [value] => 1
                         )
 
                 )

@@ -9,9 +9,10 @@ namespace Package\Language;
 
 enum BuiltinTypeKind: string
 {
-    case Bool = 'bool';
+    case Boolean = 'bool';
     case Float = 'float';
     case Integer = 'int';
+    case Null = 'null';
     case String = 'string';
     case Void = 'void';
 }

@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes\Literals;
 
 use Package\Core\Location;
+use Package\Language\BuiltinTypeKind;
 
 final class NullLiteral extends AbstractLiteral
 {
@@ -18,5 +19,10 @@ final class NullLiteral extends AbstractLiteral
         parent::__construct($location);
 
         $this->value = $value;
+    }
+
+    public function getBuiltinTypeKind(): BuiltinTypeKind
+    {
+        return BuiltinTypeKind::Null;
     }
 }

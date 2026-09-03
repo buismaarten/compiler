@@ -17,6 +17,7 @@ use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\Symbols;
 use Package\Semantic\Symbols\AbstractSymbol;
 use Package\Semantic\Types;
+use Package\Semantic\Types\AbstractType;
 use SplStack;
 use WeakMap;
 
@@ -41,78 +42,52 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     public function enterNode(AbstractNode $node): void
     {
         if ($node instanceof Nodes\Block) {
-            $this->scope = new Scope($this->scope);
-
+            $this->enterBlock($node);
             return;
         }
 
         if ($node instanceof Nodes\Parameter) {
-            $this->visitParameter($node);
-
+            $this->enterParameter($node);
             return;
         }
 
         if ($node instanceof Nodes\Expressions\AssignmentExpression) {
-            $this->visitAssignmentExpression($node);
-
+            $this->enterAssignmentExpression($node);
             return;
         }
 
         if ($node instanceof Nodes\Expressions\FunctionCallExpression) {
-            $this->visitFunctionCallExpression($node);
-
+            $this->enterFunctionCallExpression($node);
             return;
         }
 
         if ($node instanceof Nodes\Expressions\IdentifierExpression) {
-            $this->visitIdentifierExpression($node);
-
+            $this->enterIdentifierExpression($node);
             return;
         }
 
         if ($node instanceof Nodes\Statements\ConstantStatement) {
-            $this->visitConstantStatement($node);
-
+            $this->enterConstantStatement($node);
             return;
         }
 
         if ($node instanceof Nodes\Statements\FunctionStatement) {
-            $this->visitFunctionStatement($node);
-
+            $this->enterFunctionStatement($node);
             return;
         }
 
         if ($node instanceof Nodes\Statements\VariableStatement) {
-            $this->visitVariableStatement($node);
-
+            $this->enterVariableStatement($node);
             return;
         }
 
         if ($node instanceof Nodes\Types\NamedType) {
-            $this->visitNamedType($node);
-
+            $this->enterNamedType($node);
             return;
         }
     }
 
-    #[Override]
-    public function leaveNode(AbstractNode $node): void
-    {
-        if ($node instanceof Nodes\Block) {
-            $this->scope = $this->scope?->parent;
-
-            return;
-        }
-
-        if ($node instanceof Nodes\Statements\FunctionStatement) {
-            $this->scope = $this->scope?->parent;
-            $this->functionSymbolStack->pop();
-
-            return;
-        }
-    }
-
-    private function visitAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
+    private function enterAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -121,7 +96,12 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitConstantStatement(Nodes\Statements\ConstantStatement $node): void
+    private function enterBlock(Nodes\Block $node): void
+    {
+        $this->scope = new Scope($this->scope);
+    }
+
+    private function enterConstantStatement(Nodes\Statements\ConstantStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -138,7 +118,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope[$node->name] = $symbol;
     }
 
-    private function visitFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
+    private function enterFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -147,7 +127,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitFunctionStatement(Nodes\Statements\FunctionStatement $node): void
+    private function enterFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -165,7 +145,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope = new Scope($this->scope);
     }
 
-    private function visitIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void
+    private function enterIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -174,7 +154,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitNamedType(Nodes\Types\NamedType $node): void
+    private function enterNamedType(Nodes\Types\NamedType $node): void
     {
         $symbol = $this->resolve($node->name, $node);
 
@@ -183,7 +163,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function visitParameter(Nodes\Parameter $node): void
+    private function enterParameter(Nodes\Parameter $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -203,7 +183,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope[$node->name] = $symbol;
     }
 
-    private function visitVariableStatement(Nodes\Statements\VariableStatement $node): void
+    private function enterVariableStatement(Nodes\Statements\VariableStatement $node): void
     {
         if (isset($this->scope[$node->name])) {
             throw new DuplicateSymbolException($node->getStartLine(), $node->name);
@@ -220,6 +200,34 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $this->scope[$node->name] = $symbol;
     }
 
+    #[Override]
+    public function leaveNode(AbstractNode $node): void
+    {
+        if ($node instanceof Nodes\Block) {
+            $this->leaveBlock($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Statements\FunctionStatement) {
+            $this->leaveFunctionStatement($node);
+            return;
+        }
+    }
+
+    private function leaveBlock(Nodes\Block $node): void
+    {
+        $this->scope = $this->scope?->parent;
+    }
+
+    private function leaveFunctionStatement(Nodes\Statements\FunctionStatement $node): void
+    {
+        $this->scope = $this->scope?->parent;
+
+        if ($this->functionSymbolStack->isEmpty() === false) {
+            $this->functionSymbolStack->pop();
+        }
+    }
+
     private function resolve(string $name, AbstractNode $node): ?AbstractSymbol
     {
         if ($symbol = $this->scope?->resolve($name)) {
@@ -229,7 +237,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         return null;
     }
 
-    private static function resolveType(Nodes\Types\AbstractType $node): Types\AbstractType
+    private static function resolveType(Nodes\Types\AbstractType $node): AbstractType
     {
         if ($node instanceof Nodes\Types\ArrayType) {
             return new Types\ArrayType(self::resolveType($node->type));
