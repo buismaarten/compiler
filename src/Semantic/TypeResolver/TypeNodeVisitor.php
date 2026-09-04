@@ -83,28 +83,28 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function enterAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
     {
-        $symbol = $this->symbolResolver->resolve($node);
+        $symbol = $this->symbolResolver->resolveSymbol($node);
 
         $this->table[$node] = $symbol->type;
     }
 
     private function enterConstantStatement(Nodes\Statements\ConstantStatement $node): void
     {
-        $symbol = $this->symbolResolver->resolve($node);
+        $symbol = $this->symbolResolver->resolveSymbol($node);
 
         $this->table[$node] = $symbol->type;
     }
 
     private function enterFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
     {
-        $symbol = $this->symbolResolver->resolve($node);
+        $symbol = $this->symbolResolver->resolveSymbol($node);
 
         $this->table[$node] = $symbol->type;
     }
 
     private function enterFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
-        $symbol = $this->symbolResolver->resolve($node);
+        $symbol = $this->symbolResolver->resolveSymbol($node);
 
         $this->functionReturnStack->push(new ArrayObject);
         $this->table[$node] = $symbol->type;
@@ -112,14 +112,14 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function enterIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void
     {
-        $symbol = $this->symbolResolver->resolve($node);
+        $symbol = $this->symbolResolver->resolveSymbol($node);
 
         $this->table[$node] = $symbol->type;
     }
 
     private function enterVariableStatement(Nodes\Statements\VariableStatement $node): void
     {
-        $symbol = $this->symbolResolver->resolve($node);
+        $symbol = $this->symbolResolver->resolveSymbol($node);
 
         $this->table[$node] = $symbol->type;
     }
