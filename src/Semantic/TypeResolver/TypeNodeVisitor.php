@@ -24,16 +24,16 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     private SymbolResolver $symbolResolver;
 
     /** @var WeakMap<AbstractNode, AbstractType> */
-    private WeakMap $table;
+    private WeakMap $types;
 
     /** @var SplStack<ArrayObject<array-key, AbstractType>> */
     private SplStack $functionReturnStack;
 
-    /** @param WeakMap<AbstractNode, AbstractType> $table */
-    public function __construct(SymbolResolver $symbolResolver, WeakMap $table)
+    /** @param WeakMap<AbstractNode, AbstractType> $types */
+    public function __construct(SymbolResolver $symbolResolver, WeakMap $types)
     {
         $this->symbolResolver = $symbolResolver;
-        $this->table = $table;
+        $this->types = $types;
         $this->functionReturnStack = new SplStack;
     }
 
@@ -78,28 +78,28 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function enterAbstractLiteral(Nodes\Literals\AbstractLiteral $node): void
     {
-        $this->table[$node] = new Types\BuiltinType($node->getBuiltinTypeKind());
+        $this->types[$node] = new Types\BuiltinType($node->getBuiltinTypeKind());
     }
 
     private function enterAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
     {
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
-        $this->table[$node] = $symbol->type;
+        $this->types[$node] = $symbol->type;
     }
 
     private function enterConstantStatement(Nodes\Statements\ConstantStatement $node): void
     {
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
-        $this->table[$node] = $symbol->type;
+        $this->types[$node] = $symbol->type;
     }
 
     private function enterFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
     {
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
-        $this->table[$node] = $symbol->type;
+        $this->types[$node] = $symbol->type;
     }
 
     private function enterFunctionStatement(Nodes\Statements\FunctionStatement $node): void
@@ -107,21 +107,21 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
         $this->functionReturnStack->push(new ArrayObject);
-        $this->table[$node] = $symbol->type;
+        $this->types[$node] = $symbol->type;
     }
 
     private function enterIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void
     {
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
-        $this->table[$node] = $symbol->type;
+        $this->types[$node] = $symbol->type;
     }
 
     private function enterVariableStatement(Nodes\Statements\VariableStatement $node): void
     {
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
-        $this->table[$node] = $symbol->type;
+        $this->types[$node] = $symbol->type;
     }
 
     #[Override]
@@ -148,7 +148,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         if ($node->expression === null) {
             $type = new Types\BuiltinType(BuiltinTypeKind::Null);
         } else {
-            $type = $this->table[$node->expression];
+            $type = $this->types[$node->expression];
         }
 
         $currentFunction = $this->functionReturnStack->top();

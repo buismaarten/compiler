@@ -19,30 +19,32 @@ final class TypeResolver
     private SymbolResolver $symbolResolver;
 
     /** @var WeakMap<AbstractNode, AbstractType> */
-    private WeakMap $table;
+    private WeakMap $types;
 
     public function __construct(AbstractNode $node, SymbolResolver $symbolResolver)
     {
         $this->node = $node;
         $this->symbolResolver = $symbolResolver;
+        $this->types = new WeakMap;
+
+        $this->traverse();
     }
 
     /** @return WeakMap<AbstractNode, AbstractType> */
-    public function getTable(): WeakMap
+    public function getTypes(): WeakMap
     {
-        if (!isset($this->table)) {
-            $this->table = new WeakMap;
-
-            $traverser = new NodeTraverser;
-            $traverser->addVisitor(new TypeNodeVisitor($this->symbolResolver, $this->table));
-            $traverser->traverse($this->node);
-        }
-
-        return $this->table;
+        return $this->types;
     }
 
     public function resolveType(AbstractNode $node): AbstractType
     {
-        return $this->getTable()[$node];
+        return $this->types[$node];
+    }
+
+    private function traverse(): void
+    {
+        $traverser = new NodeTraverser;
+        $traverser->addVisitor(new TypeNodeVisitor($this->symbolResolver, $this->types));
+        $traverser->traverse($this->node);
     }
 }

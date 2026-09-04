@@ -26,15 +26,15 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     private ?Scope $scope = null;
 
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
-    private WeakMap $table;
+    private WeakMap $symbols;
 
     /** @var SplStack<Symbols\FunctionSymbol> */
     private SplStack $functionSymbolStack;
 
-    /** @param WeakMap<AbstractNode, AbstractSymbol> $table */
-    public function __construct(WeakMap $table)
+    /** @param WeakMap<AbstractNode, AbstractSymbol> $symbols */
+    public function __construct(WeakMap $symbols)
     {
-        $this->table = $table;
+        $this->symbols = $symbols;
         $this->functionSymbolStack = new SplStack;
     }
 
@@ -114,7 +114,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             kind: Symbols\ValueSymbolKind::Constant,
         );
 
-        $this->table[$node] = $symbol;
+        $this->symbols[$node] = $symbol;
         $this->scope[$node->name] = $symbol;
     }
 
@@ -140,7 +140,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         );
 
         $this->functionSymbolStack->push($symbol);
-        $this->table[$node] = $symbol;
+        $this->symbols[$node] = $symbol;
         $this->scope[$node->name] = $symbol;
         $this->scope = new Scope($this->scope);
     }
@@ -179,7 +179,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $currentFunction = $this->functionSymbolStack->top();
         $currentFunction->parameters[] = $symbol;
 
-        $this->table[$node] = $symbol;
+        $this->symbols[$node] = $symbol;
         $this->scope[$node->name] = $symbol;
     }
 
@@ -196,7 +196,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             kind: Symbols\ValueSymbolKind::Variable,
         );
 
-        $this->table[$node] = $symbol;
+        $this->symbols[$node] = $symbol;
         $this->scope[$node->name] = $symbol;
     }
 
@@ -228,7 +228,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     private function resolve(string $name, AbstractNode $node): ?AbstractSymbol
     {
         if ($symbol = $this->scope?->resolve($name)) {
-            return $this->table[$node] = $symbol;
+            return $this->symbols[$node] = $symbol;
         }
 
         return null;

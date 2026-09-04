@@ -17,29 +17,31 @@ final class SymbolResolver
     private AbstractNode $node;
 
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
-    private WeakMap $table;
+    private WeakMap $symbols;
 
     public function __construct(AbstractNode $node)
     {
         $this->node = $node;
+        $this->symbols = new WeakMap;
+
+        $this->traverse();
     }
 
     /** @return WeakMap<AbstractNode, AbstractSymbol> */
-    public function getTable(): WeakMap
+    public function getSymbols(): WeakMap
     {
-        if (!isset($this->table)) {
-            $this->table = new WeakMap;
-
-            $traverser = new NodeTraverser;
-            $traverser->addVisitor(new SymbolNodeVisitor($this->table));
-            $traverser->traverse($this->node);
-        }
-
-        return $this->table;
+        return $this->symbols;
     }
 
     public function resolveSymbol(AbstractNode $node): AbstractSymbol
     {
-        return $this->getTable()[$node];
+        return $this->symbols[$node];
+    }
+
+    private function traverse(): void
+    {
+        $traverser = new NodeTraverser;
+        $traverser->addVisitor(new SymbolNodeVisitor($this->symbols));
+        $traverser->traverse($this->node);
     }
 }

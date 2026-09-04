@@ -261,6 +261,6 @@ class SymbolResolverTest extends TestCase
     {
         $symbolResolver = new SymbolResolver($node);
 
-        $this->assertMatchesSnapshot($symbolResolver->getTable());
+        $this->assertMatchesSnapshot($symbolResolver->getSymbols());
     }
 }
