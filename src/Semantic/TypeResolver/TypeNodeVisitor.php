@@ -140,9 +140,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function leaveFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
-        if ($this->functionReturnStack->isEmpty() === false) {
-            $this->functionReturnStack->pop();
-        }
+        $this->functionReturnStack->pop();
     }
 
     private function leaveReturnStatement(Nodes\Statements\ReturnStatement $node): void
