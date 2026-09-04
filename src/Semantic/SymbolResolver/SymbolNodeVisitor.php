@@ -222,10 +222,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
     private function leaveFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
         $this->scope = $this->scope?->parent;
-
-        if ($this->functionSymbolStack->isEmpty() === false) {
-            $this->functionSymbolStack->pop();
-        }
+        $this->functionSymbolStack->pop();
     }
 
     private function resolve(string $name, AbstractNode $node): ?AbstractSymbol
