@@ -206,7 +206,7 @@ class TypeResolverTest extends TestCase
         $symbolResolver = new SymbolResolver($node);
         $typeResolver = new TypeResolver($node, $symbolResolver);
 
-        $this->assertMatchesSnapshot($typeResolver->getTypes());
         $this->assertMatchesSnapshot($typeResolver->getFunctionReturnTypes());
+        $this->assertMatchesSnapshot($typeResolver->getTypes());
     }
 }
