@@ -14,17 +14,14 @@ use WeakMap;
 
 final class SymbolResolver
 {
-    private AbstractNode $node;
-
     /** @var WeakMap<AbstractNode, AbstractSymbol> */
     private WeakMap $symbols;
 
     public function __construct(AbstractNode $node)
     {
-        $this->node = $node;
         $this->symbols = new WeakMap;
 
-        $this->traverse();
+        $this->traverse($node);
     }
 
     /** @return WeakMap<AbstractNode, AbstractSymbol> */
@@ -38,10 +35,10 @@ final class SymbolResolver
         return $this->symbols[$node];
     }
 
-    private function traverse(): void
+    private function traverse(AbstractNode $node): void
     {
         $traverser = new NodeTraverser;
         $traverser->addVisitor(new SymbolNodeVisitor($this->symbols));
-        $traverser->traverse($this->node);
+        $traverser->traverse($node);
     }
 }

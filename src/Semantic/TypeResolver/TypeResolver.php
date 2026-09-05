@@ -15,9 +15,6 @@ use WeakMap;
 
 final class TypeResolver
 {
-    private AbstractNode $node;
-    private SymbolResolver $symbolResolver;
-
     /** @var WeakMap<AbstractNode, AbstractType> */
     private WeakMap $types;
 
@@ -26,12 +23,10 @@ final class TypeResolver
 
     public function __construct(AbstractNode $node, SymbolResolver $symbolResolver)
     {
-        $this->node = $node;
-        $this->symbolResolver = $symbolResolver;
         $this->types = new WeakMap;
         $this->functionReturnTypes = new WeakMap;
 
-        $this->traverse();
+        $this->traverse($node, $symbolResolver);
     }
 
     /** @return WeakMap<AbstractNode, AbstractType[]> */
@@ -57,10 +52,10 @@ final class TypeResolver
         return $this->types[$node];
     }
 
-    private function traverse(): void
+    private function traverse(AbstractNode $node, SymbolResolver $symbolResolver): void
     {
         $traverser = new NodeTraverser;
-        $traverser->addVisitor(new TypeNodeVisitor($this->symbolResolver, $this->types, $this->functionReturnTypes));
-        $traverser->traverse($this->node);
+        $traverser->addVisitor(new TypeNodeVisitor($symbolResolver, $this->types, $this->functionReturnTypes));
+        $traverser->traverse($node);
     }
 }
