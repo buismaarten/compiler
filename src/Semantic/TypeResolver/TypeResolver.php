@@ -21,19 +21,35 @@ final class TypeResolver
     /** @var WeakMap<AbstractNode, AbstractType> */
     private WeakMap $types;
 
+    /** @var WeakMap<AbstractNode, AbstractType[]> */
+    private WeakMap $functionReturnTypes;
+
     public function __construct(AbstractNode $node, SymbolResolver $symbolResolver)
     {
         $this->node = $node;
         $this->symbolResolver = $symbolResolver;
         $this->types = new WeakMap;
+        $this->functionReturnTypes = new WeakMap;
 
         $this->traverse();
+    }
+
+    /** @return WeakMap<AbstractNode, AbstractType[]> */
+    public function getFunctionReturnTypes(): WeakMap
+    {
+        return $this->functionReturnTypes;
     }
 
     /** @return WeakMap<AbstractNode, AbstractType> */
     public function getTypes(): WeakMap
     {
         return $this->types;
+    }
+
+    /** @return AbstractType[] */
+    public function resolveFunctionReturnTypes(AbstractNode $node): array
+    {
+        return $this->functionReturnTypes[$node];
     }
 
     public function resolveType(AbstractNode $node): AbstractType
@@ -44,7 +60,7 @@ final class TypeResolver
     private function traverse(): void
     {
         $traverser = new NodeTraverser;
-        $traverser->addVisitor(new TypeNodeVisitor($this->symbolResolver, $this->types));
+        $traverser->addVisitor(new TypeNodeVisitor($this->symbolResolver, $this->types, $this->functionReturnTypes));
         $traverser->traverse($this->node);
     }
 }

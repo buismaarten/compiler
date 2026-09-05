@@ -26,15 +26,22 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     /** @var WeakMap<AbstractNode, AbstractType> */
     private WeakMap $types;
 
-    /** @var SplStack<ArrayObject<array-key, AbstractType>> */
-    private SplStack $functionReturnStack;
+    /** @var WeakMap<AbstractNode, AbstractType[]> */
+    private WeakMap $functionReturnTypes;
 
-    /** @param WeakMap<AbstractNode, AbstractType> $types */
-    public function __construct(SymbolResolver $symbolResolver, WeakMap $types)
+    /** @var SplStack<ArrayObject<array-key, AbstractType>> */
+    private SplStack $functionReturnTypesStack;
+
+    /**
+     * @param WeakMap<AbstractNode, AbstractType> $types
+     * @param WeakMap<AbstractNode, AbstractType[]> $functionReturnTypes
+     */
+    public function __construct(SymbolResolver $symbolResolver, WeakMap $types, WeakMap $functionReturnTypes)
     {
         $this->symbolResolver = $symbolResolver;
         $this->types = $types;
-        $this->functionReturnStack = new SplStack;
+        $this->functionReturnTypes = $functionReturnTypes;
+        $this->functionReturnTypesStack = new SplStack;
     }
 
     #[Override]
@@ -106,7 +113,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     {
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
-        $this->functionReturnStack->push(new ArrayObject);
+        $this->functionReturnTypesStack->push(new ArrayObject);
         $this->types[$node] = $symbol->type;
     }
 
@@ -140,7 +147,9 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function leaveFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
-        $this->functionReturnStack->pop();
+        $functionReturnTypes = $this->functionReturnTypesStack->pop();
+
+        $this->functionReturnTypes[$node] = $functionReturnTypes->getArrayCopy();
     }
 
     private function leaveReturnStatement(Nodes\Statements\ReturnStatement $node): void
@@ -151,7 +160,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
             $type = $this->types[$node->expression];
         }
 
-        $currentFunction = $this->functionReturnStack->top();
-        $currentFunction->append($type);
+        $functionReturnTypes = $this->functionReturnTypesStack->top();
+        $functionReturnTypes->append($type);
     }
 }

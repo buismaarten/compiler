@@ -1,0 +1,97 @@
+WeakMap Object
+(
+    [0] => Array
+        (
+            [key] => Package\Nodes\Statements\FunctionStatement Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => foo
+                    [type] => Package\Nodes\Types\BuiltinType Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => String
+                                    [value] => string
+                                )
+
+                        )
+
+                    [parameters] => Array
+                        (
+                        )
+
+                    [statements] => Package\Nodes\Block Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [statements] => Array
+                                (
+                                    [0] => Package\Nodes\Statements\ReturnStatement Object
+                                        (
+                                            [location] => Package\Core\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
+
+                                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                                (
+                                                    [location] => Package\Core\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [value] => Hello, World!
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [value] => Array
+                (
+                    [0] => Package\Semantic\Types\BuiltinType Object
+                        (
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => String
+                                    [value] => string
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

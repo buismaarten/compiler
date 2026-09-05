@@ -176,8 +176,8 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             kind: Symbols\ValueSymbolKind::Parameter,
         );
 
-        $currentFunction = $this->functionSymbolStack->top();
-        $currentFunction->parameters[] = $symbol;
+        $functionSymbol = $this->functionSymbolStack->top();
+        $functionSymbol->parameters[] = $symbol;
 
         $this->symbols[$node] = $symbol;
         $this->scope[$node->name] = $symbol;
