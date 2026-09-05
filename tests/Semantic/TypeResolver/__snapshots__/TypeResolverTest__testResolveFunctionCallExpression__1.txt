@@ -72,6 +72,31 @@ WeakMap Object
 
                                         )
 
+                                    [1] => Package\Nodes\Statements\ReturnStatement Object
+                                        (
+                                            [location] => Package\Core\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
+
+                                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                                (
+                                                    [location] => Package\Core\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [value] => Goodbye, World!
+                                                )
+
+                                        )
+
                                 )
 
                         )
@@ -118,6 +143,33 @@ WeakMap Object
         )
 
     [2] => Array
+        (
+            [key] => Package\Nodes\Literals\StringLiteral Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [value] => Goodbye, World!
+                )
+
+            [value] => Package\Semantic\Types\BuiltinType Object
+                (
+                    [kind] => Package\Language\BuiltinTypeKind Enum:string
+                        (
+                            [name] => String
+                            [value] => string
+                        )
+
+                )
+
+        )
+
+    [3] => Array
         (
             [key] => Package\Nodes\Expressions\FunctionCallExpression Object
                 (

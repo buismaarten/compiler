@@ -72,6 +72,31 @@ WeakMap Object
 
                                         )
 
+                                    [1] => Package\Nodes\Statements\ReturnStatement Object
+                                        (
+                                            [location] => Package\Core\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
+
+                                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                                (
+                                                    [location] => Package\Core\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [value] => Goodbye, World!
+                                                )
+
+                                        )
+
                                 )
 
                         )
@@ -81,6 +106,16 @@ WeakMap Object
             [value] => Array
                 (
                     [0] => Package\Semantic\Types\BuiltinType Object
+                        (
+                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                                (
+                                    [name] => String
+                                    [value] => string
+                                )
+
+                        )
+
+                    [1] => Package\Semantic\Types\BuiltinType Object
                         (
                             [kind] => Package\Language\BuiltinTypeKind Enum:string
                                 (

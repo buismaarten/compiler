@@ -115,6 +115,13 @@ class TypeResolverTest extends TestCase
                                     value: 'Hello, World!',
                                 ),
                             ),
+                            new Statements\ReturnStatement(
+                                location: Location::dummy(),
+                                expression: new Literals\StringLiteral(
+                                    location: Location::dummy(),
+                                    value: 'Goodbye, World!',
+                                ),
+                            ),
                         ],
                     ),
                 ),
