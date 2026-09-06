@@ -64,23 +64,13 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function leaveNode(AbstractNode $node): void
     {
-        if ($node instanceof Nodes\Expressions\BinaryExpression) {
-            $this->leaveBinaryExpression($node);
-            return;
-        }
-
-        if ($node instanceof Nodes\Statements\FunctionStatement) {
-            $this->leaveFunctionStatement($node);
-            return;
-        }
-
-        if ($node instanceof Nodes\Statements\ReturnStatement) {
-            $this->leaveReturnStatement($node);
-            return;
-        }
-
         if ($node instanceof Nodes\Expressions\AssignmentExpression) {
             $this->leaveAssignmentExpression($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Expressions\BinaryExpression) {
+            $this->leaveBinaryExpression($node);
             return;
         }
 
@@ -101,6 +91,16 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
         if ($node instanceof Nodes\Statements\ConstantStatement) {
             $this->leaveConstantStatement($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Statements\FunctionStatement) {
+            $this->leaveFunctionStatement($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Statements\ReturnStatement) {
+            $this->leaveReturnStatement($node);
             return;
         }
 
