@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Tests\Semantic\TypeResolver;
 
 use Package\Core\Location;
+use Package\Language\BinaryOperator;
 use Package\Language\BuiltinTypeKind;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
@@ -49,6 +50,45 @@ class TypeResolverTest extends TestCase
                         location: Location::dummy(),
                         name: 'foo',
                         expression: new Literals\IntegerLiteral(
+                            location: Location::dummy(),
+                            value: 2,
+                        ),
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertSnapshot($node);
+    }
+
+    #[Test]
+    public function testResolveBinaryExpression(): void
+    {
+        $node = new Block(
+            location: Location::dummy(),
+            statements: [
+                new Statements\VariableStatement(
+                    location: Location::dummy(),
+                    name: 'foo',
+                    type: new Types\BuiltinType(
+                        location: Location::dummy(),
+                        kind: BuiltinTypeKind::Float,
+                    ),
+                    expression: new Literals\FloatLiteral(
+                        location: Location::dummy(),
+                        value: 3.14,
+                    ),
+                ),
+                new Statements\ExpressionStatement(
+                    location: Location::dummy(),
+                    expression: new Expressions\BinaryExpression(
+                        location: Location::dummy(),
+                        operator: BinaryOperator::Plus,
+                        left: new Expressions\IdentifierExpression(
+                            location: Location::dummy(),
+                            name: 'foo',
+                        ),
+                        right: new Literals\IntegerLiteral(
                             location: Location::dummy(),
                             value: 2,
                         ),
