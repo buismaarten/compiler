@@ -28,7 +28,7 @@
     },
     "scripts": {
         "analyze": "./vendor/bin/phpstan analyse -c ./phpstan.neon --no-progress",
-        "test": "./vendor/bin/phpunit --no-progress"
+        "test": "@php ./scripts/clean-snapshots.php && ./vendor/bin/phpunit --no-progress"
     },
     "config": {
         "preferred-install": "dist",
