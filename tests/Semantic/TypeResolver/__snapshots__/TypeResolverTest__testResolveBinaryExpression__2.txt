@@ -2,6 +2,33 @@ WeakMap Object
 (
     [0] => Array
         (
+            [key] => Package\Nodes\Literals\FloatLiteral Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [value] => 3.14
+                )
+
+            [value] => Package\Semantic\Types\BuiltinType Object
+                (
+                    [kind] => Package\Language\BuiltinTypeKind Enum:string
+                        (
+                            [name] => Float
+                            [value] => float
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
             [key] => Package\Nodes\Statements\VariableStatement Object
                 (
                     [location] => Package\Core\Location Object
@@ -44,33 +71,6 @@ WeakMap Object
                             [value] => 3.14
                         )
 
-                )
-
-            [value] => Package\Semantic\Types\BuiltinType Object
-                (
-                    [kind] => Package\Language\BuiltinTypeKind Enum:string
-                        (
-                            [name] => Float
-                            [value] => float
-                        )
-
-                )
-
-        )
-
-    [1] => Array
-        (
-            [key] => Package\Nodes\Literals\FloatLiteral Object
-                (
-                    [location] => Package\Core\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value] => 3.14
                 )
 
             [value] => Package\Semantic\Types\BuiltinType Object

@@ -2,6 +2,33 @@ WeakMap Object
 (
     [0] => Array
         (
+            [key] => Package\Nodes\Literals\IntegerLiteral Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [value] => 1
+                )
+
+            [value] => Package\Semantic\Types\BuiltinType Object
+                (
+                    [kind] => Package\Language\BuiltinTypeKind Enum:string
+                        (
+                            [name] => Integer
+                            [value] => int
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
             [key] => Package\Nodes\Statements\VariableStatement Object
                 (
                     [location] => Package\Core\Location Object
@@ -58,7 +85,7 @@ WeakMap Object
 
         )
 
-    [1] => Array
+    [2] => Array
         (
             [key] => Package\Nodes\Literals\IntegerLiteral Object
                 (
@@ -70,7 +97,7 @@ WeakMap Object
                             [endOffset] => -1
                         )
 
-                    [value] => 1
+                    [value] => 2
                 )
 
             [value] => Package\Semantic\Types\BuiltinType Object
@@ -85,7 +112,7 @@ WeakMap Object
 
         )
 
-    [2] => Array
+    [3] => Array
         (
             [key] => Package\Nodes\Expressions\AssignmentExpression Object
                 (
@@ -111,33 +138,6 @@ WeakMap Object
                             [value] => 2
                         )
 
-                )
-
-            [value] => Package\Semantic\Types\BuiltinType Object
-                (
-                    [kind] => Package\Language\BuiltinTypeKind Enum:string
-                        (
-                            [name] => Integer
-                            [value] => int
-                        )
-
-                )
-
-        )
-
-    [3] => Array
-        (
-            [key] => Package\Nodes\Literals\IntegerLiteral Object
-                (
-                    [location] => Package\Core\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value] => 2
                 )
 
             [value] => Package\Semantic\Types\BuiltinType Object

@@ -47,66 +47,10 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function enterNode(AbstractNode $node): void
     {
-        if ($node instanceof Nodes\Expressions\AssignmentExpression) {
-            $this->enterAssignmentExpression($node);
-            return;
-        }
-
-        if ($node instanceof Nodes\Expressions\FunctionCallExpression) {
-            $this->enterFunctionCallExpression($node);
-            return;
-        }
-
-        if ($node instanceof Nodes\Expressions\IdentifierExpression) {
-            $this->enterIdentifierExpression($node);
-            return;
-        }
-
-        if ($node instanceof Nodes\Literals\AbstractLiteral) {
-            $this->enterAbstractLiteral($node);
-            return;
-        }
-
-        if ($node instanceof Nodes\Statements\ConstantStatement) {
-            $this->enterConstantStatement($node);
-            return;
-        }
-
         if ($node instanceof Nodes\Statements\FunctionStatement) {
             $this->enterFunctionStatement($node);
             return;
         }
-
-        if ($node instanceof Nodes\Statements\VariableStatement) {
-            $this->enterVariableStatement($node);
-            return;
-        }
-    }
-
-    private function enterAbstractLiteral(Nodes\Literals\AbstractLiteral $node): void
-    {
-        $this->types[$node] = new Types\BuiltinType($node->getBuiltinTypeKind());
-    }
-
-    private function enterAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
-    {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
-        $this->types[$node] = $symbol->type;
-    }
-
-    private function enterConstantStatement(Nodes\Statements\ConstantStatement $node): void
-    {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
-        $this->types[$node] = $symbol->type;
-    }
-
-    private function enterFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
-    {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
-        $this->types[$node] = $symbol->type;
     }
 
     private function enterFunctionStatement(Nodes\Statements\FunctionStatement $node): void
@@ -114,20 +58,6 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
         $this->functionReturnTypesStack->push(new ArrayObject);
-        $this->types[$node] = $symbol->type;
-    }
-
-    private function enterIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void
-    {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
-        $this->types[$node] = $symbol->type;
-    }
-
-    private function enterVariableStatement(Nodes\Statements\VariableStatement $node): void
-    {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
         $this->types[$node] = $symbol->type;
     }
 
@@ -148,6 +78,48 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
             $this->leaveReturnStatement($node);
             return;
         }
+
+        if ($node instanceof Nodes\Expressions\AssignmentExpression) {
+            $this->leaveAssignmentExpression($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Expressions\FunctionCallExpression) {
+            $this->leaveFunctionCallExpression($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Expressions\IdentifierExpression) {
+            $this->leaveIdentifierExpression($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Literals\AbstractLiteral) {
+            $this->leaveAbstractLiteral($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Statements\ConstantStatement) {
+            $this->leaveConstantStatement($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Statements\VariableStatement) {
+            $this->leaveVariableStatement($node);
+            return;
+        }
+    }
+
+    private function leaveAbstractLiteral(Nodes\Literals\AbstractLiteral $node): void
+    {
+        $this->types[$node] = new Types\BuiltinType($node->getBuiltinTypeKind());
+    }
+
+    private function leaveAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
+    {
+        $symbol = $this->symbolResolver->resolveSymbol($node);
+
+        $this->types[$node] = $symbol->type;
     }
 
     private function leaveBinaryExpression(Nodes\Expressions\BinaryExpression $node): void
@@ -160,11 +132,32 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         var_dump($rightSymbol);
     }
 
+    private function leaveConstantStatement(Nodes\Statements\ConstantStatement $node): void
+    {
+        $symbol = $this->symbolResolver->resolveSymbol($node);
+
+        $this->types[$node] = $symbol->type;
+    }
+
+    private function leaveFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
+    {
+        $symbol = $this->symbolResolver->resolveSymbol($node);
+
+        $this->types[$node] = $symbol->type;
+    }
+
     private function leaveFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
         $functionReturnTypes = $this->functionReturnTypesStack->pop();
 
         $this->functionReturnTypes[$node] = $functionReturnTypes->getArrayCopy();
+    }
+
+    private function leaveIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void
+    {
+        $symbol = $this->symbolResolver->resolveSymbol($node);
+
+        $this->types[$node] = $symbol->type;
     }
 
     private function leaveReturnStatement(Nodes\Statements\ReturnStatement $node): void
@@ -177,5 +170,12 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
         $functionReturnTypes = $this->functionReturnTypesStack->top();
         $functionReturnTypes->append($type);
+    }
+
+    private function leaveVariableStatement(Nodes\Statements\VariableStatement $node): void
+    {
+        $symbol = $this->symbolResolver->resolveSymbol($node);
+
+        $this->types[$node] = $symbol->type;
     }
 }
