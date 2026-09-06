@@ -85,7 +85,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         }
 
         if ($node instanceof Nodes\Literals\AbstractLiteral) {
-            $this->leaveAbstractLiteral($node);
+            $this->leaveLiteral($node);
             return;
         }
 
@@ -108,11 +108,6 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
             $this->leaveVariableStatement($node);
             return;
         }
-    }
-
-    private function leaveAbstractLiteral(Nodes\Literals\AbstractLiteral $node): void
-    {
-        $this->types[$node] = new Types\BuiltinType($node->getBuiltinTypeKind());
     }
 
     private function leaveAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
@@ -158,6 +153,11 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
         $this->types[$node] = $symbol->type;
+    }
+
+    private function leaveLiteral(Nodes\Literals\AbstractLiteral $node): void
+    {
+        $this->types[$node] = new Types\BuiltinType($node->getBuiltinTypeKind());
     }
 
     private function leaveReturnStatement(Nodes\Statements\ReturnStatement $node): void
