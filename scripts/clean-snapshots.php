@@ -9,6 +9,6 @@ if (!getenv('UPDATE_SNAPSHOTS')) {
     return;
 }
 
-// shell_exec('rm -rf ./tests/Parser/__snapshots__');
-// shell_exec('rm -rf ./tests/Semantic/SymbolResolver/__snapshots__');
-// shell_exec('rm -rf ./tests/Semantic/TypeResolver/__snapshots__');
+shell_exec('rm -rf ./tests/Parser/__snapshots__');
+shell_exec('rm -rf ./tests/Semantic/SymbolResolver/__snapshots__');
+shell_exec('rm -rf ./tests/Semantic/TypeResolver/__snapshots__');
