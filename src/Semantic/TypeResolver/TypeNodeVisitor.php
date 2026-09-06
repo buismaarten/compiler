@@ -119,12 +119,12 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function leaveBinaryExpression(Nodes\Expressions\BinaryExpression $node): void
     {
-        $leftSymbol = $this->types[$node->left];
-        $rightSymbol = $this->types[$node->right];
+        $left = $this->types[$node->left];
+        $right = $this->types[$node->right];
 
         // TODO
-        var_dump($leftSymbol);
-        var_dump($rightSymbol);
+        var_dump($left);
+        var_dump($right);
     }
 
     private function leaveConstantStatement(Nodes\Statements\ConstantStatement $node): void
