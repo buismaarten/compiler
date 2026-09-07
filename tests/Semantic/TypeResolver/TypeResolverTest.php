@@ -10,6 +10,8 @@ namespace Package\Tests\Semantic\TypeResolver;
 use Package\Core\Location;
 use Package\Language\BinaryOperator;
 use Package\Language\BuiltinTypeKind;
+use Package\Language\UnaryOperator;
+use Package\Language\UnaryPosition;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
@@ -202,6 +204,42 @@ class TypeResolverTest extends TestCase
                     expression: new Expressions\IdentifierExpression(
                         location: Location::dummy(),
                         name: 'foo',
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertSnapshot($node);
+    }
+
+    #[Test]
+    public function testResolveUnaryExpression(): void
+    {
+        $node = new Block(
+            location: Location::dummy(),
+            statements: [
+                new Statements\VariableStatement(
+                    location: Location::dummy(),
+                    name: 'foo',
+                    type: new Types\BuiltinType(
+                        location: Location::dummy(),
+                        kind: BuiltinTypeKind::Integer,
+                    ),
+                    expression: new Literals\IntegerLiteral(
+                        location: Location::dummy(),
+                        value: 1,
+                    ),
+                ),
+                new Statements\ExpressionStatement(
+                    location: Location::dummy(),
+                    expression: new Expressions\UnaryExpression(
+                        location: Location::dummy(),
+                        operator: UnaryOperator::Minus,
+                        position: UnaryPosition::Postfix,
+                        expression: new Expressions\IdentifierExpression(
+                            location: Location::dummy(),
+                            name: 'foo',
+                        ),
                     ),
                 ),
             ],

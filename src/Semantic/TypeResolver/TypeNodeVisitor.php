@@ -84,6 +84,11 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
+        if ($node instanceof Nodes\Expressions\UnaryExpression) {
+            $this->leaveUnaryExpression($node);
+            return;
+        }
+
         if ($node instanceof Nodes\Literals\AbstractLiteral) {
             $this->leaveLiteral($node);
             return;
@@ -170,6 +175,14 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
         $functionReturnTypes = $this->functionReturnTypesStack->top();
         $functionReturnTypes->append($type);
+    }
+
+    private function leaveUnaryExpression(Nodes\Expressions\UnaryExpression $node): void
+    {
+        $type = $this->types[$node->expression];
+
+        // TODO
+        var_dump($type);
     }
 
     private function leaveVariableStatement(Nodes\Statements\VariableStatement $node): void
