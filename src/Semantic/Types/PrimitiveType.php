@@ -7,14 +7,14 @@ declare(strict_types=1);
 
 namespace Package\Semantic\Types;
 
-use Package\Language\BuiltinTypeKind;
+use Package\Language\Primitive;
 
-final class BuiltinType extends AbstractType
+final class PrimitiveType extends AbstractType
 {
-    public BuiltinTypeKind $kind;
+    public Primitive $type;
 
-    public function __construct(BuiltinTypeKind $kind)
+    public function __construct(Primitive $type)
     {
-        $this->kind = $kind;
+        $this->type = $type;
     }
 }

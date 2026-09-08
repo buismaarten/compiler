@@ -9,7 +9,7 @@ namespace Package\Semantic\TypeResolver;
 
 use ArrayObject;
 use Override;
-use Package\Language\BuiltinTypeKind;
+use Package\Language\Primitive;
 use Package\Nodes;
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\AbstractNodeVisitor;
@@ -162,13 +162,13 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function leaveLiteral(Nodes\Literals\AbstractLiteral $node): void
     {
-        $this->types[$node] = new Types\BuiltinType($node->getBuiltinTypeKind());
+        $this->types[$node] = new Types\PrimitiveType($node->getPrimitive());
     }
 
     private function leaveReturnStatement(Nodes\Statements\ReturnStatement $node): void
     {
         if ($node->expression === null) {
-            $type = new Types\BuiltinType(BuiltinTypeKind::Null);
+            $type = new Types\PrimitiveType(Primitive::Null);
         } else {
             $type = $this->types[$node->expression];
         }

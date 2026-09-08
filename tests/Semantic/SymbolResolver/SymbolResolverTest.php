@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Package\Tests\Semantic\SymbolResolver;
 
 use Package\Core\Location;
-use Package\Language\BuiltinTypeKind;
+use Package\Language\Primitive;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
@@ -34,9 +34,9 @@ class SymbolResolverTest extends TestCase
                 new Statements\VariableStatement(
                     location: Location::dummy(),
                     name: 'foo',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Integer,
+                        type: Primitive::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: Location::dummy(),
@@ -81,15 +81,15 @@ class SymbolResolverTest extends TestCase
                         new Parameter(
                             location: Location::dummy(),
                             name: 'foo',
-                            type: new Types\BuiltinType(
+                            type: new Types\PrimitiveType(
                                 location: Location::dummy(),
-                                kind: BuiltinTypeKind::Integer,
+                                type: Primitive::Integer,
                             ),
                         ),
                     ],
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Integer,
+                        type: Primitive::Integer,
                     ),
                     statements: new Block(
                         location: Location::dummy(),
@@ -136,15 +136,15 @@ class SymbolResolverTest extends TestCase
                         new Parameter(
                             location: Location::dummy(),
                             name: 'foo',
-                            type: new Types\BuiltinType(
+                            type: new Types\PrimitiveType(
                                 location: Location::dummy(),
-                                kind: BuiltinTypeKind::Integer,
+                                type: Primitive::Integer,
                             ),
                         ),
                     ],
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Void,
+                        type: Primitive::Void,
                     ),
                     statements: new Block(
                         location: Location::dummy(),
@@ -182,9 +182,9 @@ class SymbolResolverTest extends TestCase
                 new Statements\ConstantStatement(
                     location: Location::dummy(),
                     name: 'foo',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Integer,
+                        type: Primitive::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: Location::dummy(),
@@ -221,9 +221,9 @@ class SymbolResolverTest extends TestCase
                 new Statements\ConstantStatement(
                     location: Location::dummy(),
                     name: 'xyz',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Integer,
+                        type: Primitive::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: Location::dummy(),

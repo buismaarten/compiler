@@ -8,16 +8,16 @@ declare(strict_types=1);
 namespace Package\Nodes\Types;
 
 use Package\Core\Location;
-use Package\Language\BuiltinTypeKind;
+use Package\Language\Primitive;
 
-final class BuiltinType extends AbstractType
+final class PrimitiveType extends AbstractType
 {
-    public BuiltinTypeKind $kind;
+    public Primitive $type;
 
-    public function __construct(Location $location, BuiltinTypeKind $kind)
+    public function __construct(Location $location, Primitive $type)
     {
         parent::__construct($location);
 
-        $this->kind = $kind;
+        $this->type = $type;
     }
 }

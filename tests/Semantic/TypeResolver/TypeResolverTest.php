@@ -9,7 +9,7 @@ namespace Package\Tests\Semantic\TypeResolver;
 
 use Package\Core\Location;
 use Package\Language\BinaryOperator;
-use Package\Language\BuiltinTypeKind;
+use Package\Language\Primitive;
 use Package\Language\UnaryOperator;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
@@ -36,9 +36,9 @@ class TypeResolverTest extends TestCase
                 new Statements\VariableStatement(
                     location: Location::dummy(),
                     name: 'foo',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Integer,
+                        type: Primitive::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: Location::dummy(),
@@ -71,9 +71,9 @@ class TypeResolverTest extends TestCase
                 new Statements\VariableStatement(
                     location: Location::dummy(),
                     name: 'foo',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Float,
+                        type: Primitive::Float,
                     ),
                     expression: new Literals\FloatLiteral(
                         location: Location::dummy(),
@@ -110,9 +110,9 @@ class TypeResolverTest extends TestCase
                 new Statements\ConstantStatement(
                     location: Location::dummy(),
                     name: 'foo',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Integer,
+                        type: Primitive::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: Location::dummy(),
@@ -141,9 +141,9 @@ class TypeResolverTest extends TestCase
                 new Statements\FunctionStatement(
                     location: Location::dummy(),
                     name: 'foo',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::String,
+                        type: Primitive::String,
                     ),
                     parameters: [],
                     statements: new Block(
@@ -189,9 +189,9 @@ class TypeResolverTest extends TestCase
                 new Statements\VariableStatement(
                     location: Location::dummy(),
                     name: 'foo',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Integer,
+                        type: Primitive::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: Location::dummy(),
@@ -220,9 +220,9 @@ class TypeResolverTest extends TestCase
                 new Statements\VariableStatement(
                     location: Location::dummy(),
                     name: 'foo',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Integer,
+                        type: Primitive::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: Location::dummy(),
@@ -256,9 +256,9 @@ class TypeResolverTest extends TestCase
                 new Statements\VariableStatement(
                     location: Location::dummy(),
                     name: 'foo',
-                    type: new Types\BuiltinType(
+                    type: new Types\PrimitiveType(
                         location: Location::dummy(),
-                        kind: BuiltinTypeKind::Integer,
+                        type: Primitive::Integer,
                     ),
                     expression: new Literals\IntegerLiteral(
                         location: Location::dummy(),

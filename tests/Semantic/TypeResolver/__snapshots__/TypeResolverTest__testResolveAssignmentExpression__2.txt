@@ -15,9 +15,9 @@ WeakMap Object
                     [value] => 1
                 )
 
-            [value] => Package\Semantic\Types\BuiltinType Object
+            [value] => Package\Semantic\Types\PrimitiveType Object
                 (
-                    [kind] => Package\Language\BuiltinTypeKind Enum:string
+                    [type] => Package\Language\Primitive Enum:string
                         (
                             [name] => Integer
                             [value] => int
@@ -40,7 +40,7 @@ WeakMap Object
                         )
 
                     [name] => foo
-                    [type] => Package\Nodes\Types\BuiltinType Object
+                    [type] => Package\Nodes\Types\PrimitiveType Object
                         (
                             [location] => Package\Core\Location Object
                                 (
@@ -50,7 +50,7 @@ WeakMap Object
                                     [endOffset] => -1
                                 )
 
-                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                            [type] => Package\Language\Primitive Enum:string
                                 (
                                     [name] => Integer
                                     [value] => int
@@ -73,9 +73,9 @@ WeakMap Object
 
                 )
 
-            [value] => Package\Semantic\Types\BuiltinType Object
+            [value] => Package\Semantic\Types\PrimitiveType Object
                 (
-                    [kind] => Package\Language\BuiltinTypeKind Enum:string
+                    [type] => Package\Language\Primitive Enum:string
                         (
                             [name] => Integer
                             [value] => int
@@ -100,9 +100,9 @@ WeakMap Object
                     [value] => 2
                 )
 
-            [value] => Package\Semantic\Types\BuiltinType Object
+            [value] => Package\Semantic\Types\PrimitiveType Object
                 (
-                    [kind] => Package\Language\BuiltinTypeKind Enum:string
+                    [type] => Package\Language\Primitive Enum:string
                         (
                             [name] => Integer
                             [value] => int
@@ -140,9 +140,9 @@ WeakMap Object
 
                 )
 
-            [value] => Package\Semantic\Types\BuiltinType Object
+            [value] => Package\Semantic\Types\PrimitiveType Object
                 (
-                    [kind] => Package\Language\BuiltinTypeKind Enum:string
+                    [type] => Package\Language\Primitive Enum:string
                         (
                             [name] => Integer
                             [value] => int
