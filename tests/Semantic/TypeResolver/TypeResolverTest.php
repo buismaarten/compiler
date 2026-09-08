@@ -11,7 +11,6 @@ use Package\Core\Location;
 use Package\Language\BinaryOperator;
 use Package\Language\BuiltinTypeKind;
 use Package\Language\UnaryOperator;
-use Package\Language\UnaryPosition;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
@@ -234,8 +233,8 @@ class TypeResolverTest extends TestCase
                     location: Location::dummy(),
                     expression: new Expressions\UnaryExpression(
                         location: Location::dummy(),
+                        prefix: false,
                         operator: UnaryOperator::Minus,
-                        position: UnaryPosition::Postfix,
                         expression: new Expressions\IdentifierExpression(
                             location: Location::dummy(),
                             name: 'foo',

@@ -14,7 +14,6 @@ use Package\Exceptions\Parser\UnexpectedTokenException;
 use Package\Language\BinaryOperator;
 use Package\Language\BuiltinTypeKind;
 use Package\Language\UnaryOperator;
-use Package\Language\UnaryPosition;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Expressions\AbstractExpression;
@@ -402,8 +401,8 @@ final class Parser
 
         return new Expressions\UnaryExpression(
             location: $this->createLocation($identifier, $token),
+            prefix: false,
             operator: $operator,
-            position: UnaryPosition::Postfix,
             expression: new Expressions\IdentifierExpression(
                 location: $this->createLocation($identifier, $identifier),
                 name: $identifier->value,
@@ -424,8 +423,8 @@ final class Parser
 
         return new Expressions\UnaryExpression(
             location: $this->createLocation($token),
+            prefix: true,
             operator: $operator,
-            position: UnaryPosition::Prefix,
             expression: $expression,
         );
     }

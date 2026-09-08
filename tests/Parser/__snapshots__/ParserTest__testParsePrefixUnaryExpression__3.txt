@@ -30,14 +30,10 @@ Package\Nodes\Block Object
                                     [endOffset] => 5
                                 )
 
+                            [prefix] => 1
                             [operator] => Package\Language\UnaryOperator Enum
                                 (
                                     [name] => Decrement
-                                )
-
-                            [position] => Package\Language\UnaryPosition Enum
-                                (
-                                    [name] => Prefix
                                 )
 
                             [expression] => Package\Nodes\Expressions\IdentifierExpression Object
