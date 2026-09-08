@@ -240,16 +240,16 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
             return new Types\ArrayType(self::resolveType($node->type));
         }
 
-        if ($node instanceof Nodes\Types\BuiltinType) {
-            return new Types\BuiltinType($node->kind);
-        }
-
         if ($node instanceof Nodes\Types\NamedType) {
             return new Types\NamedType($node->name);
         }
 
         if ($node instanceof Nodes\Types\NullableType) {
             return new Types\NullableType(self::resolveType($node->type));
+        }
+
+        if ($node instanceof Nodes\Types\PrimitiveType) {
+            return new Types\PrimitiveType($node->type);
         }
 
         if ($node instanceof Nodes\Types\TupleType) {

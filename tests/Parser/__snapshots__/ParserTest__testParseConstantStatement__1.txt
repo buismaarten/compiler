@@ -21,7 +21,7 @@ Package\Nodes\Block Object
                         )
 
                     [name] => foo
-                    [type] => Package\Nodes\Types\BuiltinType Object
+                    [type] => Package\Nodes\Types\PrimitiveType Object
                         (
                             [location] => Package\Core\Location Object
                                 (
@@ -31,7 +31,7 @@ Package\Nodes\Block Object
                                     [endOffset] => 14
                                 )
 
-                            [kind] => Package\Language\BuiltinTypeKind Enum:string
+                            [type] => Package\Language\Primitive Enum:string
                                 (
                                     [name] => Integer
                                     [value] => int

@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes\Literals;
 
 use Package\Core\Location;
-use Package\Language\BuiltinTypeKind;
+use Package\Language\Primitive;
 
 final class BooleanLiteral extends AbstractLiteral
 {
@@ -21,8 +21,8 @@ final class BooleanLiteral extends AbstractLiteral
         $this->value = $value;
     }
 
-    public function getBuiltinTypeKind(): BuiltinTypeKind
+    public function getPrimitive(): Primitive
     {
-        return BuiltinTypeKind::Boolean;
+        return Primitive::Boolean;
     }
 }

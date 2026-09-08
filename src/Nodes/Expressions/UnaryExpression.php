@@ -9,20 +9,19 @@ namespace Package\Nodes\Expressions;
 
 use Package\Core\Location;
 use Package\Language\UnaryOperator;
-use Package\Language\UnaryPosition;
 
 final class UnaryExpression extends AbstractExpression
 {
+    public bool $prefix;
     public UnaryOperator $operator;
-    public UnaryPosition $position;
     public AbstractExpression $expression;
 
-    public function __construct(Location $location, UnaryOperator $operator, UnaryPosition $position, AbstractExpression $expression)
+    public function __construct(Location $location, bool $prefix, UnaryOperator $operator, AbstractExpression $expression)
     {
         parent::__construct($location);
 
+        $this->prefix = $prefix;
         $this->operator = $operator;
-        $this->position = $position;
         $this->expression = $expression;
     }
 }
