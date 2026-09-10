@@ -191,4 +191,30 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
         $this->types[$node] = $symbol->type;
     }
+
+    // TODO
+    private function resolveType(Nodes\Expressions\AbstractExpression $node): AbstractType
+    {
+        if ($node instanceof Nodes\Expressions\ArrayExpression) {
+            if ($expression = array_first($node->expressions)) {
+                $type = $this->resolveType($expression);
+            } else {
+                $type = new Types\ErrorType;
+            }
+
+            return new Types\ArrayType($type);
+        }
+
+        if ($node instanceof Nodes\Expressions\TupleExpression) {
+            $types = [];
+
+            foreach ($node->expressions as $expression) {
+                $types[] = $this->resolveType($expression);
+            }
+
+            return new Types\TupleType($types);
+        }
+
+        return $this->types[$node];
+    }
 }
