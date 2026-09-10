@@ -57,8 +57,8 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     {
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
-        $this->functionReturnTypesStack->push(new ArrayObject);
         $this->types[$node] = $symbol->type;
+        $this->functionReturnTypesStack->push(new ArrayObject);
     }
 
     #[Override]
