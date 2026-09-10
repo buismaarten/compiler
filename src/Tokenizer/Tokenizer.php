@@ -12,25 +12,10 @@ use Package\Exceptions\Tokenizer\UnexpectedCharacterException;
 use Package\Exceptions\Tokenizer\UnexpectedEndOfInputException;
 use Package\Input\Input;
 use Package\Input\InputInterface;
+use Package\Language\Keyword;
 
 final class Tokenizer
 {
-    private const KEYWORDS = [
-        'break'    => TokenType::KeywordBreak,
-        'const'    => TokenType::KeywordConst,
-        'continue' => TokenType::KeywordContinue,
-        'else'     => TokenType::KeywordElse,
-        'false'    => TokenType::KeywordFalse,
-        'fn'       => TokenType::KeywordFn,
-        'if'       => TokenType::KeywordIf,
-        'null'     => TokenType::KeywordNull,
-        'print'    => TokenType::KeywordPrint,
-        'return'   => TokenType::KeywordReturn,
-        'true'     => TokenType::KeywordTrue,
-        'var'      => TokenType::KeywordVar,
-        'while'    => TokenType::KeywordWhile,
-    ];
-
     private InputInterface $input;
     private int $line = 1;
 
@@ -180,10 +165,11 @@ final class Tokenizer
         }
 
         $value = $this->input->slice($offset, $this->input->offset());
-        $type = self::KEYWORDS[$value] ?? TokenType::Identifier;
+        $type = TokenType::Identifier;
 
-        if ($type !== TokenType::Identifier) {
+        if ($keyword = Keyword::tryFrom($value)) {
             $value = '';
+            $type = self::resolveKeywordTokenType($keyword);
         }
 
         return $this->createToken($type, $offset, $value);
@@ -397,5 +383,24 @@ final class Tokenizer
             type: $type,
             value: $value,
         );
+    }
+
+    private static function resolveKeywordTokenType(Keyword $keyword): TokenType
+    {
+        return match ($keyword) {
+            Keyword::Break    => TokenType::KeywordBreak,
+            Keyword::Const    => TokenType::KeywordConst,
+            Keyword::Continue => TokenType::KeywordContinue,
+            Keyword::Else     => TokenType::KeywordElse,
+            Keyword::False    => TokenType::KeywordFalse,
+            Keyword::Fn       => TokenType::KeywordFn,
+            Keyword::If       => TokenType::KeywordIf,
+            Keyword::Null     => TokenType::KeywordNull,
+            Keyword::Print    => TokenType::KeywordPrint,
+            Keyword::Return   => TokenType::KeywordReturn,
+            Keyword::True     => TokenType::KeywordTrue,
+            Keyword::Var      => TokenType::KeywordVar,
+            Keyword::While    => TokenType::KeywordWhile,
+        };
     }
 }
