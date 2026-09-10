@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 class TokenizerTest extends TestCase
 {
     #[Test]
-    public function testAssign(): void
+    public function testTokenizeAssign(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('=')->next(),
@@ -34,7 +34,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testBitwiseAnd(): void
+    public function testTokenizeBitwiseAnd(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('&')->next(),
@@ -51,7 +51,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testBitwiseNot(): void
+    public function testTokenizeBitwiseNot(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('~')->next(),
@@ -68,7 +68,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testBitwiseOr(): void
+    public function testTokenizeBitwiseOr(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('|')->next(),
@@ -85,7 +85,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testBitwiseXor(): void
+    public function testTokenizeBitwiseXor(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('^')->next(),
@@ -102,7 +102,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testBooleanAnd(): void
+    public function testTokenizeBooleanAnd(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('&&')->next(),
@@ -119,7 +119,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testBooleanNot(): void
+    public function testTokenizeBooleanNot(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('!')->next(),
@@ -136,7 +136,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testBooleanOr(): void
+    public function testTokenizeBooleanOr(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('||')->next(),
@@ -153,7 +153,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testColon(): void
+    public function testTokenizeColon(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer(':')->next(),
@@ -170,7 +170,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testComma(): void
+    public function testTokenizeComma(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer(',')->next(),
@@ -187,7 +187,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testComment(): void
+    public function testTokenizeComment(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('// This is a comment')->next(),
@@ -204,7 +204,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testDecrement(): void
+    public function testTokenizeDecrement(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('--')->next(),
@@ -221,7 +221,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testDivide(): void
+    public function testTokenizeDivide(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('/')->next(),
@@ -238,7 +238,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testEqual(): void
+    public function testTokenizeEqual(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('==')->next(),
@@ -255,7 +255,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testFloat(): void
+    public function testTokenizeFloat(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('3.14')->next(),
@@ -273,7 +273,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testGreaterThan(): void
+    public function testTokenizeGreaterThan(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('>')->next(),
@@ -290,7 +290,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testGreaterThanEqual(): void
+    public function testTokenizeGreaterThanEqual(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('>=')->next(),
@@ -307,7 +307,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testIdentical(): void
+    public function testTokenizeIdentical(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('===')->next(),
@@ -324,7 +324,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testIdentifier(): void
+    public function testTokenizeIdentifier(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('foo_123')->next(),
@@ -356,7 +356,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testIncrement(): void
+    public function testTokenizeIncrement(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('++')->next(),
@@ -373,7 +373,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testInteger(): void
+    public function testTokenizeInteger(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('123')->next(),
@@ -391,7 +391,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testKeyword(): void
+    public function testTokenizeKeyword(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('break')->next(),
@@ -551,7 +551,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testLeftBrace(): void
+    public function testTokenizeLeftBrace(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('{')->next(),
@@ -568,7 +568,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testLeftBracket(): void
+    public function testTokenizeLeftBracket(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('[')->next(),
@@ -585,7 +585,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testLeftParenthesis(): void
+    public function testTokenizeLeftParenthesis(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('(')->next(),
@@ -602,7 +602,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testLessThan(): void
+    public function testTokenizeLessThan(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('<')->next(),
@@ -619,7 +619,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testLessThanEqual(): void
+    public function testTokenizeLessThanEqual(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('<=')->next(),
@@ -636,7 +636,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testMinus(): void
+    public function testTokenizeMinus(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('-')->next(),
@@ -653,7 +653,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testModulo(): void
+    public function testTokenizeModulo(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('%')->next(),
@@ -670,7 +670,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testMultiply(): void
+    public function testTokenizeMultiply(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('*')->next(),
@@ -687,7 +687,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testNotEqual(): void
+    public function testTokenizeNotEqual(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('!=')->next(),
@@ -704,7 +704,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testNotIdentical(): void
+    public function testTokenizeNotIdentical(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('!==')->next(),
@@ -721,7 +721,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testPlus(): void
+    public function testTokenizePlus(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('+')->next(),
@@ -738,7 +738,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testQuestionMark(): void
+    public function testTokenizeQuestionMark(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('?')->next(),
@@ -755,7 +755,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testRightBrace(): void
+    public function testTokenizeRightBrace(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('}')->next(),
@@ -772,7 +772,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testRightBracket(): void
+    public function testTokenizeRightBracket(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer(']')->next(),
@@ -789,7 +789,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testRightParenthesis(): void
+    public function testTokenizeRightParenthesis(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer(')')->next(),
@@ -806,7 +806,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testSemicolon(): void
+    public function testTokenizeSemicolon(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer(';')->next(),
@@ -823,7 +823,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testShiftLeft(): void
+    public function testTokenizeShiftLeft(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('<<')->next(),
@@ -840,7 +840,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testShiftRight(): void
+    public function testTokenizeShiftRight(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('>>')->next(),
@@ -857,7 +857,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testSpaceship(): void
+    public function testTokenizeSpaceship(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('<=>')->next(),
@@ -874,7 +874,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testString(): void
+    public function testTokenizeString(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer('"Hello, World!"')->next(),
@@ -1046,7 +1046,7 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testWhitespace(): void
+    public function testTokenizeWhitespace(): void
     {
         $this->assertEquals(
             actual: self::createTokenizer(" \t\nfoo")->next(),
