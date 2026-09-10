@@ -167,10 +167,10 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function leaveReturnStatement(Nodes\Statements\ReturnStatement $node): void
     {
-        if ($node->expression === null) {
-            $type = new Types\PrimitiveType(Primitive::Null);
-        } else {
+        if ($node->expression !== null) {
             $type = $this->types[$node->expression];
+        } else {
+            $type = new Types\PrimitiveType(Primitive::Null);
         }
 
         $functionReturnTypes = $this->functionReturnTypesStack->top();
