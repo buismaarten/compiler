@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Package\Semantic\TypeResolver;
 
 use ArrayObject;
-use LogicException;
 use Override;
 use Package\Language\Primitive;
 use Package\Nodes;
@@ -235,6 +234,6 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
             return new Types\TupleType($types);
         }
 
-        throw new LogicException;
+        return $this->types[$node];
     }
 }
