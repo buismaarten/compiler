@@ -64,6 +64,11 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function leaveNode(AbstractNode $node): void
     {
+        if ($node instanceof Nodes\Expressions\ArrayExpression) {
+            $this->leaveArrayExpression($node);
+            return;
+        }
+
         if ($node instanceof Nodes\Expressions\AssignmentExpression) {
             $this->leaveAssignmentExpression($node);
             return;
@@ -81,6 +86,11 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
         if ($node instanceof Nodes\Expressions\IdentifierExpression) {
             $this->leaveIdentifierExpression($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Expressions\TupleExpression) {
+            $this->leaveTupleExpression($node);
             return;
         }
 
@@ -113,6 +123,11 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
             $this->leaveVariableStatement($node);
             return;
         }
+    }
+
+    private function leaveArrayExpression(Nodes\Expressions\ArrayExpression $node): void
+    {
+        $this->types[$node] = $this->resolveType($node);
     }
 
     private function leaveAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
@@ -177,6 +192,11 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $functionReturnTypes->append($type);
     }
 
+    private function leaveTupleExpression(Nodes\Expressions\TupleExpression $node): void
+    {
+        $this->types[$node] = $this->resolveType($node);
+    }
+
     private function leaveUnaryExpression(Nodes\Expressions\UnaryExpression $node): void
     {
         $type = $this->types[$node->expression];
@@ -192,7 +212,6 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $this->types[$node] = $symbol->type;
     }
 
-    // TODO
     private function resolveType(Nodes\Expressions\AbstractExpression $node): AbstractType
     {
         if ($node instanceof Nodes\Expressions\ArrayExpression) {

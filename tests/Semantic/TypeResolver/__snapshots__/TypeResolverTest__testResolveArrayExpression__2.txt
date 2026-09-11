@@ -1,0 +1,220 @@
+WeakMap Object
+(
+    [0] => Array
+        (
+            [key] => Package\Nodes\Literals\IntegerLiteral Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [value] => 1
+                )
+
+            [value] => Package\Semantic\Types\PrimitiveType Object
+                (
+                    [type] => Package\Language\Primitive Enum:string
+                        (
+                            [name] => Integer
+                            [value] => int
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [key] => Package\Nodes\Literals\IntegerLiteral Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [value] => 2
+                )
+
+            [value] => Package\Semantic\Types\PrimitiveType Object
+                (
+                    [type] => Package\Language\Primitive Enum:string
+                        (
+                            [name] => Integer
+                            [value] => int
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [key] => Package\Nodes\Expressions\ArrayExpression Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [expressions] => Array
+                        (
+                            [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Core\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [value] => 1
+                                )
+
+                            [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Core\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [value] => 2
+                                )
+
+                        )
+
+                )
+
+            [value] => Package\Semantic\Types\ArrayType Object
+                (
+                    [type] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Language\Primitive Enum:string
+                                (
+                                    [name] => Integer
+                                    [value] => int
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [3] => Array
+        (
+            [key] => Package\Nodes\Statements\VariableStatement Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [name] => foo
+                    [type] => Package\Nodes\Types\ArrayType Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                (
+                                    [location] => Package\Core\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [type] => Package\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
+                    [expression] => Package\Nodes\Expressions\ArrayExpression Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [expressions] => Array
+                                (
+                                    [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                        (
+                                            [location] => Package\Core\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
+
+                                            [value] => 1
+                                        )
+
+                                    [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                        (
+                                            [location] => Package\Core\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
+
+                                            [value] => 2
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [value] => Package\Semantic\Types\ArrayType Object
+                (
+                    [type] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Language\Primitive Enum:string
+                                (
+                                    [name] => Integer
+                                    [value] => int
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

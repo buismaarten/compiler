@@ -28,6 +28,42 @@ class TypeResolverTest extends TestCase
     use SnapshotAssertions;
 
     #[Test]
+    public function testResolveArrayExpression(): void
+    {
+        $node = new Block(
+            location: Location::dummy(),
+            statements: [
+                new Statements\VariableStatement(
+                    location: Location::dummy(),
+                    name: 'foo',
+                    type: new Types\ArrayType(
+                        location: Location::dummy(),
+                        type: new Types\PrimitiveType(
+                            location: Location::dummy(),
+                            type: Primitive::Integer,
+                        ),
+                    ),
+                    expression: new Expressions\ArrayExpression(
+                        location: Location::dummy(),
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                location: Location::dummy(),
+                                value: 1,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: Location::dummy(),
+                                value: 2,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertSnapshot($node);
+    }
+
+    #[Test]
     public function testResolveAssignmentExpression(): void
     {
         $node = new Block(
@@ -203,6 +239,48 @@ class TypeResolverTest extends TestCase
                     expression: new Expressions\IdentifierExpression(
                         location: Location::dummy(),
                         name: 'foo',
+                    ),
+                ),
+            ],
+        );
+
+        $this->assertSnapshot($node);
+    }
+
+    #[Test]
+    public function testResolveTupleExpression(): void
+    {
+        $node = new Block(
+            location: Location::dummy(),
+            statements: [
+                new Statements\VariableStatement(
+                    location: Location::dummy(),
+                    name: 'foo',
+                    type: new Types\TupleType(
+                        location: Location::dummy(),
+                        types: [
+                            new Types\PrimitiveType(
+                                location: Location::dummy(),
+                                type: Primitive::Integer,
+                            ),
+                            new Types\PrimitiveType(
+                                location: Location::dummy(),
+                                type: Primitive::Integer,
+                            ),
+                        ],
+                    ),
+                    expression: new Expressions\TupleExpression(
+                        location: Location::dummy(),
+                        expressions: [
+                            new Literals\IntegerLiteral(
+                                location: Location::dummy(),
+                                value: 1,
+                            ),
+                            new Literals\IntegerLiteral(
+                                location: Location::dummy(),
+                                value: 2,
+                            ),
+                        ],
                     ),
                 ),
             ],
