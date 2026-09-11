@@ -67,7 +67,7 @@ WeakMap Object
                                                             [endOffset] => -1
                                                         )
 
-                                                    [value] => Hello, World!
+                                                    [value:protected] => Hello, World!
                                                 )
 
                                         )
@@ -92,7 +92,7 @@ WeakMap Object
                                                             [endOffset] => -1
                                                         )
 
-                                                    [value] => Goodbye, World!
+                                                    [value:protected] => Goodbye, World!
                                                 )
 
                                         )
@@ -127,7 +127,7 @@ WeakMap Object
                             [endOffset] => -1
                         )
 
-                    [value] => Hello, World!
+                    [value:protected] => Hello, World!
                 )
 
             [value] => Package\Semantic\Types\PrimitiveType Object
@@ -154,7 +154,7 @@ WeakMap Object
                             [endOffset] => -1
                         )
 
-                    [value] => Goodbye, World!
+                    [value:protected] => Goodbye, World!
                 )
 
             [value] => Package\Semantic\Types\PrimitiveType Object

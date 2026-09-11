@@ -45,7 +45,7 @@ Package\Nodes\Block Object
                                             [endOffset] => 1
                                         )
 
-                                    [value] => 1
+                                    [value:protected] => 1
                                 )
 
                             [right] => Package\Nodes\Expressions\BinaryExpression Object
@@ -73,7 +73,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 5
                                                 )
 
-                                            [value] => 2
+                                            [value:protected] => 2
                                         )
 
                                     [right] => Package\Nodes\Literals\IntegerLiteral Object
@@ -86,7 +86,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 9
                                                 )
 
-                                            [value] => 3
+                                            [value:protected] => 3
                                         )
 
                                 )

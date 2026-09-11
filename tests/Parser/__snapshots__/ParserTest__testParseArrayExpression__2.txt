@@ -42,7 +42,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 2
                                                 )
 
-                                            [value] => 1
+                                            [value:protected] => 1
                                         )
 
                                     [1] => Package\Nodes\Literals\IntegerLiteral Object
@@ -55,7 +55,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 5
                                                 )
 
-                                            [value] => 2
+                                            [value:protected] => 2
                                         )
 
                                     [2] => Package\Nodes\Expressions\ArrayExpression Object
@@ -80,7 +80,7 @@ Package\Nodes\Block Object
                                                                     [endOffset] => 9
                                                                 )
 
-                                                            [value] => 3
+                                                            [value:protected] => 3
                                                         )
 
                                                     [1] => Package\Nodes\Literals\IntegerLiteral Object
@@ -93,7 +93,7 @@ Package\Nodes\Block Object
                                                                     [endOffset] => 12
                                                                 )
 
-                                                            [value] => 4
+                                                            [value:protected] => 4
                                                         )
 
                                                 )

@@ -175,6 +175,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $this->types[$node] = $symbol->type;
     }
 
+    /** @param Nodes\Literals\AbstractLiteral<mixed> $node */
     private function leaveLiteral(Nodes\Literals\AbstractLiteral $node): void
     {
         $this->types[$node] = new Types\PrimitiveType($node->getPrimitive());

@@ -12,7 +12,7 @@ WeakMap Object
                             [endOffset] => -1
                         )
 
-                    [value] => 1
+                    [value:protected] => 1
                 )
 
             [value] => Package\Semantic\Types\PrimitiveType Object
@@ -68,7 +68,7 @@ WeakMap Object
                                     [endOffset] => -1
                                 )
 
-                            [value] => 1
+                            [value:protected] => 1
                         )
 
                 )
@@ -97,7 +97,7 @@ WeakMap Object
                             [endOffset] => -1
                         )
 
-                    [value] => 2
+                    [value:protected] => 2
                 )
 
             [value] => Package\Semantic\Types\PrimitiveType Object
@@ -135,7 +135,7 @@ WeakMap Object
                                     [endOffset] => -1
                                 )
 
-                            [value] => 2
+                            [value:protected] => 2
                         )
 
                 )

@@ -7,13 +7,13 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Literals;
 
+use Override;
 use Package\Core\Location;
 use Package\Language\Primitive;
 
+/** @extends AbstractLiteral<float> */
 final class FloatLiteral extends AbstractLiteral
 {
-    public float $value;
-
     public function __construct(Location $location, float $value)
     {
         parent::__construct($location);
@@ -21,6 +21,7 @@ final class FloatLiteral extends AbstractLiteral
         $this->value = $value;
     }
 
+    #[Override]
     public function getPrimitive(): Primitive
     {
         return Primitive::Float;

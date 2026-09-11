@@ -7,20 +7,21 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Literals;
 
+use Override;
 use Package\Core\Location;
 use Package\Language\Primitive;
 
+/** @extends AbstractLiteral<null> */
 final class NullLiteral extends AbstractLiteral
 {
-    public null $value;
-
-    public function __construct(Location $location, null $value = null)
+    public function __construct(Location $location)
     {
         parent::__construct($location);
 
-        $this->value = $value;
+        $this->value = null;
     }
 
+    #[Override]
     public function getPrimitive(): Primitive
     {
         return Primitive::Null;

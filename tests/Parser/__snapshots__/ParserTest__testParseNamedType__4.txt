@@ -49,7 +49,7 @@ Package\Nodes\Block Object
                                     [endOffset] => 33
                                 )
 
-                            [value] => Hello, World!
+                            [value:protected] => Hello, World!
                         )
 
                 )

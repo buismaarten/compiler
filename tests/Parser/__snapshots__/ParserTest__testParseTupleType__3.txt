@@ -107,7 +107,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 27
                                                 )
 
-                                            [value] => 123
+                                            [value:protected] => 123
                                         )
 
                                     [1] => Package\Nodes\Literals\IntegerLiteral Object
@@ -120,7 +120,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 32
                                                 )
 
-                                            [value] => 456
+                                            [value:protected] => 456
                                         )
 
                                 )

@@ -374,7 +374,6 @@ final class Parser
 
         return new Literals\NullLiteral(
             location: $this->createLocation($token),
-            value: null,
         );
     }
 
