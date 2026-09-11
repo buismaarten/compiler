@@ -43,7 +43,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 7
                                                 )
 
-                                            [value] => 123
+                                            [value:protected] => 123
                                         )
 
                                     [1] => Package\Nodes\Literals\StringLiteral Object
@@ -56,7 +56,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 14
                                                 )
 
-                                            [value] => bar
+                                            [value:protected] => bar
                                         )
 
                                 )

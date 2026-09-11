@@ -7,13 +7,13 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Literals;
 
+use Override;
 use Package\Core\Location;
 use Package\Language\Primitive;
 
+/** @extends AbstractLiteral<bool> */
 final class BooleanLiteral extends AbstractLiteral
 {
-    public bool $value;
-
     public function __construct(Location $location, bool $value)
     {
         parent::__construct($location);
@@ -21,6 +21,7 @@ final class BooleanLiteral extends AbstractLiteral
         $this->value = $value;
     }
 
+    #[Override]
     public function getPrimitive(): Primitive
     {
         return Primitive::Boolean;

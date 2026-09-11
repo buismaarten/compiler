@@ -7,13 +7,13 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Literals;
 
+use Override;
 use Package\Core\Location;
 use Package\Language\Primitive;
 
+/** @extends AbstractLiteral<string> */
 final class StringLiteral extends AbstractLiteral
 {
-    public string $value;
-
     public function __construct(Location $location, string $value)
     {
         parent::__construct($location);
@@ -21,6 +21,7 @@ final class StringLiteral extends AbstractLiteral
         $this->value = $value;
     }
 
+    #[Override]
     public function getPrimitive(): Primitive
     {
         return Primitive::String;

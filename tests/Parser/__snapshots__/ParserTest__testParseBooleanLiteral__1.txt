@@ -30,7 +30,7 @@ Package\Nodes\Block Object
                                     [endOffset] => 5
                                 )
 
-                            [value] => 
+                            [value:protected] => 
                         )
 
                 )
