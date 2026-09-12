@@ -143,8 +143,8 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $right = $this->types[$node->right];
 
         // TODO
-        var_dump($left);
-        var_dump($right);
+        // var_dump($left);
+        // var_dump($right);
     }
 
     private function leaveConstantStatement(Nodes\Statements\ConstantStatement $node): void
@@ -203,7 +203,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $type = $this->types[$node->expression];
 
         // TODO
-        var_dump($type);
+        // var_dump($type);
     }
 
     private function leaveVariableStatement(Nodes\Statements\VariableStatement $node): void
