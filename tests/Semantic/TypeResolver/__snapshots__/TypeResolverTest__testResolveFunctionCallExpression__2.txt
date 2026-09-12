@@ -33,6 +33,37 @@ WeakMap Object
 
                     [parameters] => Array
                         (
+                            [0] => Package\Nodes\Parameter Object
+                                (
+                                    [location] => Package\Core\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [name] => bar
+                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                        (
+                                            [location] => Package\Core\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
+
+                                            [type] => Package\Language\Primitive Enum:string
+                                                (
+                                                    [name] => String
+                                                    [value] => string
+                                                )
+
+                                        )
+
+                                )
+
                         )
 
                     [statements] => Package\Nodes\Block Object
@@ -57,7 +88,7 @@ WeakMap Object
                                                     [endOffset] => -1
                                                 )
 
-                                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                            [expression] => Package\Nodes\Expressions\IdentifierExpression Object
                                                 (
                                                     [location] => Package\Core\Location Object
                                                         (
@@ -67,7 +98,7 @@ WeakMap Object
                                                             [endOffset] => -1
                                                         )
 
-                                                    [value:protected] => Hello, World!
+                                                    [name] => bar
                                                 )
 
                                         )
@@ -117,7 +148,7 @@ WeakMap Object
 
     [1] => Array
         (
-            [key] => Package\Nodes\Literals\StringLiteral Object
+            [key] => Package\Nodes\Expressions\IdentifierExpression Object
                 (
                     [location] => Package\Core\Location Object
                         (
@@ -127,7 +158,7 @@ WeakMap Object
                             [endOffset] => -1
                         )
 
-                    [value:protected] => Hello, World!
+                    [name] => bar
                 )
 
             [value] => Package\Semantic\Types\PrimitiveType Object
@@ -171,6 +202,33 @@ WeakMap Object
 
     [3] => Array
         (
+            [key] => Package\Nodes\Literals\StringLiteral Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [value:protected] => Hello, World!
+                )
+
+            [value] => Package\Semantic\Types\PrimitiveType Object
+                (
+                    [type] => Package\Language\Primitive Enum:string
+                        (
+                            [name] => String
+                            [value] => string
+                        )
+
+                )
+
+        )
+
+    [4] => Array
+        (
             [key] => Package\Nodes\Expressions\FunctionCallExpression Object
                 (
                     [location] => Package\Core\Location Object
@@ -184,6 +242,19 @@ WeakMap Object
                     [name] => foo
                     [arguments] => Array
                         (
+                            [0] => Package\Nodes\Literals\StringLiteral Object
+                                (
+                                    [location] => Package\Core\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [value:protected] => Hello, World!
+                                )
+
                         )
 
                 )

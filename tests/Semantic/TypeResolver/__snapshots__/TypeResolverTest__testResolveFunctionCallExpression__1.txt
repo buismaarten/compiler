@@ -33,6 +33,37 @@ WeakMap Object
 
                     [parameters] => Array
                         (
+                            [0] => Package\Nodes\Parameter Object
+                                (
+                                    [location] => Package\Core\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [name] => bar
+                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                        (
+                                            [location] => Package\Core\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
+
+                                            [type] => Package\Language\Primitive Enum:string
+                                                (
+                                                    [name] => String
+                                                    [value] => string
+                                                )
+
+                                        )
+
+                                )
+
                         )
 
                     [statements] => Package\Nodes\Block Object
@@ -57,7 +88,7 @@ WeakMap Object
                                                     [endOffset] => -1
                                                 )
 
-                                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                            [expression] => Package\Nodes\Expressions\IdentifierExpression Object
                                                 (
                                                     [location] => Package\Core\Location Object
                                                         (
@@ -67,7 +98,7 @@ WeakMap Object
                                                             [endOffset] => -1
                                                         )
 
-                                                    [value:protected] => Hello, World!
+                                                    [name] => bar
                                                 )
 
                                         )

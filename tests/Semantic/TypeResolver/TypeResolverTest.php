@@ -15,6 +15,7 @@ use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;
+use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;
 use Package\Semantic\SymbolResolver\SymbolResolver;
@@ -181,15 +182,24 @@ class TypeResolverTest extends TestCase
                         location: Location::dummy(),
                         type: Primitive::String,
                     ),
-                    parameters: [],
+                    parameters: [
+                        new Parameter(
+                            location: Location::dummy(),
+                            name: 'bar',
+                            type: new Types\PrimitiveType(
+                                location: Location::dummy(),
+                                type: Primitive::String,
+                            ),
+                        ),
+                    ],
                     statements: new Block(
                         location: Location::dummy(),
                         statements: [
                             new Statements\ReturnStatement(
                                 location: Location::dummy(),
-                                expression: new Literals\StringLiteral(
+                                expression: new Expressions\IdentifierExpression(
                                     location: Location::dummy(),
-                                    value: 'Hello, World!',
+                                    name: 'bar',
                                 ),
                             ),
                             new Statements\ReturnStatement(
@@ -207,7 +217,12 @@ class TypeResolverTest extends TestCase
                     expression: new Expressions\FunctionCallExpression(
                         location: Location::dummy(),
                         name: 'foo',
-                        arguments: [],
+                        arguments: [
+                            new Literals\StringLiteral(
+                                location: Location::dummy(),
+                                value: 'Hello, World!',
+                            ),
+                        ],
                     ),
                 ),
             ],
