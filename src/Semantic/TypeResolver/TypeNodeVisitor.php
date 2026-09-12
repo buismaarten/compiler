@@ -12,6 +12,8 @@ use Override;
 use Package\Language\Primitive;
 use Package\Nodes;
 use Package\Nodes\AbstractNode;
+use Package\Nodes\Expressions\AbstractExpression;
+use Package\Nodes\Literals\AbstractLiteral;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\SymbolResolver\SymbolResolver;
 use Package\Semantic\Types;
@@ -62,6 +64,11 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function leaveNode(AbstractNode $node): void
     {
+        if ($node instanceof AbstractLiteral) {
+            $this->leaveLiteral($node);
+            return;
+        }
+
         if ($node instanceof Nodes\Expressions\ArrayExpression) {
             $this->leaveArrayExpression($node);
             return;
@@ -94,11 +101,6 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
         if ($node instanceof Nodes\Expressions\UnaryExpression) {
             $this->leaveUnaryExpression($node);
-            return;
-        }
-
-        if ($node instanceof Nodes\Literals\AbstractLiteral) {
-            $this->leaveLiteral($node);
             return;
         }
 
@@ -165,8 +167,8 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $this->resolveSymbol($node);
     }
 
-    /** @param Nodes\Literals\AbstractLiteral<mixed> $node */
-    private function leaveLiteral(Nodes\Literals\AbstractLiteral $node): void
+    /** @param AbstractLiteral<mixed> $node */
+    private function leaveLiteral(AbstractLiteral $node): void
     {
         $this->types[$node] = new Types\PrimitiveType($node->getPrimitive());
     }
@@ -208,7 +210,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $this->types[$node] = $symbol->type;
     }
 
-    private function resolveType(Nodes\Expressions\AbstractExpression $node): AbstractType
+    private function resolveType(AbstractExpression $node): AbstractType
     {
         if ($node instanceof Nodes\Expressions\ArrayExpression) {
             $type = null;
