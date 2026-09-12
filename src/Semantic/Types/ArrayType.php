@@ -9,9 +9,9 @@ namespace Package\Semantic\Types;
 
 final class ArrayType extends AbstractType
 {
-    public AbstractType $type;
+    public ?AbstractType $type;
 
-    public function __construct(AbstractType $type)
+    public function __construct(?AbstractType $type)
     {
         $this->type = $type;
     }

@@ -216,10 +216,10 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     private function resolveType(Nodes\Expressions\AbstractExpression $node): AbstractType
     {
         if ($node instanceof Nodes\Expressions\ArrayExpression) {
+            $type = null;
+
             if ($expression = array_first($node->expressions)) {
                 $type = $this->resolveType($expression);
-            } else {
-                $type = new Types\ErrorType;
             }
 
             return new Types\ArrayType($type);
