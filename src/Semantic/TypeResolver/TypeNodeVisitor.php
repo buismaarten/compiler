@@ -55,9 +55,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function enterFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
-        $this->types[$node] = $symbol->type;
+        $this->resolveSymbol($node);
         $this->functionReturnTypesStack->push(new ArrayObject);
     }
 
@@ -132,9 +130,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function leaveAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
     {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
-        $this->types[$node] = $symbol->type;
+        $this->resolveSymbol($node);
     }
 
     private function leaveBinaryExpression(Nodes\Expressions\BinaryExpression $node): void
@@ -149,16 +145,12 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function leaveConstantStatement(Nodes\Statements\ConstantStatement $node): void
     {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
-        $this->types[$node] = $symbol->type;
+        $this->resolveSymbol($node);
     }
 
     private function leaveFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
     {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
-        $this->types[$node] = $symbol->type;
+        $this->resolveSymbol($node);
     }
 
     private function leaveFunctionStatement(Nodes\Statements\FunctionStatement $node): void
@@ -170,9 +162,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
 
     private function leaveIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void
     {
-        $symbol = $this->symbolResolver->resolveSymbol($node);
-
-        $this->types[$node] = $symbol->type;
+        $this->resolveSymbol($node);
     }
 
     /** @param Nodes\Literals\AbstractLiteral<mixed> $node */
@@ -207,6 +197,11 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     }
 
     private function leaveVariableStatement(Nodes\Statements\VariableStatement $node): void
+    {
+        $this->resolveSymbol($node);
+    }
+
+    private function resolveSymbol(AbstractNode $node): void
     {
         $symbol = $this->symbolResolver->resolveSymbol($node);
 
