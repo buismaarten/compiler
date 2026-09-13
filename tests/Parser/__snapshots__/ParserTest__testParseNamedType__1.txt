@@ -33,7 +33,7 @@ Package\Nodes\Block Object
 
                             [type] => Package\Language\Primitive Enum:string
                                 (
-                                    [name] => Boolean
+                                    [name] => Bool
                                     [value] => bool
                                 )
 

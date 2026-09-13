@@ -24,6 +24,6 @@ final class BooleanLiteral extends AbstractLiteral
     #[Override]
     public function getPrimitive(): Primitive
     {
-        return Primitive::Boolean;
+        return Primitive::Bool;
     }
 }
