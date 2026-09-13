@@ -9,7 +9,7 @@ namespace Package\Language;
 
 enum Primitive: string
 {
-    case Boolean = 'bool';
+    case Bool = 'bool';
     case Float = 'float';
     case Integer = 'int';
     case Null = 'null';
