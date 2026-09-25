@@ -115,7 +115,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         );
 
         $this->symbols[$node] = $symbol;
-        $this->scope[$node->name] = $symbol;
+        $this->scope?->set($node->name, $symbol);
     }
 
     private function enterFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
@@ -141,7 +141,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
 
         $this->functionSymbolStack->push($symbol);
         $this->symbols[$node] = $symbol;
-        $this->scope[$node->name] = $symbol;
+        $this->scope?->set($node->name, $symbol);
         $this->scope = new Scope($this->scope);
     }
 
@@ -180,7 +180,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         $functionSymbol->parameters[] = $symbol;
 
         $this->symbols[$node] = $symbol;
-        $this->scope[$node->name] = $symbol;
+        $this->scope?->set($node->name, $symbol);
     }
 
     private function enterVariableStatement(Nodes\Statements\VariableStatement $node): void
@@ -197,7 +197,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         );
 
         $this->symbols[$node] = $symbol;
-        $this->scope[$node->name] = $symbol;
+        $this->scope?->set($node->name, $symbol);
     }
 
     #[Override]

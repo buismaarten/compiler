@@ -38,6 +38,11 @@ final class Scope implements ArrayAccess
         return null;
     }
 
+    public function set(string $name, AbstractSymbol $symbol): void
+    {
+        $this->symbols[$name] = $symbol;
+    }
+
     #[Override]
     public function offsetExists(mixed $offset): bool
     {
@@ -57,7 +62,7 @@ final class Scope implements ArrayAccess
             throw new InvalidArgumentException('Offset cannot be null');
         }
 
-        $this->symbols[$offset] = $value;
+        $this->set($offset, $value);
     }
 
     #[Override]
