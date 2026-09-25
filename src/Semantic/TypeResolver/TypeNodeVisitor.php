@@ -9,6 +9,7 @@ namespace Package\Semantic\TypeResolver;
 
 use ArrayObject;
 use Override;
+use Package\Language\BinaryOperator;
 use Package\Language\Primitive;
 use Package\Nodes;
 use Package\Nodes\AbstractNode;
@@ -144,9 +145,94 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $left = $this->types[$node->left];
         $right = $this->types[$node->right];
 
-        // TODO
-        // var_dump($left);
-        // var_dump($right);
+        $this->types[$node] = $this->resolveBinaryType($node->operator, $left, $right);
+    }
+
+    private function resolveBinaryType(BinaryOperator $operator, AbstractType $left, AbstractType $right): AbstractType
+    {
+        if ($left instanceof Types\ErrorType || $right instanceof Types\ErrorType) {
+            return new Types\ErrorType;
+        }
+
+        $nullable = false;
+
+        while ($left instanceof Types\NullableType) {
+            $nullable = true;
+            $left = $left->type;
+        }
+
+        while ($right instanceof Types\NullableType) {
+            $nullable = true;
+            $right = $right->type;
+        }
+
+        $result = match ($operator) {
+            BinaryOperator::Plus,
+            BinaryOperator::Minus,
+            BinaryOperator::Multiply => $this->resolveNumericResultType($left, $right),
+            BinaryOperator::Divide => $this->isNumericType($left) && $this->isNumericType($right)
+                ? new Types\PrimitiveType(Primitive::Float)
+                : new Types\ErrorType,
+            BinaryOperator::Modulo,
+            BinaryOperator::BitwiseAnd,
+            BinaryOperator::BitwiseOr,
+            BinaryOperator::BitwiseXor,
+            BinaryOperator::ShiftLeft,
+            BinaryOperator::ShiftRight => $this->isIntegerType($left) && $this->isIntegerType($right)
+                ? new Types\PrimitiveType(Primitive::Integer)
+                : new Types\ErrorType,
+            BinaryOperator::BooleanAnd,
+            BinaryOperator::BooleanOr => $this->isBooleanType($left) && $this->isBooleanType($right)
+                ? new Types\PrimitiveType(Primitive::Bool)
+                : new Types\ErrorType,
+            BinaryOperator::Equal,
+            BinaryOperator::Identical,
+            BinaryOperator::NotEqual,
+            BinaryOperator::NotIdentical,
+            BinaryOperator::GreaterThan,
+            BinaryOperator::GreaterThanEqual,
+            BinaryOperator::LessThan,
+            BinaryOperator::LessThanEqual => new Types\PrimitiveType(Primitive::Bool),
+            BinaryOperator::Spaceship => new Types\PrimitiveType(Primitive::Integer),
+        };
+
+        if (!$nullable || $result instanceof Types\ErrorType) {
+            return $result;
+        }
+
+        return new Types\NullableType($result);
+    }
+
+    private function resolveNumericResultType(AbstractType $left, AbstractType $right): AbstractType
+    {
+        if (!$this->isNumericType($left) || !$this->isNumericType($right)) {
+            return new Types\ErrorType;
+        }
+
+        if (
+            ($left instanceof Types\PrimitiveType && $left->type === Primitive::Float)
+            || ($right instanceof Types\PrimitiveType && $right->type === Primitive::Float)
+        ) {
+            return new Types\PrimitiveType(Primitive::Float);
+        }
+
+        return new Types\PrimitiveType(Primitive::Integer);
+    }
+
+    private function isNumericType(AbstractType $type): bool
+    {
+        return $type instanceof Types\PrimitiveType
+            && in_array($type->type, [Primitive::Integer, Primitive::Float], true);
+    }
+
+    private function isIntegerType(AbstractType $type): bool
+    {
+        return $type instanceof Types\PrimitiveType && $type->type === Primitive::Integer;
+    }
+
+    private function isBooleanType(AbstractType $type): bool
+    {
+        return $type instanceof Types\PrimitiveType && $type->type === Primitive::Bool;
     }
 
     private function leaveConstantStatement(Nodes\Statements\ConstantStatement $node): void
