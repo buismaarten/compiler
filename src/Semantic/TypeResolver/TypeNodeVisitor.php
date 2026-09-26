@@ -16,6 +16,8 @@ use Package\Nodes\Expressions\AbstractExpression;
 use Package\Nodes\Literals\AbstractLiteral;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\SymbolResolver\SymbolResolver;
+use Package\Semantic\TypeResolver\Resolvers\BinaryExpressionResolver;
+use Package\Semantic\TypeResolver\Resolvers\UnaryExpressionResolver;
 use Package\Semantic\Types;
 use Package\Semantic\Types\AbstractType;
 use SplStack;
@@ -144,9 +146,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
         $left = $this->types[$node->left];
         $right = $this->types[$node->right];
 
-        // TODO
-        // var_dump($left);
-        // var_dump($right);
+        $this->types[$node] = BinaryExpressionResolver::resolve($node->operator, $left, $right);
     }
 
     private function leaveConstantStatement(Nodes\Statements\ConstantStatement $node): void
@@ -204,8 +204,7 @@ final class TypeNodeVisitor extends AbstractNodeVisitor
     {
         $type = $this->types[$node->expression];
 
-        // TODO
-        // var_dump($type);
+        $this->types[$node] = UnaryExpressionResolver::resolve($node->operator, $type);
     }
 
     private function leaveVariableStatement(Nodes\Statements\VariableStatement $node): void

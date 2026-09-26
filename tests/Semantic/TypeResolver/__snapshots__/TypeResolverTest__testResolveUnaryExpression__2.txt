@@ -112,4 +112,49 @@ WeakMap Object
 
         )
 
+    [3] => Array
+        (
+            [key] => Package\Nodes\Expressions\UnaryExpression Object
+                (
+                    [location] => Package\Core\Location Object
+                        (
+                            [startLine] => -1
+                            [startOffset] => -1
+                            [endLine] => -1
+                            [endOffset] => -1
+                        )
+
+                    [prefix] => 
+                    [operator] => Package\Language\UnaryOperator Enum
+                        (
+                            [name] => Minus
+                        )
+
+                    [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                        (
+                            [location] => Package\Core\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [name] => foo
+                        )
+
+                )
+
+            [value] => Package\Semantic\Types\PrimitiveType Object
+                (
+                    [type] => Package\Language\Primitive Enum:string
+                        (
+                            [name] => Integer
+                            [value] => int
+                        )
+
+                )
+
+        )
+
 )
