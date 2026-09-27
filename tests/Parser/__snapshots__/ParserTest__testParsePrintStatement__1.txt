@@ -1,6 +1,6 @@
 Package\Nodes\Block Object
 (
-    [location] => Package\Core\Location Object
+    [location] => Package\Common\Location Object
         (
             [startLine] => 1
             [startOffset] => 0
@@ -12,7 +12,7 @@ Package\Nodes\Block Object
         (
             [0] => Package\Nodes\Statements\PrintStatement Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => 1
                             [startOffset] => 0
@@ -22,7 +22,7 @@ Package\Nodes\Block Object
 
                     [expression] => Package\Nodes\Literals\IntegerLiteral Object
                         (
-                            [location] => Package\Core\Location Object
+                            [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 6

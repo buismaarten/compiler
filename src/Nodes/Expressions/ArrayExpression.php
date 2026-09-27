@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Expressions;
 
-use Package\Core\Location;
+use Package\Common\Location;
 
 final class ArrayExpression extends AbstractExpression
 {

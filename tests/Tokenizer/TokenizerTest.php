@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tests\Tokenizer;
 
-use Package\Core\Location;
+use Package\Common\Location;
 use Package\Tokenizer\Token;
 use Package\Tokenizer\Tokenizer;
 use Package\Tokenizer\TokenType;
