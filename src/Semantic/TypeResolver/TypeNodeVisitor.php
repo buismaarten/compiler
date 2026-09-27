@@ -9,7 +9,7 @@ namespace Package\Semantic\TypeResolver;
 
 use ArrayObject;
 use Override;
-use Package\Language\Primitive;
+use Package\Common\Language\Primitive;
 use Package\Nodes;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Expressions\AbstractExpression;

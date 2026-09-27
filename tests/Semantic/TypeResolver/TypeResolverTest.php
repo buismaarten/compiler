@@ -7,10 +7,10 @@ declare(strict_types=1);
 
 namespace Package\Tests\Semantic\TypeResolver;
 
+use Package\Common\Language\BinaryOperator;
+use Package\Common\Language\Primitive;
+use Package\Common\Language\UnaryOperator;
 use Package\Common\Location;
-use Package\Language\BinaryOperator;
-use Package\Language\Primitive;
-use Package\Language\UnaryOperator;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;

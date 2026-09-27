@@ -17,7 +17,7 @@ WeakMap Object
 
             [value] => Package\Semantic\Types\PrimitiveType Object
                 (
-                    [type] => Package\Language\Primitive Enum:string
+                    [type] => Package\Common\Language\Primitive Enum:string
                         (
                             [name] => Float
                             [value] => float
@@ -50,7 +50,7 @@ WeakMap Object
                                     [endOffset] => -1
                                 )
 
-                            [type] => Package\Language\Primitive Enum:string
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
                                     [name] => Float
                                     [value] => float
@@ -75,7 +75,7 @@ WeakMap Object
 
             [value] => Package\Semantic\Types\PrimitiveType Object
                 (
-                    [type] => Package\Language\Primitive Enum:string
+                    [type] => Package\Common\Language\Primitive Enum:string
                         (
                             [name] => Float
                             [value] => float
@@ -102,7 +102,7 @@ WeakMap Object
 
             [value] => Package\Semantic\Types\PrimitiveType Object
                 (
-                    [type] => Package\Language\Primitive Enum:string
+                    [type] => Package\Common\Language\Primitive Enum:string
                         (
                             [name] => Float
                             [value] => float
@@ -129,7 +129,7 @@ WeakMap Object
 
             [value] => Package\Semantic\Types\PrimitiveType Object
                 (
-                    [type] => Package\Language\Primitive Enum:string
+                    [type] => Package\Common\Language\Primitive Enum:string
                         (
                             [name] => Integer
                             [value] => int
@@ -151,7 +151,7 @@ WeakMap Object
                             [endOffset] => -1
                         )
 
-                    [operator] => Package\Language\BinaryOperator Enum
+                    [operator] => Package\Common\Language\BinaryOperator Enum
                         (
                             [name] => Plus
                         )
@@ -186,7 +186,7 @@ WeakMap Object
 
             [value] => Package\Semantic\Types\PrimitiveType Object
                 (
-                    [type] => Package\Language\Primitive Enum:string
+                    [type] => Package\Common\Language\Primitive Enum:string
                         (
                             [name] => Float
                             [value] => float

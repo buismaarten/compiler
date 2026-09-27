@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Semantic\TypeResolver\Resolvers;
 
-use Package\Language\UnaryOperator;
+use Package\Common\Language\UnaryOperator;
 use Package\Semantic\Types;
 use Package\Semantic\Types\AbstractType;
 
