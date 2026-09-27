@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Tokenizer;
 
+use Package\Common\Language\Keyword;
 use Package\Common\Location;
 use Package\Exceptions\Tokenizer\UnexpectedCharacterException;
 use Package\Exceptions\Tokenizer\UnexpectedEndOfInputException;
 use Package\Input\Input;
 use Package\Input\InputInterface;
-use Package\Language\Keyword;
 
 final class Tokenizer
 {

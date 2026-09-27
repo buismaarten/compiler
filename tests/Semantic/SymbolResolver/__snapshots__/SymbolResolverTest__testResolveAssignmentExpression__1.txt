@@ -23,7 +23,7 @@ WeakMap Object
                                     [endOffset] => -1
                                 )
 
-                            [type] => Package\Language\Primitive Enum:string
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
                                     [name] => Integer
                                     [value] => int
@@ -59,7 +59,7 @@ WeakMap Object
                     [name] => foo
                     [type] => Package\Semantic\Types\PrimitiveType Object
                         (
-                            [type] => Package\Language\Primitive Enum:string
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
                                     [name] => Integer
                                     [value] => int
@@ -117,7 +117,7 @@ WeakMap Object
                     [name] => foo
                     [type] => Package\Semantic\Types\PrimitiveType Object
                         (
-                            [type] => Package\Language\Primitive Enum:string
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
                                     [name] => Integer
                                     [value] => int

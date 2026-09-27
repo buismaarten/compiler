@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Expressions;
 
+use Package\Common\Language\BinaryOperator;
 use Package\Common\Location;
-use Package\Language\BinaryOperator;
 
 final class BinaryExpression extends AbstractExpression
 {

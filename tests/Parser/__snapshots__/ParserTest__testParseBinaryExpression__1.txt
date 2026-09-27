@@ -30,7 +30,7 @@ Package\Nodes\Block Object
                                     [endOffset] => 9
                                 )
 
-                            [operator] => Package\Language\BinaryOperator Enum
+                            [operator] => Package\Common\Language\BinaryOperator Enum
                                 (
                                     [name] => Plus
                                 )
@@ -58,7 +58,7 @@ Package\Nodes\Block Object
                                             [endOffset] => 9
                                         )
 
-                                    [operator] => Package\Language\BinaryOperator Enum
+                                    [operator] => Package\Common\Language\BinaryOperator Enum
                                         (
                                             [name] => Multiply
                                         )

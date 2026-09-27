@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Types;
 
+use Package\Common\Language\Primitive;
 use Package\Common\Location;
-use Package\Language\Primitive;
 
 final class PrimitiveType extends AbstractType
 {

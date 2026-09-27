@@ -31,7 +31,7 @@ Package\Nodes\Block Object
                                     [endOffset] => 14
                                 )
 
-                            [type] => Package\Language\Primitive Enum:string
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
                                     [name] => Void
                                     [value] => void

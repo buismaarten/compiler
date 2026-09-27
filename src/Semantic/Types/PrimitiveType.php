@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Semantic\Types;
 
-use Package\Language\Primitive;
+use Package\Common\Language\Primitive;
 
 final class PrimitiveType extends AbstractType
 {

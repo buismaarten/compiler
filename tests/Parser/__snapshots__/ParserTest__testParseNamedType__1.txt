@@ -31,7 +31,7 @@ Package\Nodes\Block Object
                                     [endOffset] => 13
                                 )
 
-                            [type] => Package\Language\Primitive Enum:string
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
                                     [name] => Bool
                                     [value] => bool

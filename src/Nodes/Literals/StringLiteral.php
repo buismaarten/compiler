@@ -8,8 +8,8 @@ declare(strict_types=1);
 namespace Package\Nodes\Literals;
 
 use Override;
+use Package\Common\Language\Primitive;
 use Package\Common\Location;
-use Package\Language\Primitive;
 
 /** @extends AbstractLiteral<string> */
 final class StringLiteral extends AbstractLiteral

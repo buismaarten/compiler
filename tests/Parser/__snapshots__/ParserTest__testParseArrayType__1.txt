@@ -41,7 +41,7 @@ Package\Nodes\Block Object
                                             [endOffset] => 12
                                         )
 
-                                    [type] => Package\Language\Primitive Enum:string
+                                    [type] => Package\Common\Language\Primitive Enum:string
                                         (
                                             [name] => Integer
                                             [value] => int
