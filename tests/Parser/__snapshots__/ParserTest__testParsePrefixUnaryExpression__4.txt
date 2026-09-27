@@ -31,7 +31,7 @@ Package\Nodes\Block Object
                                 )
 
                             [prefix] => 1
-                            [operator] => Package\Language\UnaryOperator Enum
+                            [operator] => Package\Common\Language\UnaryOperator Enum
                                 (
                                     [name] => Increment
                                 )

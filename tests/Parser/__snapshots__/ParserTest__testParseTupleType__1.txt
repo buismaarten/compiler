@@ -43,7 +43,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 13
                                                 )
 
-                                            [type] => Package\Language\Primitive Enum:string
+                                            [type] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => Integer
                                                     [value] => int
@@ -61,7 +61,7 @@ Package\Nodes\Block Object
                                                     [endOffset] => 18
                                                 )
 
-                                            [type] => Package\Language\Primitive Enum:string
+                                            [type] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => Integer
                                                     [value] => int
