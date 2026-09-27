@@ -8,12 +8,17 @@ declare(strict_types=1);
 namespace Package\Semantic\TypeResolver\Resolvers;
 
 use Package\Language\UnaryOperator;
+use Package\Semantic\Types;
 use Package\Semantic\Types\AbstractType;
 
 final class UnaryExpressionResolver
 {
     public static function resolve(UnaryOperator $operator, AbstractType $type): AbstractType
     {
+        if ($type instanceof Types\ErrorType) {
+            return $type;
+        }
+
         // TODO
         return $type;
     }
