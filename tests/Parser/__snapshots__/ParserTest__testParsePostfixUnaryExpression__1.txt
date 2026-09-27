@@ -30,7 +30,7 @@ Package\Nodes\Block Object
                                     [endOffset] => 5
                                 )
 
-                            [prefix] =>
+                            [prefix] => 
                             [operator] => Package\Language\UnaryOperator Enum
                                 (
                                     [name] => Decrement

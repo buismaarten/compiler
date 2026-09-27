@@ -20,7 +20,7 @@ Package\Nodes\Block Object
                             [endOffset] => 9
                         )
 
-                    [level] =>
+                    [level] => 
                 )
 
         )
