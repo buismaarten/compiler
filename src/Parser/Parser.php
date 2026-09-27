@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Parser;
 
-use Package\Core\Location;
+use Package\Common\Location;
 use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;

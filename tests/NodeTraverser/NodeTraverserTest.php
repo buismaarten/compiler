@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Package\Tests\NodeTraverser;
 
 use Override;
-use Package\Core\Location;
+use Package\Common\Location;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Expressions;
 use Package\Nodes\Literals;

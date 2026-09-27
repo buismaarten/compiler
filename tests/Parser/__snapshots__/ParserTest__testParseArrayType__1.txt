@@ -1,6 +1,6 @@
 Package\Nodes\Block Object
 (
-    [location] => Package\Core\Location Object
+    [location] => Package\Common\Location Object
         (
             [startLine] => 1
             [startOffset] => 0
@@ -12,7 +12,7 @@ Package\Nodes\Block Object
         (
             [0] => Package\Nodes\Statements\VariableStatement Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => 1
                             [startOffset] => 0
@@ -23,7 +23,7 @@ Package\Nodes\Block Object
                     [name] => foo
                     [type] => Package\Nodes\Types\ArrayType Object
                         (
-                            [location] => Package\Core\Location Object
+                            [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 12
@@ -33,7 +33,7 @@ Package\Nodes\Block Object
 
                             [type] => Package\Nodes\Types\PrimitiveType Object
                                 (
-                                    [location] => Package\Core\Location Object
+                                    [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 1
                                             [startOffset] => 9
@@ -53,7 +53,7 @@ Package\Nodes\Block Object
 
                     [expression] => Package\Nodes\Expressions\ArrayExpression Object
                         (
-                            [location] => Package\Core\Location Object
+                            [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 17
@@ -65,7 +65,7 @@ Package\Nodes\Block Object
                                 (
                                     [0] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location] => Package\Core\Location Object
+                                            [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 18
@@ -78,7 +78,7 @@ Package\Nodes\Block Object
 
                                     [1] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location] => Package\Core\Location Object
+                                            [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 23

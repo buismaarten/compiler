@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Types;
 
-use Package\Core\Location;
+use Package\Common\Location;
 
 final class TupleType extends AbstractType
 {

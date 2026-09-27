@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Package\Nodes\Literals;
 
 use Override;
-use Package\Core\Location;
+use Package\Common\Location;
 use Package\Language\Primitive;
 
 /** @extends AbstractLiteral<float> */

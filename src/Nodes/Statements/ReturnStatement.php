@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Statements;
 
-use Package\Core\Location;
+use Package\Common\Location;
 use Package\Nodes\Expressions\AbstractExpression;
 
 final class ReturnStatement extends AbstractStatement

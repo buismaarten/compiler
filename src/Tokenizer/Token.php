@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tokenizer;
 
-use Package\Core\Location;
+use Package\Common\Location;
 
 final readonly class Token
 {

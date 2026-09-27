@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Semantic\Symbols;
 
-use Package\Core\Location;
+use Package\Common\Location;
 use Package\Semantic\Types\AbstractType;
 
 abstract class AbstractSymbol
