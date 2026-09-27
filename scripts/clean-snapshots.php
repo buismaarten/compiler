@@ -9,6 +9,6 @@ if (!getenv('UPDATE_SNAPSHOTS') || getenv('UPDATE_SNAPSHOTS') === 'false') {
     return;
 }
 
-foreach (glob('./tests/{*,*/*}/__snapshots__', GLOB_BRACE) as $path) {
+foreach (glob('./tests/{*,*/*,*/*/*}/__snapshots__', GLOB_BRACE) as $path) {
     shell_exec("rm -rf {$path}");
 }
