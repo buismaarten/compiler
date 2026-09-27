@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Expressions;
 
+use Package\Common\Language\UnaryOperator;
 use Package\Common\Location;
-use Package\Language\UnaryOperator;
 
 final class UnaryExpression extends AbstractExpression
 {

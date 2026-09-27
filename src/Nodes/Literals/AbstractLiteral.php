@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Nodes\Literals;
 
-use Package\Language\Primitive;
+use Package\Common\Language\Primitive;
 use Package\Nodes\Expressions\AbstractExpression;
 
 /** @template T */

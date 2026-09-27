@@ -7,13 +7,13 @@ declare(strict_types=1);
 
 namespace Package\Parser;
 
+use Package\Common\Language\BinaryOperator;
+use Package\Common\Language\Primitive;
+use Package\Common\Language\UnaryOperator;
 use Package\Common\Location;
 use Package\Exceptions\Parser\ExpectedTokenException;
 use Package\Exceptions\Parser\UnexpectedEndOfInputException;
 use Package\Exceptions\Parser\UnexpectedTokenException;
-use Package\Language\BinaryOperator;
-use Package\Language\Primitive;
-use Package\Language\UnaryOperator;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
 use Package\Nodes\Expressions\AbstractExpression;

@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Tests\Semantic\SymbolResolver;
 
+use Package\Common\Language\Primitive;
 use Package\Common\Location;
-use Package\Language\Primitive;
 use Package\Nodes\AbstractNode;
 use Package\Nodes\Block;
 use Package\Nodes\Expressions;
