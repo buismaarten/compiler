@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tests\Semantic\TypeResolver;
 
-use Package\Core\Location;
+use Package\Common\Location;
 use Package\Language\BinaryOperator;
 use Package\Language\Primitive;
 use Package\Language\UnaryOperator;

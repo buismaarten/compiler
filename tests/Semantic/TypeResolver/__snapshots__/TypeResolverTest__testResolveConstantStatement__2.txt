@@ -4,7 +4,7 @@ WeakMap Object
         (
             [key] => Package\Nodes\Literals\IntegerLiteral Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => -1
                             [startOffset] => -1
@@ -31,7 +31,7 @@ WeakMap Object
         (
             [key] => Package\Nodes\Statements\ConstantStatement Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => -1
                             [startOffset] => -1
@@ -42,7 +42,7 @@ WeakMap Object
                     [name] => foo
                     [type] => Package\Nodes\Types\PrimitiveType Object
                         (
-                            [location] => Package\Core\Location Object
+                            [location] => Package\Common\Location Object
                                 (
                                     [startLine] => -1
                                     [startOffset] => -1
@@ -60,7 +60,7 @@ WeakMap Object
 
                     [expression] => Package\Nodes\Literals\IntegerLiteral Object
                         (
-                            [location] => Package\Core\Location Object
+                            [location] => Package\Common\Location Object
                                 (
                                     [startLine] => -1
                                     [startOffset] => -1
@@ -89,7 +89,7 @@ WeakMap Object
         (
             [key] => Package\Nodes\Expressions\IdentifierExpression Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => -1
                             [startOffset] => -1

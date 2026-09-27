@@ -4,7 +4,7 @@ WeakMap Object
         (
             [key] => Package\Nodes\Statements\FunctionStatement Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => -1
                             [startOffset] => -1
@@ -15,7 +15,7 @@ WeakMap Object
                     [name] => foo
                     [type] => Package\Nodes\Types\PrimitiveType Object
                         (
-                            [location] => Package\Core\Location Object
+                            [location] => Package\Common\Location Object
                                 (
                                     [startLine] => -1
                                     [startOffset] => -1
@@ -35,7 +35,7 @@ WeakMap Object
                         (
                             [0] => Package\Nodes\Parameter Object
                                 (
-                                    [location] => Package\Core\Location Object
+                                    [location] => Package\Common\Location Object
                                         (
                                             [startLine] => -1
                                             [startOffset] => -1
@@ -46,7 +46,7 @@ WeakMap Object
                                     [name] => bar
                                     [type] => Package\Nodes\Types\PrimitiveType Object
                                         (
-                                            [location] => Package\Core\Location Object
+                                            [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => -1
                                                     [startOffset] => -1
@@ -68,7 +68,7 @@ WeakMap Object
 
                     [statements] => Package\Nodes\Block Object
                         (
-                            [location] => Package\Core\Location Object
+                            [location] => Package\Common\Location Object
                                 (
                                     [startLine] => -1
                                     [startOffset] => -1
@@ -80,7 +80,7 @@ WeakMap Object
                                 (
                                     [0] => Package\Nodes\Statements\ReturnStatement Object
                                         (
-                                            [location] => Package\Core\Location Object
+                                            [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => -1
                                                     [startOffset] => -1
@@ -90,7 +90,7 @@ WeakMap Object
 
                                             [expression] => Package\Nodes\Expressions\IdentifierExpression Object
                                                 (
-                                                    [location] => Package\Core\Location Object
+                                                    [location] => Package\Common\Location Object
                                                         (
                                                             [startLine] => -1
                                                             [startOffset] => -1
@@ -105,7 +105,7 @@ WeakMap Object
 
                                     [1] => Package\Nodes\Statements\ReturnStatement Object
                                         (
-                                            [location] => Package\Core\Location Object
+                                            [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => -1
                                                     [startOffset] => -1
@@ -115,7 +115,7 @@ WeakMap Object
 
                                             [expression] => Package\Nodes\Literals\StringLiteral Object
                                                 (
-                                                    [location] => Package\Core\Location Object
+                                                    [location] => Package\Common\Location Object
                                                         (
                                                             [startLine] => -1
                                                             [startOffset] => -1

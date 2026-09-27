@@ -4,7 +4,7 @@ WeakMap Object
         (
             [key] => Package\Nodes\Literals\IntegerLiteral Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => -1
                             [startOffset] => -1
@@ -31,7 +31,7 @@ WeakMap Object
         (
             [key] => Package\Nodes\Literals\IntegerLiteral Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => -1
                             [startOffset] => -1
@@ -58,7 +58,7 @@ WeakMap Object
         (
             [key] => Package\Nodes\Expressions\TupleExpression Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => -1
                             [startOffset] => -1
@@ -70,7 +70,7 @@ WeakMap Object
                         (
                             [0] => Package\Nodes\Literals\IntegerLiteral Object
                                 (
-                                    [location] => Package\Core\Location Object
+                                    [location] => Package\Common\Location Object
                                         (
                                             [startLine] => -1
                                             [startOffset] => -1
@@ -83,7 +83,7 @@ WeakMap Object
 
                             [1] => Package\Nodes\Literals\IntegerLiteral Object
                                 (
-                                    [location] => Package\Core\Location Object
+                                    [location] => Package\Common\Location Object
                                         (
                                             [startLine] => -1
                                             [startOffset] => -1
@@ -132,7 +132,7 @@ WeakMap Object
         (
             [key] => Package\Nodes\Statements\VariableStatement Object
                 (
-                    [location] => Package\Core\Location Object
+                    [location] => Package\Common\Location Object
                         (
                             [startLine] => -1
                             [startOffset] => -1
@@ -143,7 +143,7 @@ WeakMap Object
                     [name] => foo
                     [type] => Package\Nodes\Types\TupleType Object
                         (
-                            [location] => Package\Core\Location Object
+                            [location] => Package\Common\Location Object
                                 (
                                     [startLine] => -1
                                     [startOffset] => -1
@@ -155,7 +155,7 @@ WeakMap Object
                                 (
                                     [0] => Package\Nodes\Types\PrimitiveType Object
                                         (
-                                            [location] => Package\Core\Location Object
+                                            [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => -1
                                                     [startOffset] => -1
@@ -173,7 +173,7 @@ WeakMap Object
 
                                     [1] => Package\Nodes\Types\PrimitiveType Object
                                         (
-                                            [location] => Package\Core\Location Object
+                                            [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => -1
                                                     [startOffset] => -1
@@ -195,7 +195,7 @@ WeakMap Object
 
                     [expression] => Package\Nodes\Expressions\TupleExpression Object
                         (
-                            [location] => Package\Core\Location Object
+                            [location] => Package\Common\Location Object
                                 (
                                     [startLine] => -1
                                     [startOffset] => -1
@@ -207,7 +207,7 @@ WeakMap Object
                                 (
                                     [0] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location] => Package\Core\Location Object
+                                            [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => -1
                                                     [startOffset] => -1
@@ -220,7 +220,7 @@ WeakMap Object
 
                                     [1] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [location] => Package\Core\Location Object
+                                            [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => -1
                                                     [startOffset] => -1
