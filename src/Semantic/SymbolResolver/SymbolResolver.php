@@ -10,22 +10,22 @@ namespace Package\Semantic\SymbolResolver;
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\NodeTraverser;
 use Package\Semantic\Symbols\AbstractSymbol;
-use WeakMap;
+use SplObjectStorage;
 
 final class SymbolResolver
 {
-    /** @var WeakMap<AbstractNode, AbstractSymbol> */
-    private WeakMap $symbols;
+    /** @var SplObjectStorage<AbstractNode, AbstractSymbol> */
+    private SplObjectStorage $symbols;
 
     public function __construct(AbstractNode $node)
     {
-        $this->symbols = new WeakMap;
+        $this->symbols = new SplObjectStorage;
 
         $this->traverse($node);
     }
 
-    /** @return WeakMap<AbstractNode, AbstractSymbol> */
-    public function getSymbols(): WeakMap
+    /** @return SplObjectStorage<AbstractNode, AbstractSymbol> */
+    public function getSymbols(): SplObjectStorage
     {
         return $this->symbols;
     }

@@ -18,21 +18,21 @@ use Package\Semantic\Symbols;
 use Package\Semantic\Symbols\AbstractSymbol;
 use Package\Semantic\Types;
 use Package\Semantic\Types\AbstractType;
+use SplObjectStorage;
 use SplStack;
-use WeakMap;
 
 final class SymbolNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
 
-    /** @var WeakMap<AbstractNode, AbstractSymbol> */
-    private WeakMap $symbols;
+    /** @var SplObjectStorage<AbstractNode, AbstractSymbol> */
+    private SplObjectStorage $symbols;
 
     /** @var SplStack<Symbols\FunctionSymbol> */
     private SplStack $functionSymbolStack;
 
-    /** @param WeakMap<AbstractNode, AbstractSymbol> $symbols */
-    public function __construct(WeakMap $symbols)
+    /** @param SplObjectStorage<AbstractNode, AbstractSymbol> $symbols */
+    public function __construct(SplObjectStorage $symbols)
     {
         $this->symbols = $symbols;
         $this->functionSymbolStack = new SplStack;
