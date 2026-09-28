@@ -1,106 +1,23 @@
-WeakMap Object
+SplObjectStorage Object
 (
-    [0] => Array
+    [storage:SplObjectStorage:private] => Array
         (
-            [key] => Package\Nodes\Literals\IntegerLiteral Object
+            [0] => Array
                 (
-                    [location] => Package\Common\Location Object
+                    [obj] => Package\Nodes\Literals\IntegerLiteral Object
                         (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value:protected] => 1
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => Integer
-                            [value] => int
-                        )
-
-                )
-
-        )
-
-    [1] => Array
-        (
-            [key] => Package\Nodes\Literals\IntegerLiteral Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value:protected] => 2
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => Integer
-                            [value] => int
-                        )
-
-                )
-
-        )
-
-    [2] => Array
-        (
-            [key] => Package\Nodes\Expressions\ArrayExpression Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [expressions] => Array
-                        (
-                            [0] => Package\Nodes\Literals\IntegerLiteral Object
+                            [location] => Package\Common\Location Object
                                 (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
-                                        )
-
-                                    [value:protected] => 1
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
                                 )
 
-                            [1] => Package\Nodes\Literals\IntegerLiteral Object
-                                (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
-                                        )
-
-                                    [value:protected] => 2
-                                )
-
+                            [value:protected] => 1
                         )
 
-                )
-
-            [value] => Package\Semantic\Types\ArrayType Object
-                (
-                    [type] => Package\Semantic\Types\PrimitiveType Object
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
                         (
                             [type] => Package\Common\Language\Primitive Enum:string
                                 (
@@ -112,22 +29,9 @@ WeakMap Object
 
                 )
 
-        )
-
-    [3] => Array
-        (
-            [key] => Package\Nodes\Statements\VariableStatement Object
+            [1] => Array
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [name] => foo
-                    [type] => Package\Nodes\Types\ArrayType Object
+                    [obj] => Package\Nodes\Literals\IntegerLiteral Object
                         (
                             [location] => Package\Common\Location Object
                                 (
@@ -137,27 +41,24 @@ WeakMap Object
                                     [endOffset] => -1
                                 )
 
-                            [type] => Package\Nodes\Types\PrimitiveType Object
+                            [value:protected] => 2
+                        )
+
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
-                                        )
-
-                                    [type] => Package\Common\Language\Primitive Enum:string
-                                        (
-                                            [name] => Integer
-                                            [value] => int
-                                        )
-
+                                    [name] => Integer
+                                    [value] => int
                                 )
 
                         )
 
-                    [expression] => Package\Nodes\Expressions\ArrayExpression Object
+                )
+
+            [2] => Array
+                (
+                    [obj] => Package\Nodes\Expressions\ArrayExpression Object
                         (
                             [location] => Package\Common\Location Object
                                 (
@@ -199,16 +100,119 @@ WeakMap Object
 
                         )
 
+                    [inf] => Package\Semantic\Types\ArrayType Object
+                        (
+                            [type] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
                 )
 
-            [value] => Package\Semantic\Types\ArrayType Object
+            [3] => Array
                 (
-                    [type] => Package\Semantic\Types\PrimitiveType Object
+                    [obj] => Package\Nodes\Statements\VariableStatement Object
                         (
-                            [type] => Package\Common\Language\Primitive Enum:string
+                            [location] => Package\Common\Location Object
                                 (
-                                    [name] => Integer
-                                    [value] => int
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [name] => foo
+                            [type] => Package\Nodes\Types\ArrayType Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
+
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
+                                        )
+
+                                )
+
+                            [expression] => Package\Nodes\Expressions\ArrayExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [expressions] => Array
+                                        (
+                                            [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [value:protected] => 1
+                                                )
+
+                                            [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [value:protected] => 2
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [inf] => Package\Semantic\Types\ArrayType Object
+                        (
+                            [type] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
                                 )
 
                         )

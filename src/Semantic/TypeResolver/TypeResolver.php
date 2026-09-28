@@ -11,32 +11,32 @@ use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\NodeTraverser;
 use Package\Semantic\SymbolResolver\SymbolResolver;
 use Package\Semantic\Types\AbstractType;
-use WeakMap;
+use SplObjectStorage;
 
 final class TypeResolver
 {
-    /** @var WeakMap<AbstractNode, AbstractType> */
-    private WeakMap $types;
+    /** @var SplObjectStorage<AbstractNode, AbstractType> */
+    private SplObjectStorage $types;
 
-    /** @var WeakMap<AbstractNode, AbstractType[]> */
-    private WeakMap $functionReturnTypes;
+    /** @var SplObjectStorage<AbstractNode, AbstractType[]> */
+    private SplObjectStorage $functionReturnTypes;
 
     public function __construct(AbstractNode $node, SymbolResolver $symbolResolver)
     {
-        $this->types = new WeakMap;
-        $this->functionReturnTypes = new WeakMap;
+        $this->types = new SplObjectStorage;
+        $this->functionReturnTypes = new SplObjectStorage;
 
         $this->traverse($node, $symbolResolver);
     }
 
-    /** @return WeakMap<AbstractNode, AbstractType[]> */
-    public function getFunctionReturnTypes(): WeakMap
+    /** @return SplObjectStorage<AbstractNode, AbstractType[]> */
+    public function getFunctionReturnTypes(): SplObjectStorage
     {
         return $this->functionReturnTypes;
     }
 
-    /** @return WeakMap<AbstractNode, AbstractType> */
-    public function getTypes(): WeakMap
+    /** @return SplObjectStorage<AbstractNode, AbstractType> */
+    public function getTypes(): SplObjectStorage
     {
         return $this->types;
     }

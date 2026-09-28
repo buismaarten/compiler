@@ -1,19 +1,10 @@
-WeakMap Object
+SplObjectStorage Object
 (
-    [0] => Array
+    [storage:SplObjectStorage:private] => Array
         (
-            [key] => Package\Nodes\Statements\FunctionStatement Object
+            [0] => Array
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [name] => foo
-                    [type] => Package\Nodes\Types\PrimitiveType Object
+                    [obj] => Package\Nodes\Statements\FunctionStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
@@ -23,6 +14,130 @@ WeakMap Object
                                     [endOffset] => -1
                                 )
 
+                            [name] => foo
+                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                            [parameters] => Array
+                                (
+                                    [0] => Package\Nodes\Parameter Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => -1
+                                                    [startOffset] => -1
+                                                    [endLine] => -1
+                                                    [endOffset] => -1
+                                                )
+
+                                            [name] => bar
+                                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                        (
+                                                            [name] => String
+                                                            [value] => string
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                            [statements] => Package\Nodes\Block Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [statements] => Array
+                                        (
+                                            [0] => Package\Nodes\Statements\ReturnStatement Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => -1
+                                                                    [startOffset] => -1
+                                                                    [endLine] => -1
+                                                                    [endOffset] => -1
+                                                                )
+
+                                                            [name] => bar
+                                                        )
+
+                                                )
+
+                                            [1] => Package\Nodes\Statements\ReturnStatement Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [expression] => Package\Nodes\Literals\StringLiteral Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => -1
+                                                                    [startOffset] => -1
+                                                                    [endLine] => -1
+                                                                    [endOffset] => -1
+                                                                )
+
+                                                            [value:protected] => Goodbye, World!
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
                             [type] => Package\Common\Language\Primitive Enum:string
                                 (
                                     [name] => String
@@ -31,42 +146,11 @@ WeakMap Object
 
                         )
 
-                    [parameters] => Array
-                        (
-                            [0] => Package\Nodes\Parameter Object
-                                (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
-                                        )
+                )
 
-                                    [name] => bar
-                                    [type] => Package\Nodes\Types\PrimitiveType Object
-                                        (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => -1
-                                                    [startOffset] => -1
-                                                    [endLine] => -1
-                                                    [endOffset] => -1
-                                                )
-
-                                            [type] => Package\Common\Language\Primitive Enum:string
-                                                (
-                                                    [name] => String
-                                                    [value] => string
-                                                )
-
-                                        )
-
-                                )
-
-                        )
-
-                    [statements] => Package\Nodes\Block Object
+            [1] => Array
+                (
+                    [obj] => Package\Nodes\Expressions\IdentifierExpression Object
                         (
                             [location] => Package\Common\Location Object
                                 (
@@ -76,9 +160,91 @@ WeakMap Object
                                     [endOffset] => -1
                                 )
 
-                            [statements] => Array
+                            [name] => bar
+                        )
+
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
-                                    [0] => Package\Nodes\Statements\ReturnStatement Object
+                                    [name] => String
+                                    [value] => string
+                                )
+
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [obj] => Package\Nodes\Literals\StringLiteral Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [value:protected] => Goodbye, World!
+                        )
+
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
+                                (
+                                    [name] => String
+                                    [value] => string
+                                )
+
+                        )
+
+                )
+
+            [3] => Array
+                (
+                    [obj] => Package\Nodes\Literals\StringLiteral Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [value:protected] => Hello, World!
+                        )
+
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
+                                (
+                                    [name] => String
+                                    [value] => string
+                                )
+
+                        )
+
+                )
+
+            [4] => Array
+                (
+                    [obj] => Package\Nodes\Expressions\FunctionCallExpression Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [name] => foo
+                            [arguments] => Array
+                                (
+                                    [0] => Package\Nodes\Literals\StringLiteral Object
                                         (
                                             [location] => Package\Common\Location Object
                                                 (
@@ -88,183 +254,21 @@ WeakMap Object
                                                     [endOffset] => -1
                                                 )
 
-                                            [expression] => Package\Nodes\Expressions\IdentifierExpression Object
-                                                (
-                                                    [location] => Package\Common\Location Object
-                                                        (
-                                                            [startLine] => -1
-                                                            [startOffset] => -1
-                                                            [endLine] => -1
-                                                            [endOffset] => -1
-                                                        )
-
-                                                    [name] => bar
-                                                )
-
-                                        )
-
-                                    [1] => Package\Nodes\Statements\ReturnStatement Object
-                                        (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => -1
-                                                    [startOffset] => -1
-                                                    [endLine] => -1
-                                                    [endOffset] => -1
-                                                )
-
-                                            [expression] => Package\Nodes\Literals\StringLiteral Object
-                                                (
-                                                    [location] => Package\Common\Location Object
-                                                        (
-                                                            [startLine] => -1
-                                                            [startOffset] => -1
-                                                            [endLine] => -1
-                                                            [endOffset] => -1
-                                                        )
-
-                                                    [value:protected] => Goodbye, World!
-                                                )
-
+                                            [value:protected] => Hello, World!
                                         )
 
                                 )
 
                         )
 
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
                         (
-                            [name] => String
-                            [value] => string
-                        )
-
-                )
-
-        )
-
-    [1] => Array
-        (
-            [key] => Package\Nodes\Expressions\IdentifierExpression Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [name] => bar
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => String
-                            [value] => string
-                        )
-
-                )
-
-        )
-
-    [2] => Array
-        (
-            [key] => Package\Nodes\Literals\StringLiteral Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value:protected] => Goodbye, World!
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => String
-                            [value] => string
-                        )
-
-                )
-
-        )
-
-    [3] => Array
-        (
-            [key] => Package\Nodes\Literals\StringLiteral Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value:protected] => Hello, World!
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => String
-                            [value] => string
-                        )
-
-                )
-
-        )
-
-    [4] => Array
-        (
-            [key] => Package\Nodes\Expressions\FunctionCallExpression Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [name] => foo
-                    [arguments] => Array
-                        (
-                            [0] => Package\Nodes\Literals\StringLiteral Object
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
-                                        )
-
-                                    [value:protected] => Hello, World!
+                                    [name] => String
+                                    [value] => string
                                 )
 
-                        )
-
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => String
-                            [value] => string
                         )
 
                 )

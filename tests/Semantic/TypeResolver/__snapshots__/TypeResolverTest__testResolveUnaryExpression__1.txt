@@ -1,3 +1,7 @@
-WeakMap Object
+SplObjectStorage Object
 (
+    [storage:SplObjectStorage:private] => Array
+        (
+        )
+
 )

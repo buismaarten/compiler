@@ -18,27 +18,27 @@ use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\SymbolResolver\SymbolResolver;
 use Package\Semantic\Types;
 use Package\Semantic\Types\AbstractType;
+use SplObjectStorage;
 use SplStack;
-use WeakMap;
 
 final class TypeNodeVisitor extends AbstractNodeVisitor
 {
     private SymbolResolver $symbolResolver;
 
-    /** @var WeakMap<AbstractNode, AbstractType> */
-    private WeakMap $types;
+    /** @var SplObjectStorage<AbstractNode, AbstractType> */
+    private SplObjectStorage $types;
 
-    /** @var WeakMap<AbstractNode, AbstractType[]> */
-    private WeakMap $functionReturnTypes;
+    /** @var SplObjectStorage<AbstractNode, AbstractType[]> */
+    private SplObjectStorage $functionReturnTypes;
 
     /** @var SplStack<ArrayObject<array-key, AbstractType>> */
     private SplStack $functionReturnTypesStack;
 
     /**
-     * @param WeakMap<AbstractNode, AbstractType> $types
-     * @param WeakMap<AbstractNode, AbstractType[]> $functionReturnTypes
+     * @param SplObjectStorage<AbstractNode, AbstractType> $types
+     * @param SplObjectStorage<AbstractNode, AbstractType[]> $functionReturnTypes
      */
-    public function __construct(SymbolResolver $symbolResolver, WeakMap $types, WeakMap $functionReturnTypes)
+    public function __construct(SymbolResolver $symbolResolver, SplObjectStorage $types, SplObjectStorage $functionReturnTypes)
     {
         $this->symbolResolver = $symbolResolver;
         $this->types = $types;

@@ -1,64 +1,10 @@
-WeakMap Object
+SplObjectStorage Object
 (
-    [0] => Array
+    [storage:SplObjectStorage:private] => Array
         (
-            [key] => Package\Nodes\Literals\FloatLiteral Object
+            [0] => Array
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value:protected] => 3.14
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => Float
-                            [value] => float
-                        )
-
-                )
-
-        )
-
-    [1] => Array
-        (
-            [key] => Package\Nodes\Statements\VariableStatement Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [name] => foo
-                    [type] => Package\Nodes\Types\PrimitiveType Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
-                                )
-
-                            [type] => Package\Common\Language\Primitive Enum:string
-                                (
-                                    [name] => Float
-                                    [value] => float
-                                )
-
-                        )
-
-                    [expression] => Package\Nodes\Literals\FloatLiteral Object
+                    [obj] => Package\Nodes\Literals\FloatLiteral Object
                         (
                             [location] => Package\Common\Location Object
                                 (
@@ -71,92 +17,79 @@ WeakMap Object
                             [value:protected] => 3.14
                         )
 
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
                         (
-                            [name] => Float
-                            [value] => float
+                            [type] => Package\Common\Language\Primitive Enum:string
+                                (
+                                    [name] => Float
+                                    [value] => float
+                                )
+
                         )
 
                 )
 
-        )
-
-    [2] => Array
-        (
-            [key] => Package\Nodes\Expressions\IdentifierExpression Object
+            [1] => Array
                 (
-                    [location] => Package\Common\Location Object
+                    [obj] => Package\Nodes\Statements\VariableStatement Object
                         (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [name] => foo
+                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Float
+                                            [value] => float
+                                        )
+
+                                )
+
+                            [expression] => Package\Nodes\Literals\FloatLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [value:protected] => 3.14
+                                )
+
                         )
 
-                    [name] => foo
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
+                                (
+                                    [name] => Float
+                                    [value] => float
+                                )
+
+                        )
+
                 )
 
-            [value] => Package\Semantic\Types\PrimitiveType Object
+            [2] => Array
                 (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => Float
-                            [value] => float
-                        )
-
-                )
-
-        )
-
-    [3] => Array
-        (
-            [key] => Package\Nodes\Literals\IntegerLiteral Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value:protected] => 2
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => Integer
-                            [value] => int
-                        )
-
-                )
-
-        )
-
-    [4] => Array
-        (
-            [key] => Package\Nodes\Expressions\BinaryExpression Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [operator] => Package\Common\Language\BinaryOperator Enum
-                        (
-                            [name] => Plus
-                        )
-
-                    [left] => Package\Nodes\Expressions\IdentifierExpression Object
+                    [obj] => Package\Nodes\Expressions\IdentifierExpression Object
                         (
                             [location] => Package\Common\Location Object
                                 (
@@ -169,7 +102,21 @@ WeakMap Object
                             [name] => foo
                         )
 
-                    [right] => Package\Nodes\Literals\IntegerLiteral Object
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
+                                (
+                                    [name] => Float
+                                    [value] => float
+                                )
+
+                        )
+
+                )
+
+            [3] => Array
+                (
+                    [obj] => Package\Nodes\Literals\IntegerLiteral Object
                         (
                             [location] => Package\Common\Location Object
                                 (
@@ -182,14 +129,71 @@ WeakMap Object
                             [value:protected] => 2
                         )
 
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
+                                (
+                                    [name] => Integer
+                                    [value] => int
+                                )
+
+                        )
+
                 )
 
-            [value] => Package\Semantic\Types\PrimitiveType Object
+            [4] => Array
                 (
-                    [type] => Package\Common\Language\Primitive Enum:string
+                    [obj] => Package\Nodes\Expressions\BinaryExpression Object
                         (
-                            [name] => Float
-                            [value] => float
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [operator] => Package\Common\Language\BinaryOperator Enum
+                                (
+                                    [name] => Plus
+                                )
+
+                            [left] => Package\Nodes\Expressions\IdentifierExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [name] => foo
+                                )
+
+                            [right] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [value:protected] => 2
+                                )
+
+                        )
+
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
+                                (
+                                    [name] => Float
+                                    [value] => float
+                                )
+
                         )
 
                 )

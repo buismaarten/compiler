@@ -1,147 +1,10 @@
-WeakMap Object
+SplObjectStorage Object
 (
-    [0] => Array
+    [storage:SplObjectStorage:private] => Array
         (
-            [key] => Package\Nodes\Literals\IntegerLiteral Object
+            [0] => Array
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value:protected] => 1
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => Integer
-                            [value] => int
-                        )
-
-                )
-
-        )
-
-    [1] => Array
-        (
-            [key] => Package\Nodes\Literals\IntegerLiteral Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [value:protected] => 2
-                )
-
-            [value] => Package\Semantic\Types\PrimitiveType Object
-                (
-                    [type] => Package\Common\Language\Primitive Enum:string
-                        (
-                            [name] => Integer
-                            [value] => int
-                        )
-
-                )
-
-        )
-
-    [2] => Array
-        (
-            [key] => Package\Nodes\Expressions\TupleExpression Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [expressions] => Array
-                        (
-                            [0] => Package\Nodes\Literals\IntegerLiteral Object
-                                (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
-                                        )
-
-                                    [value:protected] => 1
-                                )
-
-                            [1] => Package\Nodes\Literals\IntegerLiteral Object
-                                (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
-                                        )
-
-                                    [value:protected] => 2
-                                )
-
-                        )
-
-                )
-
-            [value] => Package\Semantic\Types\TupleType Object
-                (
-                    [types] => Array
-                        (
-                            [0] => Package\Semantic\Types\PrimitiveType Object
-                                (
-                                    [type] => Package\Common\Language\Primitive Enum:string
-                                        (
-                                            [name] => Integer
-                                            [value] => int
-                                        )
-
-                                )
-
-                            [1] => Package\Semantic\Types\PrimitiveType Object
-                                (
-                                    [type] => Package\Common\Language\Primitive Enum:string
-                                        (
-                                            [name] => Integer
-                                            [value] => int
-                                        )
-
-                                )
-
-                        )
-
-                )
-
-        )
-
-    [3] => Array
-        (
-            [key] => Package\Nodes\Statements\VariableStatement Object
-                (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => -1
-                            [startOffset] => -1
-                            [endLine] => -1
-                            [endOffset] => -1
-                        )
-
-                    [name] => foo
-                    [type] => Package\Nodes\Types\TupleType Object
+                    [obj] => Package\Nodes\Literals\IntegerLiteral Object
                         (
                             [location] => Package\Common\Location Object
                                 (
@@ -151,49 +14,51 @@ WeakMap Object
                                     [endOffset] => -1
                                 )
 
-                            [types] => Array
+                            [value:protected] => 1
+                        )
+
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
                                 (
-                                    [0] => Package\Nodes\Types\PrimitiveType Object
-                                        (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => -1
-                                                    [startOffset] => -1
-                                                    [endLine] => -1
-                                                    [endOffset] => -1
-                                                )
-
-                                            [type] => Package\Common\Language\Primitive Enum:string
-                                                (
-                                                    [name] => Integer
-                                                    [value] => int
-                                                )
-
-                                        )
-
-                                    [1] => Package\Nodes\Types\PrimitiveType Object
-                                        (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => -1
-                                                    [startOffset] => -1
-                                                    [endLine] => -1
-                                                    [endOffset] => -1
-                                                )
-
-                                            [type] => Package\Common\Language\Primitive Enum:string
-                                                (
-                                                    [name] => Integer
-                                                    [value] => int
-                                                )
-
-                                        )
-
+                                    [name] => Integer
+                                    [value] => int
                                 )
 
                         )
 
-                    [expression] => Package\Nodes\Expressions\TupleExpression Object
+                )
+
+            [1] => Array
+                (
+                    [obj] => Package\Nodes\Literals\IntegerLiteral Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [value:protected] => 2
+                        )
+
+                    [inf] => Package\Semantic\Types\PrimitiveType Object
+                        (
+                            [type] => Package\Common\Language\Primitive Enum:string
+                                (
+                                    [name] => Integer
+                                    [value] => int
+                                )
+
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [obj] => Package\Nodes\Expressions\TupleExpression Object
                         (
                             [location] => Package\Common\Location Object
                                 (
@@ -235,28 +100,167 @@ WeakMap Object
 
                         )
 
-                )
-
-            [value] => Package\Semantic\Types\TupleType Object
-                (
-                    [types] => Array
+                    [inf] => Package\Semantic\Types\TupleType Object
                         (
-                            [0] => Package\Semantic\Types\PrimitiveType Object
+                            [types] => Array
                                 (
-                                    [type] => Package\Common\Language\Primitive Enum:string
+                                    [0] => Package\Semantic\Types\PrimitiveType Object
                                         (
-                                            [name] => Integer
-                                            [value] => int
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
+                                        )
+
+                                    [1] => Package\Semantic\Types\PrimitiveType Object
+                                        (
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
                                         )
 
                                 )
 
-                            [1] => Package\Semantic\Types\PrimitiveType Object
+                        )
+
+                )
+
+            [3] => Array
+                (
+                    [obj] => Package\Nodes\Statements\VariableStatement Object
+                        (
+                            [location] => Package\Common\Location Object
                                 (
-                                    [type] => Package\Common\Language\Primitive Enum:string
+                                    [startLine] => -1
+                                    [startOffset] => -1
+                                    [endLine] => -1
+                                    [endOffset] => -1
+                                )
+
+                            [name] => foo
+                            [type] => Package\Nodes\Types\TupleType Object
+                                (
+                                    [location] => Package\Common\Location Object
                                         (
-                                            [name] => Integer
-                                            [value] => int
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [types] => Array
+                                        (
+                                            [0] => Package\Nodes\Types\PrimitiveType Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                        (
+                                                            [name] => Integer
+                                                            [value] => int
+                                                        )
+
+                                                )
+
+                                            [1] => Package\Nodes\Types\PrimitiveType Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                        (
+                                                            [name] => Integer
+                                                            [value] => int
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                            [expression] => Package\Nodes\Expressions\TupleExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => -1
+                                            [startOffset] => -1
+                                            [endLine] => -1
+                                            [endOffset] => -1
+                                        )
+
+                                    [expressions] => Array
+                                        (
+                                            [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [value:protected] => 1
+                                                )
+
+                                            [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => -1
+                                                            [startOffset] => -1
+                                                            [endLine] => -1
+                                                            [endOffset] => -1
+                                                        )
+
+                                                    [value:protected] => 2
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [inf] => Package\Semantic\Types\TupleType Object
+                        (
+                            [types] => Array
+                                (
+                                    [0] => Package\Semantic\Types\PrimitiveType Object
+                                        (
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
+                                        )
+
+                                    [1] => Package\Semantic\Types\PrimitiveType Object
+                                        (
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
                                         )
 
                                 )
