@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Tests\Testing;
 
-trait SnapshotAssertions2
+trait SnapshotAssertions
 {
     protected function assertMatchesFixtures(string $pattern, callable $transform): void
     {
