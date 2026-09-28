@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Package\Tests\Parser;
 
 use Package\Parser\Parser;
+use Package\Tests\Testing\SnapshotAssertions;
 use Package\Tests\Testing\SnapshotAssertionsOld;
 use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
@@ -16,21 +17,17 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     use SnapshotAssertionsOld;
+    use SnapshotAssertions;
 
     #[Test]
-    public function testParseArrayExpression(): void
+    public function testFixtures(): void
     {
-        $this->assertSnapshot('[1, 2, 3];');
-        $this->assertSnapshot('[1, 2, [3, 4]];');
-    }
+        $this->assertMatchesFixtures(__DIR__.'/__fixtures__/*.txt', function (string $input) {
+            $tokenizer = new Tokenizer($input);
+            $parser = new Parser($tokenizer);
 
-    #[Test]
-    public function testParseArrayType(): void
-    {
-        $this->assertSnapshot('var foo: int[] = [123, 456];');
-        $this->assertSnapshot('var foo: int[][] = [[123, 456]];');
-        $this->assertSnapshot('var foo: int[]? = null;');
-        $this->assertSnapshot('var foo: int[]?[]? = null;');
+            return $parser->parse();
+        });
     }
 
     #[Test]

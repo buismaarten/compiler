@@ -1,3 +1,5 @@
+var foo: int[] = [123, 456];
+-----
 Package\Nodes\Block Object
 (
     [location] => Package\Common\Location Object

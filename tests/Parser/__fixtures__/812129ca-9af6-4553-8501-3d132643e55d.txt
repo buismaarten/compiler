@@ -1,3 +1,5 @@
+[1, 2, 3];
+-----
 Package\Nodes\Block Object
 (
     [location] => Package\Common\Location Object
@@ -5,7 +7,7 @@ Package\Nodes\Block Object
             [startLine] => 1
             [startOffset] => 0
             [endLine] => 1
-            [endOffset] => 15
+            [endOffset] => 10
         )
 
     [statements] => Array
@@ -17,7 +19,7 @@ Package\Nodes\Block Object
                             [startLine] => 1
                             [startOffset] => 0
                             [endLine] => 1
-                            [endOffset] => 15
+                            [endOffset] => 10
                         )
 
                     [expression] => Package\Nodes\Expressions\ArrayExpression Object
@@ -27,7 +29,7 @@ Package\Nodes\Block Object
                                     [startLine] => 1
                                     [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 14
+                                    [endOffset] => 9
                                 )
 
                             [expressions] => Array
@@ -58,46 +60,17 @@ Package\Nodes\Block Object
                                             [value:protected] => 2
                                         )
 
-                                    [2] => Package\Nodes\Expressions\ArrayExpression Object
+                                    [2] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
                                             [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
                                                     [startOffset] => 7
                                                     [endLine] => 1
-                                                    [endOffset] => 13
+                                                    [endOffset] => 8
                                                 )
 
-                                            [expressions] => Array
-                                                (
-                                                    [0] => Package\Nodes\Literals\IntegerLiteral Object
-                                                        (
-                                                            [location] => Package\Common\Location Object
-                                                                (
-                                                                    [startLine] => 1
-                                                                    [startOffset] => 8
-                                                                    [endLine] => 1
-                                                                    [endOffset] => 9
-                                                                )
-
-                                                            [value:protected] => 3
-                                                        )
-
-                                                    [1] => Package\Nodes\Literals\IntegerLiteral Object
-                                                        (
-                                                            [location] => Package\Common\Location Object
-                                                                (
-                                                                    [startLine] => 1
-                                                                    [startOffset] => 11
-                                                                    [endLine] => 1
-                                                                    [endOffset] => 12
-                                                                )
-
-                                                            [value:protected] => 4
-                                                        )
-
-                                                )
-
+                                            [value:protected] => 3
                                         )
 
                                 )

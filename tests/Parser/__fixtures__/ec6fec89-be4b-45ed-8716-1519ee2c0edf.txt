@@ -1,3 +1,5 @@
+var foo: int[]? = null;
+-----
 Package\Nodes\Block Object
 (
     [location] => Package\Common\Location Object

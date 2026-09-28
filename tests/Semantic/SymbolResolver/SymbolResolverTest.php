@@ -9,8 +9,8 @@ namespace Package\Tests\Semantic\SymbolResolver;
 
 use Package\Parser\Parser;
 use Package\Semantic\SymbolResolver\SymbolResolver;
-use Package\Tests\Testing\SnapshotAssertionsOld;
 use Package\Tests\Testing\SnapshotAssertions;
+use Package\Tests\Testing\SnapshotAssertionsOld;
 use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
