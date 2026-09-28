@@ -9,7 +9,7 @@ namespace Package\Tests\Testing;
 
 use ReflectionClass;
 
-trait SnapshotAssertions
+trait SnapshotAssertionsOld
 {
     private int $snapshotAssertionIndex = 0;
 

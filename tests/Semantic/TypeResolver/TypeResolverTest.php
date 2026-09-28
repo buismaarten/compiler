@@ -20,13 +20,13 @@ use Package\Nodes\Statements;
 use Package\Nodes\Types;
 use Package\Semantic\SymbolResolver\SymbolResolver;
 use Package\Semantic\TypeResolver\TypeResolver;
-use Package\Tests\Testing\SnapshotAssertions;
+use Package\Tests\Testing\SnapshotAssertionsOld;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class TypeResolverTest extends TestCase
 {
-    use SnapshotAssertions;
+    use SnapshotAssertionsOld;
 
     #[Test]
     public function testResolveArrayExpression(): void

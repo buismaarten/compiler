@@ -9,7 +9,7 @@ namespace Package\Tests\Semantic\SymbolResolver;
 
 use Package\Parser\Parser;
 use Package\Semantic\SymbolResolver\SymbolResolver;
-use Package\Tests\Testing\SnapshotAssertions;
+use Package\Tests\Testing\SnapshotAssertionsOld;
 use Package\Tests\Testing\SnapshotAssertions2;
 use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 
 class SymbolResolverTest extends TestCase
 {
-    use SnapshotAssertions;
+    use SnapshotAssertionsOld;
     use SnapshotAssertions2;
 
     #[Test]

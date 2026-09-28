@@ -8,14 +8,14 @@ declare(strict_types=1);
 namespace Package\Tests\Parser;
 
 use Package\Parser\Parser;
-use Package\Tests\Testing\SnapshotAssertions;
+use Package\Tests\Testing\SnapshotAssertionsOld;
 use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase
 {
-    use SnapshotAssertions;
+    use SnapshotAssertionsOld;
 
     #[Test]
     public function testParseArrayExpression(): void
