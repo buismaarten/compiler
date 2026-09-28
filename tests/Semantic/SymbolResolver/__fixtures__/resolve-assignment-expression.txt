@@ -1,4 +1,8 @@
 var foo: int = 1;
+
+{
+    foo = 2;
+}
 -----
 SplObjectStorage Object
 (
@@ -46,6 +50,64 @@ SplObjectStorage Object
                                         )
 
                                     [value:protected] => 1
+                                )
+
+                        )
+
+                    [inf] => Package\Semantic\Symbols\ValueSymbol Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 17
+                                )
+
+                            [name] => foo
+                            [type] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                            [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                                (
+                                    [name] => Variable
+                                )
+
+                        )
+
+                )
+
+            [1] => Array
+                (
+                    [obj] => Package\Nodes\Expressions\AssignmentExpression Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 4
+                                    [startOffset] => 25
+                                    [endLine] => 4
+                                    [endOffset] => 32
+                                )
+
+                            [name] => foo
+                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 4
+                                            [startOffset] => 31
+                                            [endLine] => 4
+                                            [endOffset] => 32
+                                        )
+
+                                    [value:protected] => 2
                                 )
 
                         )

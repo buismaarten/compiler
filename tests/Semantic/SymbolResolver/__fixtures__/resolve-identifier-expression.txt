@@ -1,17 +1,23 @@
+const foo: int = 1;
+
+{
+    foo;
+}
+-----
 SplObjectStorage Object
 (
     [storage:SplObjectStorage:private] => Array
         (
             [0] => Array
                 (
-                    [obj] => Package\Nodes\Statements\VariableStatement Object
+                    [obj] => Package\Nodes\Statements\ConstantStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 19
                                 )
 
                             [name] => foo
@@ -19,10 +25,10 @@ SplObjectStorage Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
+                                            [startLine] => 1
+                                            [startOffset] => 11
+                                            [endLine] => 1
+                                            [endOffset] => 14
                                         )
 
                                     [type] => Package\Common\Language\Primitive Enum:string
@@ -37,10 +43,10 @@ SplObjectStorage Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
+                                            [startLine] => 1
+                                            [startOffset] => 17
+                                            [endLine] => 1
+                                            [endOffset] => 18
                                         )
 
                                     [value:protected] => 1
@@ -52,10 +58,10 @@ SplObjectStorage Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 19
                                 )
 
                             [name] => foo
@@ -71,7 +77,7 @@ SplObjectStorage Object
 
                             [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
                                 (
-                                    [name] => Variable
+                                    [name] => Constant
                                 )
 
                         )
@@ -80,40 +86,27 @@ SplObjectStorage Object
 
             [1] => Array
                 (
-                    [obj] => Package\Nodes\Expressions\AssignmentExpression Object
+                    [obj] => Package\Nodes\Expressions\IdentifierExpression Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 4
+                                    [startOffset] => 27
+                                    [endLine] => 4
+                                    [endOffset] => 30
                                 )
 
                             [name] => foo
-                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
-                                (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
-                                        )
-
-                                    [value:protected] => 1
-                                )
-
                         )
 
                     [inf] => Package\Semantic\Symbols\ValueSymbol Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 19
                                 )
 
                             [name] => foo
@@ -129,7 +122,7 @@ SplObjectStorage Object
 
                             [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
                                 (
-                                    [name] => Variable
+                                    [name] => Constant
                                 )
 
                         )

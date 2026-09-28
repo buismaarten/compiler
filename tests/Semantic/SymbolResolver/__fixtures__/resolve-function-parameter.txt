@@ -1,0 +1,404 @@
+fn foo(message: string): void {
+    message = "Goodbye, World!";
+}
+
+{
+    foo("Hello, World!");
+}
+-----
+SplObjectStorage Object
+(
+    [storage:SplObjectStorage:private] => Array
+        (
+            [0] => Array
+                (
+                    [obj] => Package\Nodes\Statements\FunctionStatement Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 3
+                                    [endOffset] => 66
+                                )
+
+                            [name] => foo
+                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 25
+                                            [endLine] => 1
+                                            [endOffset] => 29
+                                        )
+
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Void
+                                            [value] => void
+                                        )
+
+                                )
+
+                            [parameters] => Array
+                                (
+                                    [0] => Package\Nodes\Parameter Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 7
+                                                    [endLine] => 1
+                                                    [endOffset] => 22
+                                                )
+
+                                            [name] => message
+                                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 16
+                                                            [endLine] => 1
+                                                            [endOffset] => 22
+                                                        )
+
+                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                        (
+                                                            [name] => String
+                                                            [value] => string
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                            [statements] => Package\Nodes\Block Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 30
+                                            [endLine] => 3
+                                            [endOffset] => 66
+                                        )
+
+                                    [statements] => Array
+                                        (
+                                            [0] => Package\Nodes\Statements\ExpressionStatement Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 2
+                                                            [startOffset] => 36
+                                                            [endLine] => 2
+                                                            [endOffset] => 64
+                                                        )
+
+                                                    [expression] => Package\Nodes\Expressions\AssignmentExpression Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 2
+                                                                    [startOffset] => 36
+                                                                    [endLine] => 2
+                                                                    [endOffset] => 63
+                                                                )
+
+                                                            [name] => message
+                                                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                                                (
+                                                                    [location] => Package\Common\Location Object
+                                                                        (
+                                                                            [startLine] => 2
+                                                                            [startOffset] => 46
+                                                                            [endLine] => 2
+                                                                            [endOffset] => 63
+                                                                        )
+
+                                                                    [value:protected] => Goodbye, World!
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [inf] => Package\Semantic\Symbols\FunctionSymbol Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 3
+                                    [endOffset] => 66
+                                )
+
+                            [name] => foo
+                            [type] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Void
+                                            [value] => void
+                                        )
+
+                                )
+
+                            [parameters] => Array
+                                (
+                                    [0] => Package\Semantic\Symbols\ValueSymbol Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 7
+                                                    [endLine] => 1
+                                                    [endOffset] => 22
+                                                )
+
+                                            [name] => message
+                                            [type] => Package\Semantic\Types\PrimitiveType Object
+                                                (
+                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                        (
+                                                            [name] => String
+                                                            [value] => string
+                                                        )
+
+                                                )
+
+                                            [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                                                (
+                                                    [name] => Parameter
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [1] => Array
+                (
+                    [obj] => Package\Nodes\Parameter Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 7
+                                    [endLine] => 1
+                                    [endOffset] => 22
+                                )
+
+                            [name] => message
+                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 16
+                                            [endLine] => 1
+                                            [endOffset] => 22
+                                        )
+
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [inf] => Package\Semantic\Symbols\ValueSymbol Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 7
+                                    [endLine] => 1
+                                    [endOffset] => 22
+                                )
+
+                            [name] => message
+                            [type] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                            [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                                (
+                                    [name] => Parameter
+                                )
+
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [obj] => Package\Nodes\Expressions\AssignmentExpression Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 2
+                                    [startOffset] => 36
+                                    [endLine] => 2
+                                    [endOffset] => 63
+                                )
+
+                            [name] => message
+                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 2
+                                            [startOffset] => 46
+                                            [endLine] => 2
+                                            [endOffset] => 63
+                                        )
+
+                                    [value:protected] => Goodbye, World!
+                                )
+
+                        )
+
+                    [inf] => Package\Semantic\Symbols\ValueSymbol Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 7
+                                    [endLine] => 1
+                                    [endOffset] => 22
+                                )
+
+                            [name] => message
+                            [type] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                            [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                                (
+                                    [name] => Parameter
+                                )
+
+                        )
+
+                )
+
+            [3] => Array
+                (
+                    [obj] => Package\Nodes\Expressions\FunctionCallExpression Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 6
+                                    [startOffset] => 74
+                                    [endLine] => 6
+                                    [endOffset] => 94
+                                )
+
+                            [name] => foo
+                            [arguments] => Array
+                                (
+                                    [0] => Package\Nodes\Literals\StringLiteral Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 6
+                                                    [startOffset] => 78
+                                                    [endLine] => 6
+                                                    [endOffset] => 93
+                                                )
+
+                                            [value:protected] => Hello, World!
+                                        )
+
+                                )
+
+                        )
+
+                    [inf] => Package\Semantic\Symbols\FunctionSymbol Object
+                        (
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 3
+                                    [endOffset] => 66
+                                )
+
+                            [name] => foo
+                            [type] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Void
+                                            [value] => void
+                                        )
+
+                                )
+
+                            [parameters] => Array
+                                (
+                                    [0] => Package\Semantic\Symbols\ValueSymbol Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 7
+                                                    [endLine] => 1
+                                                    [endOffset] => 22
+                                                )
+
+                                            [name] => message
+                                            [type] => Package\Semantic\Types\PrimitiveType Object
+                                                (
+                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                        (
+                                                            [name] => String
+                                                            [value] => string
+                                                        )
+
+                                                )
+
+                                            [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                                                (
+                                                    [name] => Parameter
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

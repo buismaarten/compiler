@@ -1,3 +1,11 @@
+const foo: int = 1;
+
+{
+    fn bar(): foo {
+        print "Hello, World!";
+    }
+}
+-----
 SplObjectStorage Object
 (
     [storage:SplObjectStorage:private] => Array
@@ -8,21 +16,21 @@ SplObjectStorage Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 19
                                 )
 
-                            [name] => xyz
+                            [name] => foo
                             [type] => Package\Nodes\Types\PrimitiveType Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
+                                            [startLine] => 1
+                                            [startOffset] => 11
+                                            [endLine] => 1
+                                            [endOffset] => 14
                                         )
 
                                     [type] => Package\Common\Language\Primitive Enum:string
@@ -37,10 +45,10 @@ SplObjectStorage Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
+                                            [startLine] => 1
+                                            [startOffset] => 17
+                                            [endLine] => 1
+                                            [endOffset] => 18
                                         )
 
                                     [value:protected] => 1
@@ -52,13 +60,13 @@ SplObjectStorage Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 19
                                 )
 
-                            [name] => xyz
+                            [name] => foo
                             [type] => Package\Semantic\Types\PrimitiveType Object
                                 (
                                     [type] => Package\Common\Language\Primitive Enum:string
@@ -84,24 +92,24 @@ SplObjectStorage Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 4
+                                    [startOffset] => 27
+                                    [endLine] => 6
+                                    [endOffset] => 79
                                 )
 
-                            [name] => foo
+                            [name] => bar
                             [type] => Package\Nodes\Types\NamedType Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
+                                            [startLine] => 4
+                                            [startOffset] => 37
+                                            [endLine] => 4
+                                            [endOffset] => 40
                                         )
 
-                                    [name] => xyz
+                                    [name] => foo
                                 )
 
                             [parameters] => Array
@@ -112,14 +120,39 @@ SplObjectStorage Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
-                                            [startLine] => -1
-                                            [startOffset] => -1
-                                            [endLine] => -1
-                                            [endOffset] => -1
+                                            [startLine] => 4
+                                            [startOffset] => 41
+                                            [endLine] => 6
+                                            [endOffset] => 79
                                         )
 
                                     [statements] => Array
                                         (
+                                            [0] => Package\Nodes\Statements\PrintStatement Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 5
+                                                            [startOffset] => 51
+                                                            [endLine] => 5
+                                                            [endOffset] => 73
+                                                        )
+
+                                                    [expression] => Package\Nodes\Literals\StringLiteral Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 5
+                                                                    [startOffset] => 57
+                                                                    [endLine] => 5
+                                                                    [endOffset] => 72
+                                                                )
+
+                                                            [value:protected] => Hello, World!
+                                                        )
+
+                                                )
+
                                         )
 
                                 )
@@ -130,16 +163,16 @@ SplObjectStorage Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 4
+                                    [startOffset] => 27
+                                    [endLine] => 6
+                                    [endOffset] => 79
                                 )
 
-                            [name] => foo
+                            [name] => bar
                             [type] => Package\Semantic\Types\NamedType Object
                                 (
-                                    [name] => xyz
+                                    [name] => foo
                                 )
 
                             [parameters] => Array
@@ -156,26 +189,26 @@ SplObjectStorage Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 4
+                                    [startOffset] => 37
+                                    [endLine] => 4
+                                    [endOffset] => 40
                                 )
 
-                            [name] => xyz
+                            [name] => foo
                         )
 
                     [inf] => Package\Semantic\Symbols\ValueSymbol Object
                         (
                             [location] => Package\Common\Location Object
                                 (
-                                    [startLine] => -1
-                                    [startOffset] => -1
-                                    [endLine] => -1
-                                    [endOffset] => -1
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 19
                                 )
 
-                            [name] => xyz
+                            [name] => foo
                             [type] => Package\Semantic\Types\PrimitiveType Object
                                 (
                                     [type] => Package\Common\Language\Primitive Enum:string
