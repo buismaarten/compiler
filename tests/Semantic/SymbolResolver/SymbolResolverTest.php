@@ -16,14 +16,30 @@ use Package\Nodes\Literals;
 use Package\Nodes\Parameter;
 use Package\Nodes\Statements;
 use Package\Nodes\Types;
+use Package\Parser\Parser;
 use Package\Semantic\SymbolResolver\SymbolResolver;
 use Package\Tests\Testing\SnapshotAssertions;
+use Package\Tests\Testing\SnapshotAssertions2;
+use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SymbolResolverTest extends TestCase
 {
     use SnapshotAssertions;
+    use SnapshotAssertions2;
+
+    #[Test]
+    public function testResolveFromFixtures(): void
+    {
+        $this->assertMatchesFixtures(__DIR__.'/__fixtures__/*.txt', function (string $input) {
+            $tokenizer = new Tokenizer($input);
+            $parser = new Parser($tokenizer);
+            $symbolResolver = new SymbolResolver($parser->parse());
+
+            return $symbolResolver->getSymbols();
+        });
+    }
 
     #[Test]
     public function testResolveAssignmentExpression(): void
