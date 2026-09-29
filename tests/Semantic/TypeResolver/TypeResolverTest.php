@@ -25,10 +25,7 @@ class TypeResolverTest extends TestCase
         $this->assertMatchesFixtures(__DIR__.'/__fixtures__/*.txt', function (string $input) {
             $tokenizer = new Tokenizer($input);
             $parser = new Parser($tokenizer);
-
-            $node = $parser->parse();
-            $symbolResolver = new SymbolResolver($node);
-            $typeResolver = new TypeResolver($node, $symbolResolver);
+            $typeResolver = new TypeResolver($parser->parse());
 
             return [
                 'functionReturnTypes' => $typeResolver->getFunctionReturnTypes(),

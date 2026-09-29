@@ -21,7 +21,7 @@ final class TypeResolver
     /** @var SplObjectStorage<AbstractNode, AbstractType[]> */
     private SplObjectStorage $functionReturnTypes;
 
-    public function __construct(AbstractNode $node, SymbolResolver $symbolResolver)
+    public function __construct(AbstractNode $node, ?SymbolResolver $symbolResolver = null)
     {
         $this->types = new SplObjectStorage;
         $this->functionReturnTypes = new SplObjectStorage;
@@ -52,8 +52,12 @@ final class TypeResolver
         return $this->types[$node];
     }
 
-    private function traverse(AbstractNode $node, SymbolResolver $symbolResolver): void
+    private function traverse(AbstractNode $node, ?SymbolResolver $symbolResolver): void
     {
+        if ($symbolResolver === null) {
+            $symbolResolver = new SymbolResolver($node);
+        }
+
         $traverser = new NodeTraverser;
         $traverser->addVisitor(new TypeNodeVisitor($symbolResolver, $this->types, $this->functionReturnTypes));
         $traverser->traverse($node);
