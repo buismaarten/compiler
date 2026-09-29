@@ -1,0 +1,457 @@
+fn foo(message: string): string {
+    return message;
+    return "Goodbye, World!";
+}
+
+foo("Hello, World!");
+-----
+Array
+(
+    [functionReturnTypes] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                    [0] => Array
+                        (
+                            [obj] => Package\Nodes\Statements\FunctionStatement Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 0
+                                            [endLine] => 4
+                                            [endOffset] => 85
+                                        )
+
+                                    [name] => foo
+                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 25
+                                                    [endLine] => 1
+                                                    [endOffset] => 31
+                                                )
+
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => String
+                                                    [value] => string
+                                                )
+
+                                        )
+
+                                    [parameters] => Array
+                                        (
+                                            [0] => Package\Nodes\Parameter Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 7
+                                                            [endLine] => 1
+                                                            [endOffset] => 22
+                                                        )
+
+                                                    [name] => message
+                                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 1
+                                                                    [startOffset] => 16
+                                                                    [endLine] => 1
+                                                                    [endOffset] => 22
+                                                                )
+
+                                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                                (
+                                                                    [name] => String
+                                                                    [value] => string
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                        )
+
+                                    [statements] => Package\Nodes\Block Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 32
+                                                    [endLine] => 4
+                                                    [endOffset] => 85
+                                                )
+
+                                            [statements] => Array
+                                                (
+                                                    [0] => Package\Nodes\Statements\ReturnStatement Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 2
+                                                                    [startOffset] => 38
+                                                                    [endLine] => 2
+                                                                    [endOffset] => 53
+                                                                )
+
+                                                            [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                                                                (
+                                                                    [location] => Package\Common\Location Object
+                                                                        (
+                                                                            [startLine] => 2
+                                                                            [startOffset] => 45
+                                                                            [endLine] => 2
+                                                                            [endOffset] => 52
+                                                                        )
+
+                                                                    [name] => message
+                                                                )
+
+                                                        )
+
+                                                    [1] => Package\Nodes\Statements\ReturnStatement Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 3
+                                                                    [startOffset] => 58
+                                                                    [endLine] => 3
+                                                                    [endOffset] => 83
+                                                                )
+
+                                                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                                                (
+                                                                    [location] => Package\Common\Location Object
+                                                                        (
+                                                                            [startLine] => 3
+                                                                            [startOffset] => 65
+                                                                            [endLine] => 3
+                                                                            [endOffset] => 82
+                                                                        )
+
+                                                                    [value:protected] => Goodbye, World!
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                            [inf] => Array
+                                (
+                                    [0] => Package\Semantic\Types\PrimitiveType Object
+                                        (
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => String
+                                                    [value] => string
+                                                )
+
+                                        )
+
+                                    [1] => Package\Semantic\Types\PrimitiveType Object
+                                        (
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => String
+                                                    [value] => string
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [types] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                    [0] => Array
+                        (
+                            [obj] => Package\Nodes\Statements\FunctionStatement Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 0
+                                            [endLine] => 4
+                                            [endOffset] => 85
+                                        )
+
+                                    [name] => foo
+                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 25
+                                                    [endLine] => 1
+                                                    [endOffset] => 31
+                                                )
+
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => String
+                                                    [value] => string
+                                                )
+
+                                        )
+
+                                    [parameters] => Array
+                                        (
+                                            [0] => Package\Nodes\Parameter Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 7
+                                                            [endLine] => 1
+                                                            [endOffset] => 22
+                                                        )
+
+                                                    [name] => message
+                                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 1
+                                                                    [startOffset] => 16
+                                                                    [endLine] => 1
+                                                                    [endOffset] => 22
+                                                                )
+
+                                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                                (
+                                                                    [name] => String
+                                                                    [value] => string
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                        )
+
+                                    [statements] => Package\Nodes\Block Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 32
+                                                    [endLine] => 4
+                                                    [endOffset] => 85
+                                                )
+
+                                            [statements] => Array
+                                                (
+                                                    [0] => Package\Nodes\Statements\ReturnStatement Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 2
+                                                                    [startOffset] => 38
+                                                                    [endLine] => 2
+                                                                    [endOffset] => 53
+                                                                )
+
+                                                            [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                                                                (
+                                                                    [location] => Package\Common\Location Object
+                                                                        (
+                                                                            [startLine] => 2
+                                                                            [startOffset] => 45
+                                                                            [endLine] => 2
+                                                                            [endOffset] => 52
+                                                                        )
+
+                                                                    [name] => message
+                                                                )
+
+                                                        )
+
+                                                    [1] => Package\Nodes\Statements\ReturnStatement Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 3
+                                                                    [startOffset] => 58
+                                                                    [endLine] => 3
+                                                                    [endOffset] => 83
+                                                                )
+
+                                                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                                                (
+                                                                    [location] => Package\Common\Location Object
+                                                                        (
+                                                                            [startLine] => 3
+                                                                            [startOffset] => 65
+                                                                            [endLine] => 3
+                                                                            [endOffset] => 82
+                                                                        )
+
+                                                                    [value:protected] => Goodbye, World!
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [obj] => Package\Nodes\Expressions\IdentifierExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 2
+                                            [startOffset] => 45
+                                            [endLine] => 2
+                                            [endOffset] => 52
+                                        )
+
+                                    [name] => message
+                                )
+
+                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [2] => Array
+                        (
+                            [obj] => Package\Nodes\Literals\StringLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 3
+                                            [startOffset] => 65
+                                            [endLine] => 3
+                                            [endOffset] => 82
+                                        )
+
+                                    [value:protected] => Goodbye, World!
+                                )
+
+                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [3] => Array
+                        (
+                            [obj] => Package\Nodes\Literals\StringLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 6
+                                            [startOffset] => 91
+                                            [endLine] => 6
+                                            [endOffset] => 106
+                                        )
+
+                                    [value:protected] => Hello, World!
+                                )
+
+                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [4] => Array
+                        (
+                            [obj] => Package\Nodes\Expressions\FunctionCallExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 6
+                                            [startOffset] => 87
+                                            [endLine] => 6
+                                            [endOffset] => 107
+                                        )
+
+                                    [name] => foo
+                                    [arguments] => Array
+                                        (
+                                            [0] => Package\Nodes\Literals\StringLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 6
+                                                            [startOffset] => 91
+                                                            [endLine] => 6
+                                                            [endOffset] => 106
+                                                        )
+
+                                                    [value:protected] => Hello, World!
+                                                )
+
+                                        )
+
+                                )
+
+                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

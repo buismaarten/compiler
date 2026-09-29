@@ -1,7 +1,0 @@
-SplObjectStorage Object
-(
-    [storage:SplObjectStorage:private] => Array
-        (
-        )
-
-)

@@ -1,0 +1,238 @@
+var foo: int[] = [1, 2];
+-----
+Array
+(
+    [functionReturnTypes] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                )
+
+        )
+
+    [types] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                    [0] => Array
+                        (
+                            [obj] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 18
+                                            [endLine] => 1
+                                            [endOffset] => 19
+                                        )
+
+                                    [value:protected] => 1
+                                )
+
+                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [obj] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 21
+                                            [endLine] => 1
+                                            [endOffset] => 22
+                                        )
+
+                                    [value:protected] => 2
+                                )
+
+                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                                (
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
+                    [2] => Array
+                        (
+                            [obj] => Package\Nodes\Expressions\ArrayExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 17
+                                            [endLine] => 1
+                                            [endOffset] => 23
+                                        )
+
+                                    [expressions] => Array
+                                        (
+                                            [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 18
+                                                            [endLine] => 1
+                                                            [endOffset] => 19
+                                                        )
+
+                                                    [value:protected] => 1
+                                                )
+
+                                            [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 21
+                                                            [endLine] => 1
+                                                            [endOffset] => 22
+                                                        )
+
+                                                    [value:protected] => 2
+                                                )
+
+                                        )
+
+                                )
+
+                            [inf] => Package\Semantic\Types\ArrayType Object
+                                (
+                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                        (
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [3] => Array
+                        (
+                            [obj] => Package\Nodes\Statements\VariableStatement Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 0
+                                            [endLine] => 1
+                                            [endOffset] => 24
+                                        )
+
+                                    [name] => foo
+                                    [type] => Package\Nodes\Types\ArrayType Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 12
+                                                    [endLine] => 1
+                                                    [endOffset] => 14
+                                                )
+
+                                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 9
+                                                            [endLine] => 1
+                                                            [endOffset] => 12
+                                                        )
+
+                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                        (
+                                                            [name] => Integer
+                                                            [value] => int
+                                                        )
+
+                                                )
+
+                                        )
+
+                                    [expression] => Package\Nodes\Expressions\ArrayExpression Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 17
+                                                    [endLine] => 1
+                                                    [endOffset] => 23
+                                                )
+
+                                            [expressions] => Array
+                                                (
+                                                    [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 1
+                                                                    [startOffset] => 18
+                                                                    [endLine] => 1
+                                                                    [endOffset] => 19
+                                                                )
+
+                                                            [value:protected] => 1
+                                                        )
+
+                                                    [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 1
+                                                                    [startOffset] => 21
+                                                                    [endLine] => 1
+                                                                    [endOffset] => 22
+                                                                )
+
+                                                            [value:protected] => 2
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                            [inf] => Package\Semantic\Types\ArrayType Object
+                                (
+                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                        (
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
