@@ -11,7 +11,7 @@ trait SnapshotAssertions
 {
     private const SEPARATOR = '-----';
 
-    protected function assertMatchesSnapshot(string $pattern, callable $transform): void
+    protected function assertMatchesSnapshot(string $pattern, callable $callback): void
     {
         $files = glob($pattern);
 
@@ -28,7 +28,7 @@ trait SnapshotAssertions
 
             [$input, $expected] = explode(self::SEPARATOR, $content);
             $expected = self::normalize($expected);
-            $actual = self::normalize($transform($input));
+            $actual = self::normalize($callback($input));
 
             if (!$expected) {
                 file_put_contents($file, "{$input}\n".self::SEPARATOR."\n{$actual}\n");
