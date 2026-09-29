@@ -31,13 +31,21 @@ trait SnapshotAssertions
             $expected = self::normalize($expected);
             $actual = self::normalize($callback($input));
 
-            if (!$expected) {
+            if (!$expected || self::shouldUpdateSnapshots()) {
                 file_put_contents($file, "{$input}\n".self::SEPARATOR."\n{$actual}\n");
-                continue;
             }
 
             $this->assertEquals($expected, $actual, "Snapshot mismatch: {$file}");
         }
+    }
+
+    private static function shouldUpdateSnapshots(): bool
+    {
+        if (($value = getenv('UPDATE_SNAPSHOTS')) !== false) {
+            return preg_match('/^(1|true)$/i', $value) === 1;
+        }
+
+        return false;
     }
 
     private static function normalize(mixed $value): string
