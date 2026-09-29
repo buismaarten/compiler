@@ -16,7 +16,7 @@ trait SnapshotAssertions
         $files = glob($pattern);
 
         if (!$files) {
-            $this->fail("No snapshot files found for pattern: {$pattern}");
+            $this->fail("Unable to find snapshots for pattern: {$pattern}");
         }
 
         foreach ($files as $file) {
@@ -27,6 +27,7 @@ trait SnapshotAssertions
             }
 
             [$input, $expected] = explode(self::SEPARATOR, $content);
+            $input = trim($input);
             $expected = self::normalize($expected);
             $actual = self::normalize($callback($input));
 
