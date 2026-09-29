@@ -9,27 +9,27 @@ namespace Package\Tests\Testing;
 
 trait SnapshotAssertions
 {
-    protected function assertMatchesFixtures(string $pattern, callable $transform): void
+    protected function assertMatchesSnapshot(string $pattern, callable $transform): void
     {
         $files = glob($pattern);
 
         if ($files === false || $files === []) {
-            $this->fail("No fixture files matched pattern: {$pattern}");
+            $this->fail("No snapshot files matched pattern: {$pattern}");
         }
 
         foreach ($files as $file) {
-            [$input, $expected] = $this->readFixture($file, $transform);
+            [$input, $expected] = $this->readSnapshot($file, $transform);
 
-            $actual = $this->fixtureContent($transform($input));
+            $actual = $this->snapshotContent($transform($input));
 
-            $this->assertEquals($expected, $actual, "Fixture mismatch: {$file}");
+            $this->assertEquals($expected, $actual, "Snapshot mismatch: {$file}");
         }
     }
 
-    private function readFixture(string $file, callable $transform): array
+    private function readSnapshot(string $file, callable $transform): array
     {
         if (($content = file_get_contents($file)) === false) {
-            $this->fail("Unable to read fixture: {$file}");
+            $this->fail("Unable to read snapshot: {$file}");
         }
 
         $parts = explode('-----', $content, 2);
@@ -39,14 +39,14 @@ trait SnapshotAssertions
         }
 
         $input = trim($content);
-        $actual = $this->fixtureContent($transform($input));
+        $actual = $this->snapshotContent($transform($input));
 
         file_put_contents($file, "{$input}\n-----\n{$actual}\n");
 
         return [$input, $actual];
     }
 
-    private function fixtureContent(mixed $actual): string
+    private function snapshotContent(mixed $actual): string
     {
         if (is_string($actual)) {
             return trim($actual);

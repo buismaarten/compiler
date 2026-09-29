@@ -20,9 +20,9 @@ class TypeResolverTest extends TestCase
     use SnapshotAssertions;
 
     #[Test]
-    public function testFixtures(): void
+    public function testSnapshots(): void
     {
-        $this->assertMatchesFixtures(__DIR__.'/__fixtures__/*.txt', function (string $input) {
+        $this->assertMatchesSnapshot(__DIR__.'/__snapshots__/*.txt', function (string $input) {
             $tokenizer = new Tokenizer($input);
             $parser = new Parser($tokenizer);
             $typeResolver = new TypeResolver($parser->parse());
