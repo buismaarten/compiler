@@ -9,7 +9,6 @@ namespace Package\Tests\Semantic\TypeResolver;
 
 use Package\Tokenizer\Tokenizer;
 use Package\Parser\Parser;
-use Package\Semantic\SymbolResolver\SymbolResolver;
 use Package\Semantic\TypeResolver\TypeResolver;
 use Package\Tests\Testing\SnapshotAssertions;
 use PHPUnit\Framework\Attributes\Test;
