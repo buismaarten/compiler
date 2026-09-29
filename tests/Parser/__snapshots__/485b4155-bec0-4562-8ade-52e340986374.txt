@@ -2,64 +2,68 @@ while (foo) {
     break;
 }
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 3
-            [endOffset] => 26
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\WhileStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 3
-                            [endOffset] => 26
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 3
+                    [endOffset] => 26
+                )
 
-                    [condition] => Package\Nodes\Expressions\IdentifierExpression Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 7
-                                    [endLine] => 1
-                                    [endOffset] => 10
-                                )
-
-                            [name] => foo
-                        )
-
-                    [statements] => Package\Nodes\Block Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\WhileStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 12
+                                    [startOffset] => 0
                                     [endLine] => 3
                                     [endOffset] => 26
                                 )
 
-                            [statements] => Array
+                            [condition] => Package\Nodes\Expressions\IdentifierExpression Object
                                 (
-                                    [0] => Package\Nodes\Statements\BreakStatement Object
+                                    [location] => Package\Common\Location Object
                                         (
-                                            [location] => Package\Common\Location Object
+                                            [startLine] => 1
+                                            [startOffset] => 7
+                                            [endLine] => 1
+                                            [endOffset] => 10
+                                        )
+
+                                    [name] => foo
+                                )
+
+                            [statements] => Package\Nodes\Block Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 12
+                                            [endLine] => 3
+                                            [endOffset] => 26
+                                        )
+
+                                    [statements] => Array
+                                        (
+                                            [0] => Package\Nodes\Statements\BreakStatement Object
                                                 (
-                                                    [startLine] => 2
-                                                    [startOffset] => 18
-                                                    [endLine] => 2
-                                                    [endOffset] => 24
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 2
+                                                            [startOffset] => 18
+                                                            [endLine] => 2
+                                                            [endOffset] => 24
+                                                        )
+
+                                                    [level] => 
                                                 )
 
-                                            [level] => 
                                         )
 
                                 )

@@ -1,64 +1,68 @@
 foo(123, "bar");
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 16
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\ExpressionStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 16
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 16
+                )
 
-                    [expression] => Package\Nodes\Expressions\FunctionCallExpression Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\ExpressionStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 15
+                                    [endOffset] => 16
                                 )
 
-                            [name] => foo
-                            [arguments] => Array
+                            [expression] => Package\Nodes\Expressions\FunctionCallExpression Object
                                 (
-                                    [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                    [location] => Package\Common\Location Object
                                         (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 1
-                                                    [startOffset] => 4
-                                                    [endLine] => 1
-                                                    [endOffset] => 7
-                                                )
-
-                                            [value:protected] => 123
+                                            [startLine] => 1
+                                            [startOffset] => 0
+                                            [endLine] => 1
+                                            [endOffset] => 15
                                         )
 
-                                    [1] => Package\Nodes\Literals\StringLiteral Object
+                                    [name] => foo
+                                    [arguments] => Array
                                         (
-                                            [location] => Package\Common\Location Object
+                                            [0] => Package\Nodes\Literals\IntegerLiteral Object
                                                 (
-                                                    [startLine] => 1
-                                                    [startOffset] => 9
-                                                    [endLine] => 1
-                                                    [endOffset] => 14
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 4
+                                                            [endLine] => 1
+                                                            [endOffset] => 7
+                                                        )
+
+                                                    [value:protected] => 123
                                                 )
 
-                                            [value:protected] => bar
+                                            [1] => Package\Nodes\Literals\StringLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 9
+                                                            [endLine] => 1
+                                                            [endOffset] => 14
+                                                        )
+
+                                                    [value:protected] => bar
+                                                )
+
                                         )
 
                                 )

@@ -1,28 +1,32 @@
 return;
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 7
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\ReturnStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 7
+                )
+
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\ReturnStatement Object
                         (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 7
+                            [location] => Package\Common\Location Object
+                                (
+                                    [startLine] => 1
+                                    [startOffset] => 0
+                                    [endLine] => 1
+                                    [endOffset] => 7
+                                )
+
+                            [expression] => 
                         )
 
-                    [expression] => 
                 )
 
         )

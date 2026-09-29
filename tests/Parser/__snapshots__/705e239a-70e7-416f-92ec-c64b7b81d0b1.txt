@@ -1,69 +1,73 @@
 var foo: int? = null;
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 21
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\VariableStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 21
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 21
+                )
 
-                    [name] => foo
-                    [type] => Package\Nodes\Types\NullableType Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\VariableStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 12
+                                    [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 13
+                                    [endOffset] => 21
                                 )
 
-                            [type] => Package\Nodes\Types\PrimitiveType Object
+                            [name] => foo
+                            [type] => Package\Nodes\Types\NullableType Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 1
-                                            [startOffset] => 9
+                                            [startOffset] => 12
                                             [endLine] => 1
-                                            [endOffset] => 12
+                                            [endOffset] => 13
                                         )
 
-                                    [type] => Package\Common\Language\Primitive Enum:string
+                                    [type] => Package\Nodes\Types\PrimitiveType Object
                                         (
-                                            [name] => Integer
-                                            [value] => int
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 9
+                                                    [endLine] => 1
+                                                    [endOffset] => 12
+                                                )
+
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
                                         )
 
                                 )
 
-                        )
-
-                    [expression] => Package\Nodes\Literals\NullLiteral Object
-                        (
-                            [location] => Package\Common\Location Object
+                            [expression] => Package\Nodes\Literals\NullLiteral Object
                                 (
-                                    [startLine] => 1
-                                    [startOffset] => 16
-                                    [endLine] => 1
-                                    [endOffset] => 20
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 16
+                                            [endLine] => 1
+                                            [endOffset] => 20
+                                        )
+
+                                    [value:protected] => 
                                 )
 
-                            [value:protected] => 
                         )
 
                 )

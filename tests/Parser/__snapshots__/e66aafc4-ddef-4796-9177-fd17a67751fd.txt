@@ -1,82 +1,90 @@
-{ { print 123; } }
+{
+    {
+        print 123;
+    }
+}
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 18
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\BlockStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 18
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 5
+                    [endOffset] => 34
+                )
 
-                    [block] => Package\Nodes\Block Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\BlockStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 0
-                                    [endLine] => 1
-                                    [endOffset] => 18
+                                    [endLine] => 5
+                                    [endOffset] => 34
                                 )
 
-                            [statements] => Array
+                            [block] => Package\Nodes\Block Object
                                 (
-                                    [0] => Package\Nodes\Statements\BlockStatement Object
+                                    [location] => Package\Common\Location Object
                                         (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 1
-                                                    [startOffset] => 2
-                                                    [endLine] => 1
-                                                    [endOffset] => 16
-                                                )
+                                            [startLine] => 1
+                                            [startOffset] => 0
+                                            [endLine] => 5
+                                            [endOffset] => 34
+                                        )
 
-                                            [block] => Package\Nodes\Block Object
+                                    [statements] => Array
+                                        (
+                                            [0] => Package\Nodes\Statements\BlockStatement Object
                                                 (
                                                     [location] => Package\Common\Location Object
                                                         (
-                                                            [startLine] => 1
-                                                            [startOffset] => 2
-                                                            [endLine] => 1
-                                                            [endOffset] => 16
+                                                            [startLine] => 2
+                                                            [startOffset] => 6
+                                                            [endLine] => 4
+                                                            [endOffset] => 32
                                                         )
 
-                                                    [statements] => Array
+                                                    [block] => Package\Nodes\Block Object
                                                         (
-                                                            [0] => Package\Nodes\Statements\PrintStatement Object
+                                                            [location] => Package\Common\Location Object
                                                                 (
-                                                                    [location] => Package\Common\Location Object
-                                                                        (
-                                                                            [startLine] => 1
-                                                                            [startOffset] => 4
-                                                                            [endLine] => 1
-                                                                            [endOffset] => 14
-                                                                        )
+                                                                    [startLine] => 2
+                                                                    [startOffset] => 6
+                                                                    [endLine] => 4
+                                                                    [endOffset] => 32
+                                                                )
 
-                                                                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                                            [statements] => Array
+                                                                (
+                                                                    [0] => Package\Nodes\Statements\PrintStatement Object
                                                                         (
                                                                             [location] => Package\Common\Location Object
                                                                                 (
-                                                                                    [startLine] => 1
-                                                                                    [startOffset] => 10
-                                                                                    [endLine] => 1
-                                                                                    [endOffset] => 13
+                                                                                    [startLine] => 3
+                                                                                    [startOffset] => 16
+                                                                                    [endLine] => 3
+                                                                                    [endOffset] => 26
                                                                                 )
 
-                                                                            [value:protected] => 123
+                                                                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                                                                (
+                                                                                    [location] => Package\Common\Location Object
+                                                                                        (
+                                                                                            [startLine] => 3
+                                                                                            [startOffset] => 22
+                                                                                            [endLine] => 3
+                                                                                            [endOffset] => 25
+                                                                                        )
+
+                                                                                    [value:protected] => 123
+                                                                                )
+
                                                                         )
 
                                                                 )

@@ -1,104 +1,110 @@
-fn foo(bar: xyz): xyz { return bar; }
+fn foo(bar: xyz): xyz {
+    return bar;
+}
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 37
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\FunctionStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 37
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 3
+                    [endOffset] => 41
+                )
 
-                    [name] => foo
-                    [type] => Package\Nodes\Types\NamedType Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\FunctionStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 18
-                                    [endLine] => 1
-                                    [endOffset] => 21
+                                    [startOffset] => 0
+                                    [endLine] => 3
+                                    [endOffset] => 41
                                 )
 
-                            [name] => xyz
-                        )
-
-                    [parameters] => Array
-                        (
-                            [0] => Package\Nodes\Parameter Object
+                            [name] => foo
+                            [type] => Package\Nodes\Types\NamedType Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 1
-                                            [startOffset] => 7
+                                            [startOffset] => 18
                                             [endLine] => 1
-                                            [endOffset] => 15
+                                            [endOffset] => 21
                                         )
 
-                                    [name] => bar
-                                    [type] => Package\Nodes\Types\NamedType Object
+                                    [name] => xyz
+                                )
+
+                            [parameters] => Array
+                                (
+                                    [0] => Package\Nodes\Parameter Object
                                         (
                                             [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
-                                                    [startOffset] => 12
+                                                    [startOffset] => 7
                                                     [endLine] => 1
                                                     [endOffset] => 15
                                                 )
 
-                                            [name] => xyz
-                                        )
-
-                                )
-
-                        )
-
-                    [statements] => Package\Nodes\Block Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 22
-                                    [endLine] => 1
-                                    [endOffset] => 37
-                                )
-
-                            [statements] => Array
-                                (
-                                    [0] => Package\Nodes\Statements\ReturnStatement Object
-                                        (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 1
-                                                    [startOffset] => 24
-                                                    [endLine] => 1
-                                                    [endOffset] => 35
-                                                )
-
-                                            [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                                            [name] => bar
+                                            [type] => Package\Nodes\Types\NamedType Object
                                                 (
                                                     [location] => Package\Common\Location Object
                                                         (
                                                             [startLine] => 1
-                                                            [startOffset] => 31
+                                                            [startOffset] => 12
                                                             [endLine] => 1
-                                                            [endOffset] => 34
+                                                            [endOffset] => 15
                                                         )
 
-                                                    [name] => bar
+                                                    [name] => xyz
+                                                )
+
+                                        )
+
+                                )
+
+                            [statements] => Package\Nodes\Block Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 22
+                                            [endLine] => 3
+                                            [endOffset] => 41
+                                        )
+
+                                    [statements] => Array
+                                        (
+                                            [0] => Package\Nodes\Statements\ReturnStatement Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 2
+                                                            [startOffset] => 28
+                                                            [endLine] => 2
+                                                            [endOffset] => 39
+                                                        )
+
+                                                    [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 2
+                                                                    [startOffset] => 35
+                                                                    [endLine] => 2
+                                                                    [endOffset] => 38
+                                                                )
+
+                                                            [name] => bar
+                                                        )
+
                                                 )
 
                                         )

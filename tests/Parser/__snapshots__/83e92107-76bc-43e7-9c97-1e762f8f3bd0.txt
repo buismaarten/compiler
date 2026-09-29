@@ -1,38 +1,42 @@
 123;
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 4
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\ExpressionStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 4
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 4
+                )
 
-                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\ExpressionStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 3
+                                    [endOffset] => 4
                                 )
 
-                            [value:protected] => 123
+                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 0
+                                            [endLine] => 1
+                                            [endOffset] => 3
+                                        )
+
+                                    [value:protected] => 123
+                                )
+
                         )
 
                 )

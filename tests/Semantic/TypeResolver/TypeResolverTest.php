@@ -22,14 +22,14 @@ class TypeResolverTest extends TestCase
     #[Test]
     public function testSnapshots(): void
     {
-        $this->assertMatchesSnapshot(__DIR__.'/__snapshots__/*.txt', function (string $input) {
+        $this->assertMatchesSnapshot(__DIR__.'/__snapshots__/*.txt', function (string $input): array {
             $tokenizer = new Tokenizer($input);
             $parser = new Parser($tokenizer);
             $typeResolver = new TypeResolver($parser->parse());
 
             return [
-                'functionReturnTypes' => $typeResolver->getFunctionReturnTypes(),
-                'types' => $typeResolver->getTypes(),
+                $typeResolver->getFunctionReturnTypes(),
+                $typeResolver->getTypes(),
             ];
         });
     }

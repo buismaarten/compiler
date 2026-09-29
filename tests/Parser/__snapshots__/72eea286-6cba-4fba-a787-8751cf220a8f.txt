@@ -2,84 +2,88 @@ fn foo(): void {
     print "Hello, World!";
 }
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 3
-            [endOffset] => 45
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\FunctionStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 3
-                            [endOffset] => 45
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 3
+                    [endOffset] => 45
+                )
 
-                    [name] => foo
-                    [type] => Package\Nodes\Types\PrimitiveType Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 10
-                                    [endLine] => 1
-                                    [endOffset] => 14
-                                )
-
-                            [type] => Package\Common\Language\Primitive Enum:string
-                                (
-                                    [name] => Void
-                                    [value] => void
-                                )
-
-                        )
-
-                    [parameters] => Array
-                        (
-                        )
-
-                    [statements] => Package\Nodes\Block Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\FunctionStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 15
+                                    [startOffset] => 0
                                     [endLine] => 3
                                     [endOffset] => 45
                                 )
 
-                            [statements] => Array
+                            [name] => foo
+                            [type] => Package\Nodes\Types\PrimitiveType Object
                                 (
-                                    [0] => Package\Nodes\Statements\PrintStatement Object
+                                    [location] => Package\Common\Location Object
                                         (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 2
-                                                    [startOffset] => 21
-                                                    [endLine] => 2
-                                                    [endOffset] => 43
-                                                )
+                                            [startLine] => 1
+                                            [startOffset] => 10
+                                            [endLine] => 1
+                                            [endOffset] => 14
+                                        )
 
-                                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Void
+                                            [value] => void
+                                        )
+
+                                )
+
+                            [parameters] => Array
+                                (
+                                )
+
+                            [statements] => Package\Nodes\Block Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 15
+                                            [endLine] => 3
+                                            [endOffset] => 45
+                                        )
+
+                                    [statements] => Array
+                                        (
+                                            [0] => Package\Nodes\Statements\PrintStatement Object
                                                 (
                                                     [location] => Package\Common\Location Object
                                                         (
                                                             [startLine] => 2
-                                                            [startOffset] => 27
+                                                            [startOffset] => 21
                                                             [endLine] => 2
-                                                            [endOffset] => 42
+                                                            [endOffset] => 43
                                                         )
 
-                                                    [value:protected] => Hello, World!
+                                                    [expression] => Package\Nodes\Literals\StringLiteral Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 2
+                                                                    [startOffset] => 27
+                                                                    [endLine] => 2
+                                                                    [endOffset] => 42
+                                                                )
+
+                                                            [value:protected] => Hello, World!
+                                                        )
+
                                                 )
 
                                         )

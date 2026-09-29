@@ -1,38 +1,42 @@
 "Hello, World!";
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 16
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\ExpressionStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 16
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 16
+                )
 
-                    [expression] => Package\Nodes\Literals\StringLiteral Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\ExpressionStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
                                     [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 15
+                                    [endOffset] => 16
                                 )
 
-                            [value:protected] => Hello, World!
+                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 0
+                                            [endLine] => 1
+                                            [endOffset] => 15
+                                        )
+
+                                    [value:protected] => Hello, World!
+                                )
+
                         )
 
                 )

@@ -2,136 +2,140 @@ fn foo(bar: int, baz: xyz): xyz {
     return baz;
 }
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 3
-            [endOffset] => 51
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\FunctionStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 3
-                            [endOffset] => 51
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 3
+                    [endOffset] => 51
+                )
 
-                    [name] => foo
-                    [type] => Package\Nodes\Types\NamedType Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 28
-                                    [endLine] => 1
-                                    [endOffset] => 31
-                                )
-
-                            [name] => xyz
-                        )
-
-                    [parameters] => Array
-                        (
-                            [0] => Package\Nodes\Parameter Object
-                                (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => 1
-                                            [startOffset] => 7
-                                            [endLine] => 1
-                                            [endOffset] => 15
-                                        )
-
-                                    [name] => bar
-                                    [type] => Package\Nodes\Types\PrimitiveType Object
-                                        (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 1
-                                                    [startOffset] => 12
-                                                    [endLine] => 1
-                                                    [endOffset] => 15
-                                                )
-
-                                            [type] => Package\Common\Language\Primitive Enum:string
-                                                (
-                                                    [name] => Integer
-                                                    [value] => int
-                                                )
-
-                                        )
-
-                                )
-
-                            [1] => Package\Nodes\Parameter Object
-                                (
-                                    [location] => Package\Common\Location Object
-                                        (
-                                            [startLine] => 1
-                                            [startOffset] => 17
-                                            [endLine] => 1
-                                            [endOffset] => 25
-                                        )
-
-                                    [name] => baz
-                                    [type] => Package\Nodes\Types\NamedType Object
-                                        (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 1
-                                                    [startOffset] => 22
-                                                    [endLine] => 1
-                                                    [endOffset] => 25
-                                                )
-
-                                            [name] => xyz
-                                        )
-
-                                )
-
-                        )
-
-                    [statements] => Package\Nodes\Block Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\FunctionStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 32
+                                    [startOffset] => 0
                                     [endLine] => 3
                                     [endOffset] => 51
                                 )
 
-                            [statements] => Array
+                            [name] => foo
+                            [type] => Package\Nodes\Types\NamedType Object
                                 (
-                                    [0] => Package\Nodes\Statements\ReturnStatement Object
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 28
+                                            [endLine] => 1
+                                            [endOffset] => 31
+                                        )
+
+                                    [name] => xyz
+                                )
+
+                            [parameters] => Array
+                                (
+                                    [0] => Package\Nodes\Parameter Object
                                         (
                                             [location] => Package\Common\Location Object
                                                 (
-                                                    [startLine] => 2
-                                                    [startOffset] => 38
-                                                    [endLine] => 2
-                                                    [endOffset] => 49
+                                                    [startLine] => 1
+                                                    [startOffset] => 7
+                                                    [endLine] => 1
+                                                    [endOffset] => 15
                                                 )
 
-                                            [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                                            [name] => bar
+                                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 12
+                                                            [endLine] => 1
+                                                            [endOffset] => 15
+                                                        )
+
+                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                        (
+                                                            [name] => Integer
+                                                            [value] => int
+                                                        )
+
+                                                )
+
+                                        )
+
+                                    [1] => Package\Nodes\Parameter Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 17
+                                                    [endLine] => 1
+                                                    [endOffset] => 25
+                                                )
+
+                                            [name] => baz
+                                            [type] => Package\Nodes\Types\NamedType Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 22
+                                                            [endLine] => 1
+                                                            [endOffset] => 25
+                                                        )
+
+                                                    [name] => xyz
+                                                )
+
+                                        )
+
+                                )
+
+                            [statements] => Package\Nodes\Block Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 32
+                                            [endLine] => 3
+                                            [endOffset] => 51
+                                        )
+
+                                    [statements] => Array
+                                        (
+                                            [0] => Package\Nodes\Statements\ReturnStatement Object
                                                 (
                                                     [location] => Package\Common\Location Object
                                                         (
                                                             [startLine] => 2
-                                                            [startOffset] => 45
+                                                            [startOffset] => 38
                                                             [endLine] => 2
-                                                            [endOffset] => 48
+                                                            [endOffset] => 49
                                                         )
 
-                                                    [name] => baz
+                                                    [expression] => Package\Nodes\Expressions\IdentifierExpression Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 2
+                                                                    [startOffset] => 45
+                                                                    [endLine] => 2
+                                                                    [endOffset] => 48
+                                                                )
+
+                                                            [name] => baz
+                                                        )
+
                                                 )
 
                                         )

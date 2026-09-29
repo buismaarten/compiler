@@ -1,94 +1,98 @@
 var foo: int[] = [123, 456];
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 28
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\VariableStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 28
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 28
+                )
 
-                    [name] => foo
-                    [type] => Package\Nodes\Types\ArrayType Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\VariableStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 12
+                                    [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 14
+                                    [endOffset] => 28
                                 )
 
-                            [type] => Package\Nodes\Types\PrimitiveType Object
+                            [name] => foo
+                            [type] => Package\Nodes\Types\ArrayType Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 1
-                                            [startOffset] => 9
+                                            [startOffset] => 12
                                             [endLine] => 1
-                                            [endOffset] => 12
+                                            [endOffset] => 14
                                         )
 
-                                    [type] => Package\Common\Language\Primitive Enum:string
-                                        (
-                                            [name] => Integer
-                                            [value] => int
-                                        )
-
-                                )
-
-                        )
-
-                    [expression] => Package\Nodes\Expressions\ArrayExpression Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 17
-                                    [endLine] => 1
-                                    [endOffset] => 27
-                                )
-
-                            [expressions] => Array
-                                (
-                                    [0] => Package\Nodes\Literals\IntegerLiteral Object
+                                    [type] => Package\Nodes\Types\PrimitiveType Object
                                         (
                                             [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
-                                                    [startOffset] => 18
+                                                    [startOffset] => 9
                                                     [endLine] => 1
-                                                    [endOffset] => 21
+                                                    [endOffset] => 12
                                                 )
 
-                                            [value:protected] => 123
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
                                         )
 
-                                    [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                )
+
+                            [expression] => Package\Nodes\Expressions\ArrayExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
                                         (
-                                            [location] => Package\Common\Location Object
+                                            [startLine] => 1
+                                            [startOffset] => 17
+                                            [endLine] => 1
+                                            [endOffset] => 27
+                                        )
+
+                                    [expressions] => Array
+                                        (
+                                            [0] => Package\Nodes\Literals\IntegerLiteral Object
                                                 (
-                                                    [startLine] => 1
-                                                    [startOffset] => 23
-                                                    [endLine] => 1
-                                                    [endOffset] => 26
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 18
+                                                            [endLine] => 1
+                                                            [endOffset] => 21
+                                                        )
+
+                                                    [value:protected] => 123
                                                 )
 
-                                            [value:protected] => 456
+                                            [1] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 23
+                                                            [endLine] => 1
+                                                            [endOffset] => 26
+                                                        )
+
+                                                    [value:protected] => 456
+                                                )
+
                                         )
 
                                 )

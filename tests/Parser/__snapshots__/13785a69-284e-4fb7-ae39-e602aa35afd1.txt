@@ -1,57 +1,61 @@
 var foo: int = 42;
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 18
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\VariableStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 18
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 18
+                )
 
-                    [name] => foo
-                    [type] => Package\Nodes\Types\PrimitiveType Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 9
-                                    [endLine] => 1
-                                    [endOffset] => 12
-                                )
-
-                            [type] => Package\Common\Language\Primitive Enum:string
-                                (
-                                    [name] => Integer
-                                    [value] => int
-                                )
-
-                        )
-
-                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\VariableStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 15
+                                    [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 17
+                                    [endOffset] => 18
                                 )
 
-                            [value:protected] => 42
+                            [name] => foo
+                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 9
+                                            [endLine] => 1
+                                            [endOffset] => 12
+                                        )
+
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 15
+                                            [endLine] => 1
+                                            [endOffset] => 17
+                                        )
+
+                                    [value:protected] => 42
+                                )
+
                         )
 
                 )

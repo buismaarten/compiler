@@ -1,82 +1,86 @@
 var foo: int[]?[]? = null;
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 26
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\VariableStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 26
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 26
+                )
 
-                    [name] => foo
-                    [type] => Package\Nodes\Types\NullableType Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\VariableStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 17
+                                    [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 18
+                                    [endOffset] => 26
                                 )
 
-                            [type] => Package\Nodes\Types\ArrayType Object
+                            [name] => foo
+                            [type] => Package\Nodes\Types\NullableType Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 1
-                                            [startOffset] => 15
+                                            [startOffset] => 17
                                             [endLine] => 1
-                                            [endOffset] => 17
+                                            [endOffset] => 18
                                         )
 
-                                    [type] => Package\Nodes\Types\NullableType Object
+                                    [type] => Package\Nodes\Types\ArrayType Object
                                         (
                                             [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
-                                                    [startOffset] => 14
+                                                    [startOffset] => 15
                                                     [endLine] => 1
-                                                    [endOffset] => 15
+                                                    [endOffset] => 17
                                                 )
 
-                                            [type] => Package\Nodes\Types\ArrayType Object
+                                            [type] => Package\Nodes\Types\NullableType Object
                                                 (
                                                     [location] => Package\Common\Location Object
                                                         (
                                                             [startLine] => 1
-                                                            [startOffset] => 12
+                                                            [startOffset] => 14
                                                             [endLine] => 1
-                                                            [endOffset] => 14
+                                                            [endOffset] => 15
                                                         )
 
-                                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                                    [type] => Package\Nodes\Types\ArrayType Object
                                                         (
                                                             [location] => Package\Common\Location Object
                                                                 (
                                                                     [startLine] => 1
-                                                                    [startOffset] => 9
+                                                                    [startOffset] => 12
                                                                     [endLine] => 1
-                                                                    [endOffset] => 12
+                                                                    [endOffset] => 14
                                                                 )
 
-                                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                            [type] => Package\Nodes\Types\PrimitiveType Object
                                                                 (
-                                                                    [name] => Integer
-                                                                    [value] => int
+                                                                    [location] => Package\Common\Location Object
+                                                                        (
+                                                                            [startLine] => 1
+                                                                            [startOffset] => 9
+                                                                            [endLine] => 1
+                                                                            [endOffset] => 12
+                                                                        )
+
+                                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                                        (
+                                                                            [name] => Integer
+                                                                            [value] => int
+                                                                        )
+
                                                                 )
 
                                                         )
@@ -87,19 +91,19 @@ Package\Nodes\Block Object
 
                                 )
 
-                        )
-
-                    [expression] => Package\Nodes\Literals\NullLiteral Object
-                        (
-                            [location] => Package\Common\Location Object
+                            [expression] => Package\Nodes\Literals\NullLiteral Object
                                 (
-                                    [startLine] => 1
-                                    [startOffset] => 21
-                                    [endLine] => 1
-                                    [endOffset] => 25
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 21
+                                            [endLine] => 1
+                                            [endOffset] => 25
+                                        )
+
+                                    [value:protected] => 
                                 )
 
-                            [value:protected] => 
                         )
 
                 )

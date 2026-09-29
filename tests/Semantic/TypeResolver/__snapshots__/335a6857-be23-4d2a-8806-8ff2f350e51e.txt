@@ -2,7 +2,7 @@ var foo: (int, int) = (1, 2);
 -----
 Array
 (
-    [functionReturnTypes] => SplObjectStorage Object
+    [0] => SplObjectStorage Object
         (
             [storage:SplObjectStorage:private] => Array
                 (
@@ -10,7 +10,7 @@ Array
 
         )
 
-    [types] => SplObjectStorage Object
+    [1] => SplObjectStorage Object
         (
             [storage:SplObjectStorage:private] => Array
                 (

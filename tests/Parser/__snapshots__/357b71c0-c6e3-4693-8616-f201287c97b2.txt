@@ -1,52 +1,56 @@
 var foo: xyz = 123;
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 19
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\VariableStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 19
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 19
+                )
 
-                    [name] => foo
-                    [type] => Package\Nodes\Types\NamedType Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 9
-                                    [endLine] => 1
-                                    [endOffset] => 12
-                                )
-
-                            [name] => xyz
-                        )
-
-                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\VariableStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 15
+                                    [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 18
+                                    [endOffset] => 19
                                 )
 
-                            [value:protected] => 123
+                            [name] => foo
+                            [type] => Package\Nodes\Types\NamedType Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 9
+                                            [endLine] => 1
+                                            [endOffset] => 12
+                                        )
+
+                                    [name] => xyz
+                                )
+
+                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 15
+                                            [endLine] => 1
+                                            [endOffset] => 18
+                                        )
+
+                                    [value:protected] => 123
+                                )
+
                         )
 
                 )

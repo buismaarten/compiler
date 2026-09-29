@@ -4,115 +4,119 @@ if (foo) {
     return 2;
 }
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 5
-            [endOffset] => 49
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\IfStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 5
-                            [endOffset] => 49
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 5
+                    [endOffset] => 49
+                )
 
-                    [condition] => Package\Nodes\Expressions\IdentifierExpression Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 4
-                                    [endLine] => 1
-                                    [endOffset] => 7
-                                )
-
-                            [name] => foo
-                        )
-
-                    [thenStatements] => Package\Nodes\Block Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\IfStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 9
-                                    [endLine] => 3
-                                    [endOffset] => 26
+                                    [startOffset] => 0
+                                    [endLine] => 5
+                                    [endOffset] => 49
                                 )
 
-                            [statements] => Array
+                            [condition] => Package\Nodes\Expressions\IdentifierExpression Object
                                 (
-                                    [0] => Package\Nodes\Statements\ReturnStatement Object
+                                    [location] => Package\Common\Location Object
                                         (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 2
-                                                    [startOffset] => 15
-                                                    [endLine] => 2
-                                                    [endOffset] => 24
-                                                )
+                                            [startLine] => 1
+                                            [startOffset] => 4
+                                            [endLine] => 1
+                                            [endOffset] => 7
+                                        )
 
-                                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                    [name] => foo
+                                )
+
+                            [thenStatements] => Package\Nodes\Block Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 9
+                                            [endLine] => 3
+                                            [endOffset] => 26
+                                        )
+
+                                    [statements] => Array
+                                        (
+                                            [0] => Package\Nodes\Statements\ReturnStatement Object
                                                 (
                                                     [location] => Package\Common\Location Object
                                                         (
                                                             [startLine] => 2
-                                                            [startOffset] => 22
+                                                            [startOffset] => 15
                                                             [endLine] => 2
-                                                            [endOffset] => 23
+                                                            [endOffset] => 24
                                                         )
 
-                                                    [value:protected] => 1
+                                                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 2
+                                                                    [startOffset] => 22
+                                                                    [endLine] => 2
+                                                                    [endOffset] => 23
+                                                                )
+
+                                                            [value:protected] => 1
+                                                        )
+
                                                 )
 
                                         )
 
                                 )
 
-                        )
-
-                    [elseStatements] => Package\Nodes\Block Object
-                        (
-                            [location] => Package\Common\Location Object
+                            [elseStatements] => Package\Nodes\Block Object
                                 (
-                                    [startLine] => 3
-                                    [startOffset] => 32
-                                    [endLine] => 5
-                                    [endOffset] => 49
-                                )
-
-                            [statements] => Array
-                                (
-                                    [0] => Package\Nodes\Statements\ReturnStatement Object
+                                    [location] => Package\Common\Location Object
                                         (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 4
-                                                    [startOffset] => 38
-                                                    [endLine] => 4
-                                                    [endOffset] => 47
-                                                )
+                                            [startLine] => 3
+                                            [startOffset] => 32
+                                            [endLine] => 5
+                                            [endOffset] => 49
+                                        )
 
-                                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                    [statements] => Array
+                                        (
+                                            [0] => Package\Nodes\Statements\ReturnStatement Object
                                                 (
                                                     [location] => Package\Common\Location Object
                                                         (
                                                             [startLine] => 4
-                                                            [startOffset] => 45
+                                                            [startOffset] => 38
                                                             [endLine] => 4
-                                                            [endOffset] => 46
+                                                            [endOffset] => 47
                                                         )
 
-                                                    [value:protected] => 2
+                                                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                                        (
+                                                            [location] => Package\Common\Location Object
+                                                                (
+                                                                    [startLine] => 4
+                                                                    [startOffset] => 45
+                                                                    [endLine] => 4
+                                                                    [endOffset] => 46
+                                                                )
+
+                                                            [value:protected] => 2
+                                                        )
+
                                                 )
 
                                         )

@@ -1,38 +1,42 @@
 continue 2;
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 11
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\ContinueStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 11
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 11
+                )
 
-                    [level] => Package\Nodes\Literals\IntegerLiteral Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\ContinueStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 9
+                                    [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 10
+                                    [endOffset] => 11
                                 )
 
-                            [value:protected] => 2
+                            [level] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 9
+                                            [endLine] => 1
+                                            [endOffset] => 10
+                                        )
+
+                                    [value:protected] => 2
+                                )
+
                         )
 
                 )

@@ -1,57 +1,61 @@
 var foo: string = "Hello, World!";
 -----
-Package\Nodes\Block Object
+Array
 (
-    [location] => Package\Common\Location Object
+    [0] => Package\Nodes\Block Object
         (
-            [startLine] => 1
-            [startOffset] => 0
-            [endLine] => 1
-            [endOffset] => 34
-        )
-
-    [statements] => Array
-        (
-            [0] => Package\Nodes\Statements\VariableStatement Object
+            [location] => Package\Common\Location Object
                 (
-                    [location] => Package\Common\Location Object
-                        (
-                            [startLine] => 1
-                            [startOffset] => 0
-                            [endLine] => 1
-                            [endOffset] => 34
-                        )
+                    [startLine] => 1
+                    [startOffset] => 0
+                    [endLine] => 1
+                    [endOffset] => 34
+                )
 
-                    [name] => foo
-                    [type] => Package\Nodes\Types\PrimitiveType Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 9
-                                    [endLine] => 1
-                                    [endOffset] => 15
-                                )
-
-                            [type] => Package\Common\Language\Primitive Enum:string
-                                (
-                                    [name] => String
-                                    [value] => string
-                                )
-
-                        )
-
-                    [expression] => Package\Nodes\Literals\StringLiteral Object
+            [statements] => Array
+                (
+                    [0] => Package\Nodes\Statements\VariableStatement Object
                         (
                             [location] => Package\Common\Location Object
                                 (
                                     [startLine] => 1
-                                    [startOffset] => 18
+                                    [startOffset] => 0
                                     [endLine] => 1
-                                    [endOffset] => 33
+                                    [endOffset] => 34
                                 )
 
-                            [value:protected] => Hello, World!
+                            [name] => foo
+                            [type] => Package\Nodes\Types\PrimitiveType Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 9
+                                            [endLine] => 1
+                                            [endOffset] => 15
+                                        )
+
+                                    [type] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => String
+                                            [value] => string
+                                        )
+
+                                )
+
+                            [expression] => Package\Nodes\Literals\StringLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 18
+                                            [endLine] => 1
+                                            [endOffset] => 33
+                                        )
+
+                                    [value:protected] => Hello, World!
+                                )
+
                         )
 
                 )

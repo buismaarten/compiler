@@ -4,138 +4,142 @@ var foo: int = 1;
     foo = 2;
 }
 -----
-SplObjectStorage Object
+Array
 (
-    [storage:SplObjectStorage:private] => Array
+    [0] => SplObjectStorage Object
         (
-            [0] => Array
+            [storage:SplObjectStorage:private] => Array
                 (
-                    [obj] => Package\Nodes\Statements\VariableStatement Object
+                    [0] => Array
                         (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 0
-                                    [endLine] => 1
-                                    [endOffset] => 17
-                                )
-
-                            [name] => foo
-                            [type] => Package\Nodes\Types\PrimitiveType Object
+                            [obj] => Package\Nodes\Statements\VariableStatement Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 1
-                                            [startOffset] => 9
+                                            [startOffset] => 0
                                             [endLine] => 1
-                                            [endOffset] => 12
+                                            [endOffset] => 17
                                         )
 
-                                    [type] => Package\Common\Language\Primitive Enum:string
+                                    [name] => foo
+                                    [type] => Package\Nodes\Types\PrimitiveType Object
                                         (
-                                            [name] => Integer
-                                            [value] => int
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 9
+                                                    [endLine] => 1
+                                                    [endOffset] => 12
+                                                )
+
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
+                                        )
+
+                                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 15
+                                                    [endLine] => 1
+                                                    [endOffset] => 16
+                                                )
+
+                                            [value:protected] => 1
                                         )
 
                                 )
 
-                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                            [inf] => Package\Semantic\Symbols\ValueSymbol Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 1
-                                            [startOffset] => 15
+                                            [startOffset] => 0
                                             [endLine] => 1
-                                            [endOffset] => 16
+                                            [endOffset] => 17
                                         )
 
-                                    [value:protected] => 1
-                                )
-
-                        )
-
-                    [inf] => Package\Semantic\Symbols\ValueSymbol Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 0
-                                    [endLine] => 1
-                                    [endOffset] => 17
-                                )
-
-                            [name] => foo
-                            [type] => Package\Semantic\Types\PrimitiveType Object
-                                (
-                                    [type] => Package\Common\Language\Primitive Enum:string
+                                    [name] => foo
+                                    [type] => Package\Semantic\Types\PrimitiveType Object
                                         (
-                                            [name] => Integer
-                                            [value] => int
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
+                                        )
+
+                                    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                                        (
+                                            [name] => Variable
                                         )
 
                                 )
 
-                            [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
-                                (
-                                    [name] => Variable
-                                )
-
                         )
 
-                )
-
-            [1] => Array
-                (
-                    [obj] => Package\Nodes\Expressions\AssignmentExpression Object
+                    [1] => Array
                         (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 4
-                                    [startOffset] => 25
-                                    [endLine] => 4
-                                    [endOffset] => 32
-                                )
-
-                            [name] => foo
-                            [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                            [obj] => Package\Nodes\Expressions\AssignmentExpression Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 4
-                                            [startOffset] => 31
+                                            [startOffset] => 25
                                             [endLine] => 4
                                             [endOffset] => 32
                                         )
 
-                                    [value:protected] => 2
-                                )
-
-                        )
-
-                    [inf] => Package\Semantic\Symbols\ValueSymbol Object
-                        (
-                            [location] => Package\Common\Location Object
-                                (
-                                    [startLine] => 1
-                                    [startOffset] => 0
-                                    [endLine] => 1
-                                    [endOffset] => 17
-                                )
-
-                            [name] => foo
-                            [type] => Package\Semantic\Types\PrimitiveType Object
-                                (
-                                    [type] => Package\Common\Language\Primitive Enum:string
+                                    [name] => foo
+                                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
                                         (
-                                            [name] => Integer
-                                            [value] => int
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 4
+                                                    [startOffset] => 31
+                                                    [endLine] => 4
+                                                    [endOffset] => 32
+                                                )
+
+                                            [value:protected] => 2
                                         )
 
                                 )
 
-                            [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                            [inf] => Package\Semantic\Symbols\ValueSymbol Object
                                 (
-                                    [name] => Variable
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 0
+                                            [endLine] => 1
+                                            [endOffset] => 17
+                                        )
+
+                                    [name] => foo
+                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                        (
+                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                (
+                                                    [name] => Integer
+                                                    [value] => int
+                                                )
+
+                                        )
+
+                                    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
+                                        (
+                                            [name] => Variable
+                                        )
+
                                 )
 
                         )
