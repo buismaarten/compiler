@@ -24,7 +24,9 @@ class SymbolResolverTest extends TestCase
         $this->assertMatchesFixtures(__DIR__.'/__fixtures__/*.txt', function (string $input) {
             $tokenizer = new Tokenizer($input);
             $parser = new Parser($tokenizer);
-            $symbolResolver = new SymbolResolver($parser->parse());
+
+            $node = $parser->parse();
+            $symbolResolver = new SymbolResolver($node);
 
             return $symbolResolver->getSymbols();
         });
