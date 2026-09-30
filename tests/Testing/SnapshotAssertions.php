@@ -36,7 +36,9 @@ trait SnapshotAssertions
                 file_put_contents($file, self::buildSnapshot($input, $actual));
             }
 
-            $this->assertEquals($expected, $actual, "Snapshot mismatch: {$file}");
+            if (!self::shouldUpdateSnapshots()) {
+                $this->assertEquals($expected, $actual, "Snapshot mismatch: {$file}");
+            }
         }
     }
 
