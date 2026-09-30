@@ -31,20 +31,20 @@ trait SnapshotAssertions
             $actual = self::normalizeSnapshot($callback($input));
 
             if (!$expected || self::shouldUpdateSnapshots()) {
-                file_put_contents($file, self::snapshotContent($input, $actual));
+                file_put_contents($file, self::buildSnapshot($input, $actual));
             }
 
             $this->assertEquals($expected, $actual, "Snapshot mismatch: {$file}");
         }
     }
 
-    private static function shouldUpdateSnapshots(): bool
+    private static function buildSnapshot(string $input, string $actual): string
     {
-        if (($value = getenv('UPDATE_SNAPSHOTS')) !== false) {
-            return preg_match('/^(1|true)$/i', $value) === 1;
-        }
+        $content  = trim($input)."\n";
+        $content .= self::SEPARATOR."\n";
+        $content .= "{$actual}\n";
 
-        return false;
+        return $content;
     }
 
     private static function normalizeSnapshot(mixed $value): string
@@ -55,12 +55,12 @@ trait SnapshotAssertions
         return $value;
     }
 
-    private static function snapshotContent(string $input, string $actual): string
+    private static function shouldUpdateSnapshots(): bool
     {
-        $content  = trim($input)."\n";
-        $content .= self::SEPARATOR."\n";
-        $content .= "{$actual}\n";
+        if (($value = getenv('UPDATE_SNAPSHOTS')) !== false) {
+            return preg_match('/^(1|true)$/i', $value) === 1;
+        }
 
-        return $content;
+        return false;
     }
 }
