@@ -13,6 +13,7 @@ trait SnapshotAssertions
 
     protected function assertMatchesSnapshot(string $pattern, callable $callback): void
     {
+        $update = self::shouldUpdateSnapshots();
         $files = glob($pattern);
 
         if (!$files) {
@@ -32,11 +33,11 @@ trait SnapshotAssertions
             $expected = self::normalizeSnapshot($expected);
             $actual = self::normalizeSnapshot($callback($input));
 
-            if (!$expected || self::shouldUpdateSnapshots()) {
+            if ($update || !$expected) {
                 file_put_contents($file, self::buildSnapshot($input, $actual));
             }
 
-            if (!self::shouldUpdateSnapshots()) {
+            if (!$update) {
                 $this->assertEquals($expected, $actual, "Snapshot mismatch: {$file}");
             }
         }
