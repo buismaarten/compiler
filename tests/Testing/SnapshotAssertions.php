@@ -13,18 +13,15 @@ trait SnapshotAssertions
 
     protected function assertMatchesSnapshot(string $pattern, callable $callback): void
     {
-        $update = self::shouldUpdateSnapshots();
-        $files = glob($pattern);
+        static $update = self::shouldUpdateSnapshots();
 
-        if (!$files) {
+        if (!($files = glob($pattern))) {
             $this->fail("Unable to find snapshots for pattern: {$pattern}");
             return;
         }
 
         foreach ($files as $file) {
-            $content = file_get_contents($file);
-
-            if ($content === false) {
+            if (($content = file_get_contents($file)) === false) {
                 $this->fail("Unable to read snapshot: {$file}");
                 break;
             }
