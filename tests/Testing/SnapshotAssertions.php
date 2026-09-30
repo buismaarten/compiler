@@ -9,9 +9,9 @@ namespace Package\Tests\Testing;
 
 trait SnapshotAssertions
 {
-    private const SEPARATOR = '-----';
+    private const SNAPSHOT_SEPARATOR = '-----';
 
-    protected function assertMatchesSnapshot(string $pattern, callable $callback): void
+    protected function assertSnapshot(string $pattern, callable $callback): void
     {
         $update = self::shouldUpdateSnapshots();
         $files = glob($pattern);
@@ -33,7 +33,7 @@ trait SnapshotAssertions
                 break;
             }
 
-            [$input, $expected] = explode(self::SEPARATOR, $content);
+            [$input, $expected] = explode(self::SNAPSHOT_SEPARATOR, $content);
             $input = trim($input);
             $expected = self::normalizeSnapshot($expected);
             $actual = self::normalizeSnapshot($callback($input));
@@ -51,7 +51,7 @@ trait SnapshotAssertions
     private static function buildSnapshot(string $input, string $actual): string
     {
         $output  = "{$input}\n";
-        $output .= self::SEPARATOR."\n";
+        $output .= self::SNAPSHOT_SEPARATOR."\n";
         $output .= "{$actual}\n";
 
         return $output;

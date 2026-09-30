@@ -20,7 +20,7 @@ class ParserTest extends TestCase
     #[Test]
     public function testSnapshots(): void
     {
-        $this->assertMatchesSnapshot(__DIR__.'/__snapshots__/*.txt', function (string $input): array {
+        $this->assertSnapshot(__DIR__.'/__snapshots__/*.txt', function (string $input): array {
             $tokenizer = new Tokenizer($input);
             $parser = new Parser($tokenizer);
 
