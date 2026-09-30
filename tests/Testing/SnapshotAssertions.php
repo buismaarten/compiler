@@ -40,11 +40,11 @@ trait SnapshotAssertions
 
     private static function buildSnapshot(string $input, string $actual): string
     {
-        $content  = trim($input)."\n";
-        $content .= self::SEPARATOR."\n";
-        $content .= "{$actual}\n";
+        $output  = trim($input)."\n";
+        $output .= self::SEPARATOR."\n";
+        $output .= "{$actual}\n";
 
-        return $content;
+        return $output;
     }
 
     private static function normalizeSnapshot(mixed $value): string
