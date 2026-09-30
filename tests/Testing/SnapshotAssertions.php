@@ -27,12 +27,11 @@ trait SnapshotAssertions
             }
 
             [$input, $expected] = explode(self::SEPARATOR, $content);
-            $input = trim($input);
-            $expected = self::normalize($expected);
-            $actual = self::normalize($callback($input));
+            $expected = self::normalizeSnapshot($expected);
+            $actual = self::normalizeSnapshot($callback($input));
 
             if (!$expected || self::shouldUpdateSnapshots()) {
-                file_put_contents($file, "{$input}\n".self::SEPARATOR."\n{$actual}\n");
+                file_put_contents($file, self::snapshotContent($input, $actual));
             }
 
             $this->assertEquals($expected, $actual, "Snapshot mismatch: {$file}");
@@ -48,11 +47,20 @@ trait SnapshotAssertions
         return false;
     }
 
-    private static function normalize(mixed $value): string
+    private static function normalizeSnapshot(mixed $value): string
     {
         $value = print_r($value, true);
         $value = trim($value);
 
         return $value;
+    }
+
+    private static function snapshotContent(string $input, string $actual): string
+    {
+        $content  = trim($input)."\n";
+        $content .= self::SEPARATOR."\n";
+        $content .= "{$actual}\n";
+
+        return $content;
     }
 }
