@@ -17,6 +17,7 @@ trait SnapshotAssertions
 
         if (!$files) {
             $this->fail("Unable to find snapshots for pattern: {$pattern}");
+            return;
         }
 
         foreach ($files as $file) {
@@ -24,6 +25,7 @@ trait SnapshotAssertions
 
             if ($content === false) {
                 $this->fail("Unable to read snapshot: {$file}");
+                break;
             }
 
             [$input, $expected] = explode(self::SEPARATOR, $content);
