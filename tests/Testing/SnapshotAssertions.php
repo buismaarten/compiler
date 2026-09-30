@@ -15,6 +15,10 @@ trait SnapshotAssertions
     {
         static $update = self::shouldUpdateSnapshots();
 
+        if ($update) {
+            $this->expectNotToPerformAssertions();
+        }
+
         if (!($files = glob($pattern))) {
             $this->fail("Unable to find snapshots for pattern: {$pattern}");
             return;
@@ -27,6 +31,7 @@ trait SnapshotAssertions
             }
 
             [$input, $expected] = explode(self::SEPARATOR, $content);
+            $input = trim($input);
             $expected = self::normalizeSnapshot($expected);
             $actual = self::normalizeSnapshot($callback($input));
 
@@ -42,7 +47,7 @@ trait SnapshotAssertions
 
     private static function buildSnapshot(string $input, string $actual): string
     {
-        $output  = trim($input)."\n";
+        $output  = "{$input}\n";
         $output .= self::SEPARATOR."\n";
         $output .= "{$actual}\n";
 
