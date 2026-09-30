@@ -13,9 +13,7 @@ trait SnapshotAssertions
 
     protected function assertMatchesSnapshot(string $pattern, callable $callback): void
     {
-        static $update = self::shouldUpdateSnapshots();
-
-        if ($update) {
+        if ($update = self::shouldUpdateSnapshots()) {
             $this->expectNotToPerformAssertions();
         }
 
