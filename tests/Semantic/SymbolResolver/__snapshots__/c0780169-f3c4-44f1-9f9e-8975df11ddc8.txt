@@ -1,0 +1,5 @@
+fn foo(bar: int, bar: int): int {
+    return bar;
+}
+-----
+Duplicate symbol 'bar' on line 1

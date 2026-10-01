@@ -1,0 +1,9 @@
+fn foo(): void {
+    print "Hello, World!";
+}
+
+fn foo(): void {
+    print "Goodbye, World!";
+}
+-----
+Duplicate symbol 'foo' on line 5

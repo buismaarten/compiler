@@ -1,3 +1,3 @@
-var foo
+var foo: int
 -----
 Unexpected end of input on line 1

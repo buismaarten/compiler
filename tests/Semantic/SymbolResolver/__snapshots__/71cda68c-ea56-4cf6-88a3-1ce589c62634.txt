@@ -1,0 +1,3 @@
+foo = 1;
+-----
+Undefined symbol 'foo' on line 1

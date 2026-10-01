@@ -1,0 +1,5 @@
+fn foo(): bar {
+    return 123;
+}
+-----
+Undefined symbol 'bar' on line 1

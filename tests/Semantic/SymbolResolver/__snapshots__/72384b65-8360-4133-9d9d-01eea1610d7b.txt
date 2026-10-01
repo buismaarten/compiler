@@ -1,0 +1,3 @@
+foo(123, 456);
+-----
+Undefined symbol 'foo' on line 1

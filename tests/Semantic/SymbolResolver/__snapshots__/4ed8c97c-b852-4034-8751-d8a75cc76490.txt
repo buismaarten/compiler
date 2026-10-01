@@ -1,0 +1,4 @@
+var foo: int = 123;
+var foo: int = 123;
+-----
+Duplicate symbol 'foo' on line 2
