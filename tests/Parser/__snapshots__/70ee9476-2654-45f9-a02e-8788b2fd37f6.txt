@@ -1,0 +1,3 @@
+:
+-----
+Unexpected token 'Colon' on line 1
