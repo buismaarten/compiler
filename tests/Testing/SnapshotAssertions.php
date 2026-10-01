@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Tests\Testing;
 
+use Throwable;
+
 trait SnapshotAssertions
 {
     private const SNAPSHOT_SEPARATOR = '-----';
@@ -36,7 +38,12 @@ trait SnapshotAssertions
             [$input, $expected] = explode(self::SNAPSHOT_SEPARATOR, $content);
             $input = trim($input);
             $expected = self::normalizeSnapshot($expected);
-            $actual = self::normalizeSnapshot($callback($input));
+
+            try {
+                $actual = self::normalizeSnapshot($callback($input));
+            } catch (Throwable $e) {
+                $actual = self::normalizeSnapshot($e->getMessage());
+            }
 
             if ($update || !$expected) {
                 file_put_contents($file, self::buildSnapshot($input, $actual));
