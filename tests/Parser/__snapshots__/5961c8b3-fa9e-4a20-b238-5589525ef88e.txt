@@ -1,0 +1,3 @@
+var foo
+-----
+Unexpected end of input on line 1
