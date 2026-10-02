@@ -7,10 +7,10 @@ declare(strict_types=1);
 
 namespace Package\Tests\Semantic\TypeResolver;
 
-use Package\Tokenizer\Tokenizer;
 use Package\Parser\Parser;
 use Package\Semantic\TypeResolver\TypeResolver;
 use Package\Tests\Testing\SnapshotAssertions;
+use Package\Tokenizer\Tokenizer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
