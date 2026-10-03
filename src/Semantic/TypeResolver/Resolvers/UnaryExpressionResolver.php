@@ -15,26 +15,7 @@ final class UnaryExpressionResolver
 {
     public static function resolve(UnaryOperator $operator, AbstractType $type): AbstractType
     {
-        if ($type instanceof Types\ArrayType) {
-            // TODO
-        }
-
-        if ($type instanceof Types\NamedType) {
-            // TODO
-        }
-
-        if ($type instanceof Types\NullableType) {
-            // TODO
-        }
-
-        if ($type instanceof Types\PrimitiveType) {
-            // TODO
-        }
-
-        if ($type instanceof Types\TupleType) {
-            // TODO
-        }
-
+        // TODO
         return new Types\ErrorType;
     }
 }
