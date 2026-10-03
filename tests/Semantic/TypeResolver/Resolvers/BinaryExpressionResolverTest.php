@@ -42,6 +42,12 @@ class BinaryExpressionResolverTest extends TestCase
                 'right' => new Types\PrimitiveType(Primitive::Float),
             ],
             [
+                'operator' => BinaryOperator::Minus,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
                 'operator' => BinaryOperator::Plus,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'left' => new Types\PrimitiveType(Primitive::Integer),
@@ -52,6 +58,12 @@ class BinaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Float),
                 'left' => new Types\PrimitiveType(Primitive::Float),
                 'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
             ],
         ];
     }
