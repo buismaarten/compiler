@@ -19,18 +19,13 @@ use PHPUnit\Framework\TestCase;
 class UnaryExpressionResolverTest extends TestCase
 {
     #[Test]
-    #[DataProvider('bitwiseNotProvider')]
-    #[DataProvider('booleanNotProvider')]
-    #[DataProvider('decrementProvider')]
-    #[DataProvider('incrementProvider')]
-    #[DataProvider('minusProvider')]
-    #[DataProvider('plusProvider')]
+    #[DataProvider('dataProvider')]
     public function testResolve(UnaryOperator $operator, AbstractType $type, AbstractType $expected): void
     {
         $this->assertEquals($expected, UnaryExpressionResolver::resolve($operator, $type));
     }
 
-    public static function bitwiseNotProvider(): array
+    public static function dataProvider(): array
     {
         return [
             [
@@ -38,23 +33,11 @@ class UnaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'type' => new Types\PrimitiveType(Primitive::Integer),
             ],
-        ];
-    }
-
-    public static function booleanNotProvider(): array
-    {
-        return [
             [
                 'operator' => UnaryOperator::BooleanNot,
                 'expected' => new Types\PrimitiveType(Primitive::Bool),
                 'type' => new Types\PrimitiveType(Primitive::Bool),
             ],
-        ];
-    }
-
-    public static function decrementProvider(): array
-    {
-        return [
             [
                 'operator' => UnaryOperator::Decrement,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
@@ -65,12 +48,6 @@ class UnaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Float),
                 'type' => new Types\PrimitiveType(Primitive::Float),
             ],
-        ];
-    }
-
-    public static function incrementProvider(): array
-    {
-        return [
             [
                 'operator' => UnaryOperator::Increment,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
@@ -81,12 +58,6 @@ class UnaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Float),
                 'type' => new Types\PrimitiveType(Primitive::Float),
             ],
-        ];
-    }
-
-    public static function minusProvider(): array
-    {
-        return [
             [
                 'operator' => UnaryOperator::Minus,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
@@ -97,12 +68,6 @@ class UnaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Float),
                 'type' => new Types\PrimitiveType(Primitive::Float),
             ],
-        ];
-    }
-
-    public static function plusProvider(): array
-    {
-        return [
             [
                 'operator' => UnaryOperator::Plus,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
