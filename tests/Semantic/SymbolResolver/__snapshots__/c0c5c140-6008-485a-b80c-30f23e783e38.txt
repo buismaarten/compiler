@@ -71,7 +71,7 @@ Array
                                     [name] => foo
                                     [type] => Package\Semantic\Types\PrimitiveType Object
                                         (
-                                            [type] => Package\Common\Language\Primitive Enum:string
+                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => Integer
                                                     [value] => int
@@ -213,7 +213,7 @@ Array
                                     [name] => foo
                                     [type] => Package\Semantic\Types\PrimitiveType Object
                                         (
-                                            [type] => Package\Common\Language\Primitive Enum:string
+                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => Integer
                                                     [value] => int

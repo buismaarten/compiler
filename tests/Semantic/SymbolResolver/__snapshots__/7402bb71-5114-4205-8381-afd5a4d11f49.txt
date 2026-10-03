@@ -134,7 +134,7 @@ Array
                                     [name] => foo
                                     [type] => Package\Semantic\Types\PrimitiveType Object
                                         (
-                                            [type] => Package\Common\Language\Primitive Enum:string
+                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => Void
                                                     [value] => void
@@ -157,7 +157,7 @@ Array
                                                     [name] => message
                                                     [type] => Package\Semantic\Types\PrimitiveType Object
                                                         (
-                                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                                 (
                                                                     [name] => String
                                                                     [value] => string
@@ -224,7 +224,7 @@ Array
                                     [name] => message
                                     [type] => Package\Semantic\Types\PrimitiveType Object
                                         (
-                                            [type] => Package\Common\Language\Primitive Enum:string
+                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => String
                                                     [value] => string
@@ -269,7 +269,7 @@ Array
                                     [name] => message
                                     [type] => Package\Semantic\Types\PrimitiveType Object
                                         (
-                                            [type] => Package\Common\Language\Primitive Enum:string
+                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => String
                                                     [value] => string
@@ -331,7 +331,7 @@ Array
                                     [name] => foo
                                     [type] => Package\Semantic\Types\PrimitiveType Object
                                         (
-                                            [type] => Package\Common\Language\Primitive Enum:string
+                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => Void
                                                     [value] => void
@@ -354,7 +354,7 @@ Array
                                                     [name] => message
                                                     [type] => Package\Semantic\Types\PrimitiveType Object
                                                         (
-                                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                                 (
                                                                     [name] => String
                                                                     [value] => string

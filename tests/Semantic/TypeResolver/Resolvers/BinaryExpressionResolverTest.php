@@ -25,14 +25,81 @@ class BinaryExpressionResolverTest extends TestCase
         $this->assertEquals($expected, BinaryExpressionResolver::resolve($operator, $left, $right));
     }
 
+    // TODO
     public static function dataProvider(): array
     {
         return [
             [
-                'operator' => BinaryOperator::Minus,
+                'operator' => BinaryOperator::Divide,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Divide,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::Divide,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Divide,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::Divide,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Divide,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Divide,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Divide,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'left' => new Types\PrimitiveType(Primitive::Integer),
                 'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Minus,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Minus,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::Minus,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Minus,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
             ],
             [
                 'operator' => BinaryOperator::Minus,
@@ -47,10 +114,88 @@ class BinaryExpressionResolverTest extends TestCase
                 'right' => new Types\PrimitiveType(Primitive::Integer),
             ],
             [
-                'operator' => BinaryOperator::Plus,
+                'operator' => BinaryOperator::Minus,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Minus,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'left' => new Types\PrimitiveType(Primitive::Integer),
                 'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Multiply,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Multiply,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::Multiply,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Multiply,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::Multiply,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Multiply,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Multiply,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Multiply,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
             ],
             [
                 'operator' => BinaryOperator::Plus,
@@ -63,6 +208,42 @@ class BinaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Float),
                 'left' => new Types\PrimitiveType(Primitive::Float),
                 'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::String),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\PrimitiveType(Primitive::String),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::String),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::String),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::String),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+                'right' => new Types\PrimitiveType(Primitive::String),
             ],
         ];
     }

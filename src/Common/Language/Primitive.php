@@ -15,4 +15,22 @@ enum Primitive: string
     case Null = 'null';
     case String = 'string';
     case Void = 'void';
+
+    public function isNumeric(): bool
+    {
+        if ($this === self::Float || $this === self::Integer) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function promote(self $other): self
+    {
+        if ($this === self::Float || $other === self::Float) {
+            return self::Float;
+        }
+
+        return $this;
+    }
 }

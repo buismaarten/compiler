@@ -11,10 +11,10 @@ use Package\Common\Language\Primitive;
 
 final class PrimitiveType extends AbstractType
 {
-    public Primitive $type;
+    public Primitive $primitive;
 
-    public function __construct(Primitive $type)
+    public function __construct(Primitive $primitive)
     {
-        $this->type = $type;
+        $this->primitive = $primitive;
     }
 }

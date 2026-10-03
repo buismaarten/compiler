@@ -16,27 +16,23 @@ final class UnaryExpressionResolver
 {
     public static function resolve(UnaryOperator $operator, AbstractType $type): AbstractType
     {
-        if ($operator === UnaryOperator::BitwiseNot) {
-            if ($type instanceof Types\PrimitiveType && $type->type === Primitive::Integer) {
-                return $type;
+        if ($type instanceof Types\PrimitiveType) {
+            if ($operator === UnaryOperator::BitwiseNot) {
+                if ($type->primitive === Primitive::Integer) {
+                    return $type;
+                }
             }
-        }
 
-        if ($operator === UnaryOperator::BooleanNot) {
-            if ($type instanceof Types\PrimitiveType && $type->type === Primitive::Bool) {
-                return $type;
+            if ($operator === UnaryOperator::BooleanNot) {
+                if ($type->primitive === Primitive::Bool) {
+                    return $type;
+                }
             }
-        }
 
-        if ($operator === UnaryOperator::Decrement || $operator === UnaryOperator::Increment) {
-            if ($type instanceof Types\PrimitiveType && ($type->type === Primitive::Integer || $type->type === Primitive::Float)) {
-                return $type;
-            }
-        }
-
-        if ($operator === UnaryOperator::Minus || $operator === UnaryOperator::Plus) {
-            if ($type instanceof Types\PrimitiveType && ($type->type === Primitive::Integer || $type->type === Primitive::Float)) {
-                return $type;
+            if ($operator === UnaryOperator::Decrement || $operator === UnaryOperator::Increment || $operator === UnaryOperator::Minus || $operator === UnaryOperator::Plus) {
+                if ($type->primitive->isNumeric()) {
+                    return $type;
+                }
             }
         }
 

@@ -8,14 +8,39 @@ declare(strict_types=1);
 namespace Package\Semantic\TypeResolver\Resolvers;
 
 use Package\Common\Language\BinaryOperator;
+use Package\Common\Language\Primitive;
 use Package\Semantic\Types;
 use Package\Semantic\Types\AbstractType;
 
 final class BinaryExpressionResolver
 {
+    // TODO
     public static function resolve(BinaryOperator $operator, AbstractType $left, AbstractType $right): AbstractType
     {
-        // TODO
-        return $left;
+        $leftUnwrap = Types\NullableType::unwrap($left);
+        $rightUnwrap = Types\NullableType::unwrap($right);
+        $nullable = $left !== $leftUnwrap || $right !== $rightUnwrap;
+
+        if ($operator === BinaryOperator::Divide || $operator === BinaryOperator::Minus || $operator === BinaryOperator::Multiply || $operator === BinaryOperator::Plus) {
+            if ($leftUnwrap instanceof Types\PrimitiveType && $rightUnwrap instanceof Types\PrimitiveType) {
+                $leftPrimitive = $leftUnwrap->primitive;
+                $rightPrimitive = $rightUnwrap->primitive;
+
+                if ($leftPrimitive->isNumeric() && $rightPrimitive->isNumeric()) {
+                    return Types\NullableType::wrap(
+                        type: new Types\PrimitiveType($leftPrimitive->promote($rightPrimitive)),
+                        condition: $nullable,
+                    );
+                }
+
+                if ($operator === BinaryOperator::Plus) {
+                    if ($leftPrimitive === Primitive::String && $rightPrimitive === Primitive::String) {
+                        return new Types\PrimitiveType(Primitive::String);
+                    }
+                }
+            }
+        }
+
+        return new Types\ErrorType;
     }
 }

@@ -15,4 +15,22 @@ final class NullableType extends AbstractType
     {
         $this->type = $type;
     }
+
+    public static function unwrap(AbstractType $type): AbstractType
+    {
+        if ($type instanceof self) {
+            return $type->type;
+        }
+
+        return $type;
+    }
+
+    public static function wrap(AbstractType $type, bool $condition = true): AbstractType
+    {
+        if ($condition && !($type instanceof self)) {
+            return new self($type);
+        }
+
+        return $type;
+    }
 }
