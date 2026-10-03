@@ -124,8 +124,10 @@ NotIdentical	tuple<T...>	tuple<T...>	bool
 Plus	float	float	float
 Plus	float	int	float
 Plus	float?	float?	float?
+Plus	float?	int?	float?
 Plus	int	float	float
 Plus	int	int	int
+Plus	int?	float?	float?
 Plus	int?	int?	int?
 Plus	string	string	string
 ShiftLeft	int	int	int

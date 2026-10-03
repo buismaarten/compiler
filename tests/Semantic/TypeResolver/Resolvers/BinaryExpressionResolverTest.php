@@ -25,7 +25,6 @@ class BinaryExpressionResolverTest extends TestCase
         $this->assertEquals($expected, BinaryExpressionResolver::resolve($operator, $left, $right));
     }
 
-    // TODO
     public static function dataProvider(): array
     {
         return [
