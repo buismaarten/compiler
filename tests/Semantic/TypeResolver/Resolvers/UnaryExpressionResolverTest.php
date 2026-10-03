@@ -20,7 +20,7 @@ class UnaryExpressionResolverTest extends TestCase
 {
     #[Test]
     #[DataProvider('dataProvider')]
-    public function testResolve(UnaryOperator $operator, AbstractType $type, AbstractType $expected): void
+    public function testResolve(UnaryOperator $operator, AbstractType $expected, AbstractType $type): void
     {
         $this->assertEquals($expected, UnaryExpressionResolver::resolve($operator, $type));
     }
