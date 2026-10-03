@@ -15,7 +15,11 @@ final class UnaryExpressionResolver
 {
     public static function resolve(UnaryOperator $operator, AbstractType $type): AbstractType
     {
+        if ($type instanceof Types\ErrorType) {
+            return new Types\ErrorType;
+        }
+
         // TODO
-        return new Types\ErrorType;
+        return $type;
     }
 }
