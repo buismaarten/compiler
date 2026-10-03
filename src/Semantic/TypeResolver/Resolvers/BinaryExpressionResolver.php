@@ -15,7 +15,11 @@ final class BinaryExpressionResolver
 {
     public static function resolve(BinaryOperator $operator, AbstractType $left, AbstractType $right): AbstractType
     {
+        if ($left instanceof Types\ErrorType || $right instanceof Types\ErrorType) {
+            return new Types\ErrorType;
+        }
+
         // TODO
-        return new Types\ErrorType;
+        return $left;
     }
 }
