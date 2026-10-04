@@ -66,8 +66,11 @@ final class BinaryExpressionResolver
             }
 
             if ($operator === BinaryOperator::ShiftLeft || $operator === BinaryOperator::ShiftRight) {
-                if ($leftPrimitive === Primitive::Integer && $rightPrimitive === Primitive::Integer && !$nullable) {
-                    return new Types\PrimitiveType(Primitive::Integer);
+                if ($leftPrimitive === Primitive::Integer && $rightPrimitive === Primitive::Integer) {
+                    return Types\NullableType::wrap(
+                        type: new Types\PrimitiveType(Primitive::Integer),
+                        condition: $nullable,
+                    );
                 }
             }
 

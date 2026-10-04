@@ -449,6 +449,12 @@ class BinaryExpressionResolverTest extends TestCase
         return [
             [
                 'operator' => BinaryOperator::ShiftLeft,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::ShiftLeft,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'left' => new Types\PrimitiveType(Primitive::Integer),
                 'right' => new Types\PrimitiveType(Primitive::Integer),
@@ -459,6 +465,12 @@ class BinaryExpressionResolverTest extends TestCase
     public static function dataProviderShiftRight(): array
     {
         return [
+            [
+                'operator' => BinaryOperator::ShiftRight,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
             [
                 'operator' => BinaryOperator::ShiftRight,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
