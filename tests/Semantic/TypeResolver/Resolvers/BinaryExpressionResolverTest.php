@@ -20,6 +20,9 @@ use PHPUnit\Framework\TestCase;
 class BinaryExpressionResolverTest extends TestCase
 {
     #[Test]
+    #[DataProvider('dataProviderBitwiseAnd')]
+    #[DataProvider('dataProviderBitwiseOr')]
+    #[DataProvider('dataProviderBitwiseXor')]
     #[DataProvider('dataProviderBooleanAnd')]
     #[DataProvider('dataProviderBooleanOr')]
     #[DataProvider('dataProviderDivide')]
@@ -31,6 +34,96 @@ class BinaryExpressionResolverTest extends TestCase
     public function testResolve(BinaryOperator $operator, AbstractType $expected, AbstractType $left, AbstractType $right): void
     {
         $this->assertEquals($expected, BinaryExpressionResolver::resolve($operator, $left, $right));
+    }
+
+    public static function dataProviderBitwiseAnd(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::BitwiseAnd,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+            ],
+            [
+                'operator' => BinaryOperator::BitwiseAnd,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::BitwiseAnd,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Bool),
+                'right' => new Types\PrimitiveType(Primitive::Bool),
+            ],
+            [
+                'operator' => BinaryOperator::BitwiseAnd,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+        ];
+    }
+
+    public static function dataProviderBitwiseOr(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::BitwiseOr,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+            ],
+            [
+                'operator' => BinaryOperator::BitwiseOr,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::BitwiseOr,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Bool),
+                'right' => new Types\PrimitiveType(Primitive::Bool),
+            ],
+            [
+                'operator' => BinaryOperator::BitwiseOr,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+        ];
+    }
+
+    public static function dataProviderBitwiseXor(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::BitwiseXor,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+            ],
+            [
+                'operator' => BinaryOperator::BitwiseXor,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::BitwiseXor,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Bool),
+                'right' => new Types\PrimitiveType(Primitive::Bool),
+            ],
+            [
+                'operator' => BinaryOperator::BitwiseXor,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+        ];
     }
 
     public static function dataProviderBooleanAnd(): array
