@@ -16,20 +16,20 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+// TODO
 class BinaryExpressionResolverTest extends TestCase
 {
     #[Test]
-    #[DataProvider('divideDataProvider')]
-    #[DataProvider('minusDataProvider')]
-    #[DataProvider('multiplyDataProvider')]
-    #[DataProvider('plusDataProvider')]
+    #[DataProvider('dataProviderDivide')]
+    #[DataProvider('dataProviderMinus')]
+    #[DataProvider('dataProviderMultiply')]
+    #[DataProvider('dataProviderPlus')]
     public function testResolve(BinaryOperator $operator, AbstractType $expected, AbstractType $left, AbstractType $right): void
     {
         $this->assertEquals($expected, BinaryExpressionResolver::resolve($operator, $left, $right));
     }
 
-    // TODO
-    public static function divideDataProvider(): array
+    public static function dataProviderDivide(): array
     {
         return [
             [
@@ -83,8 +83,7 @@ class BinaryExpressionResolverTest extends TestCase
         ];
     }
 
-    // TODO
-    public static function minusDataProvider(): array
+    public static function dataProviderMinus(): array
     {
         return [
             [
@@ -138,8 +137,7 @@ class BinaryExpressionResolverTest extends TestCase
         ];
     }
 
-    // TODO
-    public static function multiplyDataProvider(): array
+    public static function dataProviderMultiply(): array
     {
         return [
             [
@@ -193,8 +191,7 @@ class BinaryExpressionResolverTest extends TestCase
         ];
     }
 
-    // TODO
-    public static function plusDataProvider(): array
+    public static function dataProviderPlus(): array
     {
         return [
             [
