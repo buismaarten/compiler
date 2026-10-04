@@ -353,12 +353,12 @@ final class Parser
     private function parseNamedType(): AbstractType
     {
         $token = $this->expect(TokenType::Identifier);
-        $type = Primitive::tryFrom($token->value);
+        $primitive = Primitive::tryFrom($token->value);
 
-        if ($type !== null) {
+        if ($primitive !== null) {
             return new Types\PrimitiveType(
                 location: $this->createLocation($token),
-                type: $type,
+                primitive: $primitive,
             );
         }
 

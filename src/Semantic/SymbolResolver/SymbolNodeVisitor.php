@@ -249,7 +249,7 @@ final class SymbolNodeVisitor extends AbstractNodeVisitor
         }
 
         if ($node instanceof Nodes\Types\PrimitiveType) {
-            return new Types\PrimitiveType($node->type);
+            return new Types\PrimitiveType($node->primitive);
         }
 
         if ($node instanceof Nodes\Types\TupleType) {

@@ -35,7 +35,7 @@ Array
                                             [endOffset] => 14
                                         )
 
-                                    [type] => Package\Common\Language\Primitive Enum:string
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
                                         (
                                             [name] => Integer
                                             [value] => int

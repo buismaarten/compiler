@@ -12,12 +12,12 @@ use Package\Common\Location;
 
 final class PrimitiveType extends AbstractType
 {
-    public Primitive $type;
+    public Primitive $primitive;
 
-    public function __construct(Location $location, Primitive $type)
+    public function __construct(Location $location, Primitive $primitive)
     {
         parent::__construct($location);
 
-        $this->type = $type;
+        $this->primitive = $primitive;
     }
 }

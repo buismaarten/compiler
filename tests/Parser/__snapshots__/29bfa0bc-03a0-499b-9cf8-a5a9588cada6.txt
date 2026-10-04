@@ -47,7 +47,7 @@ Array
                                                             [endOffset] => 13
                                                         )
 
-                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                    [primitive] => Package\Common\Language\Primitive Enum:string
                                                         (
                                                             [name] => Integer
                                                             [value] => int
@@ -65,7 +65,7 @@ Array
                                                             [endOffset] => 18
                                                         )
 
-                                                    [type] => Package\Common\Language\Primitive Enum:string
+                                                    [primitive] => Package\Common\Language\Primitive Enum:string
                                                         (
                                                             [name] => Integer
                                                             [value] => int

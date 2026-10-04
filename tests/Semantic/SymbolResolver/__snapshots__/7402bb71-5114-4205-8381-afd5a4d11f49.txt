@@ -35,7 +35,7 @@ Array
                                                     [endOffset] => 29
                                                 )
 
-                                            [type] => Package\Common\Language\Primitive Enum:string
+                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => Void
                                                     [value] => void
@@ -66,7 +66,7 @@ Array
                                                                     [endOffset] => 22
                                                                 )
 
-                                                            [type] => Package\Common\Language\Primitive Enum:string
+                                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                                 (
                                                                     [name] => String
                                                                     [value] => string
@@ -201,7 +201,7 @@ Array
                                                     [endOffset] => 22
                                                 )
 
-                                            [type] => Package\Common\Language\Primitive Enum:string
+                                            [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => String
                                                     [value] => string
