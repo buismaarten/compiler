@@ -270,6 +270,60 @@ class BinaryExpressionResolverTest extends TestCase
         ];
     }
 
+    public static function dataProviderModulo(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::Modulo,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Modulo,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::Modulo,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Modulo,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::Modulo,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Modulo,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Modulo,
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Modulo,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+        ];
+    }
+
     public static function dataProviderMultiply(): array
     {
         return [

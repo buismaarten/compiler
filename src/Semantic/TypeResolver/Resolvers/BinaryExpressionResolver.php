@@ -50,7 +50,7 @@ final class BinaryExpressionResolver
                 }
             }
 
-            if ($operator === BinaryOperator::Divide || $operator === BinaryOperator::Minus || $operator === BinaryOperator::Multiply || $operator === BinaryOperator::Plus) {
+            if ($operator === BinaryOperator::Divide || $operator === BinaryOperator::Minus || $operator === BinaryOperator::Modulo || $operator === BinaryOperator::Multiply || $operator === BinaryOperator::Plus) {
                 if ($leftPrimitive->isNumeric() && $rightPrimitive->isNumeric()) {
                     return Types\NullableType::wrap(
                         type: new Types\PrimitiveType($leftPrimitive->promote($rightPrimitive)),
