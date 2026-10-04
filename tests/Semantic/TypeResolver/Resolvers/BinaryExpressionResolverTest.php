@@ -24,6 +24,8 @@ class BinaryExpressionResolverTest extends TestCase
     #[DataProvider('dataProviderMinus')]
     #[DataProvider('dataProviderMultiply')]
     #[DataProvider('dataProviderPlus')]
+    #[DataProvider('dataProviderShiftLeft')]
+    #[DataProvider('dataProviderShiftRight')]
     public function testResolve(BinaryOperator $operator, AbstractType $expected, AbstractType $left, AbstractType $right): void
     {
         $this->assertEquals($expected, BinaryExpressionResolver::resolve($operator, $left, $right));
@@ -265,6 +267,30 @@ class BinaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::String),
                 'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
                 'right' => new Types\PrimitiveType(Primitive::String),
+            ],
+        ];
+    }
+
+    public static function dataProviderShiftLeft(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::ShiftLeft,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+        ];
+    }
+
+    public static function dataProviderShiftRight(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::ShiftRight,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
             ],
         ];
     }

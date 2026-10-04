@@ -39,6 +39,14 @@ final class BinaryExpressionResolver
                     }
                 }
             }
+
+            if (!$nullable) {
+                if ($operator === BinaryOperator::ShiftLeft || $operator === BinaryOperator::ShiftRight) {
+                    if ($leftPrimitive === Primitive::Integer && $rightPrimitive === Primitive::Integer) {
+                        return new Types\PrimitiveType(Primitive::Integer);
+                    }
+                }
+            }
         }
 
         return new Types\ErrorType;

@@ -97,8 +97,6 @@ NotIdentical	string	string	bool
 NotIdentical	T	T	bool
 NotIdentical	T?	T?	bool
 NotIdentical	tuple<T...>	tuple<T...>	bool
-ShiftLeft	int	int	int
-ShiftRight	int	int	int
 Spaceship	float	float	int
 Spaceship	float	int	int
 Spaceship	float?	float?	int?
