@@ -19,14 +19,17 @@ use PHPUnit\Framework\TestCase;
 class BinaryExpressionResolverTest extends TestCase
 {
     #[Test]
-    #[DataProvider('dataProvider')]
+    #[DataProvider('divideDataProvider')]
+    #[DataProvider('minusDataProvider')]
+    #[DataProvider('multiplyDataProvider')]
+    #[DataProvider('plusDataProvider')]
     public function testResolve(BinaryOperator $operator, AbstractType $expected, AbstractType $left, AbstractType $right): void
     {
         $this->assertEquals($expected, BinaryExpressionResolver::resolve($operator, $left, $right));
     }
 
     // TODO
-    public static function dataProvider(): array
+    public static function divideDataProvider(): array
     {
         return [
             [
@@ -77,6 +80,13 @@ class BinaryExpressionResolverTest extends TestCase
                 'left' => new Types\PrimitiveType(Primitive::Integer),
                 'right' => new Types\PrimitiveType(Primitive::Integer),
             ],
+        ];
+    }
+
+    // TODO
+    public static function minusDataProvider(): array
+    {
+        return [
             [
                 'operator' => BinaryOperator::Minus,
                 'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
@@ -125,6 +135,13 @@ class BinaryExpressionResolverTest extends TestCase
                 'left' => new Types\PrimitiveType(Primitive::Integer),
                 'right' => new Types\PrimitiveType(Primitive::Integer),
             ],
+        ];
+    }
+
+    // TODO
+    public static function multiplyDataProvider(): array
+    {
+        return [
             [
                 'operator' => BinaryOperator::Multiply,
                 'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
@@ -173,6 +190,13 @@ class BinaryExpressionResolverTest extends TestCase
                 'left' => new Types\PrimitiveType(Primitive::Integer),
                 'right' => new Types\PrimitiveType(Primitive::Integer),
             ],
+        ];
+    }
+
+    // TODO
+    public static function plusDataProvider(): array
+    {
+        return [
             [
                 'operator' => BinaryOperator::Plus,
                 'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
