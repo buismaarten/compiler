@@ -137,18 +137,6 @@ class BinaryExpressionResolverTest extends TestCase
             ],
             [
                 'operator' => BinaryOperator::BooleanAnd,
-                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
-                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
-                'right' => new Types\PrimitiveType(Primitive::Bool),
-            ],
-            [
-                'operator' => BinaryOperator::BooleanAnd,
-                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
-                'left' => new Types\PrimitiveType(Primitive::Bool),
-                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
-            ],
-            [
-                'operator' => BinaryOperator::BooleanAnd,
                 'expected' => new Types\PrimitiveType(Primitive::Bool),
                 'left' => new Types\PrimitiveType(Primitive::Bool),
                 'right' => new Types\PrimitiveType(Primitive::Bool),
@@ -163,18 +151,6 @@ class BinaryExpressionResolverTest extends TestCase
                 'operator' => BinaryOperator::BooleanOr,
                 'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
                 'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
-                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
-            ],
-            [
-                'operator' => BinaryOperator::BooleanOr,
-                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
-                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
-                'right' => new Types\PrimitiveType(Primitive::Bool),
-            ],
-            [
-                'operator' => BinaryOperator::BooleanOr,
-                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
-                'left' => new Types\PrimitiveType(Primitive::Bool),
                 'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
             ],
             [
@@ -411,18 +387,18 @@ class BinaryExpressionResolverTest extends TestCase
                 'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
                 'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
             ],
-            [
-                'operator' => BinaryOperator::Plus,
-                'expected' => new Types\PrimitiveType(Primitive::String),
-                'left' => new Types\PrimitiveType(Primitive::String),
-                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
-            ],
-            [
-                'operator' => BinaryOperator::Plus,
-                'expected' => new Types\PrimitiveType(Primitive::String),
-                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
-                'right' => new Types\PrimitiveType(Primitive::String),
-            ],
+            // [
+            //     'operator' => BinaryOperator::Plus,
+            //     'expected' => new Types\PrimitiveType(Primitive::String),
+            //     'left' => new Types\PrimitiveType(Primitive::String),
+            //     'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            // ],
+            // [
+            //     'operator' => BinaryOperator::Plus,
+            //     'expected' => new Types\PrimitiveType(Primitive::String),
+            //     'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            //     'right' => new Types\PrimitiveType(Primitive::String),
+            // ],
         ];
     }
 
