@@ -77,11 +77,3 @@ NotIdentical	string	string	bool
 NotIdentical	T	T	bool
 NotIdentical	T?	T?	bool
 NotIdentical	tuple<T...>	tuple<T...>	bool
-Spaceship	float	float	int
-Spaceship	float	int	int
-Spaceship	float?	float?	int?
-Spaceship	int	float	int
-Spaceship	int	int	int
-Spaceship	int?	int?	int?
-Spaceship	string	string	int
-Spaceship	string?	string?	int
