@@ -220,6 +220,24 @@ class BinaryExpressionResolverTest extends TestCase
             ],
             [
                 'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::String),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::String),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::String),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+                'right' => new Types\PrimitiveType(Primitive::String),
+            ],
+            [
+                'operator' => BinaryOperator::Plus,
                 'expected' => new Types\PrimitiveType(Primitive::Float),
                 'left' => new Types\PrimitiveType(Primitive::Float),
                 'right' => new Types\PrimitiveType(Primitive::Float),
@@ -246,24 +264,6 @@ class BinaryExpressionResolverTest extends TestCase
                 'operator' => BinaryOperator::Plus,
                 'expected' => new Types\PrimitiveType(Primitive::String),
                 'left' => new Types\PrimitiveType(Primitive::String),
-                'right' => new Types\PrimitiveType(Primitive::String),
-            ],
-            [
-                'operator' => BinaryOperator::Plus,
-                'expected' => new Types\PrimitiveType(Primitive::String),
-                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
-                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
-            ],
-            [
-                'operator' => BinaryOperator::Plus,
-                'expected' => new Types\PrimitiveType(Primitive::String),
-                'left' => new Types\PrimitiveType(Primitive::String),
-                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
-            ],
-            [
-                'operator' => BinaryOperator::Plus,
-                'expected' => new Types\PrimitiveType(Primitive::String),
-                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
                 'right' => new Types\PrimitiveType(Primitive::String),
             ],
         ];
