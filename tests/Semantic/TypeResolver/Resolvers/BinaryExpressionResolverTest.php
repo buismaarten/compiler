@@ -387,18 +387,6 @@ class BinaryExpressionResolverTest extends TestCase
                 'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
                 'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
             ],
-            // [
-            //     'operator' => BinaryOperator::Plus,
-            //     'expected' => new Types\PrimitiveType(Primitive::String),
-            //     'left' => new Types\PrimitiveType(Primitive::String),
-            //     'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
-            // ],
-            // [
-            //     'operator' => BinaryOperator::Plus,
-            //     'expected' => new Types\PrimitiveType(Primitive::String),
-            //     'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
-            //     'right' => new Types\PrimitiveType(Primitive::String),
-            // ],
         ];
     }
 
