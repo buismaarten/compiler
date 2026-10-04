@@ -1,4 +1,4 @@
-Operator	Left Type	Right Type	Result Type
+Operator	Left	Right	Result
 BitwiseAnd	bool	bool	bool
 BitwiseAnd	bool?	bool?	bool?
 BitwiseAnd	int	int	int
