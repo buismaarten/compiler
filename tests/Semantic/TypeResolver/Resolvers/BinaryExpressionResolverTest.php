@@ -27,10 +27,12 @@ class BinaryExpressionResolverTest extends TestCase
     #[DataProvider('dataProviderBooleanOr')]
     #[DataProvider('dataProviderDivide')]
     #[DataProvider('dataProviderMinus')]
+    #[DataProvider('dataProviderModulo')]
     #[DataProvider('dataProviderMultiply')]
     #[DataProvider('dataProviderPlus')]
     #[DataProvider('dataProviderShiftLeft')]
     #[DataProvider('dataProviderShiftRight')]
+    #[DataProvider('dataProviderSpaceship')]
     public function testResolve(BinaryOperator $operator, AbstractType $expected, AbstractType $left, AbstractType $right): void
     {
         $this->assertEquals($expected, BinaryExpressionResolver::resolve($operator, $left, $right));
