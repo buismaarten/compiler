@@ -40,16 +40,11 @@ class UnaryExpressionResolverTest extends TestCase
             ],
             [
                 'operator' => UnaryOperator::Decrement,
-                'expected' => new Types\PrimitiveType(Primitive::Integer),
-                'type' => new Types\PrimitiveType(Primitive::Integer),
+                'expected' => new Types\PrimitiveType(Primitive::Float),
+                'type' => new Types\PrimitiveType(Primitive::Float),
             ],
             [
                 'operator' => UnaryOperator::Decrement,
-                'expected' => new Types\PrimitiveType(Primitive::Float),
-                'type' => new Types\PrimitiveType(Primitive::Float),
-            ],
-            [
-                'operator' => UnaryOperator::Increment,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'type' => new Types\PrimitiveType(Primitive::Integer),
             ],
@@ -59,7 +54,7 @@ class UnaryExpressionResolverTest extends TestCase
                 'type' => new Types\PrimitiveType(Primitive::Float),
             ],
             [
-                'operator' => UnaryOperator::Minus,
+                'operator' => UnaryOperator::Increment,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'type' => new Types\PrimitiveType(Primitive::Integer),
             ],
@@ -69,7 +64,7 @@ class UnaryExpressionResolverTest extends TestCase
                 'type' => new Types\PrimitiveType(Primitive::Float),
             ],
             [
-                'operator' => UnaryOperator::Plus,
+                'operator' => UnaryOperator::Minus,
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'type' => new Types\PrimitiveType(Primitive::Integer),
             ],
@@ -77,6 +72,11 @@ class UnaryExpressionResolverTest extends TestCase
                 'operator' => UnaryOperator::Plus,
                 'expected' => new Types\PrimitiveType(Primitive::Float),
                 'type' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => UnaryOperator::Plus,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'type' => new Types\PrimitiveType(Primitive::Integer),
             ],
         ];
     }
