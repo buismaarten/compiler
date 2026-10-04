@@ -413,4 +413,59 @@ class BinaryExpressionResolverTest extends TestCase
             ],
         ];
     }
+
+
+    public static function dataProviderSpaceship(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::Spaceship,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::Spaceship,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::Spaceship,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            ],
+            [
+                'operator' => BinaryOperator::Spaceship,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Spaceship,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Spaceship,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Spaceship,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Spaceship,
+                'expected' => new Types\PrimitiveType(Primitive::Integer),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\PrimitiveType(Primitive::String),
+            ],
+        ];
+    }
 }

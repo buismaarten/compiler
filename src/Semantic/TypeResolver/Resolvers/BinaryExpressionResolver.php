@@ -70,6 +70,22 @@ final class BinaryExpressionResolver
                     return new Types\PrimitiveType(Primitive::Integer);
                 }
             }
+
+            if ($operator === BinaryOperator::Spaceship) {
+                if ($leftPrimitive->isNumeric() && $rightPrimitive->isNumeric()) {
+                    return Types\NullableType::wrap(
+                        type: new Types\PrimitiveType(Primitive::Integer),
+                        condition: $nullable,
+                    );
+                }
+
+                if ($leftPrimitive === Primitive::String && $rightPrimitive === Primitive::String) {
+                    return Types\NullableType::wrap(
+                        type: new Types\PrimitiveType(Primitive::Integer),
+                        condition: $nullable,
+                    );
+                }
+            }
         }
 
         return new Types\ErrorType;

@@ -84,3 +84,4 @@ Spaceship	int	float	int
 Spaceship	int	int	int
 Spaceship	int?	int?	int?
 Spaceship	string	string	int
+Spaceship	string?	string?	int
