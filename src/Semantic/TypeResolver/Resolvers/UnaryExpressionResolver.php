@@ -19,19 +19,19 @@ final class UnaryExpressionResolver
         if ($type instanceof Types\PrimitiveType) {
             if ($operator === UnaryOperator::BitwiseNot) {
                 if ($type->primitive === Primitive::Integer) {
-                    return $type;
+                    return new Types\PrimitiveType(Primitive::Integer);
                 }
             }
 
             if ($operator === UnaryOperator::BooleanNot) {
                 if ($type->primitive === Primitive::Bool) {
-                    return $type;
+                    return new Types\PrimitiveType(Primitive::Bool);
                 }
             }
 
             if ($operator === UnaryOperator::Decrement || $operator === UnaryOperator::Increment || $operator === UnaryOperator::Minus || $operator === UnaryOperator::Plus) {
                 if ($type->primitive->isNumeric()) {
-                    return $type;
+                    return new Types\PrimitiveType($type->primitive);
                 }
             }
         }
