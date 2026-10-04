@@ -468,7 +468,6 @@ class BinaryExpressionResolverTest extends TestCase
         ];
     }
 
-
     public static function dataProviderSpaceship(): array
     {
         return [
