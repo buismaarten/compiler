@@ -21,11 +21,11 @@ final class BinaryExpressionResolver
         $rightUnwrap = Types\NullableType::unwrap($right);
         $nullable = $left !== $leftUnwrap || $right !== $rightUnwrap;
 
-        if ($operator === BinaryOperator::Divide || $operator === BinaryOperator::Minus || $operator === BinaryOperator::Multiply || $operator === BinaryOperator::Plus) {
-            if ($leftUnwrap instanceof Types\PrimitiveType && $rightUnwrap instanceof Types\PrimitiveType) {
-                $leftPrimitive = $leftUnwrap->primitive;
-                $rightPrimitive = $rightUnwrap->primitive;
+        if ($leftUnwrap instanceof Types\PrimitiveType && $rightUnwrap instanceof Types\PrimitiveType) {
+            $leftPrimitive = $leftUnwrap->primitive;
+            $rightPrimitive = $rightUnwrap->primitive;
 
+            if ($operator === BinaryOperator::Divide || $operator === BinaryOperator::Minus || $operator === BinaryOperator::Multiply || $operator === BinaryOperator::Plus) {
                 if ($leftPrimitive->isNumeric() && $rightPrimitive->isNumeric()) {
                     return Types\NullableType::wrap(
                         type: new Types\PrimitiveType($leftPrimitive->promote($rightPrimitive)),
