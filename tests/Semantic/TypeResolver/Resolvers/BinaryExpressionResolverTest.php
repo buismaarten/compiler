@@ -20,6 +20,8 @@ use PHPUnit\Framework\TestCase;
 class BinaryExpressionResolverTest extends TestCase
 {
     #[Test]
+    #[DataProvider('dataProviderBooleanAnd')]
+    #[DataProvider('dataProviderBooleanOr')]
     #[DataProvider('dataProviderDivide')]
     #[DataProvider('dataProviderMinus')]
     #[DataProvider('dataProviderMultiply')]
@@ -29,6 +31,66 @@ class BinaryExpressionResolverTest extends TestCase
     public function testResolve(BinaryOperator $operator, AbstractType $expected, AbstractType $left, AbstractType $right): void
     {
         $this->assertEquals($expected, BinaryExpressionResolver::resolve($operator, $left, $right));
+    }
+
+    public static function dataProviderBooleanAnd(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::BooleanAnd,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+            ],
+            [
+                'operator' => BinaryOperator::BooleanAnd,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'right' => new Types\PrimitiveType(Primitive::Bool),
+            ],
+            [
+                'operator' => BinaryOperator::BooleanAnd,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'left' => new Types\PrimitiveType(Primitive::Bool),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+            ],
+            [
+                'operator' => BinaryOperator::BooleanAnd,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Bool),
+                'right' => new Types\PrimitiveType(Primitive::Bool),
+            ],
+        ];
+    }
+
+    public static function dataProviderBooleanOr(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::BooleanOr,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+            ],
+            [
+                'operator' => BinaryOperator::BooleanOr,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'right' => new Types\PrimitiveType(Primitive::Bool),
+            ],
+            [
+                'operator' => BinaryOperator::BooleanOr,
+                'expected' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+                'left' => new Types\PrimitiveType(Primitive::Bool),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Bool)),
+            ],
+            [
+                'operator' => BinaryOperator::BooleanOr,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Bool),
+                'right' => new Types\PrimitiveType(Primitive::Bool),
+            ],
+        ];
     }
 
     public static function dataProviderDivide(): array

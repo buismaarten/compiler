@@ -11,14 +11,6 @@ BitwiseXor	bool	bool	bool
 BitwiseXor	bool?	bool?	bool?
 BitwiseXor	int	int	int
 BitwiseXor	int?	int?	int?
-BooleanAnd	bool	bool	bool
-BooleanAnd	bool	bool?	bool?
-BooleanAnd	bool?	bool	bool?
-BooleanAnd	bool?	bool?	bool?
-BooleanOr	bool	bool	bool
-BooleanOr	bool	bool?	bool?
-BooleanOr	bool?	bool	bool?
-BooleanOr	bool?	bool?	bool?
 Equal	array<T>	array<T>	bool
 Equal	bool	bool	bool
 Equal	float	float	bool

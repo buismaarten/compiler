@@ -25,6 +25,15 @@ final class BinaryExpressionResolver
             $leftPrimitive = $leftUnwrap->primitive;
             $rightPrimitive = $rightUnwrap->primitive;
 
+            if ($operator === BinaryOperator::BooleanAnd || $operator === BinaryOperator::BooleanOr) {
+                if ($leftPrimitive === Primitive::Bool && $rightPrimitive === Primitive::Bool) {
+                    return Types\NullableType::wrap(
+                        type: new Types\PrimitiveType(Primitive::Bool),
+                        condition: $nullable,
+                    );
+                }
+            }
+
             if ($operator === BinaryOperator::Divide || $operator === BinaryOperator::Minus || $operator === BinaryOperator::Multiply || $operator === BinaryOperator::Plus) {
                 if ($leftPrimitive->isNumeric() && $rightPrimitive->isNumeric()) {
                     return Types\NullableType::wrap(
