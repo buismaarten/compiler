@@ -26,6 +26,10 @@ class BinaryExpressionResolverTest extends TestCase
     #[DataProvider('dataProviderBooleanAnd')]
     #[DataProvider('dataProviderBooleanOr')]
     #[DataProvider('dataProviderDivide')]
+    #[DataProvider('dataProviderGreaterThan')]
+    #[DataProvider('dataProviderGreaterThanEqual')]
+    #[DataProvider('dataProviderLessThan')]
+    #[DataProvider('dataProviderLessThanEqual')]
     #[DataProvider('dataProviderMinus')]
     #[DataProvider('dataProviderModulo')]
     #[DataProvider('dataProviderMultiply')]
@@ -214,6 +218,270 @@ class BinaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'left' => new Types\PrimitiveType(Primitive::Integer),
                 'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+        ];
+    }
+
+    public static function dataProviderGreaterThan(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\PrimitiveType(Primitive::String),
+            ],
+        ];
+    }
+
+    public static function dataProviderGreaterThanEqual(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::GreaterThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\PrimitiveType(Primitive::String),
+            ],
+        ];
+    }
+
+    public static function dataProviderLessThan(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\PrimitiveType(Primitive::String),
+            ],
+        ];
+    }
+
+    public static function dataProviderLessThanEqual(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Float)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+                'right' => new Types\NullableType(new Types\PrimitiveType(Primitive::String)),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::LessThan,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\PrimitiveType(Primitive::String),
             ],
         ];
     }

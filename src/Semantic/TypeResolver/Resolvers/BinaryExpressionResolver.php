@@ -65,6 +65,16 @@ final class BinaryExpressionResolver
                 }
             }
 
+            if ($operator === BinaryOperator::GreaterThan || $operator === BinaryOperator::GreaterThanEqual || $operator === BinaryOperator::LessThan || $operator === BinaryOperator::LessThanEqual) {
+                if ($leftPrimitive->isNumeric() && $rightPrimitive->isNumeric()) {
+                    return new Types\PrimitiveType(Primitive::Bool);
+                }
+
+                if ($leftPrimitive === Primitive::String && $rightPrimitive === Primitive::String) {
+                    return new Types\PrimitiveType(Primitive::Bool);
+                }
+            }
+
             if ($operator === BinaryOperator::ShiftLeft || $operator === BinaryOperator::ShiftRight) {
                 if ($leftPrimitive === Primitive::Integer && $rightPrimitive === Primitive::Integer) {
                     return Types\NullableType::wrap(
