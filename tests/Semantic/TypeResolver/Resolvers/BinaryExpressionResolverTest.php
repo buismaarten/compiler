@@ -235,6 +235,36 @@ class BinaryExpressionResolverTest extends TestCase
             [
                 'operator' => BinaryOperator::Equal,
                 'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Bool),
+                'right' => new Types\PrimitiveType(Primitive::Bool),
+            ],
+            [
+                'operator' => BinaryOperator::Equal,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Equal,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::Equal,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::Equal,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\PrimitiveType(Primitive::String),
+            ],
+            [
+                'operator' => BinaryOperator::Equal,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
                 'left' => new Types\TupleType([new Types\PrimitiveType(Primitive::Integer)]),
                 'right' => new Types\TupleType([new Types\PrimitiveType(Primitive::Integer)]),
             ],
@@ -675,6 +705,36 @@ class BinaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Bool),
                 'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
                 'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::NotEqual,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Bool),
+                'right' => new Types\PrimitiveType(Primitive::Bool),
+            ],
+            [
+                'operator' => BinaryOperator::NotEqual,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Float),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::NotEqual,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Float),
+            ],
+            [
+                'operator' => BinaryOperator::NotEqual,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::Integer),
+                'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+            [
+                'operator' => BinaryOperator::NotEqual,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\PrimitiveType(Primitive::String),
+                'right' => new Types\PrimitiveType(Primitive::String),
             ],
             [
                 'operator' => BinaryOperator::NotEqual,

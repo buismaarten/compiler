@@ -28,6 +28,16 @@ final class BinaryExpressionResolver
                 }
             }
 
+            if ($left instanceof Types\PrimitiveType && $right instanceof Types\PrimitiveType) {
+                if (self::validateTypes($left, $right)) {
+                    return new Types\PrimitiveType(Primitive::Bool);
+                }
+
+                if ($left->primitive->isNumeric() && $right->primitive->isNumeric()) {
+                    return new Types\PrimitiveType(Primitive::Bool);
+                }
+            }
+
             if ($left instanceof Types\TupleType && $right instanceof Types\TupleType) {
                 if (self::validateTypes($left, $right)) {
                     return new Types\PrimitiveType(Primitive::Bool);
