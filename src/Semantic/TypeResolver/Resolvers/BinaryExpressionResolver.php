@@ -15,7 +15,6 @@ use Package\Types\AbstractType;
 
 final class BinaryExpressionResolver
 {
-    // TODO
     public static function resolve(BinaryOperator $operator, AbstractType $left, AbstractType $right): AbstractType
     {
         $leftUnwrap = Types\NullableType::unwrap($left);
