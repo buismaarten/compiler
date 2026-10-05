@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Package\Semantic\Symbols;
 
 use Package\Common\Location;
-use Package\Semantic\Types\AbstractType;
+use Package\Types\AbstractType;
 
 final class ValueSymbol extends AbstractSymbol
 {

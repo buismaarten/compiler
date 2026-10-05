@@ -9,8 +9,9 @@ namespace Package\Semantic\TypeResolver\Resolvers;
 
 use Package\Common\Language\Primitive;
 use Package\Common\Language\UnaryOperator;
-use Package\Semantic\Types;
-use Package\Semantic\Types\AbstractType;
+use Package\Semantic\Types\ErrorType;
+use Package\Types;
+use Package\Types\AbstractType;
 
 final class UnaryExpressionResolver
 {
@@ -36,6 +37,6 @@ final class UnaryExpressionResolver
             }
         }
 
-        return new Types\ErrorType;
+        return new ErrorType;
     }
 }

@@ -9,8 +9,9 @@ namespace Package\Semantic\TypeResolver\Resolvers;
 
 use Package\Common\Language\BinaryOperator;
 use Package\Common\Language\Primitive;
-use Package\Semantic\Types;
-use Package\Semantic\Types\AbstractType;
+use Package\Semantic\Types\ErrorType;
+use Package\Types;
+use Package\Types\AbstractType;
 
 final class BinaryExpressionResolver
 {
@@ -125,7 +126,7 @@ final class BinaryExpressionResolver
             }
         }
 
-        return new Types\ErrorType;
+        return new ErrorType;
     }
 
     private static function validateTypes(AbstractType $left, AbstractType $right): bool

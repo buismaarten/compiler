@@ -29,7 +29,7 @@ Array
                                     [value:protected] => 1
                                 )
 
-                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                            [inf] => Package\Types\PrimitiveType Object
                                 (
                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                         (
@@ -56,7 +56,7 @@ Array
                                     [value:protected] => 2
                                 )
 
-                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                            [inf] => Package\Types\PrimitiveType Object
                                 (
                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                         (
@@ -112,9 +112,9 @@ Array
 
                                 )
 
-                            [inf] => Package\Semantic\Types\ArrayType Object
+                            [inf] => Package\Types\ArrayType Object
                                 (
-                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                    [type] => Package\Types\PrimitiveType Object
                                         (
                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
@@ -215,9 +215,9 @@ Array
 
                                 )
 
-                            [inf] => Package\Semantic\Types\ArrayType Object
+                            [inf] => Package\Types\ArrayType Object
                                 (
-                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                    [type] => Package\Types\PrimitiveType Object
                                         (
                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (

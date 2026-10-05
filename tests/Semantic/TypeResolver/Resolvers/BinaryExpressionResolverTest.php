@@ -7,11 +7,11 @@ declare(strict_types=1);
 
 namespace Package\Tests\Semantic\TypeResolver\Resolvers;
 
-use Package\Common\Language\Primitive;
 use Package\Common\Language\BinaryOperator;
+use Package\Common\Language\Primitive;
 use Package\Semantic\TypeResolver\Resolvers\BinaryExpressionResolver;
-use Package\Semantic\Types;
-use Package\Semantic\Types\AbstractType;
+use Package\Types;
+use Package\Types\AbstractType;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

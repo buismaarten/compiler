@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Package\Semantic\Types;
 
+use Package\Types\AbstractType;
+
 final class ErrorType extends AbstractType
 {
     //

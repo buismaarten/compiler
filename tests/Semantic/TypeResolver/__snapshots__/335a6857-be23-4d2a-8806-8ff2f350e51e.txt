@@ -29,7 +29,7 @@ Array
                                     [value:protected] => 1
                                 )
 
-                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                            [inf] => Package\Types\PrimitiveType Object
                                 (
                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                         (
@@ -56,7 +56,7 @@ Array
                                     [value:protected] => 2
                                 )
 
-                            [inf] => Package\Semantic\Types\PrimitiveType Object
+                            [inf] => Package\Types\PrimitiveType Object
                                 (
                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                         (
@@ -112,11 +112,11 @@ Array
 
                                 )
 
-                            [inf] => Package\Semantic\Types\TupleType Object
+                            [inf] => Package\Types\TupleType Object
                                 (
                                     [types] => Array
                                         (
-                                            [0] => Package\Semantic\Types\PrimitiveType Object
+                                            [0] => Package\Types\PrimitiveType Object
                                                 (
                                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                                         (
@@ -126,7 +126,7 @@ Array
 
                                                 )
 
-                                            [1] => Package\Semantic\Types\PrimitiveType Object
+                                            [1] => Package\Types\PrimitiveType Object
                                                 (
                                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                                         (
@@ -251,11 +251,11 @@ Array
 
                                 )
 
-                            [inf] => Package\Semantic\Types\TupleType Object
+                            [inf] => Package\Types\TupleType Object
                                 (
                                     [types] => Array
                                         (
-                                            [0] => Package\Semantic\Types\PrimitiveType Object
+                                            [0] => Package\Types\PrimitiveType Object
                                                 (
                                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                                         (
@@ -265,7 +265,7 @@ Array
 
                                                 )
 
-                                            [1] => Package\Semantic\Types\PrimitiveType Object
+                                            [1] => Package\Types\PrimitiveType Object
                                                 (
                                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                                         (

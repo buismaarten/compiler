@@ -16,8 +16,8 @@ use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\Symbols;
 use Package\Semantic\Symbols\AbstractSymbol;
-use Package\Semantic\Types;
-use Package\Semantic\Types\AbstractType;
+use Package\Types;
+use Package\Types\AbstractType;
 use SplObjectStorage;
 use SplStack;
 

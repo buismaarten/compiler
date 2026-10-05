@@ -132,7 +132,7 @@ Array
                                         )
 
                                     [name] => foo
-                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                    [type] => Package\Types\PrimitiveType Object
                                         (
                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
@@ -155,7 +155,7 @@ Array
                                                         )
 
                                                     [name] => message
-                                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                                    [type] => Package\Types\PrimitiveType Object
                                                         (
                                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                                 (
@@ -222,7 +222,7 @@ Array
                                         )
 
                                     [name] => message
-                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                    [type] => Package\Types\PrimitiveType Object
                                         (
                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
@@ -267,7 +267,7 @@ Array
                                         )
 
                                     [name] => message
-                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                    [type] => Package\Types\PrimitiveType Object
                                         (
                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
@@ -329,7 +329,7 @@ Array
                                         )
 
                                     [name] => foo
-                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                    [type] => Package\Types\PrimitiveType Object
                                         (
                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
@@ -352,7 +352,7 @@ Array
                                                         )
 
                                                     [name] => message
-                                                    [type] => Package\Semantic\Types\PrimitiveType Object
+                                                    [type] => Package\Types\PrimitiveType Object
                                                         (
                                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                                 (

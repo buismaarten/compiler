@@ -16,8 +16,8 @@ use Package\Nodes\Expressions\AbstractExpression;
 use Package\Nodes\Literals\AbstractLiteral;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\SymbolResolver\SymbolResolver;
-use Package\Semantic\Types;
-use Package\Semantic\Types\AbstractType;
+use Package\Types;
+use Package\Types\AbstractType;
 use SplObjectStorage;
 use SplStack;
 

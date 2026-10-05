@@ -10,7 +10,7 @@ namespace Package\Semantic\TypeResolver;
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\NodeTraverser;
 use Package\Semantic\SymbolResolver\SymbolResolver;
-use Package\Semantic\Types\AbstractType;
+use Package\Types\AbstractType;
 use SplObjectStorage;
 
 final class TypeResolver
