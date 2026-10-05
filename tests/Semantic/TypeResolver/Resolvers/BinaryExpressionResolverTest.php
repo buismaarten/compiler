@@ -28,14 +28,12 @@ class BinaryExpressionResolverTest extends TestCase
     #[DataProvider('dataProviderEqual')]
     #[DataProvider('dataProviderGreaterThan')]
     #[DataProvider('dataProviderGreaterThanEqual')]
-    #[DataProvider('dataProviderIdentical')]
     #[DataProvider('dataProviderLessThan')]
     #[DataProvider('dataProviderLessThanEqual')]
     #[DataProvider('dataProviderMinus')]
     #[DataProvider('dataProviderModulo')]
     #[DataProvider('dataProviderMultiply')]
     #[DataProvider('dataProviderNotEqual')]
-    #[DataProvider('dataProviderNotIdentical')]
     #[DataProvider('dataProviderPlus')]
     #[DataProvider('dataProviderShiftLeft')]
     #[DataProvider('dataProviderShiftRight')]
@@ -369,18 +367,6 @@ class BinaryExpressionResolverTest extends TestCase
         ];
     }
 
-    public static function dataProviderIdentical(): array
-    {
-        return [
-            [
-                'operator' => BinaryOperator::Identical,
-                'expected' => new Types\PrimitiveType(Primitive::Bool),
-                'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
-                'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
-            ],
-        ];
-    }
-
     public static function dataProviderLessThan(): array
     {
         return [
@@ -680,18 +666,6 @@ class BinaryExpressionResolverTest extends TestCase
         return [
             [
                 'operator' => BinaryOperator::NotEqual,
-                'expected' => new Types\PrimitiveType(Primitive::Bool),
-                'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
-                'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
-            ],
-        ];
-    }
-
-    public static function dataProviderNotIdentical(): array
-    {
-        return [
-            [
-                'operator' => BinaryOperator::NotIdentical,
                 'expected' => new Types\PrimitiveType(Primitive::Bool),
                 'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
                 'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),

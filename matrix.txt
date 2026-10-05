@@ -11,14 +11,6 @@ Equal	T?	null	bool
 Equal	T?	T	bool
 Equal	T?	T?	bool
 Equal	tuple<T>	tuple<T>	bool
-Identical	bool	bool	bool
-Identical	float	float	bool
-Identical	int	int	bool
-Identical	null	null	bool
-Identical	string	string	bool
-Identical	T	T	bool
-Identical	T?	T?	bool
-Identical	tuple<T>	tuple<T>	bool
 NotEqual	bool	bool	bool
 NotEqual	float	float	bool
 NotEqual	float	int	bool
@@ -31,11 +23,3 @@ NotEqual	T?	null	bool
 NotEqual	T?	T	bool
 NotEqual	T?	T?	bool
 NotEqual	tuple<T>	tuple<T>	bool
-NotIdentical	bool	bool	bool
-NotIdentical	float	float	bool
-NotIdentical	int	int	bool
-NotIdentical	null	null	bool
-NotIdentical	string	string	bool
-NotIdentical	T	T	bool
-NotIdentical	T?	T?	bool
-NotIdentical	tuple<T>	tuple<T>	bool

@@ -108,12 +108,6 @@ final class Tokenizer
         if ($this->input->current() === '=') {
             $this->input->next();
 
-            if ($this->input->current() === '=') {
-                $this->input->next();
-
-                return $this->createToken(TokenType::Identical, $offset);
-            }
-
             return $this->createToken(TokenType::Equal, $offset);
         }
 
@@ -143,12 +137,6 @@ final class Tokenizer
 
         if ($this->input->current() === '=') {
             $this->input->next();
-
-            if ($this->input->current() === '=') {
-                $this->input->next();
-
-                return $this->createToken(TokenType::NotIdentical, $offset);
-            }
 
             return $this->createToken(TokenType::NotEqual, $offset);
         }

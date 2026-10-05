@@ -29,14 +29,6 @@ final class BinaryExpressionResolver
             }
         }
 
-        if ($operator === BinaryOperator::Identical || $operator === BinaryOperator::NotIdentical) {
-            if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
-                if (self::validateTypes($left, $right)) {
-                    return new Types\PrimitiveType(Primitive::Bool);
-                }
-            }
-        }
-
         if ($leftUnwrap instanceof Types\PrimitiveType && $rightUnwrap instanceof Types\PrimitiveType) {
             $leftPrimitive = $leftUnwrap->primitive;
             $rightPrimitive = $rightUnwrap->primitive;

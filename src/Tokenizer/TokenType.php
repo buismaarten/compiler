@@ -26,7 +26,6 @@ enum TokenType
     case Float;
     case GreaterThan;
     case GreaterThanEqual;
-    case Identical;
     case Identifier;
     case Increment;
     case Integer;
@@ -52,7 +51,6 @@ enum TokenType
     case Modulo;
     case Multiply;
     case NotEqual;
-    case NotIdentical;
     case Plus;
     case QuestionMark;
     case RightBrace;

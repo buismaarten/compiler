@@ -307,23 +307,6 @@ class TokenizerTest extends TestCase
     }
 
     #[Test]
-    public function testTokenizeIdentical(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('===')->next(),
-            expected: new Token(
-                location: new Location(
-                    startLine: 1,
-                    startOffset: 0,
-                    endLine: 1,
-                    endOffset: 3,
-                ),
-                type: TokenType::Identical,
-            ),
-        );
-    }
-
-    #[Test]
     public function testTokenizeIdentifier(): void
     {
         $this->assertEquals(
@@ -699,23 +682,6 @@ class TokenizerTest extends TestCase
                     endOffset: 2,
                 ),
                 type: TokenType::NotEqual,
-            ),
-        );
-    }
-
-    #[Test]
-    public function testTokenizeNotIdentical(): void
-    {
-        $this->assertEquals(
-            actual: self::createTokenizer('!==')->next(),
-            expected: new Token(
-                location: new Location(
-                    startLine: 1,
-                    startOffset: 0,
-                    endLine: 1,
-                    endOffset: 3,
-                ),
-                type: TokenType::NotIdentical,
             ),
         );
     }
