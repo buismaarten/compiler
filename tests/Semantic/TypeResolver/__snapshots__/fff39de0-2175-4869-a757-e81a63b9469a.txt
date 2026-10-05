@@ -1,9 +1,9 @@
-fn foo(message: string): string {
-    return message;
+fn foo(amount: int): string {
+    return amount;
     return "Goodbye, World!";
 }
 
-foo("Hello, World!");
+foo(123);
 -----
 Array
 (
@@ -20,7 +20,7 @@ Array
                                             [startLine] => 1
                                             [startOffset] => 0
                                             [endLine] => 4
-                                            [endOffset] => 85
+                                            [endOffset] => 80
                                         )
 
                                     [name] => foo
@@ -29,9 +29,9 @@ Array
                                             [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
-                                                    [startOffset] => 25
+                                                    [startOffset] => 21
                                                     [endLine] => 1
-                                                    [endOffset] => 31
+                                                    [endOffset] => 27
                                                 )
 
                                             [primitive] => Package\Common\Language\Primitive Enum:string
@@ -51,24 +51,24 @@ Array
                                                             [startLine] => 1
                                                             [startOffset] => 7
                                                             [endLine] => 1
-                                                            [endOffset] => 22
+                                                            [endOffset] => 18
                                                         )
 
-                                                    [name] => message
+                                                    [name] => amount
                                                     [type] => Package\Nodes\Types\PrimitiveType Object
                                                         (
                                                             [location] => Package\Common\Location Object
                                                                 (
                                                                     [startLine] => 1
-                                                                    [startOffset] => 16
+                                                                    [startOffset] => 15
                                                                     [endLine] => 1
-                                                                    [endOffset] => 22
+                                                                    [endOffset] => 18
                                                                 )
 
                                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                                 (
-                                                                    [name] => String
-                                                                    [value] => string
+                                                                    [name] => Integer
+                                                                    [value] => int
                                                                 )
 
                                                         )
@@ -82,9 +82,9 @@ Array
                                             [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
-                                                    [startOffset] => 32
+                                                    [startOffset] => 28
                                                     [endLine] => 4
-                                                    [endOffset] => 85
+                                                    [endOffset] => 80
                                                 )
 
                                             [statements] => Array
@@ -94,9 +94,9 @@ Array
                                                             [location] => Package\Common\Location Object
                                                                 (
                                                                     [startLine] => 2
-                                                                    [startOffset] => 38
+                                                                    [startOffset] => 34
                                                                     [endLine] => 2
-                                                                    [endOffset] => 53
+                                                                    [endOffset] => 48
                                                                 )
 
                                                             [expression] => Package\Nodes\Expressions\IdentifierExpression Object
@@ -104,12 +104,12 @@ Array
                                                                     [location] => Package\Common\Location Object
                                                                         (
                                                                             [startLine] => 2
-                                                                            [startOffset] => 45
+                                                                            [startOffset] => 41
                                                                             [endLine] => 2
-                                                                            [endOffset] => 52
+                                                                            [endOffset] => 47
                                                                         )
 
-                                                                    [name] => message
+                                                                    [name] => amount
                                                                 )
 
                                                         )
@@ -119,9 +119,9 @@ Array
                                                             [location] => Package\Common\Location Object
                                                                 (
                                                                     [startLine] => 3
-                                                                    [startOffset] => 58
+                                                                    [startOffset] => 53
                                                                     [endLine] => 3
-                                                                    [endOffset] => 83
+                                                                    [endOffset] => 78
                                                                 )
 
                                                             [expression] => Package\Nodes\Literals\StringLiteral Object
@@ -129,9 +129,9 @@ Array
                                                                     [location] => Package\Common\Location Object
                                                                         (
                                                                             [startLine] => 3
-                                                                            [startOffset] => 65
+                                                                            [startOffset] => 60
                                                                             [endLine] => 3
-                                                                            [endOffset] => 82
+                                                                            [endOffset] => 77
                                                                         )
 
                                                                     [value:protected] => Goodbye, World!
@@ -151,8 +151,8 @@ Array
                                         (
                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
-                                                    [name] => String
-                                                    [value] => string
+                                                    [name] => Integer
+                                                    [value] => int
                                                 )
 
                                         )
@@ -188,7 +188,7 @@ Array
                                             [startLine] => 1
                                             [startOffset] => 0
                                             [endLine] => 4
-                                            [endOffset] => 85
+                                            [endOffset] => 80
                                         )
 
                                     [name] => foo
@@ -197,9 +197,9 @@ Array
                                             [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
-                                                    [startOffset] => 25
+                                                    [startOffset] => 21
                                                     [endLine] => 1
-                                                    [endOffset] => 31
+                                                    [endOffset] => 27
                                                 )
 
                                             [primitive] => Package\Common\Language\Primitive Enum:string
@@ -219,24 +219,24 @@ Array
                                                             [startLine] => 1
                                                             [startOffset] => 7
                                                             [endLine] => 1
-                                                            [endOffset] => 22
+                                                            [endOffset] => 18
                                                         )
 
-                                                    [name] => message
+                                                    [name] => amount
                                                     [type] => Package\Nodes\Types\PrimitiveType Object
                                                         (
                                                             [location] => Package\Common\Location Object
                                                                 (
                                                                     [startLine] => 1
-                                                                    [startOffset] => 16
+                                                                    [startOffset] => 15
                                                                     [endLine] => 1
-                                                                    [endOffset] => 22
+                                                                    [endOffset] => 18
                                                                 )
 
                                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                                 (
-                                                                    [name] => String
-                                                                    [value] => string
+                                                                    [name] => Integer
+                                                                    [value] => int
                                                                 )
 
                                                         )
@@ -250,9 +250,9 @@ Array
                                             [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
-                                                    [startOffset] => 32
+                                                    [startOffset] => 28
                                                     [endLine] => 4
-                                                    [endOffset] => 85
+                                                    [endOffset] => 80
                                                 )
 
                                             [statements] => Array
@@ -262,9 +262,9 @@ Array
                                                             [location] => Package\Common\Location Object
                                                                 (
                                                                     [startLine] => 2
-                                                                    [startOffset] => 38
+                                                                    [startOffset] => 34
                                                                     [endLine] => 2
-                                                                    [endOffset] => 53
+                                                                    [endOffset] => 48
                                                                 )
 
                                                             [expression] => Package\Nodes\Expressions\IdentifierExpression Object
@@ -272,12 +272,12 @@ Array
                                                                     [location] => Package\Common\Location Object
                                                                         (
                                                                             [startLine] => 2
-                                                                            [startOffset] => 45
+                                                                            [startOffset] => 41
                                                                             [endLine] => 2
-                                                                            [endOffset] => 52
+                                                                            [endOffset] => 47
                                                                         )
 
-                                                                    [name] => message
+                                                                    [name] => amount
                                                                 )
 
                                                         )
@@ -287,9 +287,9 @@ Array
                                                             [location] => Package\Common\Location Object
                                                                 (
                                                                     [startLine] => 3
-                                                                    [startOffset] => 58
+                                                                    [startOffset] => 53
                                                                     [endLine] => 3
-                                                                    [endOffset] => 83
+                                                                    [endOffset] => 78
                                                                 )
 
                                                             [expression] => Package\Nodes\Literals\StringLiteral Object
@@ -297,9 +297,9 @@ Array
                                                                     [location] => Package\Common\Location Object
                                                                         (
                                                                             [startLine] => 3
-                                                                            [startOffset] => 65
+                                                                            [startOffset] => 60
                                                                             [endLine] => 3
-                                                                            [endOffset] => 82
+                                                                            [endOffset] => 77
                                                                         )
 
                                                                     [value:protected] => Goodbye, World!
@@ -332,20 +332,20 @@ Array
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 2
-                                            [startOffset] => 45
+                                            [startOffset] => 41
                                             [endLine] => 2
-                                            [endOffset] => 52
+                                            [endOffset] => 47
                                         )
 
-                                    [name] => message
+                                    [name] => amount
                                 )
 
                             [inf] => Package\Semantic\Types\PrimitiveType Object
                                 (
                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                         (
-                                            [name] => String
-                                            [value] => string
+                                            [name] => Integer
+                                            [value] => int
                                         )
 
                                 )
@@ -359,9 +359,9 @@ Array
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 3
-                                            [startOffset] => 65
+                                            [startOffset] => 60
                                             [endLine] => 3
-                                            [endOffset] => 82
+                                            [endOffset] => 77
                                         )
 
                                     [value:protected] => Goodbye, World!
@@ -381,25 +381,25 @@ Array
 
                     [3] => Array
                         (
-                            [obj] => Package\Nodes\Literals\StringLiteral Object
+                            [obj] => Package\Nodes\Literals\IntegerLiteral Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 6
-                                            [startOffset] => 91
+                                            [startOffset] => 86
                                             [endLine] => 6
-                                            [endOffset] => 106
+                                            [endOffset] => 89
                                         )
 
-                                    [value:protected] => Hello, World!
+                                    [value:protected] => 123
                                 )
 
                             [inf] => Package\Semantic\Types\PrimitiveType Object
                                 (
                                     [primitive] => Package\Common\Language\Primitive Enum:string
                                         (
-                                            [name] => String
-                                            [value] => string
+                                            [name] => Integer
+                                            [value] => int
                                         )
 
                                 )
@@ -413,25 +413,25 @@ Array
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 6
-                                            [startOffset] => 87
+                                            [startOffset] => 82
                                             [endLine] => 6
-                                            [endOffset] => 107
+                                            [endOffset] => 90
                                         )
 
                                     [name] => foo
                                     [arguments] => Array
                                         (
-                                            [0] => Package\Nodes\Literals\StringLiteral Object
+                                            [0] => Package\Nodes\Literals\IntegerLiteral Object
                                                 (
                                                     [location] => Package\Common\Location Object
                                                         (
                                                             [startLine] => 6
-                                                            [startOffset] => 91
+                                                            [startOffset] => 86
                                                             [endLine] => 6
-                                                            [endOffset] => 106
+                                                            [endOffset] => 89
                                                         )
 
-                                                    [value:protected] => Hello, World!
+                                                    [value:protected] => 123
                                                 )
 
                                         )
