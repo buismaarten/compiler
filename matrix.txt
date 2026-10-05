@@ -10,7 +10,6 @@ Equal	T	T?	bool
 Equal	T?	null	bool
 Equal	T?	T	bool
 Equal	T?	T?	bool
-Equal	tuple<T>	tuple<T>	bool
 NotEqual	bool	bool	bool
 NotEqual	float	float	bool
 NotEqual	float	int	bool
@@ -22,4 +21,3 @@ NotEqual	T	T?	bool
 NotEqual	T?	null	bool
 NotEqual	T?	T	bool
 NotEqual	T?	T?	bool
-NotEqual	tuple<T>	tuple<T>	bool

@@ -232,6 +232,12 @@ class BinaryExpressionResolverTest extends TestCase
                 'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
                 'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
             ],
+            [
+                'operator' => BinaryOperator::Equal,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\TupleType([new Types\PrimitiveType(Primitive::Integer)]),
+                'right' => new Types\TupleType([new Types\PrimitiveType(Primitive::Integer)]),
+            ],
         ];
     }
 
@@ -669,6 +675,12 @@ class BinaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Bool),
                 'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
                 'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+            [
+                'operator' => BinaryOperator::NotEqual,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\TupleType([new Types\PrimitiveType(Primitive::Integer)]),
+                'right' => new Types\TupleType([new Types\PrimitiveType(Primitive::Integer)]),
             ],
         ];
     }
