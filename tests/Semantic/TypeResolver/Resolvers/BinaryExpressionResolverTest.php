@@ -16,7 +16,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-// TODO
 class BinaryExpressionResolverTest extends TestCase
 {
     #[Test]
@@ -26,13 +25,17 @@ class BinaryExpressionResolverTest extends TestCase
     #[DataProvider('dataProviderBooleanAnd')]
     #[DataProvider('dataProviderBooleanOr')]
     #[DataProvider('dataProviderDivide')]
+    #[DataProvider('dataProviderEqual')]
     #[DataProvider('dataProviderGreaterThan')]
     #[DataProvider('dataProviderGreaterThanEqual')]
+    #[DataProvider('dataProviderIdentical')]
     #[DataProvider('dataProviderLessThan')]
     #[DataProvider('dataProviderLessThanEqual')]
     #[DataProvider('dataProviderMinus')]
     #[DataProvider('dataProviderModulo')]
     #[DataProvider('dataProviderMultiply')]
+    #[DataProvider('dataProviderNotEqual')]
+    #[DataProvider('dataProviderNotIdentical')]
     #[DataProvider('dataProviderPlus')]
     #[DataProvider('dataProviderShiftLeft')]
     #[DataProvider('dataProviderShiftRight')]
@@ -222,6 +225,18 @@ class BinaryExpressionResolverTest extends TestCase
         ];
     }
 
+    public static function dataProviderEqual(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::Equal,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+        ];
+    }
+
     public static function dataProviderGreaterThan(): array
     {
         return [
@@ -350,6 +365,18 @@ class BinaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Bool),
                 'left' => new Types\PrimitiveType(Primitive::String),
                 'right' => new Types\PrimitiveType(Primitive::String),
+            ],
+        ];
+    }
+
+    public static function dataProviderIdentical(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::Identical,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
             ],
         ];
     }
@@ -644,6 +671,30 @@ class BinaryExpressionResolverTest extends TestCase
                 'expected' => new Types\PrimitiveType(Primitive::Integer),
                 'left' => new Types\PrimitiveType(Primitive::Integer),
                 'right' => new Types\PrimitiveType(Primitive::Integer),
+            ],
+        ];
+    }
+
+    public static function dataProviderNotEqual(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::NotEqual,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
+            ],
+        ];
+    }
+
+    public static function dataProviderNotIdentical(): array
+    {
+        return [
+            [
+                'operator' => BinaryOperator::NotIdentical,
+                'expected' => new Types\PrimitiveType(Primitive::Bool),
+                'left' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
+                'right' => new Types\ArrayType(new Types\PrimitiveType(Primitive::Integer)),
             ],
         ];
     }

@@ -1,5 +1,4 @@
 Operator	Left	Right	Result
-Equal	array<T>	array<T>	bool
 Equal	bool	bool	bool
 Equal	float	float	bool
 Equal	float	int	bool
@@ -12,7 +11,6 @@ Equal	T?	null	bool
 Equal	T?	T	bool
 Equal	T?	T?	bool
 Equal	tuple<T>	tuple<T>	bool
-Identical	array<T>	array<T>	bool
 Identical	bool	bool	bool
 Identical	float	float	bool
 Identical	int	int	bool
@@ -21,7 +19,6 @@ Identical	string	string	bool
 Identical	T	T	bool
 Identical	T?	T?	bool
 Identical	tuple<T>	tuple<T>	bool
-NotEqual	array<T>	array<T>	bool
 NotEqual	bool	bool	bool
 NotEqual	float	float	bool
 NotEqual	float	int	bool
@@ -34,7 +31,6 @@ NotEqual	T?	null	bool
 NotEqual	T?	T	bool
 NotEqual	T?	T?	bool
 NotEqual	tuple<T>	tuple<T>	bool
-NotIdentical	array<T>	array<T>	bool
 NotIdentical	bool	bool	bool
 NotIdentical	float	float	bool
 NotIdentical	int	int	bool
