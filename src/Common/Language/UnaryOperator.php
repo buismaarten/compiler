@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Package\Common\Language;
 
-enum UnaryOperator
+enum UnaryOperator: string
 {
-    case BitwiseNot;
-    case BooleanNot;
-    case Decrement;
-    case Increment;
-    case Minus;
-    case Plus;
+    case BitwiseNot = '~';
+    case BooleanNot = '!';
+    case Decrement = '--';
+    case Increment = '++';
+    case Minus = '-';
+    case Plus = '+';
 }

@@ -35,9 +35,10 @@ Array
                                         )
 
                                     [prefix] => 
-                                    [operator] => Package\Common\Language\UnaryOperator Enum
+                                    [operator] => Package\Common\Language\UnaryOperator Enum:string
                                         (
                                             [name] => Increment
+                                            [value] => ++
                                         )
 
                                     [expression] => Package\Nodes\Expressions\IdentifierExpression Object

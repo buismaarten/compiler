@@ -34,9 +34,10 @@ Array
                                             [endOffset] => 9
                                         )
 
-                                    [operator] => Package\Common\Language\BinaryOperator Enum
+                                    [operator] => Package\Common\Language\BinaryOperator Enum:string
                                         (
                                             [name] => Plus
+                                            [value] => +
                                         )
 
                                     [left] => Package\Nodes\Literals\IntegerLiteral Object
@@ -62,9 +63,10 @@ Array
                                                     [endOffset] => 9
                                                 )
 
-                                            [operator] => Package\Common\Language\BinaryOperator Enum
+                                            [operator] => Package\Common\Language\BinaryOperator Enum:string
                                                 (
                                                     [name] => Multiply
+                                                    [value] => *
                                                 )
 
                                             [left] => Package\Nodes\Literals\IntegerLiteral Object

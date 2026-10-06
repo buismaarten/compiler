@@ -35,9 +35,10 @@ Array
                                         )
 
                                     [prefix] => 1
-                                    [operator] => Package\Common\Language\UnaryOperator Enum
+                                    [operator] => Package\Common\Language\UnaryOperator Enum:string
                                         (
                                             [name] => BitwiseNot
+                                            [value] => ~
                                         )
 
                                     [expression] => Package\Nodes\Expressions\IdentifierExpression Object

@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Package\Common\Language;
 
-enum BinaryOperator
+enum BinaryOperator: string
 {
     private const PRECEDENCE = [
         [self::Divide, self::Modulo, self::Multiply],
@@ -22,25 +22,25 @@ enum BinaryOperator
         [self::BooleanOr],
     ];
 
-    case BitwiseAnd;
-    case BitwiseOr;
-    case BitwiseXor;
-    case BooleanAnd;
-    case BooleanOr;
-    case Divide;
-    case Equal;
-    case GreaterThan;
-    case GreaterThanEqual;
-    case LessThan;
-    case LessThanEqual;
-    case Minus;
-    case Modulo;
-    case Multiply;
-    case NotEqual;
-    case Plus;
-    case ShiftLeft;
-    case ShiftRight;
-    case Spaceship;
+    case BitwiseAnd = '&';
+    case BitwiseOr = '|';
+    case BitwiseXor = '^';
+    case BooleanAnd = '&&';
+    case BooleanOr = '||';
+    case Divide = '/';
+    case Equal = '==';
+    case GreaterThan = '>';
+    case GreaterThanEqual = '>=';
+    case LessThan = '<';
+    case LessThanEqual = '<=';
+    case Minus = '-';
+    case Modulo = '%';
+    case Multiply = '*';
+    case NotEqual = '!=';
+    case Plus = '+';
+    case ShiftLeft = '<<';
+    case ShiftRight = '>>';
+    case Spaceship = '<=>';
 
     public function precedence(): int
     {
