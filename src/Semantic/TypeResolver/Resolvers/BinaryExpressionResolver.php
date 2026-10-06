@@ -17,33 +17,13 @@ final class BinaryExpressionResolver
 {
     public static function resolve(BinaryOperator $operator, AbstractType $left, AbstractType $right): AbstractType
     {
+        if ($operator === BinaryOperator::Equal || $operator === BinaryOperator::NotEqual) {
+            return self::resolveEqualityOperator($left, $right);
+        }
+
         $leftUnwrap = Types\NullableType::unwrap($left);
         $rightUnwrap = Types\NullableType::unwrap($right);
         $nullable = $left !== $leftUnwrap || $right !== $rightUnwrap;
-
-        if ($operator === BinaryOperator::Equal || $operator === BinaryOperator::NotEqual) {
-            if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
-                if (self::validateTypes($left, $right)) {
-                    return new Types\PrimitiveType(Primitive::Bool);
-                }
-            }
-
-            if ($left instanceof Types\PrimitiveType && $right instanceof Types\PrimitiveType) {
-                if (self::validateTypes($left, $right)) {
-                    return new Types\PrimitiveType(Primitive::Bool);
-                }
-
-                if ($left->primitive->isNumeric() && $right->primitive->isNumeric()) {
-                    return new Types\PrimitiveType(Primitive::Bool);
-                }
-            }
-
-            if ($left instanceof Types\TupleType && $right instanceof Types\TupleType) {
-                if (self::validateTypes($left, $right)) {
-                    return new Types\PrimitiveType(Primitive::Bool);
-                }
-            }
-        }
 
         if ($leftUnwrap instanceof Types\PrimitiveType && $rightUnwrap instanceof Types\PrimitiveType) {
             $leftPrimitive = $leftUnwrap->primitive;
@@ -128,19 +108,46 @@ final class BinaryExpressionResolver
         return new ErrorType;
     }
 
-    private static function validateTypes(AbstractType $left, AbstractType $right): bool
+    private static function resolveEqualityOperator(AbstractType $left, AbstractType $right): AbstractType
+    {
+        if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
+            if (self::validateTypeEquality($left, $right)) {
+                return new Types\PrimitiveType(Primitive::Bool);
+            }
+        }
+
+        if ($left instanceof Types\PrimitiveType && $right instanceof Types\PrimitiveType) {
+            if (self::validateTypeEquality($left, $right)) {
+                return new Types\PrimitiveType(Primitive::Bool);
+            }
+
+            if ($left->primitive->isNumeric() && $right->primitive->isNumeric()) {
+                return new Types\PrimitiveType(Primitive::Bool);
+            }
+        }
+
+        if ($left instanceof Types\TupleType && $right instanceof Types\TupleType) {
+            if (self::validateTypeEquality($left, $right)) {
+                return new Types\PrimitiveType(Primitive::Bool);
+            }
+        }
+
+        return new ErrorType;
+    }
+
+    private static function validateTypeEquality(AbstractType $left, AbstractType $right): bool
     {
         if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
             if ($left->type === null || $right->type === null) {
                 return $left->type === null && $right->type === null;
             }
 
-            return self::validateTypes($left->type, $right->type);
+            return self::validateTypeEquality($left->type, $right->type);
         }
 
         if ($left instanceof Types\NullableType || $right instanceof Types\NullableType) {
             if ($left instanceof Types\NullableType && $right instanceof Types\NullableType) {
-                return self::validateTypes($left->type, $right->type);
+                return self::validateTypeEquality($left->type, $right->type);
             }
         }
 
@@ -154,7 +161,7 @@ final class BinaryExpressionResolver
             }
 
             foreach ($left->types as $index => $type) {
-                if (!self::validateTypes($type, $right->types[$index])) {
+                if (!self::validateTypeEquality($type, $right->types[$index])) {
                     return false;
                 }
             }
