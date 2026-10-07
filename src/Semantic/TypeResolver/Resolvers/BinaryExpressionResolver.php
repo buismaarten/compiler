@@ -148,11 +148,7 @@ final class BinaryExpressionResolver
         }
 
         if ($left instanceof Types\PrimitiveType && $right instanceof Types\PrimitiveType) {
-            if ($left->primitive->isNumeric() && $right->primitive->isNumeric()) {
-                return true;
-            }
-
-            return $left->primitive === $right->primitive;
+            return $left->primitive->promote($right->primitive) === $right->primitive->promote($left->primitive);
         }
 
         if ($left instanceof Types\TupleType && $right instanceof Types\TupleType) {

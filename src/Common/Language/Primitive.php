@@ -27,12 +27,12 @@ enum Primitive: string
 
     public function promote(self $other): self
     {
-        if ($this === self::Void || $other === self::Void) {
-            return self::Null;
+        if (($this === self::Float && $other === self::Integer) || ($this === self::Integer && $other === self::Float)) {
+            return self::Float;
         }
 
-        if ($this === self::Float || $other === self::Float) {
-            return self::Float;
+        if (($this === self::Null && $other === self::Void) || ($this === self::Void && $other === self::Null)) {
+            return self::Null;
         }
 
         return $this;
