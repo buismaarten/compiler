@@ -138,11 +138,11 @@ final class BinaryExpressionResolver
     private static function checkEqualTypes(AbstractType $left, AbstractType $right): bool
     {
         if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
-            if ($left->type === null || $right->type === null) {
-                return $left->type === null && $right->type === null;
+            if ($left->type !== null && $right->type !== null) {
+                return self::checkEqualTypes($left->type, $right->type);
             }
 
-            return self::checkEqualTypes($left->type, $right->type);
+            return true;
         }
 
         if ($left instanceof Types\NullableType || $right instanceof Types\NullableType) {
