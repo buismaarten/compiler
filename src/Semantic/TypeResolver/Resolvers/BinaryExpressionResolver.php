@@ -111,19 +111,19 @@ final class BinaryExpressionResolver
     private static function resolveEqualityOperator(AbstractType $left, AbstractType $right): AbstractType
     {
         if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
-            if (self::checkEqualTypes($left, $right)) {
+            if (self::checkCompatibleTypes($left, $right)) {
                 return new Types\PrimitiveType(Primitive::Bool);
             }
         }
 
         if ($left instanceof Types\PrimitiveType && $right instanceof Types\PrimitiveType) {
-            if (self::checkEqualTypes($left, $right)) {
+            if (self::checkCompatibleTypes($left, $right)) {
                 return new Types\PrimitiveType(Primitive::Bool);
             }
         }
 
         if ($left instanceof Types\TupleType && $right instanceof Types\TupleType) {
-            if (self::checkEqualTypes($left, $right)) {
+            if (self::checkCompatibleTypes($left, $right)) {
                 return new Types\PrimitiveType(Primitive::Bool);
             }
         }
@@ -131,11 +131,11 @@ final class BinaryExpressionResolver
         return new ErrorType;
     }
 
-    private static function checkEqualTypes(AbstractType $left, AbstractType $right): bool
+    private static function checkCompatibleTypes(AbstractType $left, AbstractType $right): bool
     {
         if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
             if ($left->type !== null && $right->type !== null) {
-                return self::checkEqualTypes($left->type, $right->type);
+                return self::checkCompatibleTypes($left->type, $right->type);
             }
 
             return true;
@@ -143,7 +143,7 @@ final class BinaryExpressionResolver
 
         if ($left instanceof Types\NullableType || $right instanceof Types\NullableType) {
             if ($left instanceof Types\NullableType && $right instanceof Types\NullableType) {
-                return self::checkEqualTypes($left->type, $right->type);
+                return self::checkCompatibleTypes($left->type, $right->type);
             }
         }
 
@@ -161,7 +161,7 @@ final class BinaryExpressionResolver
             }
 
             foreach ($left->types as $index => $type) {
-                if (!self::checkEqualTypes($type, $right->types[$index])) {
+                if (!self::checkCompatibleTypes($type, $right->types[$index])) {
                     return false;
                 }
             }
