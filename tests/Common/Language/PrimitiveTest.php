@@ -31,8 +31,8 @@ class PrimitiveTest extends TestCase
     #[TestWith([Primitive::Integer, Primitive::Float, Primitive::Float])]
     #[TestWith([Primitive::Null, Primitive::Void, Primitive::Null])]
     #[TestWith([Primitive::Void, Primitive::Null, Primitive::Null])]
-    public function testPromote(Primitive $left, Primitive $right, Primitive $expected): void
+    public function testPromote(Primitive $type, Primitive $other, Primitive $expected): void
     {
-        $this->assertSame($expected, $left->promote($right));
+        $this->assertSame($expected, $type->promote($other));
     }
 }
