@@ -120,10 +120,6 @@ final class BinaryExpressionResolver
             if (self::checkEqualTypes($left, $right)) {
                 return new Types\PrimitiveType(Primitive::Bool);
             }
-
-            if ($left->primitive->isNumeric() && $right->primitive->isNumeric()) {
-                return new Types\PrimitiveType(Primitive::Bool);
-            }
         }
 
         if ($left instanceof Types\TupleType && $right instanceof Types\TupleType) {
@@ -152,6 +148,10 @@ final class BinaryExpressionResolver
         }
 
         if ($left instanceof Types\PrimitiveType && $right instanceof Types\PrimitiveType) {
+            if ($left->primitive->isNumeric() && $right->primitive->isNumeric()) {
+                return true;
+            }
+
             return $left->primitive === $right->primitive;
         }
 
