@@ -18,7 +18,9 @@ final class BinaryExpressionResolver
     public static function resolve(BinaryOperator $operator, AbstractType $left, AbstractType $right): AbstractType
     {
         if ($operator === BinaryOperator::Equal || $operator === BinaryOperator::NotEqual) {
-            return self::resolveEqualityOperator($left, $right);
+            if (self::checkCompatibleTypes($left, $right)) {
+                return new Types\PrimitiveType(Primitive::Bool);
+            }
         }
 
         $leftUnwrap = Types\NullableType::unwrap($left);
@@ -108,27 +110,13 @@ final class BinaryExpressionResolver
         return new ErrorType;
     }
 
-    private static function resolveEqualityOperator(AbstractType $left, AbstractType $right): AbstractType
+    private static function checkCompatibleNullable(AbstractType $left, AbstractType $right): bool
     {
-        if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
-            if (self::checkCompatibleTypes($left, $right)) {
-                return new Types\PrimitiveType(Primitive::Bool);
-            }
+        if ($left instanceof Types\NullableType && $right instanceof Types\PrimitiveType) {
+            return $right->primitive->isNullable();
         }
 
-        if ($left instanceof Types\PrimitiveType && $right instanceof Types\PrimitiveType) {
-            if (self::checkCompatibleTypes($left, $right)) {
-                return new Types\PrimitiveType(Primitive::Bool);
-            }
-        }
-
-        if ($left instanceof Types\TupleType && $right instanceof Types\TupleType) {
-            if (self::checkCompatibleTypes($left, $right)) {
-                return new Types\PrimitiveType(Primitive::Bool);
-            }
-        }
-
-        return new ErrorType;
+        return false;
     }
 
     private static function checkCompatibleTypes(AbstractType $left, AbstractType $right): bool
@@ -142,9 +130,14 @@ final class BinaryExpressionResolver
         }
 
         if ($left instanceof Types\NullableType || $right instanceof Types\NullableType) {
-            if ($left instanceof Types\NullableType && $right instanceof Types\NullableType) {
-                return self::checkCompatibleTypes($left->type, $right->type);
+            if (self::checkCompatibleNullable($left, $right) || self::checkCompatibleNullable($right, $left)) {
+                return true;
             }
+
+            return self::checkCompatibleTypes(
+                left: Types\NullableType::unwrap($left),
+                right: Types\NullableType::unwrap($right),
+            );
         }
 
         if ($left instanceof Types\PrimitiveType && $right instanceof Types\PrimitiveType) {
