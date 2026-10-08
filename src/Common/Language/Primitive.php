@@ -16,6 +16,15 @@ enum Primitive: string
     case String = 'string';
     case Void = 'void';
 
+    public function isNullable(): bool
+    {
+        if ($this === self::Null || $this === self::Void) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function isNumeric(): bool
     {
         if ($this === self::Float || $this === self::Integer) {
