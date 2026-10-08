@@ -16,6 +16,18 @@ class PrimitiveTest extends TestCase
 {
     #[Test]
     #[TestWith([Primitive::Bool, false])]
+    #[TestWith([Primitive::Float, false])]
+    #[TestWith([Primitive::Integer, false])]
+    #[TestWith([Primitive::Null, true])]
+    #[TestWith([Primitive::String, false])]
+    #[TestWith([Primitive::Void, true])]
+    public function testIsNullable(Primitive $type, bool $expected): void
+    {
+        $this->assertSame($expected, $type->isNullable());
+    }
+
+    #[Test]
+    #[TestWith([Primitive::Bool, false])]
     #[TestWith([Primitive::Float, true])]
     #[TestWith([Primitive::Integer, true])]
     #[TestWith([Primitive::Null, false])]
