@@ -18,7 +18,7 @@ final class BinaryExpressionResolver
     public static function resolve(BinaryOperator $operator, AbstractType $left, AbstractType $right): AbstractType
     {
         if ($operator === BinaryOperator::Equal || $operator === BinaryOperator::NotEqual) {
-            if (self::checkCompatibleTypes($left, $right)) {
+            if (self::checkTypes($left, $right)) {
                 return new Types\PrimitiveType(Primitive::Bool);
             }
         }
@@ -110,31 +110,22 @@ final class BinaryExpressionResolver
         return new ErrorType;
     }
 
-    private static function checkCompatibleNullable(AbstractType $left, AbstractType $right): bool
-    {
-        if ($left instanceof Types\NullableType && $right instanceof Types\PrimitiveType) {
-            return $right->primitive->isNullable();
-        }
-
-        return false;
-    }
-
-    private static function checkCompatibleTypes(AbstractType $left, AbstractType $right): bool
+    private static function checkTypes(AbstractType $left, AbstractType $right): bool
     {
         if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
             if ($left->type !== null && $right->type !== null) {
-                return self::checkCompatibleTypes($left->type, $right->type);
+                return self::checkTypes($left->type, $right->type);
             }
 
             return true;
         }
 
         if ($left instanceof Types\NullableType || $right instanceof Types\NullableType) {
-            if (self::checkCompatibleNullable($left, $right) || self::checkCompatibleNullable($right, $left)) {
+            if (self::checkNullableTypes($left, $right) || self::checkNullableTypes($right, $left)) {
                 return true;
             }
 
-            return self::checkCompatibleTypes(
+            return self::checkTypes(
                 left: Types\NullableType::unwrap($left),
                 right: Types\NullableType::unwrap($right),
             );
@@ -150,12 +141,21 @@ final class BinaryExpressionResolver
             }
 
             foreach ($left->types as $index => $type) {
-                if (!self::checkCompatibleTypes($type, $right->types[$index])) {
+                if (!self::checkTypes($type, $right->types[$index])) {
                     return false;
                 }
             }
 
             return true;
+        }
+
+        return false;
+    }
+
+    private static function checkNullableTypes(AbstractType $left, AbstractType $right): bool
+    {
+        if ($left instanceof Types\NullableType && $right instanceof Types\PrimitiveType) {
+            return $right->primitive->isNullable();
         }
 
         return false;
