@@ -61,7 +61,7 @@ trait SnapshotAssertions
         $output .= self::SNAPSHOT_SEPARATOR."\n";
         $output .= "{$actual}\n";
 
-        return $output;
+        return trim($output);
     }
 
     private static function normalizeSnapshot(mixed $value): string
