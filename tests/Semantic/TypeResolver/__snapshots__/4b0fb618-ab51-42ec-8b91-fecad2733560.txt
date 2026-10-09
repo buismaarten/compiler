@@ -1,5 +1,4 @@
 var foo: int = 1;
-
 print foo;
 -----
 Array
@@ -107,10 +106,10 @@ Array
                                 (
                                     [location] => Package\Common\Location Object
                                         (
-                                            [startLine] => 3
-                                            [startOffset] => 25
-                                            [endLine] => 3
-                                            [endOffset] => 28
+                                            [startLine] => 2
+                                            [startOffset] => 24
+                                            [endLine] => 2
+                                            [endOffset] => 27
                                         )
 
                                     [name] => foo

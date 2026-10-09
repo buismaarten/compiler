@@ -1,0 +1,210 @@
+print !(20 > 10);
+-----
+Array
+(
+    [0] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                )
+
+        )
+
+    [1] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                    [0] => Array
+                        (
+                            [obj] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 8
+                                            [endLine] => 1
+                                            [endOffset] => 10
+                                        )
+
+                                    [value:protected] => 20
+                                )
+
+                            [inf] => Package\Types\PrimitiveType Object
+                                (
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [obj] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 13
+                                            [endLine] => 1
+                                            [endOffset] => 15
+                                        )
+
+                                    [value:protected] => 10
+                                )
+
+                            [inf] => Package\Types\PrimitiveType Object
+                                (
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
+                    [2] => Array
+                        (
+                            [obj] => Package\Nodes\Expressions\BinaryExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 11
+                                            [endLine] => 1
+                                            [endOffset] => 15
+                                        )
+
+                                    [operator] => Package\Common\Language\BinaryOperator Enum:string
+                                        (
+                                            [name] => GreaterThan
+                                            [value] => >
+                                        )
+
+                                    [left] => Package\Nodes\Literals\IntegerLiteral Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 8
+                                                    [endLine] => 1
+                                                    [endOffset] => 10
+                                                )
+
+                                            [value:protected] => 20
+                                        )
+
+                                    [right] => Package\Nodes\Literals\IntegerLiteral Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 13
+                                                    [endLine] => 1
+                                                    [endOffset] => 15
+                                                )
+
+                                            [value:protected] => 10
+                                        )
+
+                                )
+
+                            [inf] => Package\Types\PrimitiveType Object
+                                (
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Bool
+                                            [value] => bool
+                                        )
+
+                                )
+
+                        )
+
+                    [3] => Array
+                        (
+                            [obj] => Package\Nodes\Expressions\UnaryExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 6
+                                            [endLine] => 1
+                                            [endOffset] => 16
+                                        )
+
+                                    [prefix] => 1
+                                    [operator] => Package\Common\Language\UnaryOperator Enum:string
+                                        (
+                                            [name] => BooleanNot
+                                            [value] => !
+                                        )
+
+                                    [expression] => Package\Nodes\Expressions\BinaryExpression Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 11
+                                                    [endLine] => 1
+                                                    [endOffset] => 15
+                                                )
+
+                                            [operator] => Package\Common\Language\BinaryOperator Enum:string
+                                                (
+                                                    [name] => GreaterThan
+                                                    [value] => >
+                                                )
+
+                                            [left] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 8
+                                                            [endLine] => 1
+                                                            [endOffset] => 10
+                                                        )
+
+                                                    [value:protected] => 20
+                                                )
+
+                                            [right] => Package\Nodes\Literals\IntegerLiteral Object
+                                                (
+                                                    [location] => Package\Common\Location Object
+                                                        (
+                                                            [startLine] => 1
+                                                            [startOffset] => 13
+                                                            [endLine] => 1
+                                                            [endOffset] => 15
+                                                        )
+
+                                                    [value:protected] => 10
+                                                )
+
+                                        )
+
+                                )
+
+                            [inf] => Package\Types\PrimitiveType Object
+                                (
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Bool
+                                            [value] => bool
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

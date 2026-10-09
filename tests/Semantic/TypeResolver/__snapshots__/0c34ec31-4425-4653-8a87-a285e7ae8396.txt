@@ -1,0 +1,133 @@
+print 3.14 / 2;
+-----
+Array
+(
+    [0] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                )
+
+        )
+
+    [1] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                    [0] => Array
+                        (
+                            [obj] => Package\Nodes\Literals\FloatLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 6
+                                            [endLine] => 1
+                                            [endOffset] => 10
+                                        )
+
+                                    [value:protected] => 3.14
+                                )
+
+                            [inf] => Package\Types\PrimitiveType Object
+                                (
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Float
+                                            [value] => float
+                                        )
+
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [obj] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 13
+                                            [endLine] => 1
+                                            [endOffset] => 14
+                                        )
+
+                                    [value:protected] => 2
+                                )
+
+                            [inf] => Package\Types\PrimitiveType Object
+                                (
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
+                    [2] => Array
+                        (
+                            [obj] => Package\Nodes\Expressions\BinaryExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 11
+                                            [endLine] => 1
+                                            [endOffset] => 14
+                                        )
+
+                                    [operator] => Package\Common\Language\BinaryOperator Enum:string
+                                        (
+                                            [name] => Divide
+                                            [value] => /
+                                        )
+
+                                    [left] => Package\Nodes\Literals\FloatLiteral Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 6
+                                                    [endLine] => 1
+                                                    [endOffset] => 10
+                                                )
+
+                                            [value:protected] => 3.14
+                                        )
+
+                                    [right] => Package\Nodes\Literals\IntegerLiteral Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 13
+                                                    [endLine] => 1
+                                                    [endOffset] => 14
+                                                )
+
+                                            [value:protected] => 2
+                                        )
+
+                                )
+
+                            [inf] => Package\Types\PrimitiveType Object
+                                (
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Float
+                                            [value] => float
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)

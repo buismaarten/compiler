@@ -1,0 +1,94 @@
+print +10;
+-----
+Array
+(
+    [0] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                )
+
+        )
+
+    [1] => SplObjectStorage Object
+        (
+            [storage:SplObjectStorage:private] => Array
+                (
+                    [0] => Array
+                        (
+                            [obj] => Package\Nodes\Literals\IntegerLiteral Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 7
+                                            [endLine] => 1
+                                            [endOffset] => 9
+                                        )
+
+                                    [value:protected] => 10
+                                )
+
+                            [inf] => Package\Types\PrimitiveType Object
+                                (
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [obj] => Package\Nodes\Expressions\UnaryExpression Object
+                                (
+                                    [location] => Package\Common\Location Object
+                                        (
+                                            [startLine] => 1
+                                            [startOffset] => 6
+                                            [endLine] => 1
+                                            [endOffset] => 9
+                                        )
+
+                                    [prefix] => 1
+                                    [operator] => Package\Common\Language\UnaryOperator Enum:string
+                                        (
+                                            [name] => Plus
+                                            [value] => +
+                                        )
+
+                                    [expression] => Package\Nodes\Literals\IntegerLiteral Object
+                                        (
+                                            [location] => Package\Common\Location Object
+                                                (
+                                                    [startLine] => 1
+                                                    [startOffset] => 7
+                                                    [endLine] => 1
+                                                    [endOffset] => 9
+                                                )
+
+                                            [value:protected] => 10
+                                        )
+
+                                )
+
+                            [inf] => Package\Types\PrimitiveType Object
+                                (
+                                    [primitive] => Package\Common\Language\Primitive Enum:string
+                                        (
+                                            [name] => Integer
+                                            [value] => int
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
