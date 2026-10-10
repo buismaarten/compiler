@@ -38,7 +38,7 @@ final class SymbolResolver
     private function traverse(AbstractNode $node): void
     {
         $traverser = new NodeTraverser;
-        $traverser->addVisitor(new SymbolNodeVisitor($this->symbols));
+        $traverser->addVisitor(new SymbolResolverNodeVisitor($this->symbols));
         $traverser->traverse($node);
     }
 }

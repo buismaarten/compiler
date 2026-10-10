@@ -59,7 +59,7 @@ final class TypeResolver
         }
 
         $traverser = new NodeTraverser;
-        $traverser->addVisitor(new TypeNodeVisitor($symbolResolver, $this->types, $this->functionReturnTypes));
+        $traverser->addVisitor(new TypeResolverNodeVisitor($symbolResolver, $this->types, $this->functionReturnTypes));
         $traverser->traverse($node);
     }
 }
