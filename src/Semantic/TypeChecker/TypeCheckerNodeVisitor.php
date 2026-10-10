@@ -9,8 +9,8 @@ namespace Package\Semantic\TypeChecker;
 
 use Override;
 use Package\Exceptions\Semantic\TypeChecker\TypeErrorException;
+use Package\Nodes;
 use Package\Nodes\AbstractNode;
-use Package\Nodes\Expressions\AbstractExpression;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\TypeResolver\TypeResolver;
 use Package\Semantic\Types\ErrorType;
@@ -27,13 +27,27 @@ final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function enterNode(AbstractNode $node): void
     {
-        if ($node instanceof AbstractExpression) {
-            $this->enterExpression($node);
+        if ($node instanceof Nodes\Expressions\BinaryExpression) {
+            $this->enterBinaryExpression($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Expressions\UnaryExpression) {
+            $this->enterUnaryExpression($node);
             return;
         }
     }
 
-    private function enterExpression(AbstractExpression $node): void
+    private function enterBinaryExpression(Nodes\Expressions\BinaryExpression $node): void
+    {
+        $type = $this->typeResolver->resolveType($node);
+
+        if ($type instanceof ErrorType) {
+            throw new TypeErrorException($node->getStartLine());
+        }
+    }
+
+    private function enterUnaryExpression(Nodes\Expressions\UnaryExpression $node): void
     {
         $type = $this->typeResolver->resolveType($node);
 
