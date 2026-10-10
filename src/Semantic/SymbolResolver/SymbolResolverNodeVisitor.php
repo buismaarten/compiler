@@ -21,7 +21,7 @@ use Package\Types\AbstractType;
 use SplObjectStorage;
 use SplStack;
 
-final class SymbolNodeVisitor extends AbstractNodeVisitor
+final class SymbolResolverNodeVisitor extends AbstractNodeVisitor
 {
     private ?Scope $scope = null;
 

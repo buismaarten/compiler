@@ -25,7 +25,7 @@ final class TypeChecker
         }
 
         $traverser = new NodeTraverser;
-        $traverser->addVisitor(new TypeNodeVisitor($typeResolver));
+        $traverser->addVisitor(new TypeCheckerNodeVisitor($typeResolver));
         $traverser->traverse($node);
     }
 }

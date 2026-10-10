@@ -12,7 +12,7 @@ use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\TypeResolver\TypeResolver;
 
-final class TypeNodeVisitor extends AbstractNodeVisitor
+final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
 {
     private TypeResolver $typeResolver;
 
