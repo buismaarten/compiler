@@ -25,5 +25,6 @@ final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
     public function enterNode(AbstractNode $node): void
     {
         // TODO
+        var_dump($this->typeResolver->getTypes());
     }
 }
