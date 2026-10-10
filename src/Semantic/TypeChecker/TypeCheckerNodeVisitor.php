@@ -14,7 +14,6 @@ use Package\Nodes;
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\TypeResolver\TypeResolver;
-use Package\Semantic\Types\ErrorType;
 use Package\Types;
 
 final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
@@ -59,7 +58,7 @@ final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
     {
         $type = $this->typeResolver->resolveType($node);
 
-        if ($type instanceof ErrorType) {
+        if ($type instanceof Types\ErrorType) {
             throw new TypeErrorException($node->getStartLine());
         }
     }
@@ -87,7 +86,7 @@ final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
     {
         $type = $this->typeResolver->resolveType($node);
 
-        if ($type instanceof ErrorType) {
+        if ($type instanceof Types\ErrorType) {
             throw new TypeErrorException($node->getStartLine());
         }
     }

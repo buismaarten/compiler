@@ -114,7 +114,7 @@ Array
 
                                 )
 
-                            [inf] => Package\Semantic\Types\ErrorType Object
+                            [inf] => Package\Types\ErrorType Object
                                 (
                                 )
 

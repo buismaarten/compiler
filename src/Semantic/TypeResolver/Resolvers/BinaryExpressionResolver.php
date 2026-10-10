@@ -107,7 +107,7 @@ final class BinaryExpressionResolver
             }
         }
 
-        return new ErrorType;
+        return new Types\ErrorType;
     }
 
     private static function checkTypes(AbstractType $left, AbstractType $right): bool
