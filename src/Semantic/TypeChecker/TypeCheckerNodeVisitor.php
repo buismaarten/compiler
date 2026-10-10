@@ -39,6 +39,11 @@ final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
+        if ($node instanceof Nodes\Statements\PrintStatement) {
+            $this->enterPrintStatement($node);
+            return;
+        }
+
         if ($node instanceof Nodes\Expressions\UnaryExpression) {
             $this->enterUnaryExpression($node);
             return;
@@ -64,6 +69,16 @@ final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
         $type = $this->typeResolver->resolveType($node->condition);
 
         if (!$type instanceof Types\PrimitiveType || $type->primitive !== Primitive::Bool) {
+            throw new TypeErrorException($node->getStartLine());
+        }
+    }
+
+    private function enterPrintStatement(Nodes\Statements\PrintStatement $node): void
+    {
+        $type = $this->typeResolver->resolveType($node->expression);
+        $type = Types\NullableType::unwrap($type);
+
+        if (!$type instanceof Types\PrimitiveType) {
             throw new TypeErrorException($node->getStartLine());
         }
     }
