@@ -8,9 +8,12 @@ declare(strict_types=1);
 namespace Package\Semantic\TypeChecker;
 
 use Override;
+use Package\Exceptions\Semantic\TypeChecker\TypeErrorException;
+use Package\Nodes;
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\TypeResolver\TypeResolver;
+use Package\Semantic\Types\ErrorType;
 
 final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
 {
@@ -24,7 +27,32 @@ final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function enterNode(AbstractNode $node): void
     {
-        // TODO
-        var_dump($this->typeResolver->getTypes());
+        if ($node instanceof Nodes\Expressions\BinaryExpression) {
+            $this->enterBinaryExpression($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Expressions\UnaryExpression) {
+            $this->enterUnaryExpression($node);
+            return;
+        }
+    }
+
+    private function enterBinaryExpression(Nodes\Expressions\BinaryExpression $node): void
+    {
+        $type = $this->typeResolver->resolveType($node);
+
+        if ($type instanceof ErrorType) {
+            throw new TypeErrorException($node->getStartLine());
+        }
+    }
+
+    private function enterUnaryExpression(Nodes\Expressions\UnaryExpression $node): void
+    {
+        $type = $this->typeResolver->resolveType($node);
+
+        if ($type instanceof ErrorType) {
+            throw new TypeErrorException($node->getStartLine());
+        }
     }
 }
