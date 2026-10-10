@@ -1,4 +1,4 @@
-print 10 != true;
+print 1 != true;
 -----
 Array
 (
@@ -23,10 +23,10 @@ Array
                                             [startLine] => 1
                                             [startOffset] => 6
                                             [endLine] => 1
-                                            [endOffset] => 8
+                                            [endOffset] => 7
                                         )
 
-                                    [value:protected] => 10
+                                    [value:protected] => 1
                                 )
 
                             [inf] => Package\Types\PrimitiveType Object
@@ -48,9 +48,9 @@ Array
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 1
-                                            [startOffset] => 12
+                                            [startOffset] => 11
                                             [endLine] => 1
-                                            [endOffset] => 16
+                                            [endOffset] => 15
                                         )
 
                                     [value:protected] => 1
@@ -75,9 +75,9 @@ Array
                                     [location] => Package\Common\Location Object
                                         (
                                             [startLine] => 1
-                                            [startOffset] => 9
+                                            [startOffset] => 8
                                             [endLine] => 1
-                                            [endOffset] => 16
+                                            [endOffset] => 15
                                         )
 
                                     [operator] => Package\Common\Language\BinaryOperator Enum:string
@@ -93,10 +93,10 @@ Array
                                                     [startLine] => 1
                                                     [startOffset] => 6
                                                     [endLine] => 1
-                                                    [endOffset] => 8
+                                                    [endOffset] => 7
                                                 )
 
-                                            [value:protected] => 10
+                                            [value:protected] => 1
                                         )
 
                                     [right] => Package\Nodes\Literals\BooleanLiteral Object
@@ -104,9 +104,9 @@ Array
                                             [location] => Package\Common\Location Object
                                                 (
                                                     [startLine] => 1
-                                                    [startOffset] => 12
+                                                    [startOffset] => 11
                                                     [endLine] => 1
-                                                    [endOffset] => 16
+                                                    [endOffset] => 15
                                                 )
 
                                             [value:protected] => 1
