@@ -9,7 +9,6 @@ namespace Package\Semantic\TypeResolver\Resolvers;
 
 use Package\Common\Language\BinaryOperator;
 use Package\Common\Language\Primitive;
-use Package\Semantic\Types\ErrorType;
 use Package\Types;
 use Package\Types\AbstractType;
 
