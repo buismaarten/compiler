@@ -5,18 +5,18 @@ declare(strict_types=1);
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-namespace Package\Semantic\TypeChecker;
+namespace Package\Semantic\TypeValidator;
 
 use Override;
 use Package\Common\Language\Primitive;
-use Package\Exceptions\Semantic\TypeChecker\TypeErrorException;
+use Package\Exceptions\Semantic\TypeValidator\TypeErrorException;
 use Package\Nodes;
 use Package\Nodes\AbstractNode;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\TypeResolver\TypeResolver;
 use Package\Types;
 
-final class TypeCheckerNodeVisitor extends AbstractNodeVisitor
+final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
 {
     private TypeResolver $typeResolver;
 
