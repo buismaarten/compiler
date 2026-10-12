@@ -153,8 +153,8 @@ final class BinaryExpressionResolver
 
     private static function checkNullableTypes(AbstractType $left, AbstractType $right): bool
     {
-        if ($left instanceof Types\NullableType && $right instanceof Types\PrimitiveType) {
-            return $right->primitive->isNullable();
+        if ($left instanceof Types\PrimitiveType && $right instanceof Types\NullableType) {
+            return $left->primitive->isNullable();
         }
 
         return false;
