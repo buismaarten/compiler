@@ -109,6 +109,7 @@ final class BinaryExpressionResolver
         return new Types\ErrorType;
     }
 
+    // TODO
     private static function checkTypes(AbstractType $left, AbstractType $right): bool
     {
         if ($left instanceof Types\ArrayType && $right instanceof Types\ArrayType) {
@@ -151,6 +152,7 @@ final class BinaryExpressionResolver
         return false;
     }
 
+    // TODO
     private static function checkNullableTypes(AbstractType $left, AbstractType $right): bool
     {
         if ($left instanceof Types\PrimitiveType && $right instanceof Types\NullableType) {
