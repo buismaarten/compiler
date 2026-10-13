@@ -53,11 +53,6 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
-        if ($node instanceof Nodes\Statements\FunctionStatement) {
-            $this->enterFunctionStatement($node);
-            return;
-        }
-
         if ($node instanceof Nodes\Statements\IfStatement) {
             $this->enterIfStatement($node);
             return;
@@ -104,12 +99,8 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
     {
         // TODO
         // $type = $this->typeResolver->resolveType($node);
-    }
-
-    private function enterFunctionStatement(Nodes\Statements\FunctionStatement $node): void
-    {
-        // TODO
-        // $types = $this->typeResolver->resolveFunctionReturnTypes($node);
+        // $symbol = $this->typeResolver->getSymbolResolver()->resolveSymbol($node);
+        // $returnTypes = $this->typeResolver->resolveFunctionReturnTypes($symbol);
     }
 
     private function enterIfStatement(Nodes\Statements\IfStatement $node): void

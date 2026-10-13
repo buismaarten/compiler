@@ -16,6 +16,7 @@ use Package\Nodes\Expressions\AbstractExpression;
 use Package\Nodes\Literals\AbstractLiteral;
 use Package\NodeTraverser\AbstractNodeVisitor;
 use Package\Semantic\SymbolResolver\SymbolResolver;
+use Package\Semantic\Symbols\AbstractSymbol;
 use Package\Types;
 use Package\Types\AbstractType;
 use SplObjectStorage;
@@ -28,7 +29,7 @@ final class TypeResolverNodeVisitor extends AbstractNodeVisitor
     /** @var SplObjectStorage<AbstractNode, AbstractType> */
     private SplObjectStorage $types;
 
-    /** @var SplObjectStorage<AbstractNode, AbstractType[]> */
+    /** @var SplObjectStorage<AbstractSymbol, AbstractType[]> */
     private SplObjectStorage $functionReturnTypes;
 
     /** @var SplStack<ArrayObject<array-key, AbstractType>> */
@@ -36,7 +37,7 @@ final class TypeResolverNodeVisitor extends AbstractNodeVisitor
 
     /**
      * @param SplObjectStorage<AbstractNode, AbstractType> $types
-     * @param SplObjectStorage<AbstractNode, AbstractType[]> $functionReturnTypes
+     * @param SplObjectStorage<AbstractSymbol, AbstractType[]> $functionReturnTypes
      */
     public function __construct(SymbolResolver $symbolResolver, SplObjectStorage $types, SplObjectStorage $functionReturnTypes)
     {
@@ -163,9 +164,10 @@ final class TypeResolverNodeVisitor extends AbstractNodeVisitor
 
     private function leaveFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
+        $symbol = $this->symbolResolver->resolveSymbol($node);
         $functionReturnTypes = $this->functionReturnTypesStack->pop();
 
-        $this->functionReturnTypes[$node] = $functionReturnTypes->getArrayCopy();
+        $this->functionReturnTypes[$symbol] = $functionReturnTypes->getArrayCopy();
     }
 
     private function leaveIdentifierExpression(Nodes\Expressions\IdentifierExpression $node): void

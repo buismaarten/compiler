@@ -13,7 +13,7 @@ Array
                 (
                     [0] => Array
                         (
-                            [obj] => Package\Nodes\Statements\FunctionStatement Object
+                            [obj] => Package\Semantic\Symbols\FunctionSymbol Object
                                 (
                                     [location] => Package\Common\Location Object
                                         (
@@ -24,16 +24,8 @@ Array
                                         )
 
                                     [name] => foo
-                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                    [type] => Package\Types\PrimitiveType Object
                                         (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 1
-                                                    [startOffset] => 21
-                                                    [endLine] => 1
-                                                    [endOffset] => 27
-                                                )
-
                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                 (
                                                     [name] => String
@@ -44,7 +36,7 @@ Array
 
                                     [parameters] => Array
                                         (
-                                            [0] => Package\Nodes\Parameter Object
+                                            [0] => Package\Semantic\Symbols\ValueSymbol Object
                                                 (
                                                     [location] => Package\Common\Location Object
                                                         (
@@ -55,16 +47,8 @@ Array
                                                         )
 
                                                     [name] => amount
-                                                    [type] => Package\Nodes\Types\PrimitiveType Object
+                                                    [type] => Package\Types\PrimitiveType Object
                                                         (
-                                                            [location] => Package\Common\Location Object
-                                                                (
-                                                                    [startLine] => 1
-                                                                    [startOffset] => 15
-                                                                    [endLine] => 1
-                                                                    [endOffset] => 18
-                                                                )
-
                                                             [primitive] => Package\Common\Language\Primitive Enum:string
                                                                 (
                                                                     [name] => Integer
@@ -73,70 +57,9 @@ Array
 
                                                         )
 
-                                                )
-
-                                        )
-
-                                    [statements] => Package\Nodes\Block Object
-                                        (
-                                            [location] => Package\Common\Location Object
-                                                (
-                                                    [startLine] => 1
-                                                    [startOffset] => 28
-                                                    [endLine] => 4
-                                                    [endOffset] => 80
-                                                )
-
-                                            [statements] => Array
-                                                (
-                                                    [0] => Package\Nodes\Statements\ReturnStatement Object
+                                                    [kind] => Package\Semantic\Symbols\ValueSymbolKind Enum
                                                         (
-                                                            [location] => Package\Common\Location Object
-                                                                (
-                                                                    [startLine] => 2
-                                                                    [startOffset] => 34
-                                                                    [endLine] => 2
-                                                                    [endOffset] => 48
-                                                                )
-
-                                                            [expression] => Package\Nodes\Expressions\IdentifierExpression Object
-                                                                (
-                                                                    [location] => Package\Common\Location Object
-                                                                        (
-                                                                            [startLine] => 2
-                                                                            [startOffset] => 41
-                                                                            [endLine] => 2
-                                                                            [endOffset] => 47
-                                                                        )
-
-                                                                    [name] => amount
-                                                                )
-
-                                                        )
-
-                                                    [1] => Package\Nodes\Statements\ReturnStatement Object
-                                                        (
-                                                            [location] => Package\Common\Location Object
-                                                                (
-                                                                    [startLine] => 3
-                                                                    [startOffset] => 53
-                                                                    [endLine] => 3
-                                                                    [endOffset] => 78
-                                                                )
-
-                                                            [expression] => Package\Nodes\Literals\StringLiteral Object
-                                                                (
-                                                                    [location] => Package\Common\Location Object
-                                                                        (
-                                                                            [startLine] => 3
-                                                                            [startOffset] => 60
-                                                                            [endLine] => 3
-                                                                            [endOffset] => 77
-                                                                        )
-
-                                                                    [value:protected] => Goodbye, World!
-                                                                )
-
+                                                            [name] => Parameter
                                                         )
 
                                                 )
