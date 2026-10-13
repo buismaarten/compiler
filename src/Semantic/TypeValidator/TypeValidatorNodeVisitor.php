@@ -33,6 +33,11 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
+        if ($node instanceof Nodes\Expressions\FunctionCallExpression) {
+            $this->enterFunctionCallExpression($node);
+            return;
+        }
+
         if ($node instanceof Nodes\Expressions\UnaryExpression) {
             $this->enterUnaryExpression($node);
             return;
@@ -82,6 +87,12 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
     {
         // TODO
         // $type = $this->typeResolver->resolveType($node->expression);
+    }
+
+    private function enterFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
+    {
+        // TODO
+        // $type = $this->typeResolver->resolveType($node);
     }
 
     private function enterFunctionStatement(Nodes\Statements\FunctionStatement $node): void
