@@ -28,6 +28,11 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
     #[Override]
     public function enterNode(AbstractNode $node): void
     {
+        if ($node instanceof Nodes\Expressions\AssignmentExpression) {
+            $this->enterAssignmentExpression($node);
+            return;
+        }
+
         if ($node instanceof Nodes\Expressions\BinaryExpression) {
             $this->enterBinaryExpression($node);
             return;
@@ -74,6 +79,12 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
         }
     }
 
+    private function enterAssignmentExpression(Nodes\Expressions\AssignmentExpression $node): void
+    {
+        // TODO
+        // $type = $this->typeResolver->resolveType($node);
+    }
+
     private function enterBinaryExpression(Nodes\Expressions\BinaryExpression $node): void
     {
         $type = $this->typeResolver->resolveType($node);
@@ -86,7 +97,7 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
     private function enterConstantStatement(Nodes\Statements\ConstantStatement $node): void
     {
         // TODO
-        // $type = $this->typeResolver->resolveType($node->expression);
+        // $type = $this->typeResolver->resolveType($node);
     }
 
     private function enterFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
@@ -132,7 +143,7 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
     private function enterVariableStatement(Nodes\Statements\VariableStatement $node): void
     {
         // TODO
-        // $type = $this->typeResolver->resolveType($node->expression);
+        // $type = $this->typeResolver->resolveType($node);
     }
 
     private function enterWhileStatement(Nodes\Statements\WhileStatement $node): void
