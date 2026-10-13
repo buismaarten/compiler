@@ -38,6 +38,11 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
             return;
         }
 
+        if ($node instanceof Nodes\Statements\ConstantStatement) {
+            $this->enterConstantStatement($node);
+            return;
+        }
+
         if ($node instanceof Nodes\Statements\FunctionStatement) {
             $this->enterFunctionStatement($node);
             return;
@@ -50,6 +55,11 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
 
         if ($node instanceof Nodes\Statements\PrintStatement) {
             $this->enterPrintStatement($node);
+            return;
+        }
+
+        if ($node instanceof Nodes\Statements\VariableStatement) {
+            $this->enterVariableStatement($node);
             return;
         }
 
@@ -68,12 +78,16 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
         }
     }
 
+    private function enterConstantStatement(Nodes\Statements\ConstantStatement $node): void
+    {
+        // TODO
+        // $type = $this->typeResolver->resolveType($node->expression);
+    }
+
     private function enterFunctionStatement(Nodes\Statements\FunctionStatement $node): void
     {
-        $returnTypes = $this->typeResolver->resolveFunctionReturnTypes($node);
-
         // TODO
-        // var_dump($returnTypes);
+        // $types = $this->typeResolver->resolveFunctionReturnTypes($node);
     }
 
     private function enterIfStatement(Nodes\Statements\IfStatement $node): void
@@ -102,6 +116,12 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
         if ($type instanceof Types\ErrorType) {
             throw new TypeErrorException($node->getStartLine());
         }
+    }
+
+    private function enterVariableStatement(Nodes\Statements\VariableStatement $node): void
+    {
+        // TODO
+        // $type = $this->typeResolver->resolveType($node->expression);
     }
 
     private function enterWhileStatement(Nodes\Statements\WhileStatement $node): void
