@@ -13,19 +13,24 @@ use Package\Semantic\TypeResolver\TypeResolver;
 
 final class TypeValidator
 {
+    private TypeResolver $typeResolver;
+
     public function __construct(AbstractNode $node, ?TypeResolver $typeResolver = null)
     {
-        $this->traverse($node, $typeResolver);
+        $this->typeResolver = $typeResolver ?? new TypeResolver($node);
+
+        $this->traverse($node);
     }
 
-    private function traverse(AbstractNode $node, ?TypeResolver $typeResolver): void
+    public function getTypeResolver(): TypeResolver
     {
-        if ($typeResolver === null) {
-            $typeResolver = new TypeResolver($node);
-        }
+        return $this->typeResolver;
+    }
 
+    private function traverse(AbstractNode $node): void
+    {
         $traverser = new NodeTraverser;
-        $traverser->addVisitor(new TypeValidatorNodeVisitor($typeResolver));
+        $traverser->addVisitor(new TypeValidatorNodeVisitor($this->typeResolver));
         $traverser->traverse($node);
     }
 }
