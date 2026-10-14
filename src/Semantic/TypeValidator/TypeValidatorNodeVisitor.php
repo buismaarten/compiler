@@ -78,6 +78,7 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
     {
         // TODO
         // $type = $this->typeResolver->resolveType($node);
+        // $expressionType = $this->typeResolver->resolveType($node->expression);
     }
 
     private function enterBinaryExpression(Nodes\Expressions\BinaryExpression $node): void
@@ -93,6 +94,7 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
     {
         // TODO
         // $type = $this->typeResolver->resolveType($node);
+        // $expressionType = $this->typeResolver->resolveType($node->expression);
     }
 
     private function enterFunctionCallExpression(Nodes\Expressions\FunctionCallExpression $node): void
@@ -135,6 +137,7 @@ final class TypeValidatorNodeVisitor extends AbstractNodeVisitor
     {
         // TODO
         // $type = $this->typeResolver->resolveType($node);
+        // $expressionType = $this->typeResolver->resolveType($node->expression);
     }
 
     private function enterWhileStatement(Nodes\Statements\WhileStatement $node): void
